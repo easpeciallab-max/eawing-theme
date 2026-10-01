@@ -31,7 +31,7 @@
 - ไม่มีโหมดมืด (`eaw_is_dark_mode()` คืน false) · ไม่บังคับอังกฤษพิมพ์ใหญ่
 - รูป: `assets/img/brand/` (wordmark, icon, favicon, การ์ดแชร์) สร้างจากโลโก้จริงใน media eawing.co · `assets/img/banners/eawing-*.webp` จากภาพโฆษณาของเจ้าของ (เฉพาะภาพที่ไม่มีตัวเลขกำไร) · `assets/img/covers/<slug>.webp` สร้างด้วย `dev/make-covers.php`
 - **เปลี่ยนรูปในธีมเมื่อไหร่ให้เปลี่ยนชื่อไฟล์** (Cloudflare แคชรูปตาม URL)
-- ช่องทางจริง (ตั้งใน Customizer บน eawing.co แล้ว 1 ต.ค. 2026): LINE OA `https://line.me/R/ti/p/@eawing` · Facebook `https://www.facebook.com/share/1EouUMc9v1/` · โบรกเกอร์ `Zaurix` เซิร์ฟเวอร์ `Zaurix-Server` · OpenChat ยังว่าง (ปุ่มซ่อน) จนกว่า EA WING มีกลุ่มของตัวเอง
+- ช่องทางจริง (ตั้งใน Customizer บน eawing.co แล้ว 1 ต.ค. 2026): LINE OA `https://line.me/R/ti/p/@eawing` · Facebook `https://www.facebook.com/share/1EouUMc9v1/` · โบรกเกอร์ `Zaurix` เซิร์ฟเวอร์ `Zaurix-Server` · OpenChat `https://line.me/ti/g2/xGup9Uap8lRAsu6e25T4qYJqBfFFFzJPSsUMFw` (ตั้งแล้ว)
 
 ## โครงโค้ด (สรุป)
 - `functions.php` bootstrap + `eaw_defaults()` + helper (`eaw_mod`, `eaw_lines`, `eaw_logo_url`, `eaw_wordmark_url` …) แล้ว require `inc/*.php` และ glob `inc/modules/*.php`
