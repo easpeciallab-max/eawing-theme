@@ -1,0 +1,693 @@
+/*
+Theme Name: EA WING
+Description: ธีมเว็บ EA WING · เริ่มจากหน้า /go (ลิงก์รวม + 6 ขั้นตอนเริ่มใช้งาน)
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: eawing
+*/
+
+/* ==========================================================
+   หน้า /go (template-links.php)
+   ชื่อคลาส lh-* ใช้ชุดเดียวกับธีม ea2000
+   ========================================================== */
+
+:root {
+	/* ----------------------------------------------------------
+	   สีแบรนด์ EA WING · ดูดค่าจากโลโก้และภาพโฆษณาชุดแรก
+	   น้ำเงินปีก + ทองลูกศร บนพื้นฟ้าสว่าง
+	   ---------------------------------------------------------- */
+	--navy-900: #011D3B;     /* พื้นมืด (แบนเนอร์โทนกลางคืน) */
+	--navy-700: #0A2E66;     /* หัวข้อ ตัวอักษรเข้ม */
+	--blue-600: #0B5CAD;     /* น้ำเงินปีก · สีหลัก */
+	--blue-500: #1A6DC2;
+	--sky-200: #D4E6FB;
+	--sky-100: #E6F1FD;      /* พื้นฟ้า */
+	--sky-50: #F3F8FE;
+	--gold-300: #F6D57A;
+	--gold-400: #EFC25A;     /* ทองสว่าง */
+	--gold-500: #D9A12E;
+	--gold-600: #BB831F;     /* ทองเข้ม */
+	--gold-text: #8F620C;    /* ทองสำหรับตัวอักษรเล็กบนพื้นขาว (คอนทราสต์ 5:1) */
+
+	/* ค่าตามหน้าที่ · กฎด้านล่างเรียกใช้ชื่อเหล่านี้ */
+	--bg: #FFFFFF;
+	--surface: var(--sky-50);
+	--surface-2: var(--sky-100);
+	--bg-rgb: 255, 255, 255;
+
+	--primary: var(--blue-600);
+	--primary-deep: var(--navy-700);
+	--primary-rgb: 11, 92, 173;
+	--gold-rgb: 239, 194, 90;
+	--gold-deep-rgb: 187, 131, 31;
+	--on-primary: #FFFFFF;
+
+	--text: #0F1F3D;
+	--muted: #4D5B78;
+	--steel-text: #6B7790;
+
+	--border: rgba(10, 46, 102, 0.10);
+	--card-bg: #FFFFFF;
+	--shadow: 0 8px 22px rgba(10, 46, 102, 0.07);
+	--shadow-lg: 0 24px 60px rgba(10, 46, 102, 0.14);
+
+	/* ปุ่มหลัก (ทอง) และปุ่มรอง (น้ำเงิน) แบบในภาพโฆษณา */
+	--grad-gold: linear-gradient(180deg, var(--gold-300) 0%, var(--gold-400) 38%, var(--gold-500) 72%, var(--gold-600) 100%);
+	--grad-blue: linear-gradient(180deg, var(--blue-500) 0%, var(--blue-600) 45%, var(--navy-700) 100%);
+	--grad-sky: linear-gradient(180deg, var(--sky-200) 0%, var(--sky-100) 34%, var(--sky-50) 70%, #FFFFFF 100%);
+
+	--font-display: "Kanit", "Noto Sans Thai", sans-serif;
+	--font-body: "Noto Sans Thai", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--sky-100);
+	color: var(--text);
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: 1.0625rem;
+	line-height: 1.75;
+	-webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+	display: block;
+}
+
+a:focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 3px;
+}
+
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	word-wrap: normal !important;
+}
+
+/* ---------- โครงหน้า ---------- */
+
+.link-hub {
+	min-height: 100vh;
+	min-height: 100dvh;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 40px 16px 48px;
+	/* ฟ้าสว่างไล่ลงขาว + แสงทองจาง ๆ ด้านบน แบบท้องฟ้าในภาพโฆษณา */
+	background:
+		radial-gradient(70% 38% at 50% 0%, rgba(var(--gold-rgb), 0.20), transparent 70%),
+		radial-gradient(55% 30% at 100% 18%, rgba(255, 255, 255, 0.9), transparent 70%),
+		var(--grad-sky);
+}
+
+.lh-card {
+	width: 100%;
+	max-width: 400px;
+	text-align: center;
+	padding: 34px 24px 26px;
+	border: 1px solid rgba(var(--gold-deep-rgb), 0.28);
+	border-radius: 28px;
+	background: var(--card-bg);
+	box-shadow: var(--shadow-lg);
+}
+
+.lh-logo {
+	width: 78px;
+	height: 78px;
+	margin: 4px auto 14px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	background: var(--surface-2);
+	border: 1px solid var(--border);
+	box-shadow: var(--shadow);
+}
+
+.lh-logo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* โลโก้จริงของเว็บ (แนวนอน พื้นโปร่ง มีชื่อแบรนด์ในตัว) · วางเด่นไม่ใส่กรอบ แบบในภาพโฆษณา */
+.lh-logo.is-custom {
+	width: 156px;
+	height: auto;
+	margin: 0 auto 10px;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+	overflow: visible;
+}
+
+.lh-logo.is-custom img {
+	height: auto;
+	object-fit: contain;
+	filter: drop-shadow(0 8px 16px rgba(10, 46, 102, 0.16));
+}
+
+.lh-title {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: 1.4rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	line-height: 1.3;
+	color: var(--navy-700);
+}
+
+.lh-tagline {
+	margin: 7px auto 20px;
+	max-width: 26em;
+	font-size: 0.8rem;
+	line-height: 1.55;
+	color: var(--muted);
+	text-wrap: balance;
+}
+
+/* ---------- ปุ่ม ---------- */
+
+.lh-btn {
+	display: flex;
+	align-items: center;
+	gap: 11px;
+	width: 100%;
+	height: 56px;
+	padding: 0 20px;
+	margin: 0 0 11px;
+	border-radius: 999px;
+	font-family: var(--font-display);
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: none;
+	border: 1px solid var(--border);
+	background: var(--card-bg);
+	color: var(--text);
+	box-shadow: var(--shadow);
+	transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+}
+
+.lh-btn:hover {
+	border-color: rgba(var(--primary-rgb), 0.45);
+	background: var(--surface);
+	color: var(--text);
+}
+
+.lh-ic {
+	width: 24px;
+	height: 24px;
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--primary);
+}
+
+.lh-ic svg {
+	width: 22px;
+	height: 22px;
+}
+
+.lh-lbl {
+	flex: 1;
+	text-align: left;
+	line-height: 1.2;
+}
+
+.lh-ar {
+	color: var(--steel-text);
+	font-size: 1rem;
+	line-height: 1;
+}
+
+.lh-mini-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	width: 100%;
+	height: 56px;
+	padding: 0 10px;
+	border-radius: 999px;
+	border: 1px solid var(--border);
+	background: var(--card-bg);
+	color: var(--text);
+	font-family: var(--font-display);
+	font-size: 0.82rem;
+	font-weight: 700;
+	line-height: 1.22;
+	text-decoration: none;
+	text-align: center;
+	transition: border-color 0.14s ease, background 0.14s ease, color 0.14s ease;
+}
+
+.lh-mini-btn .lh-ic {
+	width: 20px;
+	height: 20px;
+}
+
+.lh-mini-btn .lh-ic svg {
+	width: 19px;
+	height: 19px;
+}
+
+.lh-mini-btn .lh-lbl {
+	flex: 0 1 auto;
+	text-align: center;
+}
+
+.lh-mini-btn:hover {
+	border-color: var(--primary);
+	background: var(--surface);
+	color: var(--primary-deep);
+}
+
+/* ปุ่ม LINE · ปุ่มหลักสีทอง ตัวอักษรกรมท่า (คอนทราสต์ตรงแนวตัวอักษร ≥ 5.7:1) */
+.lh-btn-line {
+	justify-content: center;
+	background: var(--grad-gold);
+	border-color: rgba(var(--gold-deep-rgb), 0.65);
+	color: var(--navy-700);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.65),
+		0 8px 18px rgba(var(--gold-deep-rgb), 0.28);
+	transition: filter 0.14s ease, box-shadow 0.14s ease;
+}
+
+.lh-btn-line .lh-ic {
+	color: var(--navy-700);
+}
+
+.lh-btn-line .lh-lbl {
+	flex: 0 1 auto;
+	text-align: center;
+}
+
+.lh-btn-line:hover {
+	border-color: var(--gold-600);
+	background: var(--grad-gold);
+	color: var(--navy-700);
+	filter: brightness(1.05) saturate(1.08);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.65),
+		0 10px 22px rgba(var(--gold-deep-rgb), 0.36);
+}
+
+.lh-btn-line-step {
+	margin: 0 0 8px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+/* ปุ่ม OpenChat · ปุ่มรองสีน้ำเงินปีก */
+.lh-btn-openchat {
+	justify-content: center;
+	border-color: var(--navy-700);
+	background: var(--grad-blue);
+	color: var(--on-primary);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+	transition: filter 0.14s ease;
+}
+
+.lh-btn-openchat .lh-ic {
+	color: var(--gold-400);
+}
+
+.lh-btn-openchat .lh-lbl {
+	flex: 0 1 auto;
+	text-align: center;
+}
+
+.lh-btn-openchat:hover {
+	border-color: var(--navy-700);
+	background: var(--grad-blue);
+	color: var(--on-primary);
+	filter: brightness(1.1);
+}
+
+/* ---------- กลุ่มลิงก์ ---------- */
+
+.lh-section-title {
+	margin: 0 0 11px;
+	font-family: var(--font-display);
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	color: var(--primary);
+	text-align: center;
+}
+
+.lh-group {
+	margin: 22px 0 0;
+	padding-top: 18px;
+	border-top: 1px solid var(--border);
+}
+
+.lh-group > .lh-btn:last-child,
+.lh-group > .lh-mini-btn:last-child {
+	margin-bottom: 0;
+}
+
+.lh-group--help {
+	margin: 0 0 22px;
+	padding: 0 0 20px;
+	border-top: 0;
+	border-bottom: 1px solid var(--border);
+}
+
+/* ---------- ขั้นตอนเริ่มใช้งาน ---------- */
+
+.lh-journey {
+	text-align: left;
+}
+
+.lh-steps-title {
+	margin: 0 0 16px;
+	font-family: var(--font-display);
+	font-size: 1rem;
+	font-weight: 700;
+	color: var(--navy-700);
+	text-align: center;
+	text-wrap: balance;
+}
+
+.lh-steps {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.lh-step {
+	position: relative;
+	padding: 0 0 20px 44px;
+}
+
+.lh-step::before {
+	content: "";
+	position: absolute;
+	left: 15px;
+	top: 38px;
+	bottom: 6px;
+	width: 2px;
+	border-radius: 2px;
+	background: linear-gradient(180deg, rgba(var(--gold-rgb), 0.7), rgba(var(--primary-rgb), 0.14));
+}
+
+.lh-step:last-child {
+	padding-bottom: 4px;
+}
+
+.lh-step:last-child::before {
+	display: none;
+}
+
+.lh-step-num {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	/* วงกรมท่า ขอบทอง ตัวเลขทอง · แบบไอคอนวงกลมในภาพโฆษณา */
+	background: var(--grad-blue);
+	border: 2px solid var(--gold-400);
+	color: var(--gold-300);
+	font-family: var(--font-display);
+	font-size: 0.92rem;
+	font-weight: 700;
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+}
+
+.lh-step-head {
+	min-height: 32px;
+	margin: 0 0 10px;
+}
+
+.lh-step-title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 8px;
+	margin: 0;
+	padding-top: 5px;
+	font-family: var(--font-display);
+	font-size: 0.95rem;
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--text);
+}
+
+.lh-step-badge {
+	padding: 2px 8px;
+	border-radius: 999px;
+	border: 1px solid rgba(var(--gold-deep-rgb), 0.45);
+	background: rgba(var(--gold-rgb), 0.22);
+	color: var(--gold-text);
+	font-size: 0.64rem;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.lh-step-desc {
+	margin: 3px 0 0;
+	font-size: 0.78rem;
+	line-height: 1.5;
+	color: var(--muted);
+}
+
+.lh-step-note {
+	margin: 6px 0 0;
+	padding: 6px 9px;
+	border-radius: 10px;
+	background: var(--surface);
+	font-size: 0.7rem;
+	line-height: 1.5;
+	color: var(--muted);
+}
+
+.lh-step-body > * {
+	margin-top: 0;
+	margin-bottom: 8px;
+}
+
+.lh-step-body > :last-child {
+	margin-bottom: 0;
+}
+
+/* ---------- ตารางเลือกอุปกรณ์ (MT5 / VPS) ---------- */
+
+.lh-vps-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+}
+
+.lh-mt5-grid--3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lh-vps-item {
+	min-width: 0;
+	min-height: 78px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	border-radius: 18px;
+	border: 1px solid var(--border);
+	background: var(--card-bg);
+	color: var(--text);
+	text-decoration: none;
+	transition: border-color 0.14s ease, background 0.14s ease, color 0.14s ease;
+}
+
+.lh-mt5-grid .lh-vps-item {
+	min-height: 72px;
+}
+
+.lh-vps-item:hover {
+	border-color: rgba(var(--primary-rgb), 0.45);
+	background: var(--surface);
+}
+
+.lh-vps-ic {
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--primary);
+	transition: color 0.14s ease;
+}
+
+.lh-vps-ic svg {
+	width: 26px;
+	height: 26px;
+}
+
+.lh-vps-item:hover .lh-vps-ic {
+	color: var(--primary-deep);
+}
+
+.lh-vps-lbl {
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-family: var(--font-display);
+	font-size: 0.75rem;
+	font-weight: 700;
+	line-height: 1.1;
+	white-space: nowrap;
+	color: var(--muted);
+	transition: color 0.14s ease;
+}
+
+.lh-vps-item:hover .lh-vps-lbl {
+	color: var(--primary-deep);
+}
+
+/* ---------- ปุ่มที่ยังไม่พร้อม (เร็ว ๆ นี้) ---------- */
+
+.lh-card .is-pending,
+.lh-vps-item-pending {
+	cursor: default;
+	border-style: dashed;
+	background: var(--surface);
+	box-shadow: none;
+}
+
+.lh-card .is-pending .lh-ic,
+.lh-card .is-pending .lh-lbl,
+.lh-vps-item-pending .lh-vps-ic,
+.lh-vps-item-pending .lh-vps-lbl {
+	opacity: 0.6;
+}
+
+.lh-card .is-pending:hover,
+.lh-vps-item-pending:hover {
+	border-color: var(--border);
+	background: var(--surface);
+	color: var(--text);
+}
+
+.lh-vps-item-pending:hover .lh-vps-ic {
+	color: var(--primary);
+}
+
+.lh-vps-item-pending:hover .lh-vps-lbl {
+	color: var(--muted);
+}
+
+.lh-pending-tag {
+	flex: 0 0 auto;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: var(--card-bg);
+	border: 1px solid var(--border);
+	color: var(--muted);
+	font-family: var(--font-body);
+	font-size: 0.64rem;
+	font-weight: 600;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+.lh-vps-item-pending .lh-pending-tag {
+	font-size: 0.6rem;
+	padding: 1px 7px;
+}
+
+/* ---------- ท้ายการ์ด ---------- */
+
+.lh-note {
+	margin: 22px auto 0;
+	max-width: 32em;
+	font-size: 0.625rem;
+	line-height: 1.5;
+	color: var(--muted);
+	text-wrap: balance;
+}
+
+.lh-legal {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 4px 14px;
+	margin: 12px 0 0;
+	font-size: 0.72rem;
+	line-height: 1.6;
+}
+
+.lh-legal a {
+	color: var(--muted);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.lh-legal a:hover {
+	color: var(--primary-deep);
+}
+
+/* ==========================================================
+   หน้าทั่วไป (index.php) · ยังเรียบ ๆ จนกว่าจะออกแบบหน้าอื่น
+   ========================================================== */
+
+.site-main {
+	max-width: 720px;
+	margin: 32px auto;
+	padding: 32px 24px;
+	border-radius: 28px;
+	background: var(--card-bg);
+	box-shadow: var(--shadow-lg);
+}
+
+.site-main h1,
+.site-main h2 {
+	font-family: var(--font-display);
+	line-height: 1.3;
+}
+
+.site-main a {
+	color: var(--primary);
+}
+
+.site-main img {
+	max-width: 100%;
+	height: auto;
+}
+
+@media (max-width: 760px) {
+	.site-main {
+		margin: 16px;
+		padding: 24px 16px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+	}
+}
