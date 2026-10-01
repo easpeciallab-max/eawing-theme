@@ -1,3 +1,4 @@
 dist/
 *.zip
 .env*
+!eawing/assets/downloads/*.zip

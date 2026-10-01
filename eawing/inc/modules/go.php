@@ -48,12 +48,12 @@ function eaw_go_defaults( $d ) {
 			'go_badges'              => "วางแผน\nติดตาม\nบริหารความเสี่ยง",
 
 			/* กลุ่มติดต่อทีม */
-			'go_help_title'          => 'มีคำถามก่อนเริ่ม ทักทีมงานได้เลย',
-			'go_line_label'          => 'แชตกับทีมงาน EA WING ทาง LINE',
-			'go_openchat_label'      => 'กลุ่ม OpenChat ของ EA WING',
+			'go_help_title'          => 'ติดขั้นตอนไหน ทักทีมงานได้',
+			'go_line_label'          => 'ทัก LINE ปรึกษาทีมงาน',
+			'go_openchat_label'      => 'เข้ากลุ่ม EA WING OpenChat',
 
 			/* ขั้นตอน · ส่วนรวม */
-			'go_steps_title'         => 'เส้นทางเริ่มต้น {n} ขั้น',
+			'go_steps_title'         => 'เริ่มใช้งาน EA WING ใน {n} ขั้นตอน',
 			'go_step_word'           => 'ขั้นที่',
 			'go_pending_label'       => 'กำลังเตรียม',
 
@@ -81,24 +81,27 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 3 · ฝากเงิน (ไม่มีลิงก์ = ซ่อนทั้งขั้น) */
 			'go_step3_title'         => 'ฝากเงินเข้าบัญชีเทรด',
-			'go_step3_desc'          => 'ทำรายการผ่านเมนูฝากเงินในหน้าสมาชิกของโบรกเกอร์ และใส่เฉพาะเงินที่เสียได้ทั้งก้อน',
+			'go_step3_desc'          => 'ฝากเงินผ่านหน้า Portal ของ Zaurix ก่อนเปิดใช้ EA และใช้เฉพาะเงินที่รับความเสี่ยงได้',
 			'go_step3_note'          => '',
 			'go_step3_badge'         => '',
-			'go_deposit_label'       => '',
-			'go_deposit_url'         => '',
+			'go_deposit_label'       => 'เข้า Portal Zaurix',
+			'go_deposit_url'         => 'https://portal.zaurix.com/',
 			'go_deposit_guide_label' => '',
 			'go_deposit_guide_url'   => '',
 
 			/* ขั้น 4 · ไฟล์ EA */
-			'go_step4_title'         => 'รับไฟล์ EA WING ทาง LINE',
-			'go_step4_desc'          => 'ทีมงานส่งไฟล์ .ex5 ให้ในแชตหลังตรวจคุณสมบัติเรียบร้อย ระหว่างนั้นถามเรื่องการตั้งค่าให้เข้ากับบัญชีของคุณได้',
-			'go_step4_note'          => '',
+			'go_step4_title'         => 'ดาวน์โหลดไฟล์ EA WING',
+			'go_step4_desc'          => 'กดที่การ์ดเพื่อดาวน์โหลด ในไฟล์ .zip มีตัว EA คู่มือ PDF และวิธีติดตั้ง',
+			'go_step4_note'          => 'EA WING ทำงานกับบัญชีที่ได้รับสิทธิ์แล้วเท่านั้น ส่งเลขบัญชี MT5 และชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE เพื่อเปิดสิทธิ์',
 			'go_step4_badge'         => '',
 			'go_download_line_label' => eaw_go_legacy( 'go_step4', 'ขอรับไฟล์ EA ทาง LINE' ),
-			'go_fast_img'            => '',
-			'go_fast_url'            => '',
-			'go_fast_alt'            => 'ภาพการ์ดสำหรับรับไฟล์ EA WING',
-			'go_fast_label'          => 'รับไฟล์ EA WING (.ex5)',
+			'go_fast_img'            => 'assets/img/eawing-download-card-v42.webp',
+			'go_fast_url'            => 'assets/downloads/EA_WING_V4.2.zip',
+			'go_fast_alt'            => 'ดาวน์โหลด EA WING Expert Advisor สำหรับ MT5',
+			'go_fast_label'          => 'ดาวน์โหลด EA WING V4.2 (.zip)',
+			'go_fast_version'        => 'V4.2',
+			'go_fast_version_label'  => 'อัปเดตล่าสุด',
+			'go_license_line_label'  => 'ส่งเลขบัญชีขอเปิดสิทธิ์ทาง LINE',
 
 			/* ขั้น 5 · ติดตั้ง EA */
 			'go_step5_title'         => eaw_go_legacy( 'go_step5', 'ติดตั้ง EA บน MT5' ),
@@ -125,17 +128,17 @@ function eaw_go_defaults( $d ) {
 			'go_vps_macos_url'       => '',
 
 			/* กลุ่มข้อมูลก่อนเริ่ม */
-			'go_info_title'          => 'อ่านประกอบก่อนตัดสินใจ',
-			'go_btn1_label'          => 'Forward Test คืออะไร และทดสอบอย่างไร',
+			'go_info_title'          => 'ข้อมูลก่อนตัดสินใจ',
+			'go_btn1_label'          => 'Forward Test คืออะไร ดูผลอย่างไร',
 			'go_btn1_url'            => '/forward-test/',
-			'go_btn2_label'          => 'Backtest ใน Strategy Tester',
-			'go_btn2_url'            => '/backtest/',
-			'go_btn3_label'          => 'ราคาและวิธีสอบถาม',
-			'go_btn3_url'            => '/pricing/',
-			'go_btn4_label'          => 'รู้จัก EA WING',
-			'go_btn4_url'            => '/about/',
-			'go_btn5_label'          => 'อ่านบทความทั้งหมด',
-			'go_btn5_url'            => '/articles/',
+			'go_btn2_label'          => 'แพ็กเกจ & ราคา',
+			'go_btn2_url'            => '/pricing/',
+			'go_btn3_label'          => 'รู้จัก EA WING',
+			'go_btn3_url'            => '/about/',
+			'go_btn4_label'          => 'บทความวางแผนและบริหารความเสี่ยง',
+			'go_btn4_url'            => '/articles/',
+			'go_btn5_label'          => '',
+			'go_btn5_url'            => '',
 			'go_btn6_label'          => '',
 			'go_btn6_url'            => '',
 
@@ -232,6 +235,9 @@ function eaw_go_sections( $sections, $d ) {
 			'go_fast_label'          => array( 'ขั้นรับไฟล์ EA · ข้อความปุ่มดาวน์โหลด (ใช้เมื่อไม่มีรูปการ์ด)', 'text' ),
 			'go_fast_img'            => array( 'ขั้นรับไฟล์ EA · รูปการ์ดดาวน์โหลด (ไม่บังคับ)', 'image', 'แนะนำภาพแนวนอน 1200×630px · มีรูป + ลิงก์ = แสดงเป็นการ์ดรูปแทนปุ่ม' ),
 			'go_fast_alt'            => array( 'ขั้นรับไฟล์ EA · คำอธิบายรูปการ์ด (alt)', 'text' ),
+			'go_fast_version'        => array( 'ขั้นรับไฟล์ EA · เลขเวอร์ชันบนการ์ด (เช่น V4.2 · ว่าง = ไม่แสดงป้าย)', 'text' ),
+			'go_fast_version_label'  => array( 'ขั้นรับไฟล์ EA · คำหน้าเลขเวอร์ชัน', 'text' ),
+			'go_license_line_label'  => array( 'ขั้นรับไฟล์ EA · ปุ่ม LINE ขอเปิดสิทธิ์ (แสดงคู่กับไฟล์ดาวน์โหลด · ว่าง = ซ่อน)', 'text' ),
 
 			'go_step5_title'         => array( 'ขั้นติดตั้ง EA · หัวข้อ', 'text' ),
 			'go_step5_desc'          => array( 'ขั้นติดตั้ง EA · คำอธิบาย', 'textarea' ),
@@ -457,29 +463,66 @@ function eaw_go_tiles( $items, $class = '' ) {
 }
 
 /**
- * การ์ด/ปุ่มดาวน์โหลดไฟล์ EA · ไม่มีลิงก์ = ''
+ * ไฟล์ในธีม (assets/...) → URL เต็ม · อย่างอื่นส่งต่อให้ eaw_go_href()
+ */
+function eaw_go_asset_href( $url ) {
+	$url = trim( (string) $url );
+	if ( 0 === strpos( $url, 'assets/' ) ) {
+		return get_template_directory_uri() . '/' . $url;
+	}
+	return eaw_go_href( $url );
+}
+
+/**
+ * การ์ดดาวน์โหลดไฟล์ EA (รูป + ป้ายเวอร์ชัน + ปุ่มดาวน์โหลด) · ไม่มีลิงก์ไฟล์ = ''
  */
 function eaw_go_download() {
-	$href = eaw_go_href( eaw_go_mod( 'go_fast_url' ) );
+	$href = eaw_go_asset_href( eaw_go_mod( 'go_fast_url' ) );
 	if ( '' === $href ) {
 		return '';
 	}
-	$attrs = array();
+	$attrs = array( 'data-go-pos' => 'go-download' );
 	if ( preg_match( '/\.(zip|ex5|set|pdf)([?#]|$)/i', $href ) ) {
 		$attrs['download'] = true;
 	}
-	$img = eaw_go_mod( 'go_fast_img' );
+	if ( eaw_go_is_external( $href ) ) {
+		$attrs['target'] = '_blank';
+		$attrs['rel']    = 'noopener';
+	}
+
+	$html = '';
+	$img  = eaw_go_asset_href( eaw_go_mod( 'go_fast_img' ) );
 	if ( '' !== $img ) {
-		return sprintf(
-			'<a class="lh-feature" href="%1$s"%2$s%3$s><img src="%4$s" alt="%5$s" width="1200" height="630" loading="lazy" decoding="async"></a>',
+		$version = eaw_go_mod( 'go_fast_version' );
+		$badge   = '';
+		if ( '' !== $version ) {
+			$badge = sprintf(
+				'<span class="lh-ver"><span class="lh-ver-label">%1$s</span><span class="lh-ver-num">%2$s</span></span>',
+				esc_html( eaw_go_mod( 'go_fast_version_label' ) ),
+				esc_html( $version )
+			);
+		}
+		$html .= sprintf(
+			'<a class="lh-feature" href="%1$s"%2$s><img src="%3$s" alt="%4$s" width="960" height="480" loading="lazy" decoding="async">%5$s</a>',
 			esc_url( $href ),
 			eaw_go_attrs( $attrs ),
-			eaw_go_is_external( $href ) ? ' target="_blank" rel="noopener"' : '',
 			esc_url( $img ),
-			esc_attr( eaw_go_mod( 'go_fast_alt' ) )
+			esc_attr( eaw_go_mod( 'go_fast_alt' ) ),
+			$badge
 		);
 	}
-	return eaw_go_button( 'lh-btn lh-btn-accent', eaw_go_mod( 'go_fast_label' ), eaw_go_mod( 'go_fast_url' ), 'download', $attrs );
+
+	$label = eaw_go_mod( 'go_fast_label' );
+	if ( '' !== $label ) {
+		$html .= sprintf(
+			'<a class="lh-btn lh-btn-download" href="%1$s"%2$s><span class="lh-ic">%3$s</span><span class="lh-lbl">%4$s</span></a>',
+			esc_url( $href ),
+			eaw_go_attrs( $attrs ),
+			eaw_icon( 'download' ),
+			eaw_text( $label )
+		);
+	}
+	return $html;
 }
 
 /**
@@ -534,6 +577,8 @@ function eaw_go_steps() {
 	$body = eaw_go_download();
 	if ( '' === $body ) {
 		$body = eaw_go_line_button( eaw_go_mod( 'go_download_line_label' ), 'go-download' );
+	} else {
+		$body .= eaw_go_line_button( eaw_go_mod( 'go_license_line_label' ), 'go-license' );
 	}
 	$steps[] = array( 'key' => 'download', 'n' => 4, 'body' => $body );
 
@@ -568,7 +613,7 @@ function eaw_go_steps() {
  * ปุ่มกลุ่มข้อมูลก่อนเริ่ม (1 ถึง 6)
  */
 function eaw_go_info_buttons() {
-	$icons = array( 1 => 'pulse', 2 => 'flask', 3 => 'tag', 4 => 'users', 5 => 'book', 6 => 'arrow' );
+	$icons = array( 1 => 'pulse', 2 => 'tag', 3 => 'users', 4 => 'book', 5 => 'flask', 6 => 'arrow' );
 	$html  = '';
 	for ( $i = 1; $i <= 6; $i++ ) {
 		$html .= eaw_go_button( 'lh-btn', eaw_go_mod( 'go_btn' . $i . '_label' ), eaw_go_mod( 'go_btn' . $i . '_url' ), $icons[ $i ] );

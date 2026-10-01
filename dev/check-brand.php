@@ -66,6 +66,10 @@ foreach ( $it as $file ) {
 	}
 
 	$ext = strtolower( $file->getExtension() );
+	/* ยกเว้นชุดดาวน์โหลดของลูกค้าใน assets/downloads/*.zip (EA ล็อกสิทธิ์ตามเลขบัญชีอยู่แล้ว) · ไม่สแกนข้อความข้างในไฟล์บีบอัด */
+	if ( 'zip' === $ext && preg_match( '#^[^/]+/assets/downloads/[^/]+\.zip$#', $rel ) ) {
+		continue;
+	}
 	if ( in_array( $ext, $forbidden_ext, true ) ) {
 		$findings[] = sprintf( '%s  [file] .%s must not be in the theme (EA files are sent privately, never from the public repo)', $rel, $ext );
 		continue;
