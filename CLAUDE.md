@@ -1,26 +1,48 @@
 # CLAUDE.md · EA WING (eawing.co)
 
 ## โปรเจกต์
-- แบรนด์ **EA WING** · https://eawing.co/ · ภาษาไทย · เว็บขาย EA บน MT5 ให้คนทัก LINE
-- ต้นแบบหน้าตาและโครง: ea2000.co (ธีม `ea2000` ของเจ้าของเอง) · เริ่มจากหน้า `/go` ก่อน หน้าอื่นค่อยทำทีหลัง
-- eawing.co เดิมรันธีม `easpecial` ("EA Special") · เจ้าของสั่งให้ทับทั้งเว็บ ออกแบบใหม่ทั้งหมด
-- GitHub: `easpeciallab-max/eawing-theme` (public) · ธีมอยู่ใน `eawing/` · WP Pusher subdirectory `eawing`
-- **ห้ามแตะ** repo/เว็บของแบรนด์อื่น (ea2000, fenix-pro, falcon-pro, easpecial)
+- แบรนด์ **EA WING** · https://eawing.co/ · ภาษาไทย · เว็บขาย EA บน MT5 ปิดการขายทาง LINE
+- โครงหน้าและระบบเท่า ea2000.co · **หน้าตาเป็นของตัวเอง (Glass Sky)** · **ข้อความเขียนใหม่ทั้งหมด** ห้ามคัดลอกจาก ea2000 / FALCON / FENIX (duplicate content ข้ามโดเมนของเจ้าของเดียวกัน)
+- โค้ด fork จากธีม FALCON PRO v3 (โมดูล) เมื่อ 1 ต.ค. 2026 แล้วเปลี่ยนชื่อทั้งหมด: prefix ภายใน `eaw_` / `eaw-` / `eawCamel` · text domain `eawing` · REST `eawing/v1` · shortcode `[eawing_*]` · cookie `eaw_consent`
+- GitHub `easpeciallab-max/eawing-theme` (public) · ธีมอยู่ใน `eawing/` · WP Pusher บน eawing.co: branch `main`, subdirectory `eawing`, Push-to-Deploy เปิด (ยังไม่มี webhook ใน GitHub → หลัง push ให้กด WP Pusher > Themes > Update theme)
+- repo นี้ตั้ง credential helper ระดับ repo เป็น `gh auth git-credential` (บัญชี `easpeciallab-max`) เพราะ git ของเครื่องเป็น `easpecial-th` ที่ไม่มีสิทธิ์ push
+- **ห้ามแตะ** repo/เว็บของแบรนด์อื่น (ea2000-repo, fenix-pro-repo, falcon-pro-repo, easpecial-repo) · อ่านอ้างอิงได้
 
 ## วิธีทำงานกับเจ้าของ
-- ตัดสินใจเรื่องดีไซน์/สี/ฟอนต์/ข้อความเองแล้วลงมือ ไม่ต้องถามทีละข้อ · หยุดถามเฉพาะสิ่งที่ทำแทนไม่ได้ (ล็อกอิน, รหัส)
-- Claude ไม่พิมพ์รหัสผ่านให้ · เจ้าของล็อกอิน wp-admin เอง
+- ตัดสินใจเรื่องดีไซน์ สี ฟอนต์ ข้อความเองแล้วลงมือ ไม่ต้องถามทีละข้อ · หยุดเฉพาะสิ่งที่ทำแทนไม่ได้ (ล็อกอิน รหัส ข้อมูลจริงของธุรกิจ)
+- Claude ไม่พิมพ์รหัสผ่าน และไม่คัดลอก token/secret ไปวางที่ไหน · เจ้าของล็อกอิน wp-admin ในแท็บเบราว์เซอร์ของ Claude เอง
 
-## แบรนด์ (ดึงค่าจากภาพโฆษณาชุดแรก 20 รูป)
-- น้ำเงินปีก `#0B5CAD` · กรมท่า `#0A2E66` · กรมท่าเข้ม `#011D3B` · ทอง `#F6D57A` `#EFC25A` `#D9A12E` `#BB831F` · ทองตัวอักษร `#8F620C` · ฟ้า `#D4E6FB` `#E6F1FD` `#F3F8FE`
-- ปุ่มหลักสีทอง ตัวอักษรกรมท่า · ปุ่มรองน้ำเงินไล่เฉด · พื้นฟ้าไล่ลงขาว
-- ฟอนต์: Kanit (หัวข้อ) + Noto Sans Thai (เนื้อความ)
-- โลโก้จริงอยู่ใน media ของ eawing.co (`EA-WING-ORIGINAL-LOGO.png` แนวนอน พื้นโปร่ง) ธีมใช้ custom logo
-- LINE OA / OpenChat / Zaurix: เจ้าของสั่งใช้ชุดเดียวกับ EA2000 (`lin.ee/ye11pwm6`) · หัวเว็บเดิมของ eawing.co ใช้ `@fenixpro`
+## เอกสาร
+- `docs/plan.md` แผนทั้งเว็บ: เพจ, SEO รายหน้า, กฎลิงก์ภายใน/ภายนอก, บทความรอบแรก, เก็บกวาด eawing.co, ลำดับงาน
+- `docs/design.md` ระบบดีไซน์ Glass Sky · ต้นแบบ `dev/mockup/` (เปิดที่ `/mockup/` ใน preview)
+- `dev/content-spec.md` กติกาเขียนเนื้อหาเพจ/บทความ · `dev/image-shot-list.md` ภาพหน้าจอคู่มือที่เจ้าของต้องถ่าย
+
+## หลักที่ห้ามผิด
+1. **Customizer-driven**: ข้อความ/รูป/ลิงก์ทุกจุดเป็น setting (`eaw_defaults()` + ฟิลเตอร์ `eaw_defaults` ของแต่ละโมดูล, ช่องใน `eaw_customizer_sections`) · เพิ่ม/ลบ setting ต้องทำทั้ง default และ control · เนื้อหายาวอยู่ใน `inc/content/pages|articles/*.html` นำเข้าด้วยหน้า EA WING Setup
+2. ห้ามแต่งรีวิว · ห้ามตัวเลขผลเทรดสมมติ · ห้ามบอกว่า EA ใช้ martingale/grid/SL/TP/news filter หรือไม่ · ห้ามระบุสินทรัพย์ที่เทรด ทุนขั้นต่ำ เวลาทำการ เงื่อนไขคืนเงิน ที่ยังไม่ได้จากเจ้าของ · ภาพที่มีตัวเลขต้องมีคำบรรยาย "ภาพประกอบ ไม่ใช่ผลการเทรดจริง"
+3. ห้ามลบหรือลด disclaimer / risk warning · ระบุความเป็นพันธมิตรกับ Zaurix ตรงที่กล่าวถึงครั้งแรก · ไม่ลิงก์โบรกเกอร์ตรง (ขอลิงก์ทาง LINE)
+4. Escape ทุก output · ห้าม em dash / en dash (ใช้ `·` หรือ `:`)
+5. ไม่มี build step · WP 6.0+ · PHP 7.4+
+
+## แบรนด์
+- สี: น้ำเงินปีก `#0B5CAD` · กรมท่า `#0A2E66` · กรมท่าเข้ม `#011D3B` · ทอง `#F6D57A` `#EFC25A` `#D9A12E` `#BB831F` · ทองตัวอักษร `#8F620C` · ฟ้า `#F7FAFE` `#EEF4FC` `#E2EDFB`
+- ปุ่มหลักทอง ตัวกรมท่า (`.btn-fire`) · ปุ่มรองกรมท่า (`.btn-dark`) · ปุ่มกระจก (`.btn-ghost`) · กระเบื้องไอคอน `.tile--sky|gold|blue|navy`
+- ฟอนต์ self-host: Kanit 500/600/700 (หัวข้อ) + Noto Sans Thai (เนื้อความ) · `assets/css/fonts.css` + `eaw_infra_font_files()`
+- ไม่มีโหมดมืด (`eaw_is_dark_mode()` คืน false) · ไม่บังคับอังกฤษพิมพ์ใหญ่
+- รูป: `assets/img/brand/` (wordmark, icon, favicon, การ์ดแชร์) สร้างจากโลโก้จริงใน media eawing.co · `assets/img/banners/eawing-*.webp` จากภาพโฆษณาของเจ้าของ (เฉพาะภาพที่ไม่มีตัวเลขกำไร) · `assets/img/covers/<slug>.webp` สร้างด้วย `dev/make-covers.php`
+- **เปลี่ยนรูปในธีมเมื่อไหร่ให้เปลี่ยนชื่อไฟล์** (Cloudflare แคชรูปตาม URL)
+- LINE OA / OpenChat / Zaurix: ใช้ชุดเดียวกับ EA2000 ตามคำสั่งเจ้าของ (`lin.ee/ye11pwm6`) ตั้งใน Customizer
+
+## โครงโค้ด (สรุป)
+- `functions.php` bootstrap + `eaw_defaults()` + helper (`eaw_mod`, `eaw_lines`, `eaw_logo_url`, `eaw_wordmark_url` …) แล้ว require `inc/*.php` และ glob `inc/modules/*.php`
+- โมดูล: `chrome` (header/footer/dock/CTA) · `home` · `pages` · `guides` · `go` · `consent` (PDPA) · `infra` (REST, hardening, ฟอนต์)
+- `inc/setup.php` manifest เพจ `eaw_site_pages()` + บทความ `eaw_seed_article_covers()` + หน้า admin **ลักษณะ → EA WING Setup**
+- `inc/seo.php` schema/OG/robots/redirect map (`eaw_redirect_map`) · `inc/shortcodes.php` `[eawing_line|brand|broker|calc]`
+- CSS: `style.css` (ฐานเดิม + section 43 Glass Sky foundation ท้ายไฟล์) แล้วตามด้วย `assets/css/<module>.css` ที่ enqueue อัตโนมัติ
 
 ## ก่อน commit
-- `php -l` ทุกไฟล์ PHP ที่แก้
-- ดูหน้า /go ผ่าน `dev/preview.php` (launch config `eawing-go-preview`) ทั้งจอมือถือและจอคอม
-- ห้ามใช้ em dash / en dash ใช้ `·` หรือ `:` แทน
-- Escape ทุก output (`esc_html` / `esc_url` / `esc_attr`)
-- `git remote -v` ต้องเป็น `eawing-theme` ก่อน push
+- PHP พร้อม extension: `php -d "extension_dir=<php>/ext" -d extension=mbstring -d extension=gd` (สคริปต์ `phpx` ใน scratchpad ของ session)
+- `php -l` ทุกไฟล์ที่แก้ · `dev/check-settings.php` ต้องได้ "(none)" 2 บรรทัด · `dev/check-content.php` ต้อง "all good" · `dev/check-brand.php` ต้อง "no brand leaks"
+- Preview: launch config `eawing-preview` → http://localhost:8765/ (ทุก slug ใน manifest, `/article/<slug>/`, `/__cover/<slug>/`, `/mockup/`)
+- ตรวจจอ 375 / 820 / 1366 · `scrollWidth === innerWidth` · ไม่มี Fatal/Warning/Notice ในหน้าที่เรนเดอร์
+- งานใหญ่ทำใน branch `rebuild` (ไม่ push จนพร้อมขึ้นเว็บ) · `main` ต้องพร้อม deploy เสมอ
