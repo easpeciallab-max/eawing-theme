@@ -11,8 +11,23 @@
 define( 'ABSPATH', __DIR__ );
 define( 'EAWING_THEME', dirname( __DIR__ ) . '/eawing' );
 
-// ไฟล์ในธีม (css, svg)
 $path = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+
+// ต้นแบบดีไซน์ (dev/mockup)
+if ( 0 === strpos( $path, '/mockup/' ) ) {
+	$rel  = substr( $path, 8 );
+	$file = realpath( __DIR__ . '/mockup/' . ( '' === $rel ? 'index.html' : $rel ) );
+	if ( ! $file || 0 !== strpos( $file, realpath( __DIR__ . '/mockup' ) ) ) {
+		http_response_code( 404 );
+		return true;
+	}
+	$types = array( 'html' => 'text/html; charset=utf-8', 'css' => 'text/css' );
+	header( 'Content-Type: ' . ( $types[ pathinfo( $file, PATHINFO_EXTENSION ) ] ?? 'application/octet-stream' ) );
+	readfile( $file );
+	return true;
+}
+
+// ไฟล์ในธีม (css, svg)
 if ( 0 === strpos( $path, '/theme/' ) ) {
 	$file = realpath( EAWING_THEME . substr( $path, 6 ) );
 	if ( ! $file || 0 !== strpos( $file, realpath( EAWING_THEME ) ) ) {
