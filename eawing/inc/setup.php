@@ -461,11 +461,26 @@ function eaw_setup_create_pages( $overwrite = false ) {
 
 		if ( ! empty( $page['template'] ) ) {
 			$current = get_post_meta( $id, '_wp_page_template', true );
-			if ( ! $current || 'default' === $current || $overwrite ) {
+			// ว่าง / ปกติ / เขียนทับ / ไฟล์เทมเพลตเดิมไม่มีในธีมนี้แล้ว (มาจากธีมก่อนหน้า) → ใช้เทมเพลตของธีม
+			if ( ! $current || 'default' === $current || $overwrite || ! locate_template( $current ) ) {
 				update_post_meta( $id, '_wp_page_template', $page['template'] );
 			}
 		}
-		if ( $meta && ( ! $found || $overwrite ) ) {
+		// เพจเดิมจากธีมก่อนหน้าที่ไม่มีไฟล์เนื้อหา (หน้าแรก /go บทความ) รับชื่อและ SEO ของธีมครั้งแรกครั้งเดียว
+		$adopt = $found && empty( $page['content'] ) && '' === (string) get_post_meta( $id, 'eaw_seed_rev', true );
+		if ( $adopt ) {
+			if ( ! empty( $page['title'] ) && $found->post_title !== $page['title'] && empty( $page['front'] ) ) {
+				wp_update_post(
+					array(
+						'ID'         => $id,
+						'post_title' => wp_slash( $page['title'] ),
+					)
+				);
+			}
+			update_post_meta( $id, 'eaw_seed_rev', 1 );
+			$log[] = '↻ ปรับชื่อและ SEO ของ /' . $slug . '/ ให้เป็นของ EA WING';
+		}
+		if ( $meta && ( ! $found || $overwrite || $adopt ) ) {
 			eaw_apply_seo_meta( $id, $meta );
 		}
 	}
@@ -618,13 +633,15 @@ function eaw_setup_replace_page( $slug ) {
 	if ( ! $found ) {
 		return array( '✗ ยังไม่มีเพจ /' . $slug . '/ · กด "สร้างเพจ" ก่อน' );
 	}
-	$meta = eaw_seed_meta( $pages[ $slug ]['content'] );
-	wp_update_post(
-		array(
-			'ID'           => $found->ID,
-			'post_content' => wp_slash( eaw_seed_content( $pages[ $slug ]['content'] ) ),
-		)
+	$meta   = eaw_seed_meta( $pages[ $slug ]['content'] );
+	$update = array(
+		'ID'           => $found->ID,
+		'post_content' => wp_slash( eaw_seed_content( $pages[ $slug ]['content'] ) ),
 	);
+	if ( ! empty( $meta['title'] ) ) {
+		$update['post_title'] = wp_slash( $meta['title'] );
+	}
+	wp_update_post( $update );
 	update_post_meta( $found->ID, 'eaw_seed_rev', ! empty( $meta['rev'] ) ? (int) $meta['rev'] : 1 );
 	if ( $meta ) {
 		eaw_apply_seo_meta( $found->ID, $meta );
