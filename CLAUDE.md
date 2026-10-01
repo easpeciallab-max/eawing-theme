@@ -31,7 +31,7 @@
 - ไม่มีโหมดมืด (`eaw_is_dark_mode()` คืน false) · ไม่บังคับอังกฤษพิมพ์ใหญ่
 - รูป: `assets/img/brand/` (wordmark, icon, favicon, การ์ดแชร์) สร้างจากโลโก้จริงใน media eawing.co · `assets/img/banners/eawing-*.webp` จากภาพโฆษณาของเจ้าของ (เฉพาะภาพที่ไม่มีตัวเลขกำไร) · `assets/img/covers/<slug>.webp` สร้างด้วย `dev/make-covers.php`
 - **เปลี่ยนรูปในธีมเมื่อไหร่ให้เปลี่ยนชื่อไฟล์** (Cloudflare แคชรูปตาม URL)
-- LINE OA / OpenChat / Zaurix: ใช้ชุดเดียวกับ EA2000 ตามคำสั่งเจ้าของ (`lin.ee/ye11pwm6`) ตั้งใน Customizer
+- ช่องทางจริง (ตั้งใน Customizer บน eawing.co แล้ว 1 ต.ค. 2026): LINE OA `https://line.me/R/ti/p/@eawing` · Facebook `https://www.facebook.com/share/1EouUMc9v1/` · โบรกเกอร์ `Zaurix` เซิร์ฟเวอร์ `Zaurix-Server` · OpenChat ยังว่าง (ปุ่มซ่อน) จนกว่า EA WING มีกลุ่มของตัวเอง
 
 ## โครงโค้ด (สรุป)
 - `functions.php` bootstrap + `eaw_defaults()` + helper (`eaw_mod`, `eaw_lines`, `eaw_logo_url`, `eaw_wordmark_url` …) แล้ว require `inc/*.php` และ glob `inc/modules/*.php`
@@ -46,3 +46,10 @@
 - Preview: launch config `eawing-preview` → http://localhost:8765/ (ทุก slug ใน manifest, `/article/<slug>/`, `/__cover/<slug>/`, `/mockup/`)
 - ตรวจจอ 375 / 820 / 1366 · `scrollWidth === innerWidth` · ไม่มี Fatal/Warning/Notice ในหน้าที่เรนเดอร์
 - งานใหญ่ทำใน branch `rebuild` (ไม่ push จนพร้อมขึ้นเว็บ) · `main` ต้องพร้อม deploy เสมอ
+
+## สถานะเว็บจริง (1 ต.ค. 2026)
+- ธีม EA WING 1.0.0 เปิดใช้บน eawing.co ผ่าน WP Pusher · รัน EA WING Setup แล้ว: สร้าง 11 เพจ, หน้าแรก = /home/ (id 20), หน้าบทความ = /articles/ (id 35), เมนูหลัก, /go/ ใช้ template-go.php
+- แทนเนื้อหา about / privacy-policy / data-deletion (เผยแพร่) และ terms-of-use (ฉบับร่าง) ด้วยฉบับ EA WING · มีช่อง `[เจ้าของเว็บ: ...]` รอเจ้าของกรอก
+- บทความ 12 เรื่องเผยแพร่แล้ว (หมวด trading-plan / monitoring / risk-management)
+- เพจเก่า results / guides / risk-warning อยู่ในถังขยะ (redirect 301 ทำงาน)
+- ทั้งเว็บยัง noindex (ตั้งค่า > การอ่าน) จนกว่าเจ้าของจะพร้อมเปิดตัว · GA4 / Pixel / Search Console ยังไม่ตั้ง
