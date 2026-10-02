@@ -514,6 +514,58 @@ function eaw_seo_yoast_org_same_as( $data ) {
 }
 add_filter( 'wpseo_schema_organization', 'eaw_seo_yoast_org_same_as' );
 
+/* --------------------------------------------------------------
+ * ผู้เขียนบทความ = แบรนด์ (Organization) ไม่ใช่ชื่อบัญชีผู้ใช้ WordPress
+ * (กันชื่อบัญชีแอดมินโผล่ใน schema / meta author / Twitter "Written by")
+ * -------------------------------------------------------------- */
+function eaw_seo_yoast_org_id() {
+	return trailingslashit( home_url() ) . '#organization';
+}
+
+/* ตัด Person (ผู้เขียน) ออกจาก graph ของ Yoast */
+function eaw_seo_yoast_drop_author_piece( $pieces ) {
+	return array_values(
+		array_filter(
+			(array) $pieces,
+			static function ( $piece ) {
+				return ! ( is_object( $piece ) && is_a( $piece, 'Yoast\WP\SEO\Generators\Schema\Author' ) );
+			}
+		)
+	);
+}
+add_filter( 'wpseo_schema_graph_pieces', 'eaw_seo_yoast_drop_author_piece', 20 );
+
+/* Article.author ชี้ไปที่ Organization */
+function eaw_seo_yoast_article_author( $data ) {
+	if ( is_array( $data ) ) {
+		$data['author'] = array(
+			'@id'  => eaw_seo_yoast_org_id(),
+			'name' => get_bloginfo( 'name' ),
+		);
+	}
+	return $data;
+}
+add_filter( 'wpseo_schema_article', 'eaw_seo_yoast_article_author' );
+
+/* meta name="author" ใช้ชื่อแบรนด์ */
+add_filter(
+	'wpseo_meta_author',
+	static function () {
+		return get_bloginfo( 'name' );
+	}
+);
+
+/* ป้าย "Written by" ใน Twitter/Slack preview ไม่แสดงชื่อบัญชี */
+add_filter(
+	'wpseo_enhanced_slack_data',
+	static function ( $data ) {
+		if ( is_array( $data ) ) {
+			unset( $data[ __( 'Written by', 'wordpress-seo' ) ], $data['Written by'] );
+		}
+		return $data;
+	}
+);
+
 /* ==============================================================
  * 3) รูปแชร์ + Open Graph (ไม่มีปลั๊กอิน)
  * ============================================================== */

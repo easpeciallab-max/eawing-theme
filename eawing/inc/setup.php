@@ -351,12 +351,12 @@ function eaw_apply_seo_meta( $post_id, $meta ) {
  * นำรูปแบนเนอร์ในธีมเข้า Media Library (ครั้งเดียว) เพื่อใช้เป็นรูปหน้าปกบทความ
  */
 function eaw_banner_attachment( $file, $alt = '' ) {
-	// $file = พาธใต้ assets/img/ เฉพาะโฟลเดอร์ banners/ หรือ covers/ (ชื่อไฟล์ล้วน = banners/)
+	// $file = พาธใต้ assets/img/ เฉพาะโฟลเดอร์ banners/ covers/ หรือ brand/ (ชื่อไฟล์ล้วน = banners/)
 	$file = ltrim( str_replace( '\\', '/', (string) $file ), '/' );
 	if ( false === strpos( $file, '/' ) ) {
 		$file = 'banners/' . $file;
 	}
-	if ( ! preg_match( '#^(banners|covers)/[a-z0-9._-]+$#i', $file ) ) {
+	if ( ! preg_match( '#^(banners|covers|brand)/[a-z0-9._-]+$#i', $file ) ) {
 		return 0;
 	}
 	$map = get_option( 'eaw_banner_attachments', array() );
@@ -610,6 +610,113 @@ function eaw_setup_import_articles( $publish = false ) {
 }
 
 /**
+ * คำอธิบายหมวดบทความ (ใช้เป็น meta description ของหน้าหมวดผ่าน %%term_description%% ของ Yoast)
+ */
+function eaw_article_category_descriptions() {
+	return array(
+		'trading-plan'    => 'บทความวางแผนการเทรดสำหรับคนใช้ EA บน MT5: เขียนแผนก่อนเริ่ม กำหนดความเสี่ยงต่อออเดอร์ แบ่งทุนหลายบัญชี และตั้งเพดานขาดทุนรายวัน',
+		'monitoring'      => 'บทความติดตามผล EA บน MT5: ดูพอร์ตผ่านแอปมือถือ ตั้งแจ้งเตือนด้วย MetaQuotes ID อ่าน Log ในแท็บ Journal และ Experts และดึงรายงานประวัติมาทบทวน',
+		'risk-management' => 'บทความบริหารความเสี่ยงสำหรับคนใช้ EA: แยก Equity กับ Balance คำนวณ Risk Reward ระวังความเสี่ยงซ้อนจาก Correlation และเตรียมพอร์ตรับ Gap วันจันทร์',
+	);
+}
+
+/**
+ * ตั้งค่า SEO และระบบครั้งเดียว: Yoast (องค์กร โลโก้ รูปแชร์ ชื่อหน้าภาษาไทย ปิด archive ที่ไม่ใช้)
+ * ปิดคอมเมนต์ทั้งเว็บ · alt ของโลโก้ใน Media · คำอธิบายหมวดบทความ · กดซ้ำได้ (ทับด้วยค่าเดิม)
+ */
+function eaw_setup_seo() {
+	$log = array();
+
+	/* 1) ปิดคอมเมนต์และ pingback ทั้งเว็บ (ธีมปิดในโค้ดอยู่แล้ว ตั้งค่า WordPress ซ้ำไว้เผื่อเปลี่ยนธีม) */
+	update_option( 'default_comment_status', 'closed' );
+	update_option( 'default_ping_status', 'closed' );
+	update_option( 'default_pingback_flag', 0 );
+	global $wpdb;
+	$closed = (int) $wpdb->query( "UPDATE {$wpdb->posts} SET comment_status = 'closed', ping_status = 'closed' WHERE comment_status = 'open' OR ping_status = 'open'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	clean_post_cache( 0 );
+	$log[] = '✓ ปิดคอมเมนต์และ pingback ทั้งเว็บ (ปิดเพิ่ม ' . $closed . ' เรื่อง/เพจ)';
+
+	/* 2) alt ของโลโก้ใน Media (ไอคอนเว็บ + โลโก้ที่ตั้งไว้) */
+	$logo_ids = array_filter( array_unique( array( (int) get_option( 'site_icon' ), (int) get_theme_mod( 'custom_logo' ) ) ) );
+	foreach ( get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'posts_per_page' => 20, 's' => 'EA-WING', 'fields' => 'ids' ) ) as $att ) {
+		$logo_ids[] = (int) $att;
+	}
+	$alt_done = 0;
+	foreach ( array_unique( $logo_ids ) as $att ) {
+		if ( '' === trim( (string) get_post_meta( $att, '_wp_attachment_image_alt', true ) ) ) {
+			update_post_meta( $att, '_wp_attachment_image_alt', 'โลโก้ EA WING' );
+			++$alt_done;
+		}
+	}
+	$log[] = '✓ เติม alt ให้โลโก้ใน Media ' . $alt_done . ' ไฟล์';
+
+	/* 3) คำอธิบายหมวดบทความ */
+	foreach ( eaw_article_category_descriptions() as $slug => $desc ) {
+		$term = get_term_by( 'slug', $slug, 'category' );
+		if ( $term && '' === trim( (string) $term->description ) ) {
+			wp_update_term( $term->term_id, 'category', array( 'description' => $desc ) );
+			$log[] = '✓ ใส่คำอธิบายหมวด ' . $term->name;
+		}
+	}
+
+	/* 4) Yoast */
+	if ( ! class_exists( 'WPSEO_Options' ) ) {
+		$log[] = '• ไม่พบ Yoast SEO · ข้ามการตั้งค่า Yoast';
+		return $log;
+	}
+	$name = get_bloginfo( 'name' );
+	$logo = (int) get_option( 'site_icon' );
+	if ( ! $logo ) {
+		$logo = (int) get_theme_mod( 'custom_logo' );
+	}
+	$share = eaw_banner_attachment( 'brand/eawing-share-1200x630.jpg', $name . ' · ผู้ช่วยเทรดอัตโนมัติสำหรับ MT5' );
+
+	$set = array(
+		'website_name'                => $name,
+		'company_or_person'           => 'company',
+		'company_name'                => $name,
+		'separator'                   => 'sc-middot',
+		'disable-author'              => true,
+		'disable-date'                => true,
+		'disable-post_format'         => true,
+		'title-tax-category'          => 'หมวด %%term_title%% %%page%% %%sep%% %%sitename%%',
+		'metadesc-tax-category'       => '%%term_description%%',
+		'title-search-wpseo'          => 'ผลการค้นหา %%searchphrase%% %%page%% %%sep%% %%sitename%%',
+		'title-404-wpseo'             => 'ไม่พบหน้าที่ต้องการ %%sep%% %%sitename%%',
+		'rssbefore'                   => '',
+		'rssafter'                    => 'บทความ %%POSTLINK%% เผยแพร่ครั้งแรกที่ %%BLOGLINK%%',
+		'remove_feed_global_comments' => true,
+		'remove_feed_post_comments'   => true,
+		'remove_shortlinks'           => true,
+	);
+	if ( $logo && wp_get_attachment_url( $logo ) ) {
+		$set['company_logo']    = wp_get_attachment_url( $logo );
+		$set['company_logo_id'] = $logo;
+	}
+	if ( $share && wp_get_attachment_url( $share ) ) {
+		$set['og_default_image']    = wp_get_attachment_url( $share );
+		$set['og_default_image_id'] = $share;
+	}
+	$facebook = trim( (string) eaw_mod( 'facebook_url' ) );
+	if ( '' !== $facebook && '#' !== $facebook ) {
+		$set['facebook_site'] = esc_url_raw( $facebook );
+	}
+	$failed = array();
+	foreach ( $set as $key => $value ) {
+		WPSEO_Options::set( $key, $value );
+		/* ตรวจด้วยการอ่านกลับ (update_option คืน false เมื่อค่าเดิมเท่ากัน จึงใช้ผลของ set ไม่ได้) */
+		if ( (string) WPSEO_Options::get( $key ) !== (string) $value ) {
+			$failed[] = $key;
+		}
+	}
+	$log[] = '✓ ตั้งค่า Yoast: องค์กร "' . $name . '" · โลโก้ · รูปแชร์เริ่มต้น · Facebook · ตัวคั่นหัวเรื่อง (จุดกลาง) · ปิดหน้า author / date / format · ชื่อหน้าหมวด ค้นหา 404 เป็นภาษาไทย · ตัด feed คอมเมนต์';
+	if ( $failed ) {
+		$log[] = '✗ Yoast ไม่รับค่า: ' . implode( ', ', $failed );
+	}
+	return $log;
+}
+
+/**
  * slug ภาษาอังกฤษของหมวดบทความ (URL อ่านง่าย ไม่เป็นภาษาไทยเข้ารหัส)
  */
 function eaw_article_category_slug( $name ) {
@@ -682,6 +789,9 @@ function eaw_setup_handle() {
 	if ( 'articles' === $do ) {
 		$log = array_merge( $log, eaw_setup_import_articles( ! empty( $_POST['eaw_publish'] ) ) );
 	}
+	if ( 'seo' === $do ) {
+		$log = array_merge( $log, eaw_setup_seo() );
+	}
 	if ( 'all' === $do ) {
 		flush_rewrite_rules( false );
 	}
@@ -734,6 +844,14 @@ function eaw_setup_screen() {
 			<p>บทความเข้ามาเป็น <strong>ฉบับร่าง</strong> พร้อมหมวด (วางแผนการเทรด · ติดตามผล · บริหารความเสี่ยง) คำอธิบาย SEO และรูปหน้าปก · ตรวจอ่านแล้วค่อยเผยแพร่ทีละเรื่อง ตามแผนคือวันเว้นวัน เวลา 09:00 น.</p>
 			<p><label><input type="checkbox" name="eaw_publish" value="1"> เผยแพร่ทันที (ไม่แนะนำ)</label></p>
 			<p><button class="button button-primary" name="eaw_do" value="articles">นำเข้าบทความ</button></p>
+		</form>
+
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:0 0 26px;padding:18px 20px;background:#fff;border:1px solid #dcdcde;border-radius:8px;max-width:760px">
+			<?php wp_nonce_field( 'eaw_setup' ); ?>
+			<input type="hidden" name="action" value="eaw_setup">
+			<h2 style="margin-top:0">3) ตั้งค่า SEO และระบบ</h2>
+			<p>ตั้ง Yoast ให้ครบ (ชื่อองค์กร โลโก้ รูปแชร์เริ่มต้น Facebook ชื่อหน้าหมวด/ค้นหา/404 ภาษาไทย ปิดหน้า author และ date archive) · ปิดคอมเมนต์ทั้งเว็บ · เติม alt ให้โลโก้ · ใส่คำอธิบายหมวดบทความ · กดซ้ำได้</p>
+			<p><button class="button button-primary" name="eaw_do" value="seo">ตั้งค่า SEO และระบบ</button></p>
 		</form>
 
 		<h2>สถานะเพจ</h2>
