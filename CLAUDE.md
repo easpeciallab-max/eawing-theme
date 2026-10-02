@@ -4,7 +4,8 @@
 - แบรนด์ **EA WING** · https://eawing.co/ · ภาษาไทย · เว็บขาย EA บน MT5 ปิดการขายทาง LINE
 - โครงหน้าและระบบเท่า ea2000.co · **หน้าตาเป็นของตัวเอง (Glass Sky)** · **ข้อความเขียนใหม่ทั้งหมด** ห้ามคัดลอกจาก ea2000 / FALCON / FENIX (duplicate content ข้ามโดเมนของเจ้าของเดียวกัน)
 - โค้ด fork จากธีม FALCON PRO v3 (โมดูล) เมื่อ 1 ต.ค. 2026 แล้วเปลี่ยนชื่อทั้งหมด: prefix ภายใน `eaw_` / `eaw-` / `eawCamel` · text domain `eawing` · REST `eawing/v1` · shortcode `[eawing_*]` · cookie `eaw_consent`
-- GitHub `easpeciallab-max/eawing-theme` (public) · ธีมอยู่ใน `eawing/` · WP Pusher บน eawing.co: branch `main`, subdirectory `eawing`, Push-to-Deploy เปิด (ยังไม่มี webhook ใน GitHub → หลัง push ให้กด WP Pusher > Themes > Update theme)
+- GitHub `easpeciallab-max/eawing-theme` (public) · ธีมอยู่ใน `eawing/` · WP Pusher บน eawing.co: branch `main`, subdirectory `eawing`, Push-to-Deploy เปิด + webhook ใน GitHub (ตั้ง 2 ต.ค. 2026)
+- **Deploy: `bash dev/deploy.sh`** (push → รอ 20 วิ → ส่ง webhook ซ้ำ เพราะ zip ของ GitHub ช้ากว่า webhook → เทียบไฟล์บนเว็บ) · สำรอง: WP Pusher > Themes > Update theme
 - repo นี้ตั้ง credential helper ระดับ repo เป็น `gh auth git-credential` (บัญชี `easpeciallab-max`) เพราะ git ของเครื่องเป็น `easpecial-th` ที่ไม่มีสิทธิ์ push
 - **ห้ามแตะ** repo/เว็บของแบรนด์อื่น (ea2000-repo, fenix-pro-repo, falcon-pro-repo, easpecial-repo) · อ่านอ้างอิงได้
 
