@@ -105,7 +105,7 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 5 · ติดตั้ง EA */
 			'go_step5_title'         => eaw_go_legacy( 'go_step5', 'ติดตั้ง EA บน MT5' ),
-			'go_step5_desc'          => 'วางไฟล์ในโฟลเดอร์ MQL5 → Experts เปิด Algo Trading แล้วแนบ EA ขึ้นกราฟ',
+			'go_step5_desc'          => 'วางไฟล์ใน MQL5 → Experts ติ๊ก Allow DLL imports และเปิด Algo Trading แล้วลาก EA ลงกราฟ XAUUSD M1',
 			'go_step5_note'          => '',
 			'go_step5_badge'         => '',
 			'go_install1_label'      => 'คู่มือติดตั้ง EA ทีละขั้น',
