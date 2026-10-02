@@ -52,4 +52,7 @@
 - แทนเนื้อหา about / privacy-policy / data-deletion (เผยแพร่) และ terms-of-use (ฉบับร่าง) ด้วยฉบับ EA WING · มีช่อง `[เจ้าของเว็บ: ...]` รอเจ้าของกรอก
 - บทความ 12 เรื่องเผยแพร่แล้ว (หมวด trading-plan / monitoring / risk-management)
 - เพจเก่า results / guides / risk-warning อยู่ในถังขยะ (redirect 301 ทำงาน)
+- 2 ต.ค. 2026: รัน "3) ตั้งค่า SEO และระบบ" แล้ว · Yoast มีองค์กร/โลโก้/รูปแชร์เริ่มต้น/Facebook · ปิด author/date/format archive · ชื่อหน้าหมวด ค้นหา 404 เป็นไทย · คอมเมนต์ปิดทั้งเว็บ · schema ผู้เขียนบทความ = องค์กร EA WING
+- ผลตรวจ SEO (สคริปต์ crawl sitemap): ทุกหน้ามี title/description/H1 เดียว/og:image · รูปมี alt และขนาดครบ · ไม่มีหน้ากำพร้า · ลิงก์นอกมี noopener ครบ · canonical ยังไม่ออกเพราะทั้งเว็บ noindex (Yoast ใส่ให้เองเมื่อเปิดให้ค้นหา)
 - ทั้งเว็บยัง noindex (ตั้งค่า > การอ่าน) จนกว่าเจ้าของจะพร้อมเปิดตัว · GA4 / Pixel / Search Console ยังไม่ตั้ง
+- PixelYourSite (ไม่ได้ใส่ pixel) ตั้งคุกกี้ PHPSESSID ทุกหน้า → Cloudflare/แคชเซิร์ฟเวอร์ใช้ไม่ได้ · Elementor/Elementor Pro (หมดอายุ)/GTranslate ไม่ได้ใช้ · แนะนำให้ปิดเมื่อเจ้าของตกลง
