@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.22' );
+define( 'EAW_VERSION', '1.0.23' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -264,8 +264,8 @@ function eaw_defaults() {
 		/* โบรกเกอร์ (ใช้ในคู่มือเปิดบัญชี / ล็อกอิน ผ่าน shortcode [eawing_broker]) */
 		'broker_name'        => 'โบรกเกอร์ที่คุณเลือก',
 		'broker_server'      => 'ชื่อเซิร์ฟเวอร์ที่โบรกเกอร์แจ้งในอีเมลเปิดบัญชี',
-		'broker_signup_url'  => '',
-		'broker_signup_text' => 'สมัครบัญชีกับโบรกเกอร์',
+		'broker_signup_url'  => 'https://portal.zaurix.com?ref=236954',
+		'broker_signup_text' => 'สมัครบัญชี Zaurix',
 		'facebook_url'    => '',
 		'contact_email'   => 'easpeciallab@gmail.com',
 		'show_float_line' => false,
