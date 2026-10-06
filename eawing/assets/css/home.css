@@ -1461,6 +1461,20 @@ a.hm-card:hover .hm-arrow {
 }
 
 /* ---------- story ---------- */
+.hp-story-figure {
+	margin: 22px 0 0;
+	border: 1px solid rgba(10, 46, 102, 0.09);
+	border-radius: 22px;
+	overflow: hidden;
+	background: #F7FAFE;
+}
+
+.hp-story-figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
 .hp-story-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));

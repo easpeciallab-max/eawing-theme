@@ -82,6 +82,13 @@ if ( isset( $pages[ $slug ] ) ) {
 	return true;
 }
 
+// In-content illustration: /__art/<name>/?layout=wide|tall (source for dev/make-art.php)
+if ( 0 === strpos( $slug, '__art/' ) ) {
+	$fx_art_name = trim( substr( $slug, 6 ), '/' );
+	require __DIR__ . '/art.php';
+	return true;
+}
+
 // Article cover card: /__cover/<article-slug>/ (source for dev/make-covers.php)
 if ( 0 === strpos( $slug, '__cover/' ) && function_exists( 'eaw_seed_articles' ) ) {
 	$fx_cover_slug = substr( $slug, 8 );

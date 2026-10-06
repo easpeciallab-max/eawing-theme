@@ -1,6 +1,7 @@
 <?php
 /**
  * Article cover card (1200×630) · preview route /__cover/<article-slug>/
+ * Page cover card (1200×630) · preview route /__cover/page-<page-slug>/ → covers/page-<slug>.webp (featured image + og:image ของเพจ)
  * Rendered by headless Chrome in dev/make-covers.php and saved to eawing/assets/img/covers/<slug>.webp
  * Style: EA WING "Glass Sky" (docs/design.md) · sky gradient + blue/gold glows, white glass card,
  * EA WING wordmark, category kicker, Kanit title in navy, icon on a gold or sky tile.
@@ -9,13 +10,44 @@
  * @var string $fx_cover_slug set by router.php
  */
 
-$arts = eaw_seed_articles();
-if ( ! isset( $arts[ $fx_cover_slug ] ) ) {
-	http_response_code( 404 );
-	echo 'No article: ' . htmlspecialchars( $fx_cover_slug );
-	return;
+/* ปกของเพจ: หัวเรื่อง: คำขยาย | ป้ายไทย | ไอคอน | สี (ไม่มีตัวเลข ไม่มีป้ายอังกฤษ) */
+$page_covers = array(
+	'backtest'         => array( 'ทดสอบ EA ย้อนหลัง: ด้วย Strategy Tester ใน MT5', 'ผลทดสอบ', 'candles', 'blue' ),
+	'forward-test'     => array( 'Forward Test: ทดสอบ EA กับตลาดจริง', 'ผลทดสอบ', 'pulse', 'sky' ),
+	'how-to-install'   => array( 'ติดตั้ง EA WING บน MT5: ทีละขั้น พร้อมไล่แก้ปัญหา', 'คู่มือ', 'download', 'gold' ),
+	'open-mt5-account' => array( 'เปิดบัญชี MT5: ทีละขั้นสำหรับใช้ EA', 'คู่มือ', 'user', 'sky' ),
+	'mt5-login'        => array( 'ติดตั้งและล็อกอิน MT5: คอม มือถือ และ VPS', 'คู่มือ', 'monitor', 'blue' ),
+	'vps-windows'      => array( 'รัน EA บน Windows VPS: ทำงานต่อเนื่องทั้งวันทั้งคืน', 'คู่มือ', 'windows', 'sky' ),
+	'vps-android'      => array( 'เข้า VPS จาก Android: ดูแล EA ผ่านมือถือ', 'คู่มือ', 'android', 'gold' ),
+	'vps-ios'          => array( 'เข้า VPS จาก iPhone: ดูแล EA ผ่าน iPhone และ iPad', 'คู่มือ', 'apple', 'blue' ),
+	'tools'            => array( 'เครื่องมือคำนวณ: Lot และ Drawdown สำหรับวางแผน', 'เครื่องมือ', 'calc', 'gold' ),
+	'pricing'          => array( 'แพ็กเกจ EA WING: Starter Pro VIP จ่ายครั้งเดียว', 'แพ็กเกจ', 'tag', 'gold' ),
+	'risk-disclosure'  => array( 'ความเสี่ยงของการใช้ EA: อ่านก่อนเริ่มใช้เงินจริง', 'ข้อมูลสำคัญ', 'shield', 'blue' ),
+	'about'            => array( 'เกี่ยวกับ EA WING: ผู้ช่วยเทรดอัตโนมัติสำหรับ MT5', 'เกี่ยวกับเรา', 'users', 'sky' ),
+	'articles'         => array( 'บทความ EA WING: วางแผน ติดตาม บริหารความเสี่ยง', 'บทความ', 'book', 'gold' ),
+);
+$is_page = 0 === strpos( $fx_cover_slug, 'page-' );
+if ( $is_page ) {
+	$pslug = substr( $fx_cover_slug, 5 );
+	if ( ! isset( $page_covers[ $pslug ] ) ) {
+		http_response_code( 404 );
+		echo 'No page cover: ' . htmlspecialchars( $pslug );
+		return;
+	}
+	$pc  = $page_covers[ $pslug ];
+	$art = array(
+		'title' => $pc[0],
+		'meta'  => array( 'category' => $pc[1] ),
+	);
+} else {
+	$arts = eaw_seed_articles();
+	if ( ! isset( $arts[ $fx_cover_slug ] ) ) {
+		http_response_code( 404 );
+		echo 'No article: ' . htmlspecialchars( $fx_cover_slug );
+		return;
+	}
+	$art = $arts[ $fx_cover_slug ];
 }
-$art = $arts[ $fx_cover_slug ];
 
 // slug => icon name from eaw_icon() · default 'book'
 $icons = array(
@@ -42,6 +74,11 @@ $cat     = isset( $art['meta']['category'] ) ? $art['meta']['category'] : '';
 $kicker  = isset( $cats[ $cat ] ) ? $cats[ $cat ][0] : 'Article';
 $variant = isset( $cats[ $cat ] ) ? $cats[ $cat ][1] : 'sky';
 $icon    = isset( $icons[ $fx_cover_slug ] ) ? $icons[ $fx_cover_slug ] : 'book';
+if ( $is_page ) {
+	$kicker  = '';
+	$variant = $pc[3];
+	$icon    = $pc[2];
+}
 $theme   = get_template_directory_uri();
 $fonts   = $theme . '/assets/fonts/';
 
@@ -99,7 +136,7 @@ body{position:relative;color:var(--navy);font-family:"Noto Sans Thai",sans-serif
 	border:1.5px solid rgba(255,255,255,.95);
 	box-shadow:0 24px 60px rgba(10,46,102,.12),inset 0 1px 0 rgba(255,255,255,.9);
 	-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
-.txt{position:absolute;left:64px;top:52px;width:680px;height:438px;display:flex;flex-direction:column}
+.txt{position:absolute;left:64px;top:52px;width:640px;height:438px;display:flex;flex-direction:column}
 .kicker{display:flex;align-items:center;gap:14px;font-family:"Kanit",sans-serif;font-size:21px;line-height:1;font-weight:600;white-space:nowrap}
 .kicker b{font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
 .kicker b:before{content:"";display:inline-block;width:12px;height:12px;margin:0 14px 2px 0;border-radius:50%;background:linear-gradient(135deg,var(--blue-2),var(--blue));box-shadow:0 0 0 5px rgba(11,92,173,.12);vertical-align:middle}
@@ -141,7 +178,7 @@ h1{font-family:"Kanit",sans-serif;font-size:66px;line-height:1.24;font-weight:70
 	<div class="orb orb-2"></div>
 	<div class="card">
 		<div class="txt">
-			<p class="kicker"><b><?php echo esc_html( $kicker ); ?></b><?php if ( $cat ) : ?><i></i><em><?php echo esc_html( $cat ); ?></em><?php endif; ?></p>
+			<p class="kicker"><?php if ( '' !== $kicker ) : ?><b><?php echo esc_html( $kicker ); ?></b><?php if ( $cat ) : ?><i></i><?php endif; ?><?php endif; ?><?php if ( $cat ) : ?><em><?php echo esc_html( $cat ); ?></em><?php endif; ?></p>
 			<div class="ttl" id="t">
 				<h1><?php echo $chunk( $parts[0] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped per chunk ?></h1>
 				<?php if ( ! empty( $parts[1] ) ) : ?>
@@ -165,7 +202,8 @@ h1{font-family:"Kanit",sans-serif;font-size:66px;line-height:1.24;font-weight:70
 // Shrink the title until no phrase wraps mid-word (down to 46px) and the block fits between kicker and footer.
 (function(){var t=document.getElementById('t'),h=t.querySelector('h1'),p=t.querySelector('.sub'),s=66;function set(){h.style.fontSize=s+'px';if(p){p.style.fontSize=Math.round(Math.max(s*.55,28))+'px';}}
 function split(){var a=h.querySelectorAll('span');for(var i=0;i<a.length;i++){if(a[i].offsetHeight>s*1.8){return true;}}return false;}
-function fit(){while(split()&&s>46){s-=2;set();}while(t.offsetHeight>300&&s>38){s-=2;set();}}
+function wide(){return h.scrollWidth>t.clientWidth+1||(p&&p.scrollWidth>t.clientWidth+1);}
+function fit(){while((split()||wide())&&s>46){s-=2;set();}while(t.offsetHeight>300&&s>38){s-=2;set();}}
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fit);}fit();})();
 </script>
 </body>

@@ -6,6 +6,7 @@
  * Google Chrome, and the GD extension:
  *   php -d extension=mbstring -d extension=gd dev/make-covers.php [slug ...]
  * Without arguments every article in eaw_seed_articles() is rendered.
+ * Page covers: php ... dev/make-covers.php page-how-to-install page-pricing ... → covers/page-<slug>.webp
  * The card template is dev/preview/cover.php (title + category + icon · no numbers).
  */
 

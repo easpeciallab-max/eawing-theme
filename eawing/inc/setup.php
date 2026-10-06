@@ -633,6 +633,32 @@ function eaw_article_category_descriptions() {
 }
 
 /**
+ * ภาพปกของเพจเป็นภาพเด่น (featured image) · ข้ามเพจที่มีภาพเด่นอยู่แล้ว
+ *
+ * @return string[] log
+ */
+function eaw_setup_page_covers() {
+	$log  = array();
+	$done = array();
+	foreach ( eaw_site_pages() as $slug => $page ) {
+		$file = 'covers/page-' . $slug . '.webp';
+		if ( ! file_exists( get_template_directory() . '/assets/img/' . $file ) ) {
+			continue;
+		}
+		$found = eaw_find_page( $slug );
+		if ( ! $found || has_post_thumbnail( $found->ID ) ) {
+			continue;
+		}
+		$id = eaw_banner_attachment( $file, wp_strip_all_tags( $found->post_title ) . ' · EA WING' );
+		if ( $id && set_post_thumbnail( $found->ID, $id ) ) {
+			$done[] = '/' . $slug . '/';
+		}
+	}
+	$log[] = $done ? '✓ ใส่ภาพปกเป็นภาพเด่นของเพจ: ' . implode( ' ', $done ) : '• ภาพปกของเพจ: ทุกเพจมีภาพเด่นแล้ว';
+	return $log;
+}
+
+/**
  * ตั้งค่า SEO และระบบครั้งเดียว: Yoast (องค์กร โลโก้ รูปแชร์ ชื่อหน้าภาษาไทย ปิด archive ที่ไม่ใช้)
  * ปิดคอมเมนต์ทั้งเว็บ · alt ของโลโก้ใน Media · คำอธิบายหมวดบทความ · กดซ้ำได้ (ทับด้วยค่าเดิม)
  */
@@ -671,7 +697,11 @@ function eaw_setup_seo() {
 		}
 	}
 
-	/* 4) Yoast */
+	/* 4) ภาพปกของเพจ (assets/img/covers/page-<slug>.webp) เป็นภาพเด่น · ใช้เป็น og:image และภาพหลักของหน้าใน schema
+	 * ตั้งเฉพาะเพจที่ยังไม่มีภาพเด่น (ภาพที่เจ้าของเลือกเองไม่ถูกทับ) */
+	$log = array_merge( $log, eaw_setup_page_covers() );
+
+	/* 5) Yoast */
 	if ( ! class_exists( 'WPSEO_Options' ) ) {
 		$log[] = '• ไม่พบ Yoast SEO · ข้ามการตั้งค่า Yoast';
 		return $log;
@@ -862,7 +892,7 @@ function eaw_setup_screen() {
 			<?php wp_nonce_field( 'eaw_setup' ); ?>
 			<input type="hidden" name="action" value="eaw_setup">
 			<h2 style="margin-top:0">3) ตั้งค่า SEO และระบบ</h2>
-			<p>ตั้ง Yoast ให้ครบ (ชื่อองค์กร โลโก้ รูปแชร์เริ่มต้น Facebook ชื่อหน้าหมวด/ค้นหา/404 ภาษาไทย ปิดหน้า author และ date archive) · ปิดคอมเมนต์ทั้งเว็บ · เติม alt ให้โลโก้ · ใส่คำอธิบายหมวดบทความ · กดซ้ำได้</p>
+			<p>ตั้ง Yoast ให้ครบ (ชื่อองค์กร โลโก้ รูปแชร์เริ่มต้น Facebook ชื่อหน้าหมวด/ค้นหา/404 ภาษาไทย ปิดหน้า author และ date archive) · ปิดคอมเมนต์ทั้งเว็บ · เติม alt ให้โลโก้ · ใส่คำอธิบายหมวดบทความ · ใส่ภาพปกเป็นภาพเด่นของเพจที่ยังไม่มี · กดซ้ำได้</p>
 			<p><button class="button button-primary" name="eaw_do" value="seo">ตั้งค่า SEO และระบบ</button></p>
 		</form>
 

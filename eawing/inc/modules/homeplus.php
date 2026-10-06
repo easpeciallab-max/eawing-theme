@@ -32,6 +32,9 @@ function eaw_homeplus_defaults( $d ) {
 				. "สองโหมดในไฟล์เดียว | ไฟล์ EA มีทั้งโหมด Lite ที่เน้นคุมความเสี่ยงและเป็นค่าเริ่มต้น กับโหมด Full ที่ความเสี่ยงสูงกว่า เปลี่ยนได้จากปุ่มบนแดชบอร์ดโดยไม่ต้องโหลดไฟล์ค่าตั้งเพิ่ม และ EA จำตัวเลือกไว้ให้แม้ปิดเปิด MT5 ใหม่\n"
 				. "เงินอยู่ในบัญชีของคุณเสมอ | EA WING ไม่รับฝากเงินและไม่มีสิทธิ์ถอนเงิน เงินทุนอยู่ในบัญชี MT5 ที่คุณเปิดกับโบรกเกอร์ในชื่อของคุณเอง EA ทำได้เพียงส่งคำสั่งซื้อขายในบัญชีนั้น และคุณหยุดหรือถอด EA ออกจากกราฟได้ทุกเมื่อ\n"
 				. "สิทธิ์ใช้งานผูกกับเลขบัญชี | ไฟล์ EA ดาวน์โหลดได้เปิดเผย แต่จะทำงานเฉพาะบัญชีที่ทีมงานเปิดสิทธิ์ให้ การ์ดล็อกอินบนแดชบอร์ดบอกสถานะสิทธิ์ตลอดเวลา และถ้าเน็ตหลุดชั่วคราว EA ยังทำงานต่อได้ในช่วงผ่อนผัน",
+			'home_story_img'        => 'assets/img/illus/eawing-how-it-works.webp',
+			'home_story_img_mobile' => 'assets/img/illus/eawing-how-it-works-mobile.webp',
+			'home_story_img_alt'    => 'แผนภาพ EA WING ทำงานอย่างไร 4 ขั้น: วางบนกราฟ XAUUSD M1 ใน MT5 ตรวจสิทธิ์เลขบัญชี ส่งคำสั่งเข้าบัญชีโบรกเกอร์ในชื่อของคุณ และติดตามผลจากแอป MT5 บนมือถือ',
 			'home_story_btn'    => 'อ่านขั้นตอนติดตั้งแบบละเอียด',
 			'home_story_url'    => '/how-to-install/',
 
@@ -129,6 +132,9 @@ function eaw_homeplus_customizer_sections( $sections, $d ) {
 				'home_story_title'  => array( 'หัวข้อ (H2)', 'text' ),
 				'home_story_lead'   => array( 'ย่อหน้าเกริ่น', 'textarea', $rule ),
 				'home_story_blocks' => array( 'หัวข้อย่อย (บรรทัดละ 1 ข้อ: หัวข้อ | เนื้อหา)', 'textarea', $rule ),
+				'home_story_img'        => array( 'แผนภาพ · จอคอม (แนวนอน · ว่าง = ซ่อน)', 'image', 'ค่าเริ่มต้น: แผนภาพ 4 ขั้นของธีม (1600×760)' ),
+				'home_story_img_mobile' => array( 'แผนภาพ · จอมือถือ (แนวตั้ง · ว่าง = ใช้ภาพจอคอม)', 'image' ),
+				'home_story_img_alt'    => array( 'คำอธิบายแผนภาพ (alt)', 'text' ),
 				'home_story_btn'    => array( 'ปุ่มท้ายส่วน · ข้อความ (เว้นว่าง = ซ่อน)', 'text' ),
 				'home_story_url'    => array( 'ปุ่มท้ายส่วน · ลิงก์', 'path', $link ),
 			),
@@ -284,6 +290,21 @@ function eaw_homeplus_story() {
 	<?php eaw_homeplus_head( 'hp-story-title', eaw_mod( 'home_story_title' ) ); ?>
 	<?php if ( '' !== trim( (string) eaw_mod( 'home_story_lead' ) ) ) : ?>
 		<p class="hp-lead"><?php echo eaw_text( eaw_mod( 'home_story_lead' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside ?></p>
+	<?php endif; ?>
+	<?php
+	$img     = eaw_theme_asset_url( eaw_mod( 'home_story_img' ) );
+	$img_m   = eaw_theme_asset_url( eaw_mod( 'home_story_img_mobile' ) );
+	$img_alt = trim( (string) eaw_mod( 'home_story_img_alt' ) );
+	?>
+	<?php if ( '' !== $img ) : ?>
+		<figure class="hp-story-figure">
+			<picture>
+				<?php if ( '' !== $img_m ) : ?>
+					<source media="(max-width: 680px)" srcset="<?php echo esc_url( $img_m ); ?>" width="800" height="1140">
+				<?php endif; ?>
+				<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" width="1600" height="760" loading="lazy" decoding="async">
+			</picture>
+		</figure>
 	<?php endif; ?>
 	<?php if ( $blocks ) : ?>
 		<div class="hp-story-grid">
