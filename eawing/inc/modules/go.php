@@ -110,7 +110,7 @@ function eaw_go_defaults( $d ) {
 			'go_step5_badge'         => '',
 			'go_install1_label'      => 'คู่มือติดตั้ง EA ทีละขั้น',
 			'go_install1_url'        => '/how-to-install/',
-			'go_install2_label'      => 'คำนวณขนาด Lot ก่อนเริ่ม',
+			'go_install2_label'      => 'คำนวณขนาด Lot',
 			'go_install2_url'        => '/tools/',
 
 			/* ขั้น 6 · VPS */
@@ -129,13 +129,13 @@ function eaw_go_defaults( $d ) {
 
 			/* กลุ่มข้อมูลก่อนเริ่ม */
 			'go_info_title'          => 'ข้อมูลก่อนตัดสินใจ',
-			'go_btn1_label'          => 'Forward Test คืออะไร ดูผลอย่างไร',
+			'go_btn1_label'          => 'ดูผล Forward Test',
 			'go_btn1_url'            => '/forward-test/',
 			'go_btn2_label'          => 'แพ็กเกจ & ราคา',
 			'go_btn2_url'            => '/pricing/',
 			'go_btn3_label'          => 'รู้จัก EA WING',
 			'go_btn3_url'            => '/about/',
-			'go_btn4_label'          => 'บทความวางแผนและบริหารความเสี่ยง',
+			'go_btn4_label'          => 'บทความบริหารความเสี่ยง',
 			'go_btn4_url'            => '/articles/',
 			'go_btn5_label'          => '',
 			'go_btn5_url'            => '',
