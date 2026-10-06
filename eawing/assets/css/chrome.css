@@ -38,7 +38,8 @@
 }
 
 /* ==========================================================
-   1) กรอบเว็บ · จอ ≥ 821px เป็นแผงกระจกโค้งใหญ่ · ≤ 820px เต็มจอ ไม่มีขอบ/เงา
+   1) กรอบเว็บ · ไม่มีขอบ เงา หรือแผงกระจกรอบนอก (เจ้าของไม่ต้องการกรอบซ้อนกรอบ 6 ต.ค. 2026)
+   จอ ≥ 821px แค่จัดความกว้างเนื้อหาไว้กลางจอ · ≤ 820px เต็มจอ
    ========================================================== */
 .site-frame {
 	position: relative;
@@ -49,22 +50,7 @@
 	.site-frame {
 		width: min(1200px, calc(100% - 32px));
 		margin: 20px auto 28px;
-		padding: 14px;
-		border: 1px solid var(--glass-line);
-		border-radius: var(--r-frame);
-		box-shadow: var(--shadow-lift);
-	}
-
-	.site-frame::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-		border-radius: inherit;
-		background: rgba(255, 255, 255, 0.32);
-		-webkit-backdrop-filter: blur(14px) saturate(130%);
-		backdrop-filter: blur(14px) saturate(130%);
-		pointer-events: none;
+		padding: 0;
 	}
 }
 
@@ -233,6 +219,26 @@
 	margin-left: 0;
 }
 
+/* ปุ่ม LINE บน header: สีเขียวของ LINE · วงกลมขาว โลโก้เขียว */
+.header-cta--line.btn,
+.header-cta--line.btn:visited {
+	border-color: transparent;
+	background: var(--line-green);
+	box-shadow: 0 8px 20px rgba(6, 199, 85, 0.28);
+	color: #FFFFFF;
+}
+
+.header-cta--line.btn:hover,
+.header-cta--line.btn:focus-visible {
+	background: var(--line-green-dark);
+	color: #FFFFFF;
+}
+
+.header-cta--line .btn-ic {
+	background: #FFFFFF;
+	color: var(--line-green);
+}
+
 /* ---------- เมนูหลัก (จอกว้าง ≥ 1081px) ---------- */
 @media (min-width: 1081px) {
 	.site-header .site-nav {
@@ -284,7 +290,7 @@
 		color: var(--navy);
 	}
 
-	/* หน้าปัจจุบัน: แคปซูลขาว + จุดทองใต้ */
+	/* หน้าปัจจุบัน: แคปซูลขาว (ไม่มีจุดใต้) */
 	.site-header .nav-list > .current-menu-item > a,
 	.site-header .nav-list > .current-menu-ancestor > a,
 	.site-header .nav-list > .current-menu-parent > a,
@@ -293,24 +299,6 @@
 		background: #FFFFFF;
 		color: var(--navy);
 		box-shadow: 0 4px 12px rgba(10, 46, 102, 0.08);
-	}
-
-	.site-header .nav-list > .current-menu-item > a::after,
-	.site-header .nav-list > .current-menu-ancestor > a::after,
-	.site-header .nav-list > .current-menu-parent > a::after,
-	.site-header .nav-list > .current_page_item > a::after,
-	.site-header .nav-list > li > a[aria-current="page"]::after {
-		content: "";
-		display: block;
-		position: absolute;
-		left: 50%;
-		bottom: -7px;
-		width: 5px;
-		height: 5px;
-		margin-left: -2.5px;
-		border-radius: 50%;
-		background: var(--gold-3);
-		transition: none;
 	}
 
 	/* หัวข้อที่มีเมนูย่อย: ลูกศรเล็ก */
@@ -416,7 +404,7 @@
 	}
 }
 
-/* ---------- ปุ่มเปิดเมนู (กลม) ---------- */
+/* ---------- ปุ่มเปิดเมนู (สามขีด ไม่มีวงกลม) ---------- */
 .site-header .nav-toggle {
 	display: none;
 }
@@ -457,20 +445,29 @@
 		height: 44px;
 		margin: 0;
 		padding: 0;
-		border: 1px solid var(--glass-line);
-		border-radius: 50%;
-		background: #FFFFFF;
-		box-shadow: 0 4px 12px rgba(10, 46, 102, 0.08);
+		border: 0;
+		border-radius: 10px;
+		background: transparent;
+		box-shadow: none;
 		color: var(--navy);
 		cursor: pointer;
 	}
 
 	.site-header .nav-toggle span {
 		display: block;
-		width: 18px;
-		height: 2px;
-		border-radius: 2px;
+		width: 26px;
+		height: 3px;
+		border-radius: 3px;
 		background: var(--navy);
+	}
+
+	/* เปิดแผ่นเมนู: สามขีดเป็นกากบาท (ระยะเลื่อน = สูงขีด 3 + ช่องว่าง 5) */
+	.nav-open .site-header .nav-toggle span:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+
+	.nav-open .site-header .nav-toggle span:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
 	}
 
 	.site-header .site-nav {
@@ -553,26 +550,6 @@
 		color: var(--navy);
 		font-weight: 600;
 		box-shadow: 0 4px 12px rgba(10, 46, 102, 0.07);
-	}
-
-	/* จุดทองหน้าปัจจุบัน (ซ้ายของชื่อเมนู) */
-	.site-header .nav-list .current-menu-item > a,
-	.site-header .nav-list a[aria-current="page"] {
-		padding-left: 26px;
-	}
-
-	.site-header .nav-list .current-menu-item > a::after,
-	.site-header .nav-list a[aria-current="page"]::after {
-		content: "";
-		display: block;
-		position: absolute;
-		left: 12px;
-		top: 50%;
-		width: 6px;
-		height: 6px;
-		margin-top: -3px;
-		border-radius: 50%;
-		background: var(--gold-3);
 	}
 
 	.site-header .nav-list .menu-item-has-children > a {
@@ -1489,10 +1466,6 @@
 }
 
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-	.site-frame::before {
-		background: rgba(255, 255, 255, 0.5);
-	}
-
 	.header-bar::before,
 	.site-header .site-nav,
 	.site-header .nav-list .sub-menu,
@@ -1505,4 +1478,22 @@
 	.float-line {
 		background: rgba(255, 255, 255, 0.92);
 	}
+}
+
+/* ==========================================================
+   ปุ่ม LINE ทุกจุดใช้สีเขียวของ LINE (เจ้าของขอ 6 ต.ค. 2026)
+   header (.header-cta--line) · ปุ่มท้ายแถบล่างมือถือ (.is-line) · ปุ่มลอย (.fab-core)
+   ========================================================== */
+.dock-key.is-action.is-line {
+	background: var(--line-green);
+	color: #FFFFFF;
+	box-shadow: 0 6px 14px rgba(6, 199, 85, 0.3);
+}
+
+.line-fab .fab-core,
+.float-line .fab-core {
+	border-color: transparent;
+	background: var(--line-green);
+	color: #FFFFFF;
+	box-shadow: 0 8px 18px rgba(6, 199, 85, 0.32);
 }

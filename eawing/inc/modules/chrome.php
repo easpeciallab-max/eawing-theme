@@ -370,11 +370,12 @@ function eaw_chrome_header_cta() {
 		return;
 	}
 	printf(
-		'<a class="btn btn-fire chrome-btn chrome-btn--sm header-cta" href="%1$s"%2$s data-line-pos="header"><span>%3$s</span><span class="btn-ic" aria-hidden="true">%4$s</span></a>',
+		'<a class="btn %5$s chrome-btn chrome-btn--sm header-cta" href="%1$s"%2$s data-line-pos="header"><span>%3$s</span><span class="btn-ic" aria-hidden="true">%4$s</span></a>',
 		esc_url( $target['url'] ),
 		$target['is_line'] ? ' target="_blank" rel="noopener"' : '',
 		esc_html( $label ),
-		eaw_icon( $target['is_line'] ? 'line' : 'chat' ) // phpcs:ignore WordPress.Security.EscapeOutput
+		eaw_icon( $target['is_line'] ? 'line' : 'chat' ), // phpcs:ignore WordPress.Security.EscapeOutput
+		$target['is_line'] ? 'header-cta--line' : 'btn-fire'
 	);
 }
 
