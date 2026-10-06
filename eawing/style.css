@@ -4,7 +4,7 @@ Theme URI: https://eawing.co/
 Author: EA WING Team
 Author URI: https://eawing.co/
 Description: ธีมเว็บไซต์ EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 · ดีไซน์ Glass Sky (ฟ้า กระจกฝ้า น้ำเงินกับทอง) · มีหน้าคู่มือ ทดสอบ แพ็กเกจ เอกสาร บทความ เครื่องคำนวณ Lot/Drawdown และหน้า EA WING Setup สำหรับตั้งค่าเว็บ · แก้ทุกข้อความได้ใน Customizer
-Version: 1.0.15
+Version: 1.0.16
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -8462,4 +8462,29 @@ body *::after {
 
 .error-search:focus-within {
 	box-shadow: 0 0 0 2px rgba(11, 92, 173, 0.3) !important;
+}
+
+/* ==========================================================
+   45) ภาษาอังกฤษเป็นพิมพ์ใหญ่ทั้งเว็บ (เจ้าของขอ 6 ต.ค. 2026) · ตัวไทยไม่ได้รับผล
+   คำที่ต้องคงตัวพิมพ์ (อีเมล ลิงก์ LINE ID ชื่อไฟล์ XAUUSD.c iPhone) ห่อด้วย .nocaps จาก eaw_nocaps_buffer() ใน inc/modules/infra.php
+   ช่องกรอกข้อมูล โค้ด และแถบแอดมินคงตัวพิมพ์ตามที่พิมพ์
+   ========================================================== */
+body,
+body * {
+	text-transform: uppercase !important;
+}
+
+body .nocaps,
+body .nocaps *,
+body code,
+body kbd,
+body pre,
+body samp,
+body input,
+body textarea,
+body select,
+body a[href^="mailto:"],
+body #wpadminbar,
+body #wpadminbar * {
+	text-transform: none !important;
 }

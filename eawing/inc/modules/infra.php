@@ -670,3 +670,69 @@ function eaw_infra_preload_fonts() {
 	}
 }
 add_action( 'wp_head', 'eaw_infra_preload_fonts', 2 );
+
+/* --------------------------------------------------------------
+ * ภาษาอังกฤษเป็นพิมพ์ใหญ่ทั้งเว็บ (เจ้าของขอ 6 ต.ค. 2026)
+ * CSS ทำให้ตัวอังกฤษเป็นพิมพ์ใหญ่ (style.css ส่วน 45) · ข้อความจริงใน HTML ไม่เปลี่ยน (title / SEO เหมือนเดิม)
+ * คำที่ต้องคงตัวพิมพ์ไว้ ถูกห่อด้วย <span class="nocaps"> ก่อนส่งหน้าเว็บ:
+ * อีเมล · โดเมนและลิงก์ · LINE ID (@xxx) · ชื่อไฟล์และนามสกุล (.ex5 .zip ...) · สัญลักษณ์ที่มีตัวท้าย (XAUUSD.c) · iPhone iPad iOS macOS
+ * -------------------------------------------------------------- */
+
+/**
+ * รูปแบบคำที่ต้องคงตัวพิมพ์ (ฟิลเตอร์ eaw_nocaps_pattern เพิ่มได้)
+ */
+function eaw_nocaps_pattern() {
+	$parts = array(
+		'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}',                       // อีเมล
+		'(?:https?:\/\/)?(?:[a-z0-9-]+\.)+(?:co|com|me|ee|net|org|io|th|app)\b(?:\/[^\s<]*)?', // โดเมน / ลิงก์
+		'(?<![\w@])@[a-z][a-z0-9._-]*',                                            // LINE ID
+		'[\w.-]*\.(?:ex5|ex4|mq5|mq4|set|zip|pdf|txt|dll|exe)\b',                  // ไฟล์และนามสกุล
+		'\b[A-Z]{6}\.[a-z]{1,3}\b',                                                // XAUUSD.c
+		'(?<=\s)\.[a-z]{1,3}(?=[\s,)])',                                           // ตัวท้ายสัญลักษณ์ที่เขียนลำพัง เช่น .c .s
+		'\b(?:iPhone|iPad|iPadOS|iOS|macOS)\b',                                    // ชื่อแบรนด์ที่ใช้ตัวเล็กนำ
+	);
+	return (string) apply_filters( 'eaw_nocaps_pattern', '/' . implode( '|', $parts ) . '/u' );
+}
+
+/**
+ * ห่อคำที่ต้องคงตัวพิมพ์ในส่วน body · แตะเฉพาะข้อความระหว่างแท็ก (ไม่แตะแอตทริบิวต์ script style textarea และคอมเมนต์)
+ */
+function eaw_nocaps_buffer( $html ) {
+	$at = stripos( (string) $html, '<body' );
+	if ( false === $at ) {
+		return $html;
+	}
+	$pattern = eaw_nocaps_pattern();
+	$body    = substr( $html, $at );
+	$parts   = preg_split( '#(<!--.*?-->|<script\b.*?</script>|<style\b.*?</style>|<textarea\b.*?</textarea>|<[^>]+>)#is', $body, -1, PREG_SPLIT_DELIM_CAPTURE );
+	if ( ! is_array( $parts ) ) {
+		return $html;
+	}
+	foreach ( $parts as $i => $part ) {
+		if ( 1 === $i % 2 || '' === $part || ! preg_match( '/[a-z]/', $part ) ) {
+			continue;
+		}
+		$done = preg_replace_callback(
+			$pattern,
+			function ( $m ) {
+				return '<span class="nocaps">' . $m[0] . '</span>';
+			},
+			$part
+		);
+		if ( null !== $done ) {
+			$parts[ $i ] = $done;
+		}
+	}
+	return substr( $html, 0, $at ) . implode( '', $parts );
+}
+
+/**
+ * เริ่มบัฟเฟอร์เฉพาะหน้าเว็บฝั่งผู้อ่าน (ไม่ใช่หลังบ้าน ฟีด REST AJAX)
+ */
+function eaw_nocaps_start() {
+	if ( is_admin() || is_feed() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || is_robots() ) {
+		return;
+	}
+	ob_start( 'eaw_nocaps_buffer' );
+}
+add_action( 'template_redirect', 'eaw_nocaps_start', 99 );
