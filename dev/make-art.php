@@ -1,6 +1,6 @@
 <?php
 /**
- * Build in-content illustrations: eawing/assets/img/illus/<name>.webp (wide) + <name>-mobile.webp (tall).
+ * Build in-content illustrations: eawing/assets/img/illus/<name>-v2.webp (wide) + <name>-mobile-v2.webp (tall) · เปลี่ยนเลข v เมื่อภาพเปลี่ยน (Cloudflare แคชตาม URL).
  *
  * Needs the preview server (php -S localhost:8765 dev/preview/router.php), Google Chrome and GD:
  *   php -d extension=gd dev/make-art.php how-it-works
@@ -55,7 +55,7 @@ foreach ( array_slice( $argv, 1 ) as $name ) {
 			continue;
 		}
 		$im  = imagecreatefrompng( $png );
-		$out = $outdir . '/eawing-' . $name . $size[2] . '.webp';
+		$out = $outdir . '/eawing-' . $name . $size[2] . '-v2.webp';
 		imagepalettetotruecolor( $im );
 		imagewebp( $im, $out, 86 );
 		printf( "✓ %s (%dx%d, %d KB)\n", basename( $out ), imagesx( $im ), imagesy( $im ), (int) round( filesize( $out ) / 1024 ) );

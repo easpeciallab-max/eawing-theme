@@ -66,10 +66,9 @@ h1{font-family:"Kanit",sans-serif;font-size:<?php echo $tall ? 50 : 54; ?>px;fon
 .num{position:absolute;<?php echo $tall ? 'left:-14px;top:-14px;' : 'left:50%;top:-24px;margin-left:-24px;'; ?>width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:"Kanit",sans-serif;font-size:24px;font-weight:600;border:4px solid #fff}
 .tile{flex:0 0 auto;width:<?php echo $tall ? 104 : 118; ?>px;height:<?php echo $tall ? 104 : 118; ?>px;border-radius:32px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.95)}
 .tile svg{width:<?php echo $tall ? 54 : 60; ?>px;height:<?php echo $tall ? 54 : 60; ?>px;stroke-width:1.6}
-.t-sky{background:linear-gradient(145deg,#F3F8FE,#D4E6FB 55%,#B9D5F7);color:var(--blue)}
-.t-gold{background:linear-gradient(145deg,#FFF6DE,#F6DE9E 55%,#EFC25A);color:var(--gold-text)}
-.t-blue{background:linear-gradient(145deg,#E6F1FD,#B9D5F7 60%,#8DBBEE);color:var(--navy)}
-.t-navy{background:linear-gradient(160deg,#123B7E,var(--navy) 60%,#011D3B);color:var(--gold-1)}
+.t-sky,.t-blue{background:var(--blue);color:#fff}
+.t-gold{background:linear-gradient(145deg,#F6D57A,#EFC25A 55%,#D9A12E);color:var(--navy)}
+.t-navy{background:var(--navy);color:var(--gold-1)}
 .copy{display:flex;flex-direction:column;gap:8px}
 .step h2{font-family:"Kanit",sans-serif;font-size:<?php echo $tall ? 34 : 31; ?>px;font-weight:600;line-height:1.25;color:var(--navy)}
 .step p{font-size:<?php echo $tall ? 25 : 23; ?>px;line-height:1.5;color:var(--ink-2)}

@@ -4,7 +4,7 @@ Theme URI: https://eawing.co/
 Author: EA WING Team
 Author URI: https://eawing.co/
 Description: ธีมเว็บไซต์ EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 · ดีไซน์ Glass Sky (ฟ้า กระจกฝ้า น้ำเงินกับทอง) · มีหน้าคู่มือ ทดสอบ แพ็กเกจ เอกสาร บทความ เครื่องคำนวณ Lot/Drawdown และหน้า EA WING Setup สำหรับตั้งค่าเว็บ · แก้ทุกข้อความได้ใน Customizer
-Version: 1.0.20
+Version: 1.0.21
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -8474,6 +8474,12 @@ body * {
 	text-transform: uppercase !important;
 }
 
+/* .nocaps ไม่สร้างกล่องของตัวเอง (display: contents) · ข้อความจึงต่อเนื่องกับข้อความรอบข้าง
+   แม้อยู่ในกล่อง flex/grid (ถ้าเป็นกล่องปกติ คำจะถูกแยกเป็นชิ้นและซ้อนกัน) */
+body .nocaps {
+	display: contents;
+}
+
 body .nocaps,
 body .nocaps *,
 body code,
@@ -8549,4 +8555,113 @@ body #wpadminbar * {
 	box-shadow: inset 0 0 0 1.5px var(--navy) !important;
 	background: transparent !important;
 	color: var(--navy) !important;
+}
+
+/* ==========================================================
+   47) สีชัดขึ้น ไม่กลืนกับพื้นสีอ่อน (เจ้าของขอ 6 ต.ค. 2026)
+   - หัวข้อ H1 ทุกหน้าเป็นกรมท่าทึบเหมือนหน้าแรก (ปิดสีไล่ของคำเน้น)
+   - กระเบื้องไอคอนเป็นสีทึบของแบรนด์ แทนพาสเทลจาง: ฟ้า/น้ำเงิน = น้ำเงินปีก ไอคอนขาว · ทอง = ทองเข้ม ไอคอนกรมท่า · กรมท่า = กรมท่า ไอคอนทอง
+     (กระเบื้องสีแบรนด์ LINE / OpenChat / Facebook / อีเมล ใน chrome.css ไม่ถูกแตะ)
+   - ตัวหนังสือรองสีเทาเข้มขึ้น
+   - ปุ่มแพ็กเกจบนมือถือตัดบรรทัดได้ ไม่ล้นปุ่ม
+   ========================================================== */
+.grad-word {
+	background: none !important;
+	-webkit-text-fill-color: var(--navy) !important;
+	color: var(--navy) !important;
+}
+
+.tile:not([class*="tile--"]),
+.tile.tile--sky,
+.tile.tile--blue,
+.ic-badge--soft {
+	border-color: transparent !important;
+	background: var(--blue) !important;
+	color: #FFFFFF !important;
+}
+
+.tile.tile--gold,
+.ic-badge--green {
+	border-color: transparent !important;
+	background: linear-gradient(145deg, #F6D57A, #EFC25A 55%, #D9A12E) !important;
+	color: var(--navy) !important;
+}
+
+.tile.tile--navy {
+	border-color: transparent !important;
+	background: var(--navy) !important;
+	color: var(--gold-1) !important;
+}
+
+:root {
+	--ch-muted: #44506B !important;
+}
+
+.home-v3 {
+	--hm-muted: #44506B !important;
+	--hm-ink-2: #2B3754 !important;
+}
+
+.pg,
+.longform,
+.doc-sections,
+.calc {
+	--pg-muted: #44506B !important;
+	--pg-ink-2: #2B3754 !important;
+}
+
+.plan-btn.btn,
+.price-btn.btn {
+	white-space: normal !important;
+	text-align: center;
+	line-height: 1.35;
+}
+
+/* แผงหลักทุกส่วนมีเส้นขอบกรมท่าบาง ๆ แยกจากพื้นหลังสีอ่อน */
+.glass-panel {
+	border: 1px solid rgba(10, 46, 102, 0.1) !important;
+}
+
+/* การ์ดสีขาวที่อยู่ในแผงสีขาว: ขอบกรมท่าชัดขึ้น (สถานะพิเศษ เช่น การ์ดแนะนำ ปุ่มที่เลือก ข้อที่ติ๊ก ยังใช้สีของตัวเอง) */
+.glass-card,
+.hm-device,
+.hm-stats,
+.hm-step,
+.hm-chip,
+.hm-q,
+.faq-item:not([open]),
+.hp-story-item,
+.hp-story-figure,
+.hp-mode,
+.hp-modes-tabs,
+.hp-state:not([aria-pressed="true"]),
+.hp-ready-item:not(:has(:checked)),
+.hp-table-wrap,
+.gd-box,
+.gd-more-card,
+.gd-step,
+.guide-card,
+.lf-card,
+.longform-toc,
+.order-step,
+.plan-card:not(.is-featured),
+.results-pending,
+.riskdoc-block,
+.stat-card,
+.table-wrap,
+.cmp-wrap,
+.callout--info,
+.ctc-card,
+.pg-hero-panel,
+.pg-note {
+	border: 1px solid rgba(10, 46, 102, 0.16) !important;
+}
+
+.faq-item[open] {
+	border: 1px solid rgba(10, 46, 102, 0.3) !important;
+}
+
+/* ลูกแก้วตกแต่ง (.orb) ต้องอาศัยเงาให้ดูเป็นทรงกลม · เว็บไม่มีเงาแล้ว จึงซ่อนทั้งหมดให้หน้าสะอาด */
+.orb {
+	display: none !important;
 }
