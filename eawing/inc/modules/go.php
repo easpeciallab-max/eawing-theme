@@ -60,7 +60,7 @@ function eaw_go_defaults( $d ) {
 			/* ขั้น 1 · เปิดบัญชี */
 			'go_step1_title'         => eaw_go_legacy( 'go_step1', 'เปิดบัญชี MT5' ),
 			'go_step1_desc'          => 'สมัครบัญชีกับ Zaurix ยืนยันอีเมลและตัวตน แล้วจดเลข Login ไว้ใช้ขั้นถัดไป',
-			'go_step1_note'          => 'ลิงก์พาร์ตเนอร์: เมื่อสมัครผ่านลิงก์นี้ Zaurix จ่ายค่าตอบแทนให้ EA WING โดยคุณไม่เสียค่าใช้จ่ายเพิ่ม',
+			'go_step1_note'          => '',
 			'go_step1_badge'         => '',
 			'go_signup_line_label'   => 'ขอลิงก์สมัครทาง LINE',
 			'go_account_guide_label' => eaw_go_legacy( 'go_step2', 'วิธีสมัครและยืนยันตัวตน' ),

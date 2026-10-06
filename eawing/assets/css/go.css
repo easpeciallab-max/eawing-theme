@@ -1,34 +1,36 @@
 /*
  * EA WING · หน้า /go (ลิงก์รวม) · template-go.php + inc/modules/go.php
- * โครง: หัวกรมท่า → ติดต่อทีม → ขั้นตอน (เส้นเวลา) → ข้อมูลก่อนตัดสินใจ → โซเชียล → คำเตือน → เอกสาร
- * พื้นฟ้าอ่อน แต่ละกลุ่มเป็นแผงขาวขอบบาง · ไม่มีเงา
- * ปุ่มมีแค่ 3 แบบ ให้สีบอกหน้าที่:
- *   กรมท่าทึบ = ลงมือทำ (สมัครบัญชี เข้า Portal ดาวน์โหลด)
- *   ขอบกรมท่า พื้นขาว = อ่านคู่มือ / ไปหน้าในเว็บ
- *   เขียว LINE = คุยกับทีมงาน
+ * การ์ดกรมท่าใบเดียวกลางพื้นฟ้าอ่อน: หัวการ์ด → ติดต่อทีม → ขั้นตอน (เส้นเวลา) → ข้อมูลก่อนตัดสินใจ → โซเชียล → คำเตือน → เอกสาร
+ * ไม่มีเงา · แยกกลุ่มด้วยเส้นบาง
+ * สีปุ่มบอกหน้าที่ (บนพื้นกรมท่า):
+ *   ทอง ตัวกรมท่า = ลงมือทำ (สมัครบัญชี เข้า Portal ดาวน์โหลด)
+ *   เส้นขาว พื้นใส = อ่านคู่มือ / ไปหน้าในเว็บ
+ *   เขียว LINE = คุยกับทีมงาน · OpenChat ขาวขอบเขียว
  * ทุกคลาสขึ้นต้นด้วย .link-hub / .lh-
  */
 
 .link-hub-page {
-	--go-ink: #0A2E66;
-	--go-text: #22324F;
-	--go-muted: #4A5A78;
-	--go-rule: #DCE6F4;
-	--go-panel-line: #D3E0F2;
-	--go-outline: #0A2E66;
-	--go-soft: #EEF4FC;
+	--go-card: #0A2E66;
+	--go-card-top: #0F3B7E;
+	--go-title: #FFFFFF;
+	--go-text: #D3E0F2;
+	--go-muted: #A9BCD8;
+	--go-rule: rgba(255, 255, 255, 0.14);
+	--go-line-soft: rgba(255, 255, 255, 0.45);
+	--go-fill: rgba(255, 255, 255, 0.07);
+	--go-fill-hover: rgba(255, 255, 255, 0.14);
 	--go-navy: #0A2E66;
-	--go-navy-hover: #123B7E;
-	--go-blue: #0B5CAD;
+	--go-gold-1: #F6D57A;
 	--go-gold: #EFC25A;
+	--go-gold-3: #D9A12E;
 	--go-line: #06C755;
 	--go-line-hover: #05A848;
 	--go-line-text: #047A35;
-	background: linear-gradient(180deg, #E2EDFB 0, #EEF4FC 260px, #F7FAFE 100%);
+	background: linear-gradient(180deg, #E2EDFB 0, #EEF4FC 320px, #F7FAFE 100%);
 	color: var(--go-text);
 }
 
-/* เส้นปีกของ body (style.css ส่วน 43) และของตกแต่งเดิมของหน้านี้ */
+/* เส้นปีกของ body (style.css ส่วน 43) และของตกแต่งเดิม */
 body.link-hub-page::before,
 .lh-wing-lines,
 .lh-orb {
@@ -46,30 +48,30 @@ body.link-hub-page::before,
 	padding-bottom: max(48px, calc(env(safe-area-inset-bottom) + 28px));
 }
 
-/* คอลัมน์กลาง (ไม่มีกรอบ) · แต่ละกลุ่มด้านในเป็นแผงของตัวเอง */
+/* ---------- การ์ดกรมท่า ---------- */
 .lh-card {
 	width: 100%;
-	max-width: 500px;
+	max-width: 480px;
+	padding: 30px 22px 24px;
+	border: 1px solid #082656;
+	border-radius: 28px;
+	background:
+		radial-gradient(120% 40% at 50% 0, var(--go-card-top), transparent 70%),
+		var(--go-card);
+	color: var(--go-text);
 	text-align: center;
 }
 
 .lh-card a:focus-visible,
 .lh-card [role="link"]:focus-visible {
-	outline: 3px solid var(--go-blue);
+	outline: 3px solid var(--go-gold-1);
 	outline-offset: 3px;
 }
 
-/* ---------- หัว: แผงกรมท่า ---------- */
-.lh-brand {
-	padding: 28px 20px 26px;
-	border-radius: 24px;
-	background: var(--go-navy);
-	color: #FFFFFF;
-}
-
+/* ---------- หัวการ์ด ---------- */
 .lh-logo {
-	width: 88px;
-	height: 88px;
+	width: 92px;
+	height: 92px;
 	margin: 0 auto 14px;
 	border: 3px solid var(--go-gold);
 	border-radius: 50%;
@@ -86,11 +88,11 @@ body.link-hub-page::before,
 .lh-card .lh-title {
 	margin: 0;
 	font-family: var(--font-display);
-	font-size: 1.8rem;
+	font-size: 1.85rem;
 	font-weight: 700;
 	line-height: 1.2;
 	letter-spacing: 0.02em;
-	color: #FFFFFF;
+	color: var(--go-title);
 }
 
 .lh-tagline {
@@ -98,7 +100,7 @@ body.link-hub-page::before,
 	max-width: 26em;
 	font-size: 0.97rem;
 	line-height: 1.65;
-	color: #DCE8F8;
+	color: var(--go-text);
 }
 
 .lh-badges {
@@ -113,7 +115,7 @@ body.link-hub-page::before,
 
 .lh-badges li {
 	padding: 3px 12px;
-	border: 1px solid rgba(255, 255, 255, 0.35);
+	border: 1px solid var(--go-line-soft);
 	border-radius: 999px;
 	font-family: var(--font-display);
 	font-size: 0.8rem;
@@ -121,27 +123,40 @@ body.link-hub-page::before,
 	color: #FFFFFF;
 }
 
-/* ---------- แผงของแต่ละกลุ่ม ---------- */
+/* ---------- กลุ่ม (แยกด้วยเส้นบาง) ---------- */
 .lh-group,
 .lh-doc {
-	margin-top: 14px;
-	padding: 22px 18px;
-	border: 1px solid var(--go-panel-line);
-	border-radius: 24px;
-	background: #FFFFFF;
+	margin-top: 24px;
+	padding-top: 24px;
+	border-top: 1px solid var(--go-rule);
 }
 
 .lh-section-title,
 .lh-steps-title {
-	margin: 0 0 16px;
+	position: relative;
+	margin: 0 0 18px;
+	padding-bottom: 10px;
 	font-family: var(--font-display);
 	font-size: 1.2rem;
 	font-weight: 600;
 	line-height: 1.4;
-	color: var(--go-ink);
+	color: var(--go-title);
 }
 
-/* ---------- ปุ่ม: ฐาน = ขอบกรมท่า พื้นขาว (คู่มือ / หน้าในเว็บ) ---------- */
+.lh-section-title::after,
+.lh-steps-title::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 36px;
+	height: 3px;
+	margin-left: -18px;
+	border-radius: 3px;
+	background: var(--go-gold);
+}
+
+/* ---------- ปุ่ม: ฐาน = เส้นขาว พื้นใส (คู่มือ / หน้าในเว็บ) ---------- */
 .lh-btn {
 	display: flex;
 	align-items: center;
@@ -150,26 +165,31 @@ body.link-hub-page::before,
 	min-height: 54px;
 	margin: 0 0 10px;
 	padding: 8px 10px 8px 18px;
-	border: 1.5px solid var(--go-outline);
+	border: 1.5px solid var(--go-line-soft);
 	border-radius: 999px;
-	background: #FFFFFF;
-	color: var(--go-navy);
+	background: transparent;
+	color: #FFFFFF;
 	font-family: var(--font-display);
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.3;
 	text-align: left;
 	text-decoration: none;
-	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, filter 0.15s ease;
 }
 
 .lh-btn:last-child {
 	margin-bottom: 0;
 }
 
+a.lh-btn:visited {
+	color: #FFFFFF;
+}
+
 a.lh-btn:hover {
-	background: var(--go-soft);
-	color: var(--go-navy);
+	border-color: #FFFFFF;
+	background: var(--go-fill-hover);
+	color: #FFFFFF;
 }
 
 .lh-btn > svg,
@@ -183,7 +203,7 @@ a.lh-btn:hover {
 	display: grid;
 	place-items: center;
 	flex: 0 0 auto;
-	color: var(--go-blue);
+	color: var(--go-gold-1);
 }
 
 .lh-btn .lh-lbl,
@@ -199,8 +219,8 @@ a.lh-btn:hover {
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
-	background: var(--go-soft);
-	color: var(--go-navy);
+	background: var(--go-fill-hover);
+	color: #FFFFFF;
 }
 
 .lh-btn .lh-ar svg {
@@ -208,37 +228,38 @@ a.lh-btn:hover {
 	height: 15px;
 }
 
-/* ---------- ปุ่มลงมือทำ: กรมท่าทึบ ---------- */
+/* ---------- ปุ่มลงมือทำ: ทอง ตัวกรมท่า ---------- */
 .lh-btn-signup,
 .lh-btn-accent,
 .lh-btn-download,
 a.lh-btn-signup:visited,
 a.lh-btn-accent:visited,
 a.lh-btn-download:visited {
-	border-color: var(--go-navy);
-	background: var(--go-navy);
-	color: #FFFFFF;
+	border-color: var(--go-gold);
+	background: linear-gradient(180deg, var(--go-gold-1) 0%, var(--go-gold) 55%, var(--go-gold-3) 100%);
+	color: var(--go-navy);
 	font-weight: 600;
 }
 
 a.lh-btn-signup:hover,
 a.lh-btn-accent:hover,
 a.lh-btn-download:hover {
-	border-color: var(--go-navy-hover);
-	background: var(--go-navy-hover);
-	color: #FFFFFF;
+	border-color: var(--go-gold-1);
+	background: linear-gradient(180deg, var(--go-gold-1) 0%, var(--go-gold) 55%, var(--go-gold-3) 100%);
+	color: var(--go-navy);
+	filter: brightness(1.06);
 }
 
 .lh-btn-signup .lh-ic,
 .lh-btn-accent .lh-ic,
 .lh-btn-download .lh-ic {
-	color: var(--go-gold);
+	color: var(--go-navy);
 }
 
 .lh-btn-signup .lh-ar,
 .lh-btn-accent .lh-ar {
-	background: rgba(255, 255, 255, 0.16);
-	color: #FFFFFF;
+	background: rgba(10, 46, 102, 0.14);
+	color: var(--go-navy);
 }
 
 /* ---------- LINE: เขียวของ LINE ตัวขาว (เหมือนทั้งเว็บ) ---------- */
@@ -269,12 +290,13 @@ a.lh-btn-openchat:visited {
 	justify-content: center;
 	padding-right: 18px;
 	border-color: var(--go-line);
+	background: #FFFFFF;
 	color: var(--go-line-text);
 	font-weight: 600;
 }
 
 a.lh-btn-openchat:hover {
-	border-color: var(--go-line-hover);
+	border-color: var(--go-line);
 	background: #EAFBF1;
 	color: var(--go-line-text);
 }
@@ -302,7 +324,7 @@ a.lh-btn-openchat:hover {
 	font-size: 1.05rem;
 }
 
-/* ---------- ปุ่มคู่มือในขั้นตอน: ขอบกรมท่า เล็กกว่า ---------- */
+/* ---------- ปุ่มคู่มือในขั้นตอน: เส้นขาว เล็กกว่า ---------- */
 .lh-mini-btn {
 	display: flex;
 	align-items: center;
@@ -312,31 +334,36 @@ a.lh-btn-openchat:hover {
 	min-height: 46px;
 	margin: 0 0 8px;
 	padding: 6px 14px;
-	border: 1.5px solid var(--go-outline);
+	border: 1.5px solid var(--go-line-soft);
 	border-radius: 999px;
-	background: #FFFFFF;
-	color: var(--go-navy);
+	background: transparent;
+	color: #FFFFFF;
 	font-family: var(--font-display);
 	font-size: 0.95rem;
 	font-weight: 500;
 	line-height: 1.3;
 	text-decoration: none;
-	transition: background 0.15s ease;
+	transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .lh-mini-btn:last-child {
 	margin-bottom: 0;
 }
 
+a.lh-mini-btn:visited {
+	color: #FFFFFF;
+}
+
 a.lh-mini-btn:hover {
-	background: var(--go-soft);
-	color: var(--go-navy);
+	border-color: #FFFFFF;
+	background: var(--go-fill-hover);
+	color: #FFFFFF;
 }
 
 .lh-mini-btn .lh-ic {
 	display: grid;
 	place-items: center;
-	color: var(--go-blue);
+	color: var(--go-gold-1);
 }
 
 .lh-mini-btn .lh-ic svg {
@@ -347,26 +374,26 @@ a.lh-mini-btn:hover {
 /* ยังไม่มีลิงก์: เส้นประ + ป้าย */
 .is-pending {
 	border-style: dashed !important;
-	border-color: #B7C6DC !important;
-	background: #FAFBFD !important;
+	border-color: rgba(255, 255, 255, 0.28) !important;
+	background: transparent !important;
 	color: var(--go-muted) !important;
 	cursor: default;
 }
 
 .is-pending .lh-tile-ic,
 .is-pending .lh-ic {
-	color: #8A99B3 !important;
+	color: var(--go-muted) !important;
 }
 
 .lh-pending-tag {
 	flex: 0 0 auto;
 	padding: 2px 9px;
 	border-radius: 999px;
-	background: #EEF1F6;
+	background: var(--go-fill-hover);
 	font-family: var(--font-body);
 	font-size: 0.72rem;
 	font-weight: 600;
-	color: var(--go-muted);
+	color: var(--go-text);
 }
 
 /* ---------- ขั้นตอน: เส้นเวลา ---------- */
@@ -379,23 +406,22 @@ a.lh-mini-btn:hover {
 
 .lh-step {
 	position: relative;
-	padding: 0 0 26px 52px;
+	padding: 0 0 28px 52px;
 }
 
 .lh-step:last-child {
 	padding-bottom: 0;
 }
 
-/* เส้นเชื่อมระหว่างเลข */
 .lh-step::before {
 	content: "";
 	position: absolute;
-	top: 40px;
-	bottom: 4px;
+	top: 42px;
+	bottom: 6px;
 	left: 18px;
 	width: 2px;
 	border-radius: 2px;
-	background: var(--go-rule);
+	background: rgba(239, 194, 90, 0.35);
 }
 
 .lh-step:last-child::before {
@@ -434,17 +460,17 @@ a.lh-mini-btn:hover {
 	font-size: 1.12rem;
 	font-weight: 600;
 	line-height: 1.4;
-	color: var(--go-ink);
+	color: var(--go-title);
 }
 
 .lh-step-badge {
 	padding: 2px 10px;
 	border-radius: 999px;
-	background: var(--go-navy);
+	background: var(--go-gold);
 	font-size: 0.74rem;
 	font-weight: 600;
 	line-height: 1.5;
-	color: #FFFFFF;
+	color: var(--go-navy);
 }
 
 .lh-step-desc {
@@ -454,19 +480,14 @@ a.lh-mini-btn:hover {
 	color: var(--go-text);
 }
 
-/* หมายเหตุสั้น: ตัวเล็ก สีหม่น ไม่ใช่กล่องเตือน */
 .lh-step-note {
 	margin: 8px 0 0;
 	padding: 8px 12px;
 	border-radius: 12px;
-	background: var(--go-soft);
+	background: var(--go-fill);
 	font-size: 0.86rem;
 	line-height: 1.6;
 	color: var(--go-muted);
-}
-
-.lh-step-body > * {
-	margin-left: 0;
 }
 
 /* ---------- ปุ่มตามอุปกรณ์ ---------- */
@@ -501,25 +522,29 @@ a.lh-mini-btn:hover {
 	gap: 6px;
 	min-height: 82px;
 	padding: 10px 6px;
-	border: 1.5px solid var(--go-panel-line);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 16px;
-	background: #FFFFFF;
-	color: var(--go-navy);
+	background: var(--go-fill);
+	color: #FFFFFF;
 	text-align: center;
 	text-decoration: none;
 	transition: border-color 0.15s ease, background 0.15s ease;
 }
 
+a.lh-tile:visited {
+	color: #FFFFFF;
+}
+
 a.lh-tile:hover {
-	border-color: var(--go-navy);
-	background: var(--go-soft);
-	color: var(--go-navy);
+	border-color: var(--go-gold);
+	background: var(--go-fill-hover);
+	color: #FFFFFF;
 }
 
 .lh-tile-ic {
 	display: grid;
 	place-items: center;
-	color: var(--go-blue);
+	color: var(--go-gold-1);
 }
 
 .lh-tile-ic svg {
@@ -544,13 +569,14 @@ a.lh-tile:hover {
 	display: block;
 	margin: 0 0 10px;
 	overflow: hidden;
-	border: 1px solid var(--go-panel-line);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 18px;
-	background: var(--go-soft);
+	background: #EEF4FC;
+	transition: border-color 0.15s ease;
 }
 
 a.lh-feature:hover {
-	border-color: var(--go-navy);
+	border-color: var(--go-gold);
 }
 
 .lh-feature img {
@@ -582,7 +608,7 @@ a.lh-feature:hover {
 .lh-ver-num {
 	font-size: 0.92rem;
 	font-weight: 700;
-	color: #F6D57A;
+	color: var(--go-gold-1);
 }
 
 /* ---------- โซเชียล (สีของแต่ละแบรนด์) ---------- */
@@ -591,7 +617,9 @@ a.lh-feature:hover {
 	flex-wrap: wrap;
 	justify-content: center;
 	gap: 12px;
-	margin-top: 20px;
+	margin-top: 24px;
+	padding-top: 24px;
+	border-top: 1px solid var(--go-rule);
 }
 
 .lh-soc {
@@ -599,8 +627,9 @@ a.lh-feature:hover {
 	place-items: center;
 	width: 46px;
 	height: 46px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
 	border-radius: 50%;
-	background: var(--go-navy);
+	background: var(--go-fill-hover);
 	color: #FFFFFF;
 	transition: filter 0.15s ease;
 }
@@ -616,10 +645,12 @@ a.lh-feature:hover {
 }
 
 .lh-soc--facebook {
+	border-color: #1877F2;
 	background: #1877F2;
 }
 
 .lh-soc--instagram {
+	border-color: transparent;
 	background: radial-gradient(circle at 30% 105%, #FCAF45 0 22%, #FD1D1D 42%, #E1306C 58%, #833AB4 100%);
 }
 
@@ -628,6 +659,7 @@ a.lh-feature:hover {
 }
 
 .lh-soc--youtube {
+	border-color: #E60000;
 	background: #E60000;
 }
 
@@ -638,15 +670,23 @@ a.lh-feature:hover {
 	color: var(--go-text);
 }
 
+.lh-doc :is(h2, h3, h4, strong) {
+	color: var(--go-title);
+}
+
+.lh-doc a {
+	color: var(--go-gold-1);
+}
+
 /* ---------- คำเตือนความเสี่ยง ---------- */
 .lh-note {
 	display: flex;
 	gap: 10px;
-	margin: 20px 0 0;
+	margin: 24px 0 0;
 	padding: 14px 16px;
-	border: 1px solid var(--go-panel-line);
+	border: 1px solid var(--go-rule);
 	border-radius: 18px;
-	background: #FFFFFF;
+	background: var(--go-fill);
 	font-size: 0.82rem;
 	line-height: 1.65;
 	color: var(--go-muted);
@@ -659,10 +699,10 @@ a.lh-feature:hover {
 	width: 18px;
 	height: 18px;
 	margin-top: 2px;
-	color: #BB831F;
+	color: var(--go-gold);
 }
 
-/* ---------- ท้ายหน้า ---------- */
+/* ---------- ท้ายการ์ด ---------- */
 .lh-legal {
 	display: flex;
 	flex-wrap: wrap;
@@ -673,14 +713,15 @@ a.lh-feature:hover {
 	line-height: 1.6;
 }
 
-.lh-legal a {
+.lh-legal a,
+.lh-legal a:visited {
 	color: var(--go-muted);
 	text-decoration: underline;
 	text-underline-offset: 3px;
 }
 
 .lh-legal a:hover {
-	color: var(--go-navy);
+	color: #FFFFFF;
 }
 
 /* คำแนะนำสำหรับแอดมิน (จาก eaw_contact_button) */
@@ -703,24 +744,17 @@ a.lh-feature:hover {
 /* ---------- จอเล็ก ---------- */
 @media (max-width: 520px) {
 	.link-hub {
-		padding: 12px 12px 36px;
-		padding-bottom: max(36px, calc(env(safe-area-inset-bottom) + 24px));
+		padding: 12px 10px 32px;
+		padding-bottom: max(32px, calc(env(safe-area-inset-bottom) + 20px));
 	}
 
-	.lh-brand {
-		padding: 24px 16px 22px;
-		border-radius: 22px;
+	.lh-card {
+		padding: 26px 16px 20px;
+		border-radius: 24px;
 	}
 
 	.lh-card .lh-title {
-		font-size: 1.6rem;
-	}
-
-	.lh-group,
-	.lh-doc {
-		margin-top: 12px;
-		padding: 20px 14px;
-		border-radius: 22px;
+		font-size: 1.65rem;
 	}
 
 	.lh-btn {
@@ -753,8 +787,7 @@ a.lh-feature:hover {
 }
 
 @media (max-width: 360px) {
-	.lh-group,
-	.lh-doc {
+	.lh-card {
 		padding-left: 12px;
 		padding-right: 12px;
 	}
@@ -772,7 +805,8 @@ a.lh-feature:hover {
 	.lh-btn,
 	.lh-tile,
 	.lh-soc,
-	.lh-mini-btn {
+	.lh-mini-btn,
+	.lh-feature {
 		transition: none;
 	}
 }
