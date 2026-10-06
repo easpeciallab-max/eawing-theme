@@ -311,7 +311,7 @@
 				dock.classList.remove('is-slim');
 			}
 		};
-		window.addEventListener('scroll', dockScroll, { passive: true });
+		/* เจ้าของไม่ต้องการให้แถบย่อตอนเลื่อน (6 ต.ค. 2026) · dockScroll ไม่ผูกกับ scroll แล้ว */
 
 		var dockRecalibrate = function () {
 			dockLastY = Math.max(0, window.pageYOffset || 0);

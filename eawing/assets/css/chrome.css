@@ -1290,13 +1290,7 @@
 		transform: scale(0.95);
 	}
 
-	/* ปุ่มติดต่อท้ายแถบ · ช่องกว้างเท่าช่องอื่น ไอคอนบน ชื่อล่าง */
-	.dock-key.is-action {
-		background: var(--grad-gold);
-		color: var(--navy);
-		font-weight: 600;
-		box-shadow: 0 6px 14px rgba(187, 131, 31, 0.25);
-	}
+	/* ปุ่มติดต่อท้ายแถบ · หน้าตาเหมือนช่องอื่น (เจ้าของไม่ต้องการให้เด่นกว่า) */
 
 	@media (hover: hover) {
 		.dock-key:not(.is-action):not(.is-active):hover {
@@ -1304,21 +1298,8 @@
 			color: var(--navy);
 		}
 
-		.dock-key.is-action:hover {
-			filter: brightness(1.05);
-		}
 	}
 
-	/* ย่อแถบตอนเลื่อนอ่านลง: เหลือไอคอนทุกช่อง (ช่องปัจจุบันกับปุ่มติดต่อยังเห็นจากสี) */
-	.dock.is-slim .dock-key {
-		min-height: 42px;
-		gap: 0;
-	}
-
-	.dock.is-slim .dock-key .dock-label {
-		max-height: 0;
-		opacity: 0;
-	}
 }
 
 /* ==========================================================
@@ -1583,11 +1564,14 @@
 	color: #04813A;
 }
 
-/* ปุ่ม LINE ท้ายแถบล่างมือถือ */
-.dock-key.is-action.is-line {
-	background: var(--line-green);
-	color: #FFFFFF;
-	box-shadow: 0 6px 14px rgba(6, 199, 85, 0.3);
+
+/* footer · ลิงก์ไปคำเตือนฉบับเต็มต่อท้ายคำเตือนแบบสั้น */
+.foot-risk-more {
+	font-weight: 600;
+	color: var(--gold-text);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	white-space: nowrap;
 }
 
 /* footer · จุดเด่นใต้คำอธิบาย */

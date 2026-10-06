@@ -3,7 +3,7 @@
  * Footer · กระจกสว่างในกรอบเว็บ (Glass Sky · docs/design.md)
  * 0) แผงติดต่อ (เฉพาะหน้าที่ยังไม่ได้พิมพ์ผ่าน eaw_line_cta() เช่น หน้าแรก) · inc/modules/chrome.php
  * 1) คอลัมน์แบรนด์ (โลโก้ ข้อความสั้น โซเชียล) · คู่มือ · หน้าในเว็บ · เอกสาร
- * 2) คำเตือนความเสี่ยงฉบับเต็ม (ห้ามลบ/ย่อ) ในกล่องทองอ่อน
+ * 2) คำเตือนความเสี่ยงแบบสั้นในกล่องทองอ่อน + ลิงก์ไปหน้าประกาศความเสี่ยง (เจ้าของขอให้สั้น 6 ต.ค. 2026 · ฉบับเต็มอยู่หน้าแรก /go บทความ และ /risk-disclosure/)
  * 3) แถวลิขสิทธิ์ · ลิงก์นโยบาย · ตั้งค่าคุกกี้ · กลับขึ้นด้านบน
  * ปิดกรอบเว็บ .site-frame (เปิดใน header.php) แล้วจึงพิมพ์แถบล่างมือถือและปุ่ม LINE ลอย (position: fixed)
  * การ์ดความยินยอมคุกกี้พิมพ์ผ่าน wp_footer (inc/modules/consent.php) ไม่ใช่ไฟล์นี้
@@ -31,7 +31,10 @@ $eaw_cookie = ( function_exists( 'eaw_consent_link' ) && '' !== trim( (string) e
 $eaw_about  = trim( (string) eaw_mod( 'footer_status_text' ) );
 $eaw_points = eaw_lines( eaw_mod( 'footer_about_points' ) );
 $eaw_top    = trim( (string) eaw_mod( 'footer_backtop_text' ) );
-$eaw_risk   = trim( (string) eaw_mod( 'risk_text' ) );
+$eaw_risk   = trim( (string) eaw_mod( 'footer_risk_short' ) );
+$eaw_risk   = '' !== $eaw_risk ? $eaw_risk : trim( (string) eaw_mod( 'risk_text' ) );
+$eaw_rlink  = function_exists( 'eaw_published_page_url' ) ? eaw_published_page_url( 'risk-disclosure' ) : '';
+$eaw_rmore  = trim( (string) eaw_mod( 'footer_risk_more' ) );
 $eaw_copy   = trim( (string) eaw_mod( 'footer_copyright_text' ) );
 $eaw_cols   = array(
 	array( eaw_mod( 'nav_guide_label' ), $eaw_guides ),
@@ -86,7 +89,7 @@ $eaw_cols   = array(
 		<?php if ( '' !== $eaw_risk ) : ?>
 			<div class="foot-risk" role="note">
 				<span class="tile tile--gold" aria-hidden="true"><?php echo eaw_icon( 'warn', 'icon' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-				<p><?php echo esc_html( $eaw_risk ); ?></p>
+				<p><?php echo esc_html( $eaw_risk ); ?><?php if ( $eaw_rlink && '' !== $eaw_rmore ) : ?> <a class="foot-risk-more" href="<?php echo esc_url( $eaw_rlink ); ?>"><?php echo esc_html( $eaw_rmore ); ?></a><?php endif; ?></p>
 			</div>
 		<?php endif; ?>
 
