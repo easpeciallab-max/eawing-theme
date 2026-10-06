@@ -43,7 +43,7 @@
 
 ## โครงโค้ด (สรุป)
 - `functions.php` bootstrap + `eaw_defaults()` + helper (`eaw_mod`, `eaw_lines`, `eaw_logo_url`, `eaw_wordmark_url` …) แล้ว require `inc/*.php` และ glob `inc/modules/*.php`
-- โมดูล: `chrome` (header/footer/dock/CTA) · `home` · `pages` · `guides` · `go` · `consent` (PDPA) · `infra` (REST, hardening, ฟอนต์)
+- โมดูล: `chrome` (header/footer/dock/CTA) · `home` · `homeplus` (ส่วนเสริมหน้าแรก: story, แท็บ Lite/Full, การ์ดล็อกอินจำลอง, ตารางเปรียบเทียบ, เช็กลิสต์พร้อมเริ่ม, บทความล่าสุด, FAQ ข้อ 11 ถึง 14) · `pages` · `guides` · `go` · `consent` (PDPA) · `infra` (REST, hardening, ฟอนต์)
 - `inc/setup.php` manifest เพจ `eaw_site_pages()` + บทความ `eaw_seed_article_covers()` + หน้า admin **ลักษณะ → EA WING Setup**
 - `inc/seo.php` schema/OG/robots/redirect map (`eaw_redirect_map`) · `inc/shortcodes.php` `[eawing_line|brand|broker|calc]`
 - CSS: `style.css` (ฐานเดิม + section 43 Glass Sky foundation ท้ายไฟล์) แล้วตามด้วย `assets/css/<module>.css` ที่ enqueue อัตโนมัติ
