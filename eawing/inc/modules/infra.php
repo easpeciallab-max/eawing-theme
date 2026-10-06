@@ -736,3 +736,22 @@ function eaw_nocaps_start() {
 	ob_start( 'eaw_nocaps_buffer' );
 }
 add_action( 'template_redirect', 'eaw_nocaps_start', 99 );
+
+
+/* --------------------------------------------------------------
+ * อายุแคชหน้าเว็บของโฮสต์ (nginx: x-cache-status) · ไม่เกิน 5 นาที
+ * โฮสต์เก็บ HTML ไว้นานกว่าการ deploy · หลังอัปเดตธีม หน้าเก่าจะยังอ้าง CSS รุ่นเก่าจนหมดอายุ
+ * X-Accel-Expires + Cache-Control บอกแคชระดับเซิร์ฟเวอร์ให้เก็บได้ 300 วินาที (เฉพาะผู้อ่านที่ไม่ได้ล็อกอิน · GET)
+ * -------------------------------------------------------------- */
+function eaw_infra_page_cache_ttl() {
+	if ( is_admin() || is_user_logged_in() || is_feed() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || 'GET' !== ( isset( $_SERVER['REQUEST_METHOD'] ) ? $_SERVER['REQUEST_METHOD'] : 'GET' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		return;
+	}
+	if ( headers_sent() ) {
+		return;
+	}
+	$ttl = (int) apply_filters( 'eaw_page_cache_ttl', 300 );
+	header( 'X-Accel-Expires: ' . $ttl );
+	header( 'Cache-Control: public, max-age=0, s-maxage=' . $ttl );
+}
+add_action( 'template_redirect', 'eaw_infra_page_cache_ttl', 98 );
