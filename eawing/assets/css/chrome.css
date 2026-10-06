@@ -1090,7 +1090,7 @@
 /* คำเตือนความเสี่ยง · กล่องทองอ่อน (ต้นแบบ .risk) */
 .foot-risk {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	gap: 14px;
 	margin-top: 28px;
 	padding: 18px 22px;
@@ -1100,6 +1100,7 @@
 }
 
 .foot-risk .tile {
+	flex: 0 0 auto;
 	width: 36px;
 	height: 36px;
 	border-radius: 12px;
