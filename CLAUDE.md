@@ -51,7 +51,8 @@
 
 ## สถานะเว็บจริง (1 ต.ค. 2026)
 - ธีม EA WING 1.0.0 เปิดใช้บน eawing.co ผ่าน WP Pusher · รัน EA WING Setup แล้ว: สร้าง 11 เพจ, หน้าแรก = /home/ (id 20), หน้าบทความ = /articles/ (id 35), เมนูหลัก, /go/ ใช้ template-go.php
-- แทนเนื้อหา about / privacy-policy / data-deletion (เผยแพร่) และ terms-of-use (ฉบับร่าง) ด้วยฉบับ EA WING · มีช่อง `[เจ้าของเว็บ: ...]` รอเจ้าของกรอก
+- 6 ต.ค. 2026 (ธีม 1.0.3): เพจกฎหมายครบและเผยแพร่ทั้ง 4 หน้า · ผู้ให้บริการ = ทีมงาน EA WING (ไม่มีที่อยู่) · อีเมล easpeciallab@gmail.com · terms วางโครงตาม TERRA (justymatch.com/TERRA/terms เจ้าของเดียวกัน) · ลบข้อมูล: ตอบรับ 7 วัน ลบ 30 วัน สำรอง 90 วัน · เก็บแชต/สิทธิ์ไม่เกิน 2 ปี
+- แพ็กเกจ (อิง fenixpro-th.com/pricing/ เจ้าของเดียวกัน): Starter ฟรี (ปรึกษา) · Pro 6,990 บาท (1 ถึง 2 บัญชี) · VIP 9,990 บาท (ช่วยติดตั้ง) · pricing_mode = price · **อายุสิทธิ์และเงื่อนไขคืนเงินยังไม่ได้จากเจ้าของ ห้ามเขียนเอง**
 - บทความ 12 เรื่องเผยแพร่แล้ว (หมวด trading-plan / monitoring / risk-management)
 - เพจเก่า results / guides / risk-warning อยู่ในถังขยะ (redirect 301 ทำงาน)
 - 2 ต.ค. 2026: รัน "3) ตั้งค่า SEO และระบบ" แล้ว · Yoast มีองค์กร/โลโก้/รูปแชร์เริ่มต้น/Facebook · ปิด author/date/format archive · ชื่อหน้าหมวด ค้นหา 404 เป็นไทย · คอมเมนต์ปิดทั้งเว็บ · schema ผู้เขียนบทความ = องค์กร EA WING
