@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.16' );
+define( 'EAW_VERSION', '1.0.17' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -292,7 +292,7 @@ function eaw_defaults() {
 
 		/* Hero */
 		'show_hero'      => true,
-		'hero_title'     => '',
+		'hero_title'     => 'EA WING',
 		'show_kickers'   => false,
 		'hero_image'     => '',
 		/* Hero · แผงควบคุมจำลอง (แสดงเมื่อไม่ได้ใส่รูป Hero) */

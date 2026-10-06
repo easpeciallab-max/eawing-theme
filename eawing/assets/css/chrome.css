@@ -1605,3 +1605,35 @@
 	color: var(--line-green);
 }
 
+
+/* ==========================================================
+   ปุ่มทุกปุ่มที่ลิงก์ไป LINE OA (/ti/p/ หรือ lin.ee) เป็นสีเขียว LINE ทั้งเว็บ (เจ้าของขอ 6 ต.ค. 2026)
+   ครอบคลุมปุ่มในหน้าแรก การ์ดแพ็กเกจ หัวเพจ ปุ่มในเนื้อหา ([eawing_line]) · ไม่รวม OpenChat (/ti/g2/)
+   ========================================================== */
+a.btn[href*="/ti/p/"],
+a.btn[href*="lin.ee/"],
+a.btn[href*="/ti/p/"]:visited,
+a.btn[href*="lin.ee/"]:visited {
+	border-color: transparent !important;
+	background: var(--line-green) !important;
+	color: #FFFFFF !important;
+}
+
+a.btn[href*="/ti/p/"]:hover,
+a.btn[href*="lin.ee/"]:hover,
+a.btn[href*="/ti/p/"]:focus-visible,
+a.btn[href*="lin.ee/"]:focus-visible {
+	background: var(--line-green-dark) !important;
+	color: #FFFFFF !important;
+}
+
+a.btn[href*="/ti/p/"] :is(.btn-ic, .hm-btn-ic),
+a.btn[href*="lin.ee/"] :is(.btn-ic, .hm-btn-ic) {
+	background: #FFFFFF !important;
+	color: var(--line-green) !important;
+}
+
+a.btn[href*="/ti/p/"] > svg.icon,
+a.btn[href*="lin.ee/"] > svg.icon {
+	color: #FFFFFF !important;
+}

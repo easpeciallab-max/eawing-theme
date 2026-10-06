@@ -402,7 +402,7 @@ function eaw_schema_extra() {
 
 	/* FAQ หน้าแรก (Customizer) */
 	if ( is_front_page() && eaw_mod( 'show_faq' ) ) {
-		for ( $i = 1; $i <= 10; $i++ ) {
+		for ( $i = 1; $i <= ( function_exists( 'eaw_home_faq_count' ) ? eaw_home_faq_count() : 10 ); $i++ ) {
 			$q = trim( wp_strip_all_tags( (string) eaw_mod( 'faq' . $i . '_q' ) ) );
 			$a = trim( wp_strip_all_tags( (string) eaw_mod( 'faq' . $i . '_a' ) ) );
 			if ( '' !== $q && '' !== $a ) {

@@ -2,8 +2,9 @@
 /**
  * Front page · EA WING · ดีไซน์ Glass Sky (docs/design.md · ต้นแบบ dev/mockup/index.html)
  *
- * hero → about → features (4 การ์ด) → devices → tests (ข้อมูลก่อนตัดสินใจ 3 การ์ด) → how (6 ขั้น)
- * → pricing (โหมดสอบถาม) → faq → risk
+ * hero → about → story → features (4 การ์ด) → modes (Lite/Full) → devices → license (การ์ดล็อกอิน) → tests (3 การ์ด)
+ * → compare → how (6 ขั้น) → ready (เช็กลิสต์) → pricing → articles → faq (14 ข้อ) → risk
+ * - ส่วนเสริม story/modes/license/compare/ready/articles อยู่ใน inc/modules/homeplus.php
  * - แต่ละส่วนเป็นแผงกระจก (.glass-panel) ห่างกัน 14px อยู่ในกรอบหน้าเว็บที่ header เปิดไว้ (โมดูล chrome)
  * - แถบติดต่อท้ายหน้า (LINE / OpenChat) อยู่ใน footer (โมดูล chrome) ไม่ซ้ำที่นี่
  * - ข้อความทุกคำมาจาก setting (ค่าเริ่มต้นใน inc/modules/home.php) · escape ทุก output
@@ -152,6 +153,8 @@ endif;
 </section>
 <?php endif; ?>
 
+<?php eaw_homeplus_section( 'story' ); ?>
+
 <?php /* ============ WHAT IT DOES · 4 การ์ดกระจก กระเบื้องไอคอน + ลูกศร (จุดเด่น 1-4) ============ */ ?>
 <?php if ( eaw_mod( 'show_features' ) ) : ?>
 	<?php
@@ -197,6 +200,8 @@ endif;
 </section>
 <?php endif; ?>
 
+<?php eaw_homeplus_section( 'modes' ); ?>
+
 <?php /* ============ WORKS ON · กระเบื้องอุปกรณ์ ลิงก์ไปคู่มือ + หมายเหตุเรื่องมือถือ ============ */ ?>
 <?php if ( eaw_mod( 'home_show_devices' ) ) : ?>
 	<?php
@@ -224,6 +229,8 @@ endif;
 </section>
 	<?php endif; ?>
 <?php endif; ?>
+
+<?php eaw_homeplus_section( 'license' ); ?>
 
 <?php /* ============ BEFORE YOU DECIDE · การ์ดภาพ Backtest / Forward Test / ติดตั้ง · ภาพประกอบเท่านั้น ไม่มีตัวเลขผล ============ */ ?>
 <?php
@@ -311,6 +318,8 @@ if ( eaw_mod( 'show_install_home' ) ) {
 </section>
 <?php endif; ?>
 
+<?php eaw_homeplus_section( 'compare' ); ?>
+
 <?php /* ============ HOW TO START · การ์ดขั้น 01-06 ต่อด้วยเส้นประ แต่ละขั้นลิงก์ไปคู่มือ (ขั้น line = ทัก LINE) ============ */ ?>
 <?php if ( eaw_mod( 'show_steps' ) ) : ?>
 	<?php
@@ -364,6 +373,8 @@ if ( eaw_mod( 'show_install_home' ) ) {
 </section>
 	<?php endif; ?>
 <?php endif; ?>
+
+<?php eaw_homeplus_section( 'ready' ); ?>
 
 <?php /* ============ PRICING · การ์ดกระจกโหมดสอบถาม (ไม่มีราคาจนกว่าจะตั้งโหมดแสดงราคา + ราคาจริง) ============ */ ?>
 <?php if ( eaw_mod( 'show_pricing_home' ) ) : ?>
@@ -433,11 +444,13 @@ if ( eaw_mod( 'show_install_home' ) ) {
 </section>
 <?php endif; ?>
 
+<?php eaw_homeplus_section( 'articles' ); ?>
+
 <?php /* ============ FAQ · details.faq-item 2 คอลัมน์ (schema อ่านจาก key faqN_q / faqN_a เดียวกัน) · เปิดได้ทีละข้อ ============ */ ?>
 <?php if ( eaw_mod( 'show_faq' ) ) : ?>
 	<?php
 	$eaw_faqs = array();
-	for ( $i = 1; $i <= 10; $i++ ) {
+	for ( $i = 1; $i <= ( function_exists( 'eaw_home_faq_count' ) ? eaw_home_faq_count() : 10 ); $i++ ) {
 		$eaw_q = trim( (string) eaw_mod( 'faq' . $i . '_q' ) );
 		$eaw_a = trim( (string) eaw_mod( 'faq' . $i . '_a' ) );
 		if ( '' !== $eaw_q && '' !== $eaw_a ) {
