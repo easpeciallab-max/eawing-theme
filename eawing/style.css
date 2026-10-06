@@ -4,7 +4,7 @@ Theme URI: https://eawing.co/
 Author: EA WING Team
 Author URI: https://eawing.co/
 Description: ธีมเว็บไซต์ EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 · ดีไซน์ Glass Sky (ฟ้า กระจกฝ้า น้ำเงินกับทอง) · มีหน้าคู่มือ ทดสอบ แพ็กเกจ เอกสาร บทความ เครื่องคำนวณ Lot/Drawdown และหน้า EA WING Setup สำหรับตั้งค่าเว็บ · แก้ทุกข้อความได้ใน Customizer
-Version: 1.0.19
+Version: 1.0.20
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -8487,4 +8487,66 @@ body a[href^="mailto:"],
 body #wpadminbar,
 body #wpadminbar * {
 	text-transform: none !important;
+}
+
+/* ==========================================================
+   46) ปุ่มเส้นแทนปุ่มขาว (เจ้าของขอ 6 ต.ค. 2026: ปุ่มพื้นขาวบนพื้นเว็บสีอ่อนมองยาก)
+   พื้นใส ขอบกรมท่า 1.5px ตัวกรมท่า · ชี้แล้วพื้นกรมท่าจาง · วงไอคอนในปุ่มเป็นกรมท่าจาง
+   ครอบคลุม .btn-ghost ทุกจุด · ปุ่มแชร์บทความ · ลิงก์ในหน้า 404 · เมนูหน้าปัจจุบันบน header
+   ปุ่มที่ลิงก์ไป LINE OA ยังเป็นสีเขียว (ส่วนท้าย chrome.css ชนะเพราะเจาะจงกว่า) · หน้า /go พื้นเข้มไม่ใช้กฎนี้
+   ========================================================== */
+.btn.btn-ghost,
+.btn-ghost,
+.btn-ghost:visited,
+.err-link,
+.share-btn {
+	border: 1.5px solid var(--navy) !important;
+	background: transparent !important;
+	color: var(--navy) !important;
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
+}
+
+.btn.btn-ghost:hover,
+.btn-ghost:hover,
+.btn-ghost:focus-visible,
+.err-link:hover,
+.share-btn:hover {
+	background: rgba(10, 46, 102, 0.06) !important;
+	color: var(--navy) !important;
+}
+
+.btn-ghost::before,
+.btn-ghost::after {
+	background: transparent !important;
+}
+
+.btn-ghost :is(.hm-btn-ic, .btn-ic, .btn-contact-ar) {
+	border: 0 !important;
+	background: rgba(10, 46, 102, 0.08) !important;
+	color: var(--navy) !important;
+}
+
+/* ปุ่มแชร์บทความใช้สีขอบตามแบรนด์ของช่องทาง */
+.share-btn.share-line {
+	border-color: var(--line-green) !important;
+	color: #04813A !important;
+}
+
+.share-btn.share-fb {
+	border-color: #1877F2 !important;
+	color: #1877F2 !important;
+}
+
+/* เมนูหน้าปัจจุบันบน header และในแผ่นเมนูมือถือ: แคปซูลเส้นกรมท่า */
+.site-header .nav-list > .current-menu-item > a,
+.site-header .nav-list > .current-menu-ancestor > a,
+.site-header .nav-list > .current-menu-parent > a,
+.site-header .nav-list > .current_page_item > a,
+.site-header .nav-list > li > a[aria-current="page"],
+.site-header .nav-list .current-menu-item > a,
+.site-header .nav-list a[aria-current="page"] {
+	box-shadow: inset 0 0 0 1.5px var(--navy) !important;
+	background: transparent !important;
+	color: var(--navy) !important;
 }

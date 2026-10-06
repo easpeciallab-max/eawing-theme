@@ -28,7 +28,7 @@
 
 ## แบรนด์
 - สี: น้ำเงินปีก `#0B5CAD` · กรมท่า `#0A2E66` · กรมท่าเข้ม `#011D3B` · ทอง `#F6D57A` `#EFC25A` `#D9A12E` `#BB831F` · ทองตัวอักษร `#8F620C` · ฟ้า `#F7FAFE` `#EEF4FC` `#E2EDFB`
-- ปุ่มหลักทอง ตัวกรมท่า (`.btn-fire`) · ปุ่มรองกรมท่า (`.btn-dark`) · ปุ่มกระจก (`.btn-ghost`) · กระเบื้องไอคอน `.tile--sky|gold|blue|navy`
+- ปุ่มหลักทอง ตัวกรมท่า (`.btn-fire`) · ปุ่มรองกรมท่า (`.btn-dark`) · ปุ่มเส้น `.btn-ghost` = พื้นใส ขอบกรมท่า (style.css ส่วน 46 · ห้ามปุ่มพื้นขาวบนพื้นสีอ่อน) · ปุ่มที่ลิงก์ LINE OA เป็นสีเขียวเสมอ · กระเบื้องไอคอน `.tile--sky|gold|blue|navy`
 - ฟอนต์ self-host: Kanit 500/600/700 (หัวข้อ) + Noto Sans Thai (เนื้อความ) · `assets/css/fonts.css` + `eaw_infra_font_files()`
 - ไม่มีโหมดมืด (`eaw_is_dark_mode()` คืน false)
 - **ภาษาอังกฤษเป็นพิมพ์ใหญ่ทั้งเว็บ** (style.css ส่วน 45 · CSS เท่านั้น ข้อความจริงไม่เปลี่ยน) · คำที่ต้องคงตัวพิมพ์ (อีเมล ลิงก์ @LINE ID ไฟล์ .ex5 XAUUSD.c iPhone/iPad/iOS/macOS) ห่อ `.nocaps` อัตโนมัติโดย `eaw_nocaps_buffer()` ใน infra.php · เจออีกแบบให้เพิ่มใน `eaw_nocaps_pattern()`
