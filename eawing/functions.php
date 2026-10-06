@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.17' );
+define( 'EAW_VERSION', '1.0.18' );
 
 /* --------------------------------------------------------------
  * Theme setup

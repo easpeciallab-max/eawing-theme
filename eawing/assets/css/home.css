@@ -210,7 +210,7 @@
 /* ชื่อแบรนด์เป็นบรรทัดแรกของหัวข้อใหญ่ ขนาดเท่าบรรทัดอื่น (ไม่ใช่ป้ายเล็กเหนือหัวข้อ) */
 .hm-hero-brand {
 	display: block;
-	color: var(--blue);
+	color: var(--navy);
 }
 
 .hm-hero-line {
@@ -228,6 +228,13 @@
 	margin: -0.1em 0 -0.14em;
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
+}
+
+/* หัวข้อใหญ่สีกรมท่าทั้งสามบรรทัด (เจ้าของขอ 6 ต.ค. 2026) · ปิดสีไล่ของคำท้าย */
+.hm-hero-title .grad-word {
+	background: none;
+	-webkit-text-fill-color: var(--navy);
+	color: var(--navy);
 }
 
 .hm-hero-text {
