@@ -31,6 +31,7 @@
 - ปุ่มหลักทอง ตัวกรมท่า (`.btn-fire`) · ปุ่มรองกรมท่า (`.btn-dark`) · ปุ่มกระจก (`.btn-ghost`) · กระเบื้องไอคอน `.tile--sky|gold|blue|navy`
 - ฟอนต์ self-host: Kanit 500/600/700 (หัวข้อ) + Noto Sans Thai (เนื้อความ) · `assets/css/fonts.css` + `eaw_infra_font_files()`
 - ไม่มีโหมดมืด (`eaw_is_dark_mode()` คืน false) · ไม่บังคับอังกฤษพิมพ์ใหญ่
+- **ไม่มีเงา (box-shadow) ทั้งเว็บ** (style.css ส่วน 44 ลบทุกจุด เจ้าของไม่ชอบ) · แยกบล็อกด้วยขอบและสีพื้นแทน · อย่าเพิ่มเงาใหม่
 - **ไม่มีคำเล็กเหนือหัวข้อ (kicker)** ทั้งเว็บ: `show_kickers` = false (เจ้าของไม่ชอบ) · อย่าเพิ่ม kicker ใหม่
 - ปุ่ม/ไอคอนช่องทางใช้สีแบรนด์จริง ไม่กลืนธีม: LINE `#06C755` (header, ปุ่มลอย, แผงติดต่อ · ช่อง LINE ในแถบล่างมือถือหน้าตาเหมือนช่องอื่น และแถบไม่ย่อตอนเลื่อน) · OpenChat ขาวขอบเขียว · Facebook `#1877F2` · อีเมล กรมท่า
 - QR LINE: `assets/img/brand/eawing-line-qr.png` (ถอดได้ https://lin.ee/9wCzGEg → @eawing) · ไม่มีกรอบนอกสุด (.site-frame ไม่มีขอบ/เงา)

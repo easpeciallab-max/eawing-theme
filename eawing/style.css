@@ -4,7 +4,7 @@ Theme URI: https://eawing.co/
 Author: EA WING Team
 Author URI: https://eawing.co/
 Description: ธีมเว็บไซต์ EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 · ดีไซน์ Glass Sky (ฟ้า กระจกฝ้า น้ำเงินกับทอง) · มีหน้าคู่มือ ทดสอบ แพ็กเกจ เอกสาร บทความ เครื่องคำนวณ Lot/Drawdown และหน้า EA WING Setup สำหรับตั้งค่าเว็บ · แก้ทุกข้อความได้ใน Customizer
-Version: 1.0.10
+Version: 1.0.11
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -8430,4 +8430,36 @@ body::before {
 	pointer-events: none;
 	opacity: 0.55;
 	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='xMidYMid slice'%3E%3Cdefs%3E%3ClinearGradient id='w' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23fff' stop-opacity='0'/%3E%3Cstop offset='.5' stop-color='%23fff' stop-opacity='.9'/%3E%3Cstop offset='1' stop-color='%23EFC25A' stop-opacity='.35'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url(%23w)'%3E%3Cpath stroke-width='2' d='M-40 640C260 520 520 610 760 520S1180 300 1480 340'/%3E%3Cpath stroke-width='1.4' d='M-40 690C280 580 560 660 800 570S1200 360 1480 400'/%3E%3Cpath stroke-width='1' d='M-40 740C300 640 600 710 840 620S1220 420 1480 460'/%3E%3C/g%3E%3C/svg%3E") center / cover no-repeat;
+}
+
+/* ==========================================================
+   44) ไม่มีเงาทั้งเว็บ (เจ้าของขอ 6 ต.ค. 2026: เงาใต้บล็อกดูไม่เนียน)
+   ลบ box-shadow ทุกจุด แล้วคืนเฉพาะเส้นขอบบาง ๆ แบบ inset ที่ทำหน้าที่เป็นขอบ (ไม่ใช่เงา)
+   วงแหวนโฟกัสใช้ outline จึงไม่กระทบ · อย่าเพิ่ม box-shadow ใหม่
+   ========================================================== */
+:root {
+	--shadow-soft: none;
+	--shadow-lift: none;
+	--hm-sh-1: none;
+	--hm-sh-2: none;
+}
+
+body *,
+body *::before,
+body *::after {
+	box-shadow: none !important;
+}
+
+.checklist li::before,
+.cmp-mark--yes,
+.plan-check {
+	box-shadow: inset 0 0 0 1px rgba(217, 161, 46, 0.4) !important;
+}
+
+.crosslist li::before {
+	box-shadow: inset 0 0 0 1px rgba(214, 69, 69, 0.25) !important;
+}
+
+.error-search:focus-within {
+	box-shadow: 0 0 0 2px rgba(11, 92, 173, 0.3) !important;
 }
