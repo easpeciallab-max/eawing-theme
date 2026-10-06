@@ -52,7 +52,7 @@ function eaw_seo_default_values( $d ) {
 			'seo_product_os'           => 'Windows',
 			'seo_product_requirements' => 'MetaTrader 5',
 			'seo_product_version'      => '',
-			'seo_pricing_confirmed'    => false,
+			'seo_pricing_confirmed'    => true,
 		)
 	);
 }

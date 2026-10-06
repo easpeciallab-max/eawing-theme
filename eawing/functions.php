@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.2' );
+define( 'EAW_VERSION', '1.0.3' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -305,18 +305,18 @@ function eaw_defaults() {
 
 		/* แพ็กเกจ (ชื่อ ราคา ป้ายแนะนำ · คำโปรยและรายการอยู่ในโมดูล pages) */
 		'show_pricing'     => true,
-		'pricing_mode'     => 'contact',
-		'pricing_btn_text' => 'ขอรายละเอียดทาง LINE',
+		'pricing_mode'     => 'price',
+		'pricing_btn_text' => 'สอบถามแพ็กเกจนี้ทาง LINE',
 		'pkg1_name'        => 'Starter',
-		'pkg1_price'       => 'X,XXX',
+		'pkg1_price'       => 'ฟรี',
 		'pkg1_period'      => 'บาท / ปี',
 		'pkg1_featured'    => false,
 		'pkg2_name'        => 'Pro',
-		'pkg2_price'       => 'X,XXX',
+		'pkg2_price'       => '6,990',
 		'pkg2_period'      => 'บาท / ปี',
 		'pkg2_featured'    => true,
 		'pkg3_name'        => 'VIP',
-		'pkg3_price'       => 'X,XXX',
+		'pkg3_price'       => '9,990',
 		'pkg3_period'      => 'บาท / ปี',
 		'pkg3_featured'    => false,
 
@@ -407,6 +407,13 @@ function eaw_lines( $text ) {
 	$lines = preg_split( '/\r\n|\r|\n/', (string) $text );
 	$lines = array_map( 'trim', $lines );
 	return array_values( array_filter( $lines, 'strlen' ) );
+}
+
+/**
+ * ราคาแบบไม่มีค่าใช้จ่าย (ฟรี / free / 0) · แสดงในการ์ดแพ็กเกจได้แม้ไม่ใช่ตัวเลข
+ */
+function eaw_is_free_price( $value ) {
+	return in_array( strtolower( trim( (string) $value ) ), array( 'ฟรี', 'free', '0' ), true );
 }
 
 /**
