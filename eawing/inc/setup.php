@@ -395,10 +395,13 @@ function eaw_banner_attachment( $file, $alt = '' ) {
 
 /**
  * สร้างเพจที่ยังไม่มี · ไม่แตะเนื้อหาเพจที่มีอยู่แล้ว (เว้นแต่เลือก overwrite)
+ * ลำดับเพจ (menu_order) = ลำดับใน eaw_site_pages() × 10 · เพจเดิมที่ลำดับยังเป็น 0 จะได้ลำดับนี้ ส่วนที่เจ้าของจัดเองไม่ถูกแตะ
  */
 function eaw_setup_create_pages( $overwrite = false ) {
-	$log = array();
+	$log   = array();
+	$order = 0;
 	foreach ( eaw_site_pages() as $slug => $page ) {
+		$order  += 10;
 		$meta    = ! empty( $page['content'] ) ? eaw_seed_meta( $page['content'] ) : ( isset( $page['seo'] ) ? $page['seo'] : array() );
 		$title   = ! empty( $meta['title'] ) ? $meta['title'] : $page['title'];
 		$content = ! empty( $page['content'] ) ? eaw_seed_content( $page['content'] ) : '';
@@ -414,6 +417,7 @@ function eaw_setup_create_pages( $overwrite = false ) {
 					'post_title'   => wp_slash( $title ),
 					'post_name'    => $slug,
 					'post_content' => wp_slash( $content ),
+					'menu_order'   => $order,
 				),
 				true
 			);
@@ -428,6 +432,14 @@ function eaw_setup_create_pages( $overwrite = false ) {
 			}
 		} else {
 			$id = $found->ID;
+			if ( 0 === (int) $found->menu_order ) {
+				wp_update_post(
+					array(
+						'ID'         => $id,
+						'menu_order' => $order,
+					)
+				);
+			}
 			// เพจ Privacy Policy ฉบับร่างที่ WordPress สร้างให้ตอนติดตั้ง (ยังไม่เคยแก้) → แทนด้วยเนื้อหาของธีม
 			$core_privacy = 'privacy-policy' === $slug
 				&& (int) get_option( 'wp_page_for_privacy_policy' ) === (int) $id
