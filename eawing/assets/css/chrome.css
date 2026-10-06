@@ -1197,7 +1197,7 @@
 }
 
 /* ==========================================================
-   7) แถบล่างมือถือ (≤ 820px) · แถบกระจกลอย 5 ช่องกว้างเท่ากัน · ช่องปัจจุบันกรมท่าทึบ · ปุ่ม LINE เขียวท้ายแถบ
+   7) แถบล่างมือถือ (≤ 820px) · แถบน้ำเงินปีกทึบ 5 ช่องกว้างเท่ากัน · ช่องปัจจุบันขาวทึบ · ช่อง LINE หน้าตาเหมือนช่องอื่น
    ช่องปัจจุบันมาจาก PHP (aria-current) · เว้นที่ท้ายหน้าด้วย padding-bottom ของ body.has-dock
    ========================================================== */
 .mobile-app-nav.dock {
@@ -1220,12 +1220,10 @@
 		max-width: 520px;
 		margin: 0 auto;
 		padding: 6px;
-		border: 1px solid rgba(10, 46, 102, 0.14); /* เส้นบางสีกรมท่าจาง ให้แถบไม่กลืนกับพื้นขาว */
+		border: 1px solid rgba(255, 255, 255, 0.16);
 		border-radius: 24px;
-		background: var(--glass-strong);
-		box-shadow: var(--shadow-lift);
-		-webkit-backdrop-filter: var(--glass-blur);
-		backdrop-filter: var(--glass-blur);
+		background: var(--blue); /* แถบน้ำเงินปีกทึบ (เจ้าของเลือก 6 ต.ค. 2026) */
+		box-shadow: none;
 		transform: none;
 		animation: none;
 	}
@@ -1241,7 +1239,7 @@
 		min-height: 54px;
 		padding: 6px 2px;
 		border-radius: 18px;
-		color: var(--ch-muted);
+		color: rgba(255, 255, 255, 0.82);
 		font-size: 0.7rem;
 		font-weight: 500;
 		line-height: 1.2;
@@ -1270,21 +1268,20 @@
 		transition: opacity 0.18s ease, max-height 0.2s ease;
 	}
 
-	/* หน้าปัจจุบัน: ช่องกรมท่าทึบ ตัวขาว ไอคอนทอง · เห็นชัดว่าอยู่หน้าไหน */
+	/* หน้าปัจจุบัน: ช่องขาวทึบบนแถบน้ำเงิน ตัวกรมท่า · เห็นชัดว่าอยู่หน้าไหน */
 	.dock-key.is-active {
-		background: var(--navy);
-		color: #FFFFFF;
+		background: #FFFFFF;
+		color: var(--navy);
 		font-weight: 600;
-		box-shadow: 0 6px 14px rgba(10, 46, 102, 0.28);
 	}
 
 	.dock-key.is-active .dock-cap {
-		color: var(--gold-1);
+		color: var(--blue);
 	}
 
 	.dock-key.is-going {
-		background: rgba(10, 46, 102, 0.08);
-		color: var(--navy);
+		background: rgba(255, 255, 255, 0.18);
+		color: #FFFFFF;
 	}
 
 	.dock-key.is-press {
@@ -1294,9 +1291,9 @@
 	/* ปุ่มติดต่อท้ายแถบ · หน้าตาเหมือนช่องอื่น (เจ้าของไม่ต้องการให้เด่นกว่า) */
 
 	@media (hover: hover) {
-		.dock-key:not(.is-action):not(.is-active):hover {
-			background: rgba(10, 46, 102, 0.06);
-			color: var(--navy);
+		.dock-key:not(.is-active):hover {
+			background: rgba(255, 255, 255, 0.12);
+			color: #FFFFFF;
 		}
 
 	}
@@ -1409,6 +1406,13 @@
 .chrome-btn:focus-visible,
 .site-header .nav-toggle:focus-visible {
 	border-radius: 999px;
+}
+
+/* แถบล่างเป็นน้ำเงิน: วงโฟกัสสีขาวให้เห็นบนพื้นน้ำเงิน */
+.mobile-app-nav.dock :focus-visible {
+	outline-color: #FFFFFF;
+	outline-offset: -3px;
+	border-radius: 18px;
 }
 
 @media (prefers-reduced-motion: reduce) {
