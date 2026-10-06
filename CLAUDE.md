@@ -31,6 +31,9 @@
 - ปุ่มหลักทอง ตัวกรมท่า (`.btn-fire`) · ปุ่มรองกรมท่า (`.btn-dark`) · ปุ่มกระจก (`.btn-ghost`) · กระเบื้องไอคอน `.tile--sky|gold|blue|navy`
 - ฟอนต์ self-host: Kanit 500/600/700 (หัวข้อ) + Noto Sans Thai (เนื้อความ) · `assets/css/fonts.css` + `eaw_infra_font_files()`
 - ไม่มีโหมดมืด (`eaw_is_dark_mode()` คืน false) · ไม่บังคับอังกฤษพิมพ์ใหญ่
+- **ไม่มีคำเล็กเหนือหัวข้อ (kicker)** ทั้งเว็บ: `show_kickers` = false (เจ้าของไม่ชอบ) · อย่าเพิ่ม kicker ใหม่
+- ปุ่ม/ไอคอนช่องทางใช้สีแบรนด์จริง ไม่กลืนธีม: LINE `#06C755` (header, แถบล่าง, ปุ่มลอย, แผงติดต่อ) · OpenChat ขาวขอบเขียว · Facebook `#1877F2` · อีเมล กรมท่า
+- QR LINE: `assets/img/brand/eawing-line-qr.png` (ถอดได้ https://lin.ee/9wCzGEg → @eawing) · ไม่มีกรอบนอกสุด (.site-frame ไม่มีขอบ/เงา)
 - รูป: `assets/img/brand/` (wordmark, icon, favicon, การ์ดแชร์) สร้างจากโลโก้จริงใน media eawing.co · `assets/img/banners/eawing-*.webp` จากภาพโฆษณาของเจ้าของ (เฉพาะภาพที่ไม่มีตัวเลขกำไร) · `assets/img/covers/<slug>.webp` สร้างด้วย `dev/make-covers.php`
 - **เปลี่ยนรูปในธีมเมื่อไหร่ให้เปลี่ยนชื่อไฟล์** (Cloudflare แคชรูปตาม URL)
 - ช่องทางจริง (ตั้งใน Customizer บน eawing.co แล้ว 1 ต.ค. 2026): LINE OA `https://line.me/R/ti/p/@eawing` · Facebook `https://www.facebook.com/share/1EouUMc9v1/` · โบรกเกอร์ `Zaurix` เซิร์ฟเวอร์ `Zaurix-Server` · OpenChat `https://line.me/ti/g2/xGup9Uap8lRAsu6e25T4qYJqBfFFFzJPSsUMFw` (ตั้งแล้ว)

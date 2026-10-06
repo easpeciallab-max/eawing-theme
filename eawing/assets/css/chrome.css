@@ -845,50 +845,54 @@
 	color: var(--gold-text);
 }
 
-/* QR · ปุ่มเปิด/ปิด (ทุกขนาดจอ) */
+/* QR LINE · รูปจริงคู่คำอธิบาย (แสดงตลอด) */
 .ctc-qr {
-	margin-top: 12px;
-}
-
-.ctc-qr summary {
-	display: inline-flex;
+	display: flex;
 	align-items: center;
-	gap: 8px;
-	min-height: 40px;
-	padding: 6px 16px 6px 12px;
-	border: 1px solid var(--ch-hairline);
-	border-radius: 999px;
-	background: #FFFFFF;
-	color: var(--navy);
-	font-size: 0.86rem;
-	font-weight: 500;
-	cursor: pointer;
-	list-style: none;
-}
-
-.ctc-qr summary::-webkit-details-marker {
-	display: none;
-}
-
-.ctc-qr summary .icon {
-	width: 18px;
-	height: 18px;
-	color: var(--blue);
-}
-
-.ctc-qr[open] summary {
-	border-color: rgba(217, 161, 46, 0.6);
+	gap: 16px;
+	margin-top: 14px;
+	padding: 12px;
+	border: 1px solid rgba(6, 199, 85, 0.28);
+	border-radius: 18px;
+	background: #F3FCF6;
 }
 
 .ctc-qr img {
 	display: block;
-	width: 180px;
-	height: 180px;
-	margin-top: 12px;
-	padding: 10px;
-	border: 1px solid var(--ch-hairline);
-	border-radius: 18px;
+	flex: 0 0 auto;
+	width: 116px;
+	height: 116px;
+	padding: 6px;
+	border-radius: 12px;
 	background: #FFFFFF;
+	box-shadow: 0 4px 12px rgba(10, 46, 102, 0.06);
+}
+
+.ctc-qr-text {
+	min-width: 0;
+}
+
+.ctc-qr-title {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0 0 4px;
+	font-family: var(--font-display);
+	font-size: 0.98rem;
+	font-weight: 600;
+	color: #04813A;
+}
+
+.ctc-qr-title .icon {
+	width: 18px;
+	height: 18px;
+}
+
+.ctc-qr-sub {
+	margin: 0;
+	font-size: 0.84rem;
+	line-height: 1.55;
+	color: var(--ch-ink-2);
 }
 
 /* สิ่งที่ทีมงานจะถาม */
@@ -1192,7 +1196,7 @@
 }
 
 /* ==========================================================
-   7) แถบล่างมือถือ (≤ 820px) · แคปซูลกระจกลอย · ช่องลิงก์ + ปุ่มทองท้ายแถบ
+   7) แถบล่างมือถือ (≤ 820px) · แถบกระจกลอย 5 ช่องกว้างเท่ากัน · ช่องปัจจุบันกรมท่าทึบ · ปุ่ม LINE เขียวท้ายแถบ
    ช่องปัจจุบันมาจาก PHP (aria-current) · เว้นที่ท้ายหน้าด้วย padding-bottom ของ body.has-dock
    ========================================================== */
 .mobile-app-nav.dock {
@@ -1216,7 +1220,7 @@
 		margin: 0 auto;
 		padding: 6px;
 		border: 1px solid var(--glass-line);
-		border-radius: 999px;
+		border-radius: 24px;
 		background: var(--glass-strong);
 		box-shadow: var(--shadow-lift);
 		-webkit-backdrop-filter: var(--glass-blur);
@@ -1231,13 +1235,13 @@
 		flex: 1 1 0;
 		justify-items: center;
 		align-content: center;
-		gap: 2px;
+		gap: 3px;
 		min-width: 0;
-		min-height: 50px;
-		padding: 5px 2px;
-		border-radius: 999px;
-		color: var(--ch-ink-2);
-		font-size: 0.68rem;
+		min-height: 54px;
+		padding: 6px 2px;
+		border-radius: 18px;
+		color: var(--ch-muted);
+		font-size: 0.7rem;
 		font-weight: 500;
 		line-height: 1.2;
 		text-align: center;
@@ -1252,8 +1256,8 @@
 	}
 
 	.dock-cap .icon {
-		width: 20px;
-		height: 20px;
+		width: 22px;
+		height: 22px;
 	}
 
 	.dock-label {
@@ -1265,15 +1269,20 @@
 		transition: opacity 0.18s ease, max-height 0.2s ease;
 	}
 
+	/* หน้าปัจจุบัน: ช่องกรมท่าทึบ ตัวขาว ไอคอนทอง · เห็นชัดว่าอยู่หน้าไหน */
 	.dock-key.is-active {
-		background: #FFFFFF;
-		color: var(--navy);
+		background: var(--navy);
+		color: #FFFFFF;
 		font-weight: 600;
-		box-shadow: 0 4px 12px rgba(10, 46, 102, 0.08);
+		box-shadow: 0 6px 14px rgba(10, 46, 102, 0.28);
+	}
+
+	.dock-key.is-active .dock-cap {
+		color: var(--gold-1);
 	}
 
 	.dock-key.is-going {
-		background: rgba(255, 255, 255, 0.7);
+		background: rgba(10, 46, 102, 0.08);
 		color: var(--navy);
 	}
 
@@ -1281,29 +1290,17 @@
 		transform: scale(0.95);
 	}
 
-	/* ปุ่มทองท้ายแถบ (ติดต่อ) */
+	/* ปุ่มติดต่อท้ายแถบ · ช่องกว้างเท่าช่องอื่น ไอคอนบน ชื่อล่าง */
 	.dock-key.is-action {
-		flex: 1.5 1 0;
-		grid-auto-flow: column;
-		align-items: center;
-		justify-content: center;
-		gap: 6px;
-		padding: 5px 10px;
 		background: var(--grad-gold);
 		color: var(--navy);
-		font-family: var(--font-display);
-		font-size: 0.86rem;
-		font-weight: 500;
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 6px 14px rgba(187, 131, 31, 0.25);
-	}
-
-	.dock-key.is-action .dock-label {
-		max-height: none;
+		font-weight: 600;
+		box-shadow: 0 6px 14px rgba(187, 131, 31, 0.25);
 	}
 
 	@media (hover: hover) {
-		.dock-key:not(.is-action):hover {
-			background: rgba(255, 255, 255, 0.7);
+		.dock-key:not(.is-action):not(.is-active):hover {
+			background: rgba(10, 46, 102, 0.06);
 			color: var(--navy);
 		}
 
@@ -1312,27 +1309,15 @@
 		}
 	}
 
-	/* ย่อแถบตอนเลื่อนอ่านลง (ไม่ซ่อน ปุ่มติดต่อยังอยู่บนจอ) */
+	/* ย่อแถบตอนเลื่อนอ่านลง: เหลือไอคอนทุกช่อง (ช่องปัจจุบันกับปุ่มติดต่อยังเห็นจากสี) */
 	.dock.is-slim .dock-key {
-		min-height: 40px;
+		min-height: 42px;
 		gap: 0;
 	}
 
-	.dock.is-slim .dock-key:not(.is-action) .dock-label {
+	.dock.is-slim .dock-key .dock-label {
 		max-height: 0;
 		opacity: 0;
-	}
-
-	.dock.is-slim .dock-key.is-action {
-		gap: 6px;
-	}
-}
-
-@media (max-width: 360px) {
-	.dock-key.is-action {
-		grid-auto-flow: row;
-		gap: 2px;
-		font-size: 0.7rem;
 	}
 }
 
@@ -1481,14 +1466,8 @@
 }
 
 /* ==========================================================
-   ปุ่ม LINE ทุกจุดใช้สีเขียวของ LINE (เจ้าของขอ 6 ต.ค. 2026)
-   header (.header-cta--line) · ปุ่มท้ายแถบล่างมือถือ (.is-line) · ปุ่มลอย (.fab-core)
+   ปุ่ม LINE ลอยใช้สีเขียวของ LINE (เจ้าของขอ 6 ต.ค. 2026) · header และแถบล่างอยู่ในบล็อกสีแบรนด์ท้ายไฟล์
    ========================================================== */
-.dock-key.is-action.is-line {
-	background: var(--line-green);
-	color: #FFFFFF;
-	box-shadow: 0 6px 14px rgba(6, 199, 85, 0.3);
-}
 
 .line-fab .fab-core,
 .float-line .fab-core {
@@ -1497,3 +1476,143 @@
 	color: #FFFFFF;
 	box-shadow: 0 8px 18px rgba(6, 199, 85, 0.32);
 }
+
+/* ==========================================================
+   สีตามแบรนด์ของแต่ละช่องทาง (เจ้าของขอ 6 ต.ค. 2026: ไม่ต้องกลืนกับธีม ใช้สีดั้งเดิมที่คนจำได้)
+   LINE / OpenChat เขียว LINE · Facebook น้ำเงิน Facebook · อีเมล กรมท่า
+   ========================================================== */
+:root {
+	--brand-facebook: #1877F2;
+	--brand-facebook-dark: #0E5FCC;
+}
+
+/* ไอคอนวงกลมใต้โลโก้ footer และในแผ่นเมนูมือถือ */
+.social-link.social-link--facebook {
+	border-color: transparent;
+	background: var(--brand-facebook);
+	color: #FFFFFF;
+}
+
+.social-link.social-link--mail {
+	border-color: transparent;
+	background: var(--navy);
+	color: #FFFFFF;
+}
+
+.social-link.social-link--instagram {
+	border-color: transparent;
+	background: linear-gradient(45deg, #F58529, #DD2A7B 55%, #8134AF);
+	color: #FFFFFF;
+}
+
+.social-link.social-link--tiktok {
+	border-color: transparent;
+	background: #000000;
+	color: #FFFFFF;
+}
+
+.social-link.social-link--youtube {
+	border-color: transparent;
+	background: #FF0000;
+	color: #FFFFFF;
+}
+
+.foot-social .social-link[class*="social-link--"]:hover {
+	border-color: transparent;
+	color: #FFFFFF;
+	filter: brightness(1.08);
+}
+
+/* กระเบื้องไอคอนในรายการช่องทางของแผงติดต่อ */
+.tile.tile--line {
+	background: var(--line-green);
+	color: #FFFFFF;
+}
+
+.tile.tile--openchat {
+	background: #E6F9EE;
+	color: #04813A;
+}
+
+.tile.tile--facebook {
+	background: var(--brand-facebook);
+	color: #FFFFFF;
+}
+
+.tile.tile--mail {
+	background: var(--navy);
+	color: #FFFFFF;
+}
+
+/* ปุ่มในการ์ดติดต่อ: LINE เขียวทึบ · OpenChat ขาวขอบเขียว */
+.ctc-btn.btn.is-line,
+.ctc-btn.btn.is-line:visited {
+	border-color: transparent;
+	background: var(--line-green);
+	box-shadow: 0 8px 20px rgba(6, 199, 85, 0.28);
+	color: #FFFFFF;
+}
+
+.ctc-btn.btn.is-line:hover,
+.ctc-btn.btn.is-line:focus-visible {
+	background: var(--line-green-dark);
+	color: #FFFFFF;
+}
+
+.ctc-btn.btn.is-line .btn-ic {
+	background: #FFFFFF;
+	color: var(--line-green);
+}
+
+.ctc-btn--openchat.btn,
+.ctc-btn--openchat.btn:visited {
+	border: 1.5px solid var(--line-green);
+	background: #FFFFFF;
+	box-shadow: none;
+	color: #04813A;
+}
+
+.ctc-btn--openchat.btn:hover,
+.ctc-btn--openchat.btn:focus-visible {
+	background: #F3FCF6;
+	color: #04813A;
+}
+
+.ctc-btn--openchat .btn-ic {
+	background: #E6F9EE;
+	color: #04813A;
+}
+
+/* ปุ่ม LINE ท้ายแถบล่างมือถือ */
+.dock-key.is-action.is-line {
+	background: var(--line-green);
+	color: #FFFFFF;
+	box-shadow: 0 6px 14px rgba(6, 199, 85, 0.3);
+}
+
+/* footer · จุดเด่นใต้คำอธิบาย */
+.foot-points {
+	display: grid;
+	gap: 6px;
+	margin: 14px 0 0;
+	padding: 0;
+	list-style: none;
+	font-size: 0.86rem;
+	color: var(--ch-ink-2);
+}
+
+.foot-points li {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	line-height: 1.5;
+}
+
+.foot-points .icon {
+	flex: 0 0 auto;
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+	color: var(--line-green);
+}
+

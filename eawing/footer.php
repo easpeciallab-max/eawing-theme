@@ -29,6 +29,7 @@ $eaw_legal  = eaw_chrome_legal_items();
 /* ลิงก์เปิดการ์ดคุกกี้ · ชื่อลิงก์ตั้งที่หมวดคุกกี้ (inc/modules/consent.php) */
 $eaw_cookie = ( function_exists( 'eaw_consent_link' ) && '' !== trim( (string) eaw_mod( 'consent_link_label' ) ) ) ? eaw_consent_link( array( 'echo' => false ) ) : '';
 $eaw_about  = trim( (string) eaw_mod( 'footer_status_text' ) );
+$eaw_points = eaw_lines( eaw_mod( 'footer_about_points' ) );
 $eaw_top    = trim( (string) eaw_mod( 'footer_backtop_text' ) );
 $eaw_risk   = trim( (string) eaw_mod( 'risk_text' ) );
 $eaw_copy   = trim( (string) eaw_mod( 'footer_copyright_text' ) );
@@ -50,6 +51,13 @@ $eaw_cols   = array(
 				<?php eaw_chrome_brand( 'brand--foot' ); ?>
 				<?php if ( '' !== $eaw_about ) : ?>
 					<p class="foot-about"><?php echo esc_html( $eaw_about ); ?></p>
+				<?php endif; ?>
+				<?php if ( $eaw_points ) : ?>
+					<ul class="foot-points">
+						<?php foreach ( $eaw_points as $eaw_point ) : ?>
+							<li><?php echo eaw_icon( 'check', 'icon' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php echo esc_html( $eaw_point ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
 				<?php endif; ?>
 				<?php eaw_chrome_social_row( 'foot-social' ); ?>
 			</div>

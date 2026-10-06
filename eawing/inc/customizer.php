@@ -87,6 +87,7 @@ function eaw_customize_register( $wp_customize ) {
 			'title'  => '2) Hero · ส่วนแรกของหน้า',
 			'fields' => array(
 				'show_hero'      => array( 'แสดงส่วนนี้', 'checkbox' ),
+				'show_kickers'   => array( 'แสดงคำเล็กเหนือหัวข้อทั้งเว็บ (เช่น Let\'s talk · Install Guide)', 'checkbox' ),
 				'hero_badge'     => array( 'ป้ายเล็กเหนือชื่อ', 'text' ),
 				'hero_title'     => array( 'ชื่อแบรนด์ (แสดงเหนือหัวข้อใหญ่ · อยู่ใน H1)', 'text' ),
 				'hero_subtitle'  => array( 'หัวข้อใหญ่ (H1)', 'text' ),

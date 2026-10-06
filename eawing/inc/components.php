@@ -526,6 +526,10 @@ function eaw_chapter_head( $num, $total, $kicker, $title, $sub = '', $align = 'c
 	}
 	$more_href = ( '' !== $more_url && '#' !== $more_url && '' !== $more_label ) ? eaw_link_url( $more_url ) : '';
 	$classes   = 'ch-head ch-head--' . ( '' !== $more_href ? 'left ch-head--more' : $align );
+	if ( ! eaw_show_kickers() ) {
+		$num    = 0;
+		$kicker = '';
+	}
 	if ( '' === (string) $kicker && '' === (string) $title && ! $num ) {
 		return;
 	}

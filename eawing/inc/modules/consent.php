@@ -344,7 +344,7 @@ function eaw_consent_card() {
 	<div class="consent-head">
 		<span class="consent-badge" aria-hidden="true"><?php echo eaw_icon( 'shield' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 		<div class="consent-head-text">
-			<?php if ( '' !== trim( (string) eaw_mod( 'consent_kicker' ) ) ) : ?>
+			<?php if ( '' !== trim( (string) eaw_mod( 'consent_kicker' ) ) && eaw_show_kickers() ) : ?>
 				<p class="consent-kicker"><?php echo esc_html( eaw_mod( 'consent_kicker' ) ); ?></p>
 			<?php endif; ?>
 			<h2 class="consent-title" id="consent-title" tabindex="-1"><?php echo eaw_text( eaw_mod( 'consent_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in eaw_text ?></h2>

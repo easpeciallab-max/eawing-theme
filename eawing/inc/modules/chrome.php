@@ -47,7 +47,8 @@ add_filter(
 				'chrome_card_title'        => 'ส่งข้อความหาทีมงาน',
 				'chrome_card_text'         => 'แตะปุ่มด้านล่าง แล้วพิมพ์คำถามแรกได้ทันที',
 				'footer_line_text'         => 'ทัก LINE คุยกับทีมงาน',
-				'footer_qr_toggle_text'    => 'สแกน QR Code เพื่อเพิ่มเพื่อน',
+				'footer_qr_toggle_text'    => 'สแกนเพิ่มเพื่อน LINE',
+				'footer_qr_text'           => 'เปิดกล้องมือถือหรือแอป LINE แล้วสแกน เพื่อเพิ่มเพื่อน @eawing ได้ทันที',
 				'footer_line_qr_alt'       => 'QR Code สำหรับเพิ่ม LINE ของ EA WING',
 				'footer_prep_title'        => 'สิ่งที่ทีมงานจะถาม',
 				'footer_prep_text'         => 'เตรียมคำตอบไว้ จะคุยกันได้เร็วขึ้น',
@@ -56,7 +57,8 @@ add_filter(
 				'footer_hours_text'        => '',
 
 				/* Footer · คอลัมน์ลิงก์ */
-				'footer_status_text'       => 'บินอย่างมีแบบแผน ไปได้ไกลกว่าเดิม',
+				'footer_status_text'       => 'EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 ทำงานตามแผนและขีดจำกัดความเสี่ยงที่คุณตั้งเอง มีคู่มือภาษาไทยครบตั้งแต่เปิดบัญชีจนรันบน VPS และทีมงานคนไทยคอยดูแลทาง LINE',
+				'footer_about_points'      => "ใช้กับ MT5 บน Windows และ VPS\nดูพอร์ตผ่านแอป MT5 บนมือถือได้ทุกที่\nทีมงานคนไทยตอบทาง LINE OA",
 				'footer_index_title'       => 'หน้าในเว็บ',
 				'footer_docs_title'        => 'ข้อมูลและนโยบาย',
 				'footer_docs_items'        => "about|เกี่ยวกับเรา\nprivacy-policy|นโยบายความเป็นส่วนตัว\nterms-of-use|เงื่อนไขการใช้บริการ\ndata-deletion|ขอลบข้อมูลส่วนบุคคล",
@@ -157,7 +159,8 @@ add_filter(
 				'chrome_card_title'     => array( 'การ์ดติดต่อ · หัวข้อ', 'text' ),
 				'chrome_card_text'      => array( 'การ์ดติดต่อ · คำอธิบายสั้น (ว่าง = ไม่แสดง)', 'text' ),
 				'footer_line_text'      => array( 'ข้อความปุ่ม LINE (ใช้กับปุ่มติดต่อทั่วทั้งเว็บ)', 'text' ),
-				'footer_qr_toggle_text' => array( 'ข้อความปุ่มเปิด QR', 'text' ),
+				'footer_qr_toggle_text' => array( 'QR · หัวข้อข้างรูป', 'text' ),
+				'footer_qr_text'        => array( 'QR · คำอธิบายข้างรูป', 'text' ),
 				'footer_line_qr_alt'    => array( 'คำอธิบายรูป QR (alt)', 'text' ),
 				'footer_prep_title'     => array( 'สิ่งที่ทีมงานจะถาม · หัวข้อ', 'text' ),
 				'footer_prep_text'      => array( 'สิ่งที่ทีมงานจะถาม · คำอธิบาย', 'textarea' ),
@@ -169,7 +172,8 @@ add_filter(
 				'footer_tiktok_text'    => array( 'ชื่อลิงก์ TikTok', 'text' ),
 				'footer_youtube_text'   => array( 'ชื่อลิงก์ YouTube', 'text' ),
 				'footer_email_text'     => array( 'ชื่อลิงก์อีเมล', 'text' ),
-				'footer_status_text'    => array( 'Footer · ข้อความสั้นใต้โลโก้ (ว่าง = ไม่แสดง)', 'text' ),
+				'footer_status_text'    => array( 'Footer · คำอธิบายใต้โลโก้ (ว่าง = ไม่แสดง)', 'textarea' ),
+				'footer_about_points'   => array( 'Footer · จุดเด่นใต้คำอธิบาย (บรรทัดละ 1 ข้อ · ว่าง = ไม่แสดง)', 'textarea' ),
 				'footer_index_title'    => array( 'Footer · หัวคอลัมน์หน้าในเว็บไซต์', 'text', 'รายการหน้ามาจากเมนูหลัก (เฉพาะระดับบน) · ยังไม่มีเมนู = ใช้หน้ามาตรฐานที่เผยแพร่แล้ว · คอลัมน์คู่มือใช้ชื่อ "เมนู · กลุ่มคู่มือ" ในหมวด 16.1' ),
 				'footer_docs_title'     => array( 'Footer · หัวคอลัมน์เอกสาร', 'text' ),
 				'footer_docs_items'     => array( 'Footer · รายการเอกสาร (slug|ชื่อลิงก์ บรรทัดละ 1 หน้า)', 'textarea', 'แสดงเฉพาะหน้าที่เผยแพร่แล้ว · หน้าที่อยู่ในแถวลิขสิทธิ์แล้วจะไม่แสดงซ้ำ · ลิงก์ประกาศความเสี่ยงแสดงเมื่อหน้า risk-disclosure เผยแพร่แล้ว (ข้อความเตือนฉบับเต็มแสดงใน footer เสมอ)' ),
@@ -384,7 +388,7 @@ function eaw_chrome_header_cta() {
  */
 function eaw_chrome_kicker( $text ) {
 	$text = trim( (string) $text );
-	if ( '' === $text ) {
+	if ( '' === $text || ! eaw_show_kickers() ) {
 		return;
 	}
 	$thai = preg_match( '/\p{Thai}/u', $text );
@@ -583,11 +587,12 @@ function eaw_chrome_social_row( $class = 'nav-social' ) {
 	echo '<div class="' . esc_attr( $class ) . '">';
 	foreach ( $items as $item ) {
 		printf(
-			'<a class="social-link" href="%1$s"%2$s aria-label="%3$s">%4$s</a>',
+			'<a class="social-link social-link--%5$s" href="%1$s"%2$s aria-label="%3$s">%4$s</a>',
 			eaw_chrome_social_href( $item ), // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in eaw_chrome_social_href
 			isset( $item['mailto'] ) ? '' : ' target="_blank" rel="noopener"',
 			esc_attr( $item['label'] ),
-			eaw_icon( $item['icon'], 'icon' ) // phpcs:ignore WordPress.Security.EscapeOutput
+			eaw_icon( $item['icon'], 'icon' ), // phpcs:ignore WordPress.Security.EscapeOutput
+			esc_attr( $item['icon'] )
 		);
 	}
 	echo '</div>';
@@ -840,7 +845,7 @@ function eaw_chrome_contact_button( $class, $pos ) {
 	$text = (string) eaw_mod( $target['is_line'] ? 'footer_line_text' : 'contact_fallback_text' );
 	printf(
 		'<a class="%1$s" href="%2$s"%3$s data-line-pos="%4$s"><span>%5$s</span><span class="btn-ic" aria-hidden="true">%6$s</span></a>',
-		esc_attr( $class ),
+		esc_attr( $class . ( $target['is_line'] ? ' is-line' : '' ) ),
 		esc_url( $target['url'] ),
 		$target['is_line'] ? ' target="_blank" rel="noopener"' : '',
 		esc_attr( $pos ),
@@ -878,20 +883,20 @@ function eaw_chrome_contact_panel( $args = array() ) {
 	$pos        = sanitize_key( (string) $args['pos'] );
 	$openchat   = trim( (string) eaw_mod( 'line_openchat_url' ) );
 	$openchat   = eaw_chrome_url_ok( $openchat ) ? $openchat : '';
-	$qr         = $target['is_line'] ? trim( (string) eaw_mod( 'line_qr_image' ) ) : '';
+	$qr         = $target['is_line'] ? eaw_theme_asset_url( eaw_mod( 'line_qr_image' ) ) : '';
 	$channels   = eaw_chrome_channels();
 	$hours      = eaw_lines( eaw_mod( 'footer_hours_text' ) );
 	$prep       = eaw_lines( eaw_mod( 'footer_prep_items' ) );
 	$card_title = trim( (string) eaw_mod( 'chrome_card_title' ) );
 	$card_text  = trim( (string) eaw_mod( 'chrome_card_text' ) );
 	$tiles      = array(
-		'line'      => 'gold',
-		'users'     => 'sky',
-		'facebook'  => 'blue',
+		'line'      => 'line',
+		'users'     => 'openchat',
+		'facebook'  => 'facebook',
 		'instagram' => 'blue',
 		'tiktok'    => 'blue',
 		'youtube'   => 'blue',
-		'mail'      => 'sky',
+		'mail'      => 'mail',
 	);
 	?>
 	<section class="chrome-cta" id="contact" aria-labelledby="chrome-cta-title">
@@ -942,15 +947,20 @@ function eaw_chrome_contact_panel( $args = array() ) {
 				<div class="ctc-actions">
 					<?php eaw_chrome_contact_button( 'btn btn-fire chrome-btn ctc-btn', $pos ); ?>
 					<?php if ( '' !== $openchat ) : ?>
-						<a class="btn btn-dark chrome-btn ctc-btn" href="<?php echo esc_url( $openchat ); ?>" target="_blank" rel="noopener" data-line-pos="<?php echo esc_attr( $pos . '-openchat' ); ?>"><span><?php echo esc_html( eaw_mod( 'line_openchat_text' ) ); ?></span><span class="btn-ic" aria-hidden="true"><?php echo eaw_icon( 'users' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
+						<a class="btn chrome-btn ctc-btn ctc-btn--openchat" href="<?php echo esc_url( $openchat ); ?>" target="_blank" rel="noopener" data-line-pos="<?php echo esc_attr( $pos . '-openchat' ); ?>"><span><?php echo esc_html( eaw_mod( 'line_openchat_text' ) ); ?></span><span class="btn-ic" aria-hidden="true"><?php echo eaw_icon( 'users' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
 					<?php endif; ?>
 				</div>
 
 				<?php if ( '' !== $qr ) : ?>
-					<details class="ctc-qr">
-						<summary><?php echo eaw_icon( 'qr', 'icon' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php echo esc_html( eaw_mod( 'footer_qr_toggle_text' ) ); ?></span></summary>
-						<img src="<?php echo esc_url( $qr ); ?>" alt="<?php echo esc_attr( eaw_mod( 'footer_line_qr_alt' ) ); ?>" width="200" height="200" loading="lazy" decoding="async">
-					</details>
+					<div class="ctc-qr">
+						<img src="<?php echo esc_url( $qr ); ?>" alt="<?php echo esc_attr( eaw_mod( 'footer_line_qr_alt' ) ); ?>" width="600" height="600" loading="lazy" decoding="async">
+						<div class="ctc-qr-text">
+							<p class="ctc-qr-title"><?php echo eaw_icon( 'qr', 'icon' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php echo esc_html( eaw_mod( 'footer_qr_toggle_text' ) ); ?></span></p>
+							<?php if ( '' !== trim( (string) eaw_mod( 'footer_qr_text' ) ) ) : ?>
+								<p class="ctc-qr-sub"><?php echo esc_html( eaw_mod( 'footer_qr_text' ) ); ?></p>
+							<?php endif; ?>
+						</div>
+					</div>
 				<?php elseif ( $target['is_line'] && $is_admin ) : ?>
 					<p class="admin-hint">ยังไม่มีรูป QR · อัปโหลดที่ ปรับแต่ง → 1) ช่องทางติดต่อ → รูป QR Code LINE OA (ข้อความนี้เห็นเฉพาะแอดมิน)</p>
 				<?php endif; ?>

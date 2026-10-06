@@ -858,7 +858,7 @@ function eaw_guide_hero( $kicker, $title, $sub = '', $quick_title = '', $quick =
 							</ol>
 						</nav>
 					<?php endif; ?>
-					<?php if ( '' !== trim( (string) $kicker ) ) : ?>
+					<?php if ( '' !== trim( (string) $kicker ) && eaw_show_kickers() ) : ?>
 						<span class="kicker gd-hero-kicker"><?php echo esc_html( $kicker ); ?></span>
 					<?php endif; ?>
 					<h1 class="gd-hero-title"><?php echo eaw_text( $title ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside ?></h1>

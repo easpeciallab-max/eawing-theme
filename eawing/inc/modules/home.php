@@ -561,7 +561,7 @@ function eaw_home_platform_icon( $label ) {
  */
 function eaw_home_kicker( $text, $class = '' ) {
 	$text = trim( (string) $text );
-	if ( '' === $text ) {
+	if ( '' === $text || ! eaw_show_kickers() ) {
 		return;
 	}
 	$thai = preg_match( '/\p{Thai}/u', $text ) ? ' is-th' : '';

@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.7' );
+define( 'EAW_VERSION', '1.0.8' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -254,7 +254,7 @@ function eaw_defaults() {
 		'wordmark_light'  => '',
 		'line_openchat_url'  => '',
 		'line_openchat_text' => 'เข้ากลุ่ม OpenChat',
-		'line_qr_image'      => '',
+		'line_qr_image'      => 'assets/img/brand/eawing-line-qr.png',
 
 		/* หน้า /go (ลิงก์รวม) · ลิงก์ร้านแอป MT5 */
 		'mt5_dl_windows' => 'https://www.metatrader5.com/en/download',
@@ -267,7 +267,7 @@ function eaw_defaults() {
 		'broker_signup_url'  => '',
 		'broker_signup_text' => 'สมัครบัญชีกับโบรกเกอร์',
 		'facebook_url'    => '',
-		'contact_email'   => '',
+		'contact_email'   => 'easpeciallab@gmail.com',
 		'show_float_line' => false,
 		'show_language_switcher' => false,
 		'language_fallback_items' => "th|🇹🇭|TH|ไทย\nen|🇬🇧|EN|English\nzh|🇨🇳|ZH|中文\nfr|🇫🇷|FR|Français\nde|🇩🇪|DE|Deutsch\nru|🇷🇺|RU|Русский\nja|🇯🇵|JA|日本語\nko|🇰🇷|KO|한국어",
@@ -292,7 +292,8 @@ function eaw_defaults() {
 
 		/* Hero */
 		'show_hero'      => true,
-		'hero_title'     => 'EA WING',
+		'hero_title'     => '',
+		'show_kickers'   => false,
 		'hero_image'     => '',
 		/* Hero · แผงควบคุมจำลอง (แสดงเมื่อไม่ได้ใส่รูป Hero) */
 		'hero_panel_title'   => 'EA WING',
@@ -407,6 +408,24 @@ function eaw_lines( $text ) {
 	$lines = preg_split( '/\r\n|\r|\n/', (string) $text );
 	$lines = array_map( 'trim', $lines );
 	return array_values( array_filter( $lines, 'strlen' ) );
+}
+
+/**
+ * แสดงคำเล็กเหนือหัวข้อ (kicker) หรือไม่ · ปิดทั้งเว็บเป็นค่าเริ่มต้น (เจ้าของขอ 6 ต.ค. 2026) · เปิดได้ที่ ปรับแต่ง → 2) Hero
+ */
+function eaw_show_kickers() {
+	return (bool) eaw_mod( 'show_kickers' );
+}
+
+/**
+ * รูปในธีม (assets/...) → URL เต็ม · ค่าอื่นคืนตามเดิม
+ */
+function eaw_theme_asset_url( $value ) {
+	$value = trim( (string) $value );
+	if ( '' !== $value && 0 === strpos( $value, 'assets/' ) ) {
+		return get_template_directory_uri() . '/' . $value;
+	}
+	return $value;
 }
 
 /**
@@ -648,7 +667,7 @@ function eaw_page_hero( $kicker, $title, $subtitle = '' ) {
 					</ol>
 				</nav>
 			<?php endif; ?>
-			<?php if ( $kicker ) : ?>
+			<?php if ( $kicker && eaw_show_kickers() ) : ?>
 				<span class="kicker"><?php echo esc_html( $kicker ); ?></span>
 			<?php endif; ?>
 			<h1 class="phero-title"><?php echo esc_html( $title ); ?></h1>

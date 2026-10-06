@@ -582,7 +582,7 @@ function eaw_pages_grad_title( $title, $phrase = '' ) {
  */
 function eaw_pages_kicker( $text, $class = '' ) {
 	$text = trim( (string) $text );
-	if ( '' === $text ) {
+	if ( '' === $text || ! eaw_show_kickers() ) {
 		return '';
 	}
 	$base = preg_match( '/[\x{0E00}-\x{0E7F}]/u', $text ) ? 'pg-label' : 'kicker';
