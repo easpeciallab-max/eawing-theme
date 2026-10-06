@@ -44,8 +44,8 @@ function eaw_go_defaults( $d ) {
 			/* ส่วนหัวการ์ด */
 			'go_logo'                => '',
 			'go_title'               => 'EA WING',
-			'go_sub'                 => "บินอย่างมีแบบแผน ไปได้ไกลกว่าเดิม\nEA บน MetaTrader 5 พร้อมทีมงานคนไทยช่วยทาง LINE",
-			'go_badges'              => "วางแผน\nติดตาม\nบริหารความเสี่ยง",
+			'go_sub'                 => "ทุกลิงก์ที่ต้องใช้ เรียงตามลำดับแล้ว\nติดขั้นไหน ทักทีมงานทาง LINE ได้เลย",
+			'go_badges'              => '',
 
 			/* กลุ่มติดต่อทีม */
 			'go_help_title'          => 'ติดขั้นตอนไหน ทักทีมงานได้',
@@ -59,8 +59,8 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 1 · เปิดบัญชี */
 			'go_step1_title'         => eaw_go_legacy( 'go_step1', 'เปิดบัญชี MT5' ),
-			'go_step1_desc'          => 'สมัครบัญชี Zaurix จากปุ่มด้านล่าง ยืนยันอีเมลและตัวตน แล้วเก็บเลข Login ไว้ใช้ขั้นถัดไป (ลิงก์พาร์ตเนอร์: หากเปิดบัญชีผ่านลิงก์นี้ Zaurix จะจ่ายค่าตอบแทนให้ EA WING)',
-			'go_step1_note'          => '',
+			'go_step1_desc'          => 'สมัครบัญชีกับ Zaurix ยืนยันอีเมลและตัวตน แล้วจดเลข Login ไว้ใช้ขั้นถัดไป',
+			'go_step1_note'          => 'ลิงก์พาร์ตเนอร์: เมื่อสมัครผ่านลิงก์นี้ Zaurix จ่ายค่าตอบแทนให้ EA WING โดยคุณไม่เสียค่าใช้จ่ายเพิ่ม',
 			'go_step1_badge'         => '',
 			'go_signup_line_label'   => 'ขอลิงก์สมัครทาง LINE',
 			'go_account_guide_label' => eaw_go_legacy( 'go_step2', 'วิธีสมัครและยืนยันตัวตน' ),
@@ -68,8 +68,8 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 2 · แอป MT5 (ลิงก์ร้านแอปใช้คีย์เดิม mt5_dl_*) */
 			'go_step2_title'         => eaw_go_legacy( 'go_step3', 'ติดตั้งแอป MT5 และล็อกอิน' ),
-			'go_step2_desc'          => 'โหลด MetaTrader 5 ให้ตรงกับเครื่องของคุณ แล้วเข้าบัญชีด้วยข้อมูลสามอย่างจากขั้นแรก คือ Login รหัสผ่าน และ Server',
-			'go_step2_note'          => 'แอปบนมือถือมีไว้ดูบัญชีและออเดอร์ ส่วน EA ต้องรันบน MT5 เวอร์ชัน Windows บนคอมหรือ VPS',
+			'go_step2_desc'          => 'เลือกเครื่องที่ใช้ โหลดแอป MetaTrader 5 แล้วล็อกอินด้วย Login รหัสผ่าน และ Server จากขั้นแรก',
+			'go_step2_note'          => 'แอปมือถือใช้ดูบัญชี ส่วน EA รันบน MT5 ของ Windows (คอมหรือ VPS)',
 			'go_step2_badge'         => '',
 			'go_mt5_ios_label'       => 'iPhone',
 			'go_mt5_android_label'   => 'Android',
@@ -81,7 +81,7 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 3 · ฝากเงิน (ไม่มีลิงก์ = ซ่อนทั้งขั้น) */
 			'go_step3_title'         => 'ฝากเงินเข้าบัญชีเทรด',
-			'go_step3_desc'          => 'ฝากเงินผ่านหน้า Portal ของ Zaurix ก่อนเปิดใช้ EA และใช้เฉพาะเงินที่รับความเสี่ยงได้',
+			'go_step3_desc'          => 'ฝากเงินผ่าน Portal ของ Zaurix ใช้เฉพาะเงินที่รับความเสี่ยงได้',
 			'go_step3_note'          => '',
 			'go_step3_badge'         => '',
 			'go_deposit_label'       => 'เข้า Portal Zaurix',
@@ -91,21 +91,21 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 4 · ไฟล์ EA */
 			'go_step4_title'         => 'ดาวน์โหลดไฟล์ EA WING',
-			'go_step4_desc'          => 'กดที่การ์ดเพื่อดาวน์โหลด ในไฟล์ .zip มีตัว EA คู่มือ PDF และวิธีติดตั้ง',
-			'go_step4_note'          => 'EA WING ทำงานกับบัญชีที่ได้รับสิทธิ์แล้วเท่านั้น ส่งเลขบัญชี MT5 และชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE เพื่อเปิดสิทธิ์',
+			'go_step4_desc'          => 'โหลดไฟล์ .zip (ตัว EA + คู่มือ PDF) แล้วส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์ทาง LINE เพื่อเปิดสิทธิ์ใช้งาน',
+			'go_step4_note'          => '',
 			'go_step4_badge'         => '',
 			'go_download_line_label' => eaw_go_legacy( 'go_step4', 'ขอรับไฟล์ EA ทาง LINE' ),
 			'go_fast_img'            => 'assets/img/eawing-download-card-v42.webp',
 			'go_fast_url'            => 'assets/downloads/EA_WING_V4.2.zip',
 			'go_fast_alt'            => 'ดาวน์โหลด EA WING Expert Advisor สำหรับ MT5',
-			'go_fast_label'          => 'ดาวน์โหลด EA WING V4.2 (.zip)',
+			'go_fast_label'          => 'ดาวน์โหลด EA WING V4.2',
 			'go_fast_version'        => 'V4.2',
 			'go_fast_version_label'  => 'อัปเดตล่าสุด',
-			'go_license_line_label'  => 'ส่งเลขบัญชีขอเปิดสิทธิ์ทาง LINE',
+			'go_license_line_label'  => 'ขอเปิดสิทธิ์ทาง LINE',
 
 			/* ขั้น 5 · ติดตั้ง EA */
 			'go_step5_title'         => eaw_go_legacy( 'go_step5', 'ติดตั้ง EA บน MT5' ),
-			'go_step5_desc'          => 'วางไฟล์ใน MQL5 → Experts ติ๊ก Allow DLL imports และเปิด Algo Trading แล้วลาก EA ลงกราฟ XAUUSD M1',
+			'go_step5_desc'          => 'วางไฟล์ในโฟลเดอร์ Experts ติ๊ก Allow DLL imports เปิด Algo Trading แล้วลาก EA ลงกราฟ XAUUSD M1',
 			'go_step5_note'          => '',
 			'go_step5_badge'         => '',
 			'go_install1_label'      => 'คู่มือติดตั้ง EA ทีละขั้น',
@@ -115,7 +115,7 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 6 · VPS */
 			'go_step6_title'         => eaw_go_legacy( 'go_step6', 'รันบน VPS' ),
-			'go_step6_desc'          => 'MT5 ต้องเปิดอยู่ตลอด EA จึงทำงานได้ Windows VPS คือเครื่องที่ไม่ต้องปิด ใช้แทนคอมที่บ้าน ดูคู่มือของอุปกรณ์ที่คุณจะใช้เปิดหน้าจอ VPS',
+			'go_step6_desc'          => 'EA ทำงานเมื่อ MT5 เปิดอยู่ตลอด ใช้ Windows VPS แทนการเปิดคอมทิ้งไว้ เลือกคู่มือตามเครื่องที่ใช้ต่อ VPS',
 			'go_step6_note'          => '',
 			'go_step6_badge'         => 'แนะนำ',
 			'go_vps_windows_label'   => 'Windows',
@@ -232,7 +232,7 @@ function eaw_go_sections( $sections, $d ) {
 			'go_step4_badge'         => array( 'ขั้นรับไฟล์ EA · ป้ายเล็ก', 'text' ),
 			'go_download_line_label' => array( 'ขั้นรับไฟล์ EA · ข้อความปุ่ม LINE เมื่อยังไม่มีลิงก์ไฟล์', 'text' ),
 			'go_fast_url'            => array( 'ขั้นรับไฟล์ EA · ลิงก์ดาวน์โหลดไฟล์ (ว่าง = ใช้ปุ่ม LINE ด้านบน)', 'path', 'EA WING ส่งไฟล์ทาง LINE หลังยืนยันคุณสมบัติ จึงควรเว้นว่างไว้ · ถ้าจำเป็นต้องใช้ลิงก์ อัปโหลดที่ สื่อ → เพิ่มใหม่ แล้ววาง URL ที่นี่ ห้ามใส่ไฟล์ .ex5/.zip ไว้ในโฟลเดอร์ธีม' ),
-			'go_fast_label'          => array( 'ขั้นรับไฟล์ EA · ข้อความปุ่มดาวน์โหลด (ใช้เมื่อไม่มีรูปการ์ด)', 'text' ),
+			'go_fast_label'          => array( 'ขั้นรับไฟล์ EA · ข้อความปุ่มดาวน์โหลด (ใต้รูปการ์ด · ว่าง = ไม่มีปุ่ม)', 'text' ),
 			'go_fast_img'            => array( 'ขั้นรับไฟล์ EA · รูปการ์ดดาวน์โหลด (ไม่บังคับ)', 'image', 'แนะนำภาพแนวนอน 1200×630px · มีรูป + ลิงก์ = แสดงเป็นการ์ดรูปแทนปุ่ม' ),
 			'go_fast_alt'            => array( 'ขั้นรับไฟล์ EA · คำอธิบายรูปการ์ด (alt)', 'text' ),
 			'go_fast_version'        => array( 'ขั้นรับไฟล์ EA · เลขเวอร์ชันบนการ์ด (เช่น V4.2 · ว่าง = ไม่แสดงป้าย)', 'text' ),

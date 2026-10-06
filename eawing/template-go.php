@@ -176,7 +176,7 @@ add_filter( 'body_class', 'eaw_go_body_class', 99 );
 						$eaw_go_note  = eaw_go_mod( 'go_step' . $eaw_go_n . '_note' );
 						?>
 						<li class="lh-step lh-step--<?php echo esc_attr( $eaw_go_step['key'] ); ?>">
-							<span class="lh-step-num" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $eaw_go_num ) ); ?></span>
+							<span class="lh-step-num" aria-hidden="true"><?php echo esc_html( (string) $eaw_go_num ); ?></span>
 							<div class="lh-step-head">
 								<h3 class="lh-step-title">
 									<span class="lh-step-name"><?php if ( '' !== $eaw_go_step_word ) : ?><span class="screen-reader-text"><?php echo esc_html( $eaw_go_step_word . ' ' . $eaw_go_num . ' ' ); ?></span><?php endif; ?><?php echo eaw_text( eaw_go_mod( 'go_step' . $eaw_go_n . '_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in eaw_text ?></span>
