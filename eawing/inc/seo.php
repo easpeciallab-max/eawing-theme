@@ -1150,6 +1150,7 @@ function eaw_seo_redirect_map() {
 			'/risk-warning/'   => '/risk-disclosure/',
 			'/ea-products/'    => '/pricing/',
 			'/category/other/' => '/articles/',
+			'/contact/'        => '/go/',
 		)
 	);
 	return is_array( $map ) ? $map : array();
