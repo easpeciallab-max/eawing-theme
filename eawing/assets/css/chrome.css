@@ -34,7 +34,9 @@
 
 .skip-link:focus {
 	left: 12px;
+	background: #FFFFFF;
 	color: var(--navy);
+	outline: 2px solid var(--navy);
 }
 
 /* ==========================================================

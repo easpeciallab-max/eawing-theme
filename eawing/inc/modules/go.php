@@ -124,7 +124,7 @@ function eaw_go_defaults( $d ) {
 			'go_vps_android_url'     => '/vps-android/',
 			'go_vps_ios_label'       => 'iPhone / iPad',
 			'go_vps_ios_url'         => '/vps-ios/',
-			'go_vps_macos_label'     => 'macOS',
+			'go_vps_macos_label'     => '',
 			'go_vps_macos_url'       => '',
 
 			/* กลุ่มข้อมูลก่อนเริ่ม */
