@@ -39,7 +39,7 @@
 - แถบล่างมือถือ: พื้นกรมท่า `#0A2E66` ทึบ (ไม่ใช่น้ำเงินปีก) 5 ช่องเท่ากัน ตัวขาว ทรงแคปซูล · ช่องหน้าปัจจุบันแคปซูลขาวทึบตัวกรมท่า · OpenChat ขาวขอบเขียว · Facebook `#1877F2` · อีเมล กรมท่า
 - QR LINE: `assets/img/brand/eawing-line-qr.png` (ถอดได้ https://lin.ee/9wCzGEg → @eawing) · ไม่มีกรอบนอกสุด (.site-frame ไม่มีขอบ/เงา)
 - รูป: `assets/img/brand/` (wordmark, icon, favicon, การ์ดแชร์) สร้างจากโลโก้จริงใน media eawing.co · `assets/img/banners/eawing-*.webp` จากภาพโฆษณาของเจ้าของ (เฉพาะภาพที่ไม่มีตัวเลขกำไร) · `assets/img/covers/<slug>.webp` สร้างด้วย `dev/make-covers.php` · ปกเพจ `covers/page-<slug>.webp` (`make-covers.php page-<slug>` · ปุ่ม Setup "3) ตั้งค่า SEO" ตั้งเป็นภาพเด่นให้เพจที่ยังไม่มี แล้วต้องกดอัปเดตเพจให้ Yoast อ่านใหม่) · ภาพในเนื้อหา `assets/img/illus/` สร้างด้วย `dev/make-art.php <name>` (แม่แบบ `dev/preview/art.php` แบบกว้าง + แบบมือถือ) · ใส่ในเพจ/บทความด้วย `[eawing_figure name="..."]` (license-flow ใน how-to-install · vps-flow ใน 3 เพจ VPS · account-flow ใน open-mt5-account)
-- **เปลี่ยนรูปในธีมเมื่อไหร่ให้เปลี่ยนชื่อไฟล์** (Cloudflare แคชรูปตาม URL)
+- **เปลี่ยนรูปในธีมเมื่อไหร่ให้เปลี่ยนชื่อไฟล์** (Cloudflare แคชรูปตาม URL) · Cloudflare Cache Rule "Static files 1 month" (7 ต.ค. 2026): css js webp png jpg jpeg woff2 svg → Browser TTL 1 เดือน · CSS/JS มี ?ver= ใหม่ทุก deploy อยู่แล้ว · หน้า HTML ไม่อยู่ในกฎนี้ (ยังเป็น s-maxage=300)
 - ช่องทางจริง (ตั้งใน Customizer บน eawing.co แล้ว 1 ต.ค. 2026): LINE OA `https://line.me/R/ti/p/@eawing` · Facebook `https://www.facebook.com/share/1EouUMc9v1/` · โบรกเกอร์ `Zaurix` เซิร์ฟเวอร์ `Zaurix-Server` · OpenChat `https://line.me/ti/g2/xGup9Uap8lRAsu6e25T4qYJqBfFFFzJPSsUMFw` (ตั้งแล้ว)
 
 ## โครงโค้ด (สรุป)
