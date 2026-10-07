@@ -30,7 +30,7 @@ $eaw_candles = array(
 ?>
 <div class="ea-panel" role="img"<?php echo '' !== $eaw_panel_label ? ' aria-label="' . esc_attr( $eaw_panel_label ) . '"' : ''; ?>>
 	<div class="ea-head">
-		<img class="ea-logo" src="<?php echo esc_url( eaw_logo_url() ); ?>" alt="" width="48" height="48" decoding="async">
+		<img class="ea-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/brand/eawing-icon-96.webp' ); ?>" alt="" width="48" height="48" decoding="async">
 		<div class="ea-name">
 			<?php if ( '' !== $eaw_panel_title ) : ?>
 				<strong><?php echo esc_html( $eaw_panel_title ); ?></strong>

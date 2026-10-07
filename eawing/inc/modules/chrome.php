@@ -327,21 +327,15 @@ function eaw_chrome_articles_url() {
 }
 
 /**
- * โลโก้บนพื้นสว่าง: โลโก้ตัวอักษรที่อัปโหลดในหมวด 1 → Custom Logo ของ WordPress → โลโก้ที่ฝังมากับธีม
+ * โลโก้บนพื้นสว่าง (header/footer แสดงราว 52px): โลโก้ตัวอักษรที่อัปโหลดในหมวด 1 → ไฟล์เล็กในธีม (160px webp ~9 KB)
+ * ไม่ใช้ Custom Logo ของ WordPress ตรงนี้ เพราะไฟล์ต้นฉบับใหญ่หลายร้อย KB (PageSpeed มือถือ 7 ต.ค. 2026)
  */
 function eaw_chrome_logo_url() {
 	$custom = trim( (string) eaw_mod( 'wordmark_dark' ) );
 	if ( '' !== $custom ) {
 		return $custom;
 	}
-	$logo_id = (int) get_theme_mod( 'custom_logo' );
-	if ( $logo_id > 0 && function_exists( 'wp_get_attachment_image_url' ) ) {
-		$url = wp_get_attachment_image_url( $logo_id, 'medium' );
-		if ( $url ) {
-			return (string) $url;
-		}
-	}
-	return eaw_wordmark_url( 'dark' );
+	return get_template_directory_uri() . '/assets/img/brand/eawing-logo-160.webp';
 }
 
 /**
@@ -350,14 +344,15 @@ function eaw_chrome_logo_url() {
 function eaw_chrome_brand( $class = '' ) {
 	$name    = trim( (string) get_bloginfo( 'name' ) );
 	$tagline = trim( (string) get_bloginfo( 'description' ) );
-	$label   = $name;
+	/* ชื่อที่โปรแกรมอ่านจอได้ยินต้องขึ้นต้นด้วยข้อความที่ตาเห็น (WCAG 2.5.3) */
+	$label   = trim( $name . ' ' . $tagline );
 	$home    = trim( (string) eaw_mod( 'nav_home_label' ) );
 	if ( '' !== $home ) {
 		$label .= ( '' !== $label ? ' · ' : '' ) . $home;
 	}
 	?>
 	<a class="<?php echo esc_attr( trim( 'brand ' . $class ) ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( $label ); ?>">
-		<img class="brand-logo-img" src="<?php echo esc_url( eaw_chrome_logo_url() ); ?>" alt="" width="307" height="220" decoding="async">
+		<img class="brand-logo-img" src="<?php echo esc_url( eaw_chrome_logo_url() ); ?>" alt="" width="160" height="115" decoding="async">
 		<?php if ( '' !== $name ) : ?>
 			<span class="brand-text" aria-hidden="true"><strong><?php echo esc_html( $name ); ?></strong><?php if ( '' !== $tagline ) : ?><span><?php echo esc_html( $tagline ); ?></span><?php endif; ?></span>
 		<?php endif; ?>

@@ -664,8 +664,13 @@ function eaw_infra_preload_fonts() {
 	if ( is_admin() || ! eaw_infra_fonts_ready() ) {
 		return;
 	}
-	$base = get_template_directory_uri() . '/assets/fonts/';
-	foreach ( array_slice( eaw_infra_font_files(), 0, 2 ) as $file ) {
+	$base  = get_template_directory_uri() . '/assets/fonts/';
+	$files = array_slice( eaw_infra_font_files(), 0, 2 );
+	/* หน้าแรก: H1 ใน hero ใช้ Kanit 700 · โหลดก่อนกันข้อความเปลี่ยนสูงแล้วดันภาพข้าง ๆ (CLS) */
+	if ( is_front_page() ) {
+		$files = array_merge( $files, array( 'kanit-700-latin.woff2', 'kanit-700-thai.woff2' ) );
+	}
+	foreach ( $files as $file ) {
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( $base . $file ) );
 	}
 }
