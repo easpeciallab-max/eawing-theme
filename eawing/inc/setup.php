@@ -40,7 +40,7 @@ function eaw_site_pages() {
 		'terms-of-use'     => array( 'title' => 'ข้อกำหนดและเงื่อนไขการใช้บริการ', 'template' => '', 'content' => 'pages/terms-of-use', 'group' => 'doc', 'status' => 'draft' ),
 		'data-deletion'    => array( 'title' => 'คำขอลบข้อมูลส่วนบุคคล', 'template' => '', 'content' => 'pages/data-deletion', 'group' => 'doc', 'status' => 'draft' ),
 		'go'               => array( 'title' => 'ติดต่อ EA WING', 'template' => 'template-go.php', 'content' => '', 'group' => 'hub', 'seo' => array( 'seo_title' => 'ติดต่อ EA WING · LINE และลิงก์รวมสำหรับเริ่มใช้งาน', 'description' => 'ทัก LINE ทีมงาน EA WING หรือเข้ากลุ่ม OpenChat แล้วเดินตาม 6 ขั้นตอนเริ่มใช้งาน: เปิดบัญชี ติดตั้ง MT5 ฝากเงิน รับไฟล์ EA ติดตั้ง และรันบน VPS', 'keyword' => 'ติดต่อ EA WING' ) ),
-		'articles'         => array( 'title' => 'บทความ EA WING', 'template' => '', 'content' => '', 'group' => 'hub', 'posts' => true, 'seo' => array( 'seo_title' => 'บทความวางแผน ติดตามผล และบริหารความเสี่ยง · EA WING', 'description' => 'บทความภาษาไทยสำหรับคนใช้ EA บน MT5: เขียนแผนการเทรด แบ่งทุน ตั้งเพดานขาดทุน ติดตามพอร์ตบนมือถือ อ่าน Log และคุมความเสี่ยงอย่างเป็นระบบ', 'keyword' => 'บทความ EA MT5' ) ),
+		'articles'         => array( 'title' => 'บทความ EA WING', 'template' => '', 'content' => '', 'group' => 'hub', 'posts' => true, 'seo' => array( 'seo_title' => 'บทความ EA MT5: พื้นฐาน วางแผน ติดตามผล ความเสี่ยง · EA WING', 'description' => 'บทความภาษาไทยสำหรับคนใช้ EA บน MT5: พื้นฐานการติดตั้งและแก้ปัญหา เขียนแผนการเทรด แบ่งทุน ติดตามพอร์ตบนมือถือ อ่าน Log และคุมความเสี่ยงอย่างเป็นระบบ', 'keyword' => 'บทความ EA MT5' ) ),
 	);
 }
 
