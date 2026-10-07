@@ -673,6 +673,12 @@ function eaw_infra_preload_fonts() {
 	foreach ( $files as $file ) {
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( $base . $file ) );
 	}
+	/* จอกว้าง (hero สองคอลัมน์ ≥ 961px): ภาพข้างข้อความจัดกึ่งกลางตามความสูงข้อความ ฟอนต์ที่มาช้าทำให้ภาพขยับ · โหลดฟอนต์ที่เหลือในจอแรกล่วงหน้า */
+	if ( is_front_page() ) {
+		foreach ( array( 'noto-sans-thai-latin.woff2', 'kanit-500-thai.woff2', 'kanit-500-latin.woff2', 'kanit-600-latin.woff2' ) as $file ) {
+			printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin media="(min-width: 961px)">' . "\n", esc_url( $base . $file ) );
+		}
+	}
 }
 add_action( 'wp_head', 'eaw_infra_preload_fonts', 2 );
 

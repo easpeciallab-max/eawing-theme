@@ -344,17 +344,13 @@ function eaw_chrome_logo_url() {
 function eaw_chrome_brand( $class = '' ) {
 	$name    = trim( (string) get_bloginfo( 'name' ) );
 	$tagline = trim( (string) get_bloginfo( 'description' ) );
-	/* ชื่อที่โปรแกรมอ่านจอได้ยินต้องขึ้นต้นด้วยข้อความที่ตาเห็น (WCAG 2.5.3) */
-	$label   = trim( $name . ' ' . $tagline );
 	$home    = trim( (string) eaw_mod( 'nav_home_label' ) );
-	if ( '' !== $home ) {
-		$label .= ( '' !== $label ? ' · ' : '' ) . $home;
-	}
+	/* ชื่อลิงก์ = ข้อความที่ตาเห็น (WCAG 2.5.3) + "หน้าแรก" ที่อ่านได้เฉพาะโปรแกรมอ่านจอ · ไม่ใช้ aria-label เมื่อมีชื่อเว็บ */
 	?>
-	<a class="<?php echo esc_attr( trim( 'brand ' . $class ) ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( $label ); ?>">
+	<a class="<?php echo esc_attr( trim( 'brand ' . $class ) ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"<?php echo '' === $name ? ' aria-label="' . esc_attr( '' !== $home ? $home : home_url( '/' ) ) . '"' : ''; ?>>
 		<img class="brand-logo-img" src="<?php echo esc_url( eaw_chrome_logo_url() ); ?>" alt="" width="160" height="115" decoding="async">
 		<?php if ( '' !== $name ) : ?>
-			<span class="brand-text" aria-hidden="true"><strong><?php echo esc_html( $name ); ?></strong><?php if ( '' !== $tagline ) : ?><span><?php echo esc_html( $tagline ); ?></span><?php endif; ?></span>
+			<span class="brand-text"><strong><?php echo esc_html( $name ); ?></strong> <?php if ( '' !== $tagline ) : ?><span><?php echo esc_html( $tagline ); ?></span><?php endif; ?><?php if ( '' !== $home ) : ?><span class="screen-reader-text"> · <?php echo esc_html( $home ); ?></span><?php endif; ?></span>
 		<?php endif; ?>
 	</a>
 	<?php
