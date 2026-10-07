@@ -100,6 +100,20 @@ if ( $eaw_found || count( $eaw_cats ) > 1 ) {
 		</div>
 	</section>
 
+	<?php
+	$eaw_pillars = ( is_home() && ! is_paged() && $eaw_has && eaw_pages_has( eaw_mod( 'articles_pillars_title' ) ) ) ? eaw_pages_pillar_items() : array();
+	if ( count( $eaw_pillars ) > 1 ) :
+		?>
+		<section class="pg-sec pillar-hub">
+			<div class="container">
+				<div class="glass-panel pg-panel">
+					<?php eaw_pages_sec_head( '', eaw_mod( 'articles_pillars_title' ), eaw_mod( 'articles_pillars_sub' ) ); ?>
+					<?php eaw_pages_guide_grid( $eaw_pillars ); ?>
+				</div>
+			</div>
+		</section>
+	<?php endif; ?>
+
 	<?php if ( is_home() && ! is_paged() && $eaw_has && $eaw_guides ) : ?>
 		<section class="pg-sec guide-hub">
 			<div class="container">

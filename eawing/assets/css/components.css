@@ -451,3 +451,34 @@
 		border-radius: 11px;
 	}
 }
+
+/* ==========================================================
+   แผนภาพในเนื้อหา [eawing_figure] (inc/shortcodes.php) · กรอบเส้นบาง ไม่มีเงา
+   ========================================================== */
+.eaw-figure {
+	margin: 1.6em 0;
+	border: 1px solid rgba(10, 46, 102, 0.1);
+	border-radius: 22px;
+	overflow: hidden;
+	background: #F7FAFE;
+}
+
+.eaw-figure picture,
+.eaw-figure img,
+.entry-content .eaw-figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	border-radius: 0;
+}
+
+.eaw-figure figcaption {
+	padding: 10px 16px;
+	border-top: 1px solid rgba(10, 46, 102, 0.08);
+	background: #FFFFFF;
+	font-size: 0.86rem;
+	line-height: 1.6;
+	color: var(--muted, #4A5A78);
+	text-align: center;
+}

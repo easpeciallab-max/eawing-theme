@@ -5,6 +5,9 @@
  * Glass Sky · Kanit + Noto Sans Thai · ไม่มีตัวเลขผลเทรด ไม่มีเงา (ตามดีไซน์ของเว็บ)
  *
  * how-it-works: EA WING ทำงานอย่างไร 4 ขั้น (กราฟ → ตรวจสิทธิ์ → ส่งคำสั่งเข้าบัญชีของคุณ → ติดตามจากมือถือ)
+ * license-flow: เปิดสิทธิ์ (ส่งเลขบัญชี → 5 นาที → การ์ดเขียว → ผ่อนผัน 72 ชม.) · หน้า how-to-install
+ * vps-flow: VPS ช่วยให้ EA ทำงานทั้งวัน · หน้า vps-windows / vps-android / vps-ios
+ * account-flow: เปิดบัญชี MT5 4 ขั้น · หน้า open-mt5-account
  *
  * @var string $fx_art_name set by router.php
  */
@@ -20,6 +23,42 @@ $arts = array(
 			array( 'phone', 'ติดตามจากมือถือ', 'ดูออเดอร์และยอดบัญชีในแอป MT5 ได้ทุกที่' ),
 		),
 		'note'  => 'เงินทุนอยู่ในบัญชีของคุณเสมอ EA WING ไม่รับฝากและไม่มีสิทธิ์ถอนเงิน',
+	),
+	'license-flow' => array(
+		'title' => 'เปิดสิทธิ์ใช้งาน EA WING',
+		'sub'   => 'จากส่งเลขบัญชี จนการ์ดล็อกอินบนกราฟเป็นสีเขียว',
+		'steps' => array(
+			array( 'chat', 'ส่งเลขบัญชีทาง LINE', 'เลข Login ของ MT5 และชื่อเซิร์ฟเวอร์' ),
+			array( 'clock', 'ทีมงานเปิดสิทธิ์', 'ใช้งานได้ภายในประมาณ 5 นาที' ),
+			array( 'check', 'การ์ดล็อกอินสีเขียว', 'ตรวจสิทธิ์ผ่าน EA พร้อมทำงานบนกราฟ' ),
+			array( 'shield', 'เน็ตหลุดยังทำงานต่อ', 'ได้ 72 ชั่วโมงนับจากครั้งล่าสุดที่ตรวจผ่าน' ),
+		),
+		'note'  => 'ส่งแค่เลขบัญชีกับชื่อเซิร์ฟเวอร์ ไม่ต้องส่งรหัสผ่านให้ใคร',
+		'icon'  => 'lock',
+	),
+	'vps-flow' => array(
+		'title' => 'VPS ช่วยให้ EA ทำงานได้ทั้งวัน',
+		'sub'   => 'ปิดคอมที่บ้านได้ เพราะ MT5 เปิดอยู่บนเครื่องที่ไม่ดับ',
+		'steps' => array(
+			array( 'server', 'เช่า Windows VPS', 'คอมพิวเตอร์ในศูนย์ข้อมูลที่เปิดตลอด 24 ชั่วโมง' ),
+			array( 'monitor', 'ลง MT5 และ EA บน VPS', 'ติ๊ก DLL แล้ววางบนกราฟ XAUUSD M1' ),
+			array( 'phone', 'ต่อจากเครื่องไหนก็ได้', 'คอม Windows มือถือ Android หรือ iPhone' ),
+			array( 'pulse', 'ปิดเครื่องของคุณได้', 'EA ยังทำงานบน VPS เปิดดูเมื่อไหร่ก็ได้' ),
+		),
+		'note'  => 'ปิดหน้าต่างที่ต่อ VPS ได้ แต่อย่าปิด MT5 อย่า Sign out และอย่า Shut down ตัว VPS',
+		'icon'  => 'warn',
+	),
+	'account-flow' => array(
+		'title' => 'เปิดบัญชี MT5 สำหรับใช้ EA',
+		'sub'   => 'สี่ขั้นจากสมัครสมาชิก จนพร้อมขอเปิดสิทธิ์ EA WING',
+		'steps' => array(
+			array( 'user', 'สมัครและยืนยันอีเมล', 'กรอกข้อมูล ยืนยันอีเมลและเบอร์โทร' ),
+			array( 'check', 'ยืนยันตัวตน (KYC)', 'ส่งเอกสารในหน้าสมาชิก' ),
+			array( 'candles', 'สร้างบัญชีเทรด MT5', 'จดเลข Login กับชื่อ Server' ),
+			array( 'chat', 'ส่งเลขบัญชีให้ทีมงาน', 'ทาง LINE เพื่อขอเปิดสิทธิ์' ),
+		),
+		'note'  => 'บัญชีและเงินทุนอยู่ในชื่อของคุณเอง ทีมงานไม่ขอรหัสผ่านทุกกรณี',
+		'icon'  => 'shield',
 	),
 );
 if ( ! isset( $arts[ $fx_art_name ] ) ) {
@@ -99,7 +138,7 @@ h1{font-family:"Kanit",sans-serif;font-size:<?php echo $tall ? 50 : 54; ?>px;fon
 			</div>
 		<?php endforeach; ?>
 	</div>
-	<p class="note"><?php echo eaw_icon( 'shield' ); // phpcs:ignore WordPress.Security.EscapeOutput -- trusted SVG ?><span><?php echo esc_html( $a['note'] ); ?></span></p>
+	<p class="note"><?php echo eaw_icon( isset( $a['icon'] ) ? $a['icon'] : 'shield' ); // phpcs:ignore WordPress.Security.EscapeOutput -- trusted SVG ?><span><?php echo esc_html( $a['note'] ); ?></span></p>
 </div>
 </body>
 </html>

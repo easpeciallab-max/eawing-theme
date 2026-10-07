@@ -38,7 +38,7 @@
 - ปุ่ม/ไอคอนช่องทางใช้สีแบรนด์จริง ไม่กลืนธีม: LINE `#06C755` (header, ปุ่มลอย, แผงติดต่อ · ช่อง LINE ในแถบล่างมือถือหน้าตาเหมือนช่องอื่น และแถบไม่ย่อตอนเลื่อน)
 - แถบล่างมือถือ: พื้นกรมท่า `#0A2E66` ทึบ (ไม่ใช่น้ำเงินปีก) 5 ช่องเท่ากัน ตัวขาว ทรงแคปซูล · ช่องหน้าปัจจุบันแคปซูลขาวทึบตัวกรมท่า · OpenChat ขาวขอบเขียว · Facebook `#1877F2` · อีเมล กรมท่า
 - QR LINE: `assets/img/brand/eawing-line-qr.png` (ถอดได้ https://lin.ee/9wCzGEg → @eawing) · ไม่มีกรอบนอกสุด (.site-frame ไม่มีขอบ/เงา)
-- รูป: `assets/img/brand/` (wordmark, icon, favicon, การ์ดแชร์) สร้างจากโลโก้จริงใน media eawing.co · `assets/img/banners/eawing-*.webp` จากภาพโฆษณาของเจ้าของ (เฉพาะภาพที่ไม่มีตัวเลขกำไร) · `assets/img/covers/<slug>.webp` สร้างด้วย `dev/make-covers.php` · ปกเพจ `covers/page-<slug>.webp` (`make-covers.php page-<slug>` · ปุ่ม Setup "3) ตั้งค่า SEO" ตั้งเป็นภาพเด่นให้เพจที่ยังไม่มี แล้วต้องกดอัปเดตเพจให้ Yoast อ่านใหม่) · ภาพในเนื้อหา `assets/img/illus/` สร้างด้วย `dev/make-art.php <name>` (แม่แบบ `dev/preview/art.php` แบบกว้าง + แบบมือถือ)
+- รูป: `assets/img/brand/` (wordmark, icon, favicon, การ์ดแชร์) สร้างจากโลโก้จริงใน media eawing.co · `assets/img/banners/eawing-*.webp` จากภาพโฆษณาของเจ้าของ (เฉพาะภาพที่ไม่มีตัวเลขกำไร) · `assets/img/covers/<slug>.webp` สร้างด้วย `dev/make-covers.php` · ปกเพจ `covers/page-<slug>.webp` (`make-covers.php page-<slug>` · ปุ่ม Setup "3) ตั้งค่า SEO" ตั้งเป็นภาพเด่นให้เพจที่ยังไม่มี แล้วต้องกดอัปเดตเพจให้ Yoast อ่านใหม่) · ภาพในเนื้อหา `assets/img/illus/` สร้างด้วย `dev/make-art.php <name>` (แม่แบบ `dev/preview/art.php` แบบกว้าง + แบบมือถือ) · ใส่ในเพจ/บทความด้วย `[eawing_figure name="..."]` (license-flow ใน how-to-install · vps-flow ใน 3 เพจ VPS · account-flow ใน open-mt5-account)
 - **เปลี่ยนรูปในธีมเมื่อไหร่ให้เปลี่ยนชื่อไฟล์** (Cloudflare แคชรูปตาม URL)
 - ช่องทางจริง (ตั้งใน Customizer บน eawing.co แล้ว 1 ต.ค. 2026): LINE OA `https://line.me/R/ti/p/@eawing` · Facebook `https://www.facebook.com/share/1EouUMc9v1/` · โบรกเกอร์ `Zaurix` เซิร์ฟเวอร์ `Zaurix-Server` · OpenChat `https://line.me/ti/g2/xGup9Uap8lRAsu6e25T4qYJqBfFFFzJPSsUMFw` (ตั้งแล้ว)
 
@@ -46,6 +46,7 @@
 - `functions.php` bootstrap + `eaw_defaults()` + helper (`eaw_mod`, `eaw_lines`, `eaw_logo_url`, `eaw_wordmark_url` …) แล้ว require `inc/*.php` และ glob `inc/modules/*.php`
 - โมดูล: `chrome` (header/footer/dock/CTA) · `home` · `homeplus` (ส่วนเสริมหน้าแรก: story, แท็บ Lite/Full, การ์ดล็อกอินจำลอง, ตารางเปรียบเทียบ, เช็กลิสต์พร้อมเริ่ม, บทความล่าสุด, FAQ ข้อ 11 ถึง 14) · `pages` · `guides` · `go` · `consent` (PDPA) · `infra` (REST, hardening, ฟอนต์)
 - `inc/setup.php` manifest เพจ `eaw_site_pages()` + บทความ `eaw_seed_article_covers()` + หน้า admin **ลักษณะ → EA WING Setup**
+- หมวดบทความ 4 หมวด: วางแผนการเทรด · ติดตามผล · บริหารความเสี่ยง · พื้นฐาน EA และ MT5 (`ea-basics` เพิ่ม 7 ต.ค. 2026) · หน้า /articles/ มีการ์ดหมวด (`articles_pillars_*`) ก่อนรายการคู่มือ
 - `inc/seo.php` schema/OG/robots/redirect map (`eaw_redirect_map`) · `inc/shortcodes.php` `[eawing_line|brand|broker|calc]`
 - CSS: `style.css` (ฐานเดิม + section 43 Glass Sky foundation ท้ายไฟล์) แล้วตามด้วย `assets/css/<module>.css` ที่ enqueue อัตโนมัติ
 

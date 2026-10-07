@@ -64,6 +64,15 @@ function eaw_seed_article_covers() {
 		'risk-reward-ratio'       => 'eawing-plan-feathers.webp',
 		'currency-correlation'    => 'eawing-plan-track-risk-night.webp',
 		'weekend-gap-ea'          => 'eawing-plan-feathers-night.webp',
+		/* รอบที่ 2 (7 ต.ค. 2026): คำค้นตอนติดตั้งและแก้ปัญหา · ปกของตัวเองใน covers/ */
+		'what-is-ea'               => 'eawing-mt5-navigator-laptop.webp',
+		'allow-dll-imports'        => 'eawing-mt5-navigator-laptop.webp',
+		'algo-trading-button'      => 'eawing-mt5-navigator-laptop.webp',
+		'ea-not-trading'           => 'eawing-plan-track-risk-light.webp',
+		'vps-for-ea'               => 'eawing-mt5-laptop-phone.webp',
+		'backtest-vs-forward-test' => 'eawing-plan-sky-chart.webp',
+		'leverage-margin'          => 'eawing-plan-blue-icons.webp',
+		'xauusd-m1-chart'          => 'eawing-plan-sky-chart.webp',
 	);
 }
 
@@ -629,6 +638,7 @@ function eaw_article_category_descriptions() {
 		'trading-plan'    => 'บทความวางแผนการเทรดสำหรับคนใช้ EA บน MT5: เขียนแผนก่อนเริ่ม กำหนดความเสี่ยงต่อออเดอร์ แบ่งทุนหลายบัญชี และตั้งเพดานขาดทุนรายวัน',
 		'monitoring'      => 'บทความติดตามผล EA บน MT5: ดูพอร์ตผ่านแอปมือถือ ตั้งแจ้งเตือนด้วย MetaQuotes ID อ่าน Log ในแท็บ Journal และ Experts และดึงรายงานประวัติมาทบทวน',
 		'risk-management' => 'บทความบริหารความเสี่ยงสำหรับคนใช้ EA: แยก Equity กับ Balance คำนวณ Risk Reward ระวังความเสี่ยงซ้อนจาก Correlation และเตรียมพอร์ตรับ Gap วันจันทร์',
+		'ea-basics'       => 'พื้นฐาน EA และ MT5 สำหรับมือใหม่: EA คืออะไร ปุ่ม Algo Trading กับ Allow DLL imports เปิดกราฟ XAUUSD M1 เลือก VPS และไล่แก้เมื่อ EA ไม่เปิดออเดอร์',
 	);
 }
 
@@ -766,6 +776,7 @@ function eaw_article_category_slug( $name ) {
 		'วางแผนการเทรด'   => 'trading-plan',
 		'ติดตามผล'        => 'monitoring',
 		'บริหารความเสี่ยง' => 'risk-management',
+		'พื้นฐาน EA และ MT5' => 'ea-basics',
 	);
 	return isset( $map[ $name ] ) ? $map[ $name ] : sanitize_title( $name );
 }

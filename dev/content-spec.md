@@ -21,7 +21,7 @@ The first line must be a meta comment with JSON, and the body is plain HTML (no 
 - `description` is the meta description. Aim for 120 to 155 Thai characters and include the focus keyword naturally.
 - `keyword` is the focus keyword (Thai or mixed), e.g. `EA MT5`, `VPS สำหรับ EA`.
 - `excerpt` is 1 to 2 sentences, used for article cards. It is for articles only.
-- `category` is for articles only and must be one of the three brand pillars: `วางแผนการเทรด` (kicker `Trading Plan`), `ติดตามผล` (kicker `Monitoring`), `บริหารความเสี่ยง` (kicker `Risk Management`). `dev/check-content.php` rejects anything else, and `dev/preview/cover.php` maps each one to its cover kicker and tile colour.
+- `category` is for articles only and must be one of the three brand pillars: `วางแผนการเทรด` (kicker `Trading Plan`), `ติดตามผล` (kicker `Monitoring`), `บริหารความเสี่ยง` (kicker `Risk Management`), or `พื้นฐาน EA และ MT5` (kicker `EA Basics`, added 7 Oct 2026 for install and troubleshooting topics). `dev/check-content.php` rejects anything else, and `dev/preview/cover.php` maps each one to its cover kicker and tile colour.
 - `kicker` is a small English label above the H1 on pages (e.g. `Guide`, `Account`, `VPS · Windows`).
 
 ## Shortcodes (rendered live by the theme)
@@ -31,6 +31,7 @@ The first line must be a meta comment with JSON, and the body is plain HTML (no 
 - `[eawing_brand]` renders "EA WING".
 - `[eawing_broker]` renders the broker name set in the Customizer. The default reads like "โบรกเกอร์ที่คุณเลือก", so write sentences that still work generically.
 - `[eawing_broker field="server"]` renders the MT5 server name the owner sets. The default is a generic phrase like "ชื่อเซิร์ฟเวอร์ที่ได้รับทางอีเมล".
+- `[eawing_figure name="license-flow"]` renders a theme diagram (wide + mobile versions, alt text built in). Names: `how-it-works`, `license-flow`, `vps-flow`, `account-flow` (registry `eaw_figure_registry()` in `inc/shortcodes.php`, images made with `dev/make-art.php`). Put it on its own line. Optional `alt=""` and `caption=""`.
 - `[eawing_calc type="lot"]` renders the lot size calculator, and `[eawing_calc type="drawdown"]` renders the drawdown recovery calculator. Use these only where relevant.
 
 ## Internal links
@@ -97,7 +98,7 @@ A new article needs three things: the file in `inc/content/articles/`, its slug 
 
 - The theme builds a table of contents from the H2/H3 headings automatically, so do not write your own TOC.
 - The FAQ `details.faq-item` blocks are automatically turned into FAQPage schema.
-- Do not add `<img>` tags. The owner adds real screenshots in the editor.
+- Do not add `<img>` tags (use `[eawing_figure]` for theme diagrams). The owner adds real screenshots in the editor.
 - Do not add inline styles or scripts.
 
 ## Writing rules (must follow)

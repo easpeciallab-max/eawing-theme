@@ -6,6 +6,7 @@
  * [eawing_brand]                                   ชื่อแบรนด์
  * [eawing_broker] / [eawing_broker field="server"] ชื่อโบรกเกอร์ / ชื่อเซิร์ฟเวอร์ MT5 (ตั้งค่าใน Customizer)
  * [eawing_calc type="lot|drawdown"]                เครื่องคำนวณ (JS ใน main.js)
+ * [eawing_figure name="license-flow" alt="" caption=""] แผนภาพในธีม (assets/img/illus · รายชื่อใน eaw_figure_registry())
  *
  * @package eawing
  */
@@ -48,6 +49,52 @@ function eaw_sc_broker( $atts ) {
 	return esc_html( $val );
 }
 add_shortcode( 'eawing_broker', 'eaw_sc_broker' );
+
+/**
+ * แผนภาพในเนื้อหา (สร้างด้วย dev/make-art.php) · ชื่อ => ไฟล์กว้าง, ไฟล์มือถือ, alt ตั้งต้น
+ * เปลี่ยนภาพเมื่อไหร่ให้เปลี่ยนเลข v ในชื่อไฟล์ (Cloudflare แคชตาม URL)
+ */
+function eaw_figure_registry() {
+	return (array) apply_filters(
+		'eaw_figure_registry',
+		array(
+			'how-it-works' => array( 'eawing-how-it-works-v2.webp', 'eawing-how-it-works-mobile-v2.webp', 'แผนภาพ EA WING ทำงานอย่างไร 4 ขั้น จากกราฟ XAUUSD M1 ถึงการติดตามจากมือถือ' ),
+			'license-flow' => array( 'eawing-license-flow-v2.webp', 'eawing-license-flow-mobile-v2.webp', 'แผนภาพขั้นตอนเปิดสิทธิ์ EA WING: ส่งเลขบัญชีทาง LINE ทีมงานเปิดสิทธิ์ใน 5 นาที การ์ดล็อกอินเป็นสีเขียว และทำงานต่อได้ 72 ชั่วโมงเมื่อเน็ตหลุด' ),
+			'vps-flow'     => array( 'eawing-vps-flow-v2.webp', 'eawing-vps-flow-mobile-v2.webp', 'แผนภาพการใช้ Windows VPS รัน EA: เช่า VPS ลง MT5 และ EA ต่อจากคอมหรือมือถือ แล้วปิดเครื่องของคุณได้' ),
+			'account-flow' => array( 'eawing-account-flow-v2.webp', 'eawing-account-flow-mobile-v2.webp', 'แผนภาพเปิดบัญชี MT5 สำหรับใช้ EA 4 ขั้น: สมัคร ยืนยันตัวตน สร้างบัญชีเทรด และส่งเลขบัญชีให้ทีมงาน' ),
+		)
+	);
+}
+
+function eaw_sc_figure( $atts ) {
+	$atts = shortcode_atts(
+		array(
+			'name'    => '',
+			'alt'     => '',
+			'caption' => '',
+		),
+		$atts,
+		'eawing_figure'
+	);
+	$all  = eaw_figure_registry();
+	$name = sanitize_key( $atts['name'] );
+	if ( ! isset( $all[ $name ] ) ) {
+		return '';
+	}
+	$fig  = $all[ $name ];
+	$base = get_template_directory_uri() . '/assets/img/illus/';
+	$alt  = '' !== trim( (string) $atts['alt'] ) ? $atts['alt'] : $fig[2];
+	$html = '<figure class="eaw-figure"><picture>';
+	if ( ! empty( $fig[1] ) ) {
+		$html .= '<source media="(max-width: 680px)" srcset="' . esc_url( $base . $fig[1] ) . '" width="800" height="1140">';
+	}
+	$html .= '<img src="' . esc_url( $base . $fig[0] ) . '" alt="' . esc_attr( $alt ) . '" width="1600" height="760" loading="lazy" decoding="async"></picture>';
+	if ( '' !== trim( (string) $atts['caption'] ) ) {
+		$html .= '<figcaption>' . esc_html( $atts['caption'] ) . '</figcaption>';
+	}
+	return $html . '</figure>';
+}
+add_shortcode( 'eawing_figure', 'eaw_sc_figure' );
 
 function eaw_sc_calc( $atts ) {
 	$atts = shortcode_atts( array( 'type' => 'lot' ), $atts, 'eawing_calc' );

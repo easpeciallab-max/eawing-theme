@@ -154,6 +154,12 @@ function eaw_pages_defaults( $d ) {
 			'articles_prev_label'       => 'ก่อนหน้า',
 			'articles_next_label'       => 'ถัดไป',
 			'articles_empty_text'       => 'บทความชุดแรกกำลังทยอยเผยแพร่ ระหว่างนี้เริ่มจากคู่มือด้านล่าง ซึ่งพาตั้งแต่เตรียมบัญชีไปจนถึงรัน EA บน VPS',
+			'articles_pillars_title'    => 'เลือกอ่านตามเรื่องที่อยากรู้',
+			'articles_pillars_sub'      => 'บทความทั้งหมดเขียนสำหรับคนใช้ EA บน MetaTrader 5 ตั้งแต่ยังไม่เคยติดตั้ง ไปจนถึงดูแลพอร์ตที่รันอยู่ทุกวัน ถ้าเพิ่งเริ่มให้อ่านหมวดพื้นฐานก่อน ถ้ากำลังติดปัญหาข้ามไปหมวดที่ตรงกับอาการได้เลย',
+			'articles_pillars_order'    => "ea-basics
+trading-plan
+monitoring
+risk-management",
 			'articles_guides_kicker'    => 'Guides',
 			'articles_guides_title'     => 'คู่มือใช้งานทีละขั้น',
 			'articles_guides_sub'       => 'ไม่ต้องอ่านเรียงก็ได้ เลือกคู่มือที่ตรงกับงานตรงหน้า ทุกหน้าอธิบายเป็นภาษาไทยพร้อมจุดที่มักพลาด',
@@ -335,6 +341,9 @@ function eaw_pages_customizer_sections( $sections, $d ) {
 			'articles_prev_label'     => array( 'หน้ารวม · ลิงก์หน้าก่อนหน้า (เมื่อปิด JavaScript)', 'text' ),
 			'articles_next_label'     => array( 'หน้ารวม · ลิงก์หน้าถัดไป (เมื่อปิด JavaScript)', 'text' ),
 			'articles_empty_text'     => array( 'หน้ารวม · ข้อความเมื่อยังไม่มีบทความ', 'textarea' ),
+			'articles_pillars_title'  => array( 'หมวดบทความ · หัวข้อ (เว้นว่าง = ซ่อนทั้งส่วน)', 'text' ),
+			'articles_pillars_sub'    => array( 'หมวดบทความ · คำอธิบาย', 'textarea' ),
+			'articles_pillars_order'  => array( 'หมวดบทความ · ลำดับหมวด (slug หมวด บรรทัดละ 1 · คำอธิบายการ์ดมาจาก "คำอธิบาย" ของหมวดในเมนูเรื่อง → หมวดหมู่)', 'textarea' ),
 			'articles_guides_kicker'  => array( 'รายการคู่มือ · ป้ายเล็ก', 'text' ),
 			'articles_guides_title'   => array( 'รายการคู่มือ · หัวข้อ', 'text' ),
 			'articles_guides_sub'     => array( 'รายการคู่มือ · คำอธิบาย', 'textarea' ),
@@ -1114,6 +1123,31 @@ function eaw_pages_guide_items() {
 			'label' => $label,
 			'url'   => $url,
 			'desc'  => $pair[1],
+		);
+	}
+	return $items;
+}
+
+/**
+ * การ์ดหมวดบทความบนหน้า /articles/ (รูปแบบเดียวกับการ์ดคู่มือ) · หมวดที่ยังไม่มีบทความถูกข้าม
+ * ชื่อการ์ด = ชื่อหมวด · จำนวนบทความ · คำอธิบาย = คำอธิบายของหมวดใน WP (สำรอง: ค่าตั้งต้นใน setup.php)
+ */
+function eaw_pages_pillar_items() {
+	$items    = array();
+	$fallback = function_exists( 'eaw_article_category_descriptions' ) ? eaw_article_category_descriptions() : array();
+	foreach ( eaw_lines( eaw_mod( 'articles_pillars_order' ) ) as $slug ) {
+		$term = get_term_by( 'slug', sanitize_title( $slug ), 'category' );
+		if ( ! $term || is_wp_error( $term ) || ! (int) $term->count ) {
+			continue;
+		}
+		$desc = trim( wp_strip_all_tags( (string) $term->description ) );
+		if ( '' === $desc && isset( $fallback[ $term->slug ] ) ) {
+			$desc = $fallback[ $term->slug ];
+		}
+		$items[] = array(
+			'label' => $term->name . ' · ' . eaw_pages_count_text( 'articles_count_text', (int) $term->count ),
+			'url'   => get_category_link( $term ),
+			'desc'  => $desc,
 		);
 	}
 	return $items;

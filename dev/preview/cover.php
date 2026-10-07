@@ -63,12 +63,21 @@ $icons = array(
 	'risk-reward-ratio'       => 'target',
 	'currency-correlation'    => 'link',
 	'weekend-gap-ea'          => 'moon',
+	'what-is-ea'              => 'robot',
+	'allow-dll-imports'       => 'lock',
+	'algo-trading-button'     => 'play',
+	'ea-not-trading'          => 'warn',
+	'vps-for-ea'              => 'server',
+	'backtest-vs-forward-test' => 'flask',
+	'leverage-margin'         => 'shield',
+	'xauusd-m1-chart'         => 'candles',
 );
 // category (the three EA WING pillars, dev/content-spec.md) => English kicker + tile colour
 $cats = array(
 	'วางแผนการเทรด'   => array( 'Trading Plan', 'gold' ),
 	'ติดตามผล'        => array( 'Monitoring', 'sky' ),
 	'บริหารความเสี่ยง' => array( 'Risk Management', 'blue' ),
+	'พื้นฐาน EA และ MT5' => array( 'EA Basics', 'sky' ),
 );
 $cat     = isset( $art['meta']['category'] ) ? $art['meta']['category'] : '';
 $kicker  = isset( $cats[ $cat ] ) ? $cats[ $cat ][0] : 'Article';

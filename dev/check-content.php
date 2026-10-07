@@ -16,8 +16,8 @@ $articles = array_map(
 );
 $valid    = array_merge( $pages, $articles );
 $problems = 0;
-// article categories = the three EA WING pillars (dev/content-spec.md · cover map in dev/preview/cover.php)
-$cats_ok = array( 'วางแผนการเทรด', 'ติดตามผล', 'บริหารความเสี่ยง' );
+// article categories = the three EA WING pillars + EA basics (dev/content-spec.md · cover map in dev/preview/cover.php)
+$cats_ok = array( 'วางแผนการเทรด', 'ติดตามผล', 'บริหารความเสี่ยง', 'พื้นฐาน EA และ MT5' );
 
 foreach ( array_merge( glob( $root . 'pages/*.html' ), glob( $root . 'articles/*.html' ) ) as $file ) {
 	$rel   = basename( dirname( $file ) ) . '/' . basename( $file, '.html' );
