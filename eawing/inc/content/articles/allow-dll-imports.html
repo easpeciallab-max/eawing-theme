@@ -20,7 +20,7 @@
 <p>MT5 แยกการอนุญาตเป็นสองระดับ คือระดับโปรแกรมที่คุม EA ทุกตัว และระดับ EA แต่ละตัวบนกราฟ ต้องเปิดทั้งสองจุดให้ตรงกัน</p>
 <ol class="guide-steps">
 <li><h3>จุดที่ 1: Tools → Options แท็บ Expert Advisors</h3><p>กด Ctrl+O หรือเปิดเมนู Tools แล้วเลือก Options คลิกแท็บ Expert Advisors ติ๊ก Allow algorithmic trading และ Allow DLL imports แล้วกด OK ข้างช่อง DLL อาจมีข้อความเตือนว่าอาจเป็นอันตรายและควรเปิดเฉพาะโปรแกรมที่เชื่อถือได้ ซึ่งเป็นคำเตือนมาตรฐานของ MT5</p></li>
-<li><h3>จุดที่ 2: หน้าต่างคุณสมบัติของ EA</h3><p>ลาก EA จาก Navigator (Ctrl+N) ลงกราฟ หน้าต่างคุณสมบัติจะเด้งขึ้นมา ในแท็บ Common ให้ติ๊ก Allow Algo Trading และ Allow DLL imports แล้วกด OK ถ้าไม่เห็นช่อง DLL ในแท็บ Common ให้ดูแท็บ Dependencies ซึ่ง MT5 บางรุ่นใช้แสดงรายชื่อไลบรารีที่ EA เรียกใช้พร้อมช่องอนุญาต</p></li>
+<li><h3>จุดที่ 2: หน้าต่างคุณสมบัติของ EA</h3><p>ลาก EA จาก Navigator (Ctrl+N) ลงกราฟ หน้าต่างคุณสมบัติจะเด้งขึ้นมา ในแท็บ Common ให้ติ๊ก Allow Algo Trading และ Allow DLL imports แล้วกด OK</p></li>
 <li><h3>ตรวจว่าเปิดครบ</h3><p>ปุ่ม Algo Trading บนแถบเครื่องมือด้านบนต้องเป็นสีเขียว และไอคอนเล็กข้างชื่อ EA ที่มุมขวาบนของกราฟต้องเป็นสีฟ้า ถ้าเป็นสีเทาแปลว่ายังมีสวิตช์ใดปิดอยู่</p></li>
 </ol>
 <div class="callout callout--tip"><p><strong>EA ที่ติดกราฟอยู่ก่อนแล้ว:</strong> ถ้าคุณเพิ่งไปติ๊กใน Options ทีหลัง ให้กด F7 บนกราฟนั้นเพื่อเปิดคุณสมบัติของ EA แล้วตรวจแท็บ Common อีกรอบ หรือถอด EA ออกแล้วลากลงใหม่ จะชัวร์กว่าการรอให้ระบบรับค่าเอง</p></div>
@@ -32,7 +32,7 @@
 <thead><tr><th>สิ่งที่เห็น</th><th>ดูต่อที่ไหน</th><th>แก้อย่างไร</th></tr></thead>
 <tbody>
 <tr><td>ลาก EA ลงกราฟแล้วหลุดออกเองทันที</td><td>แท็บ Experts และ Journal ใน Toolbox (Ctrl+T)</td><td>ติ๊กทั้งสองจุด แล้วลากลงกราฟใหม่</td></tr>
-<tr><td>มีชื่อ EA บนกราฟ แต่ไม่มีแผงหรือข้อความใดขึ้นมา</td><td>บรรทัดล่าสุดในแท็บ Experts</td><td>กด F7 ตรวจแท็บ Common หรือ Dependencies</td></tr>
+<tr><td>มีชื่อ EA บนกราฟ แต่ไม่มีแผงหรือข้อความใดขึ้นมา</td><td>บรรทัดล่าสุดในแท็บ Experts</td><td>กด F7 ตรวจแท็บ Common</td></tr>
 <tr><td>ข้อความทำนองว่าไม่อนุญาตให้เรียกใช้ DLL หรือโหลดไลบรารีไม่ได้</td><td>แท็บ Experts หรือ Journal</td><td>ตรวจช่อง DLL ใน Options และไฟล์ .dll (ถ้า EA ตัวนั้นมี) ว่าอยู่ใน MQL5 → Libraries</td></tr>
 <tr><td>Strategy Tester เริ่มแล้วจบทันทีหรือไม่ยอมเริ่ม</td><td>แท็บ Journal ของหน้าต่าง Strategy Tester</td><td>ติ๊กใน Tools → Options แล้วเริ่มทดสอบใหม่</td></tr>
 </tbody></table></div>
@@ -72,7 +72,7 @@
 <ul class="checklist">
 <li>เปิด MT5 ชุดที่ใช้จริง ไม่ใช่ชุดอื่นบนเครื่องเดียวกัน</li>
 <li>Tools → Options แท็บ Expert Advisors ติ๊กทั้ง Allow algorithmic trading และช่อง DLL</li>
-<li>กด F7 บนกราฟ แท็บ Common (หรือ Dependencies) ติ๊ก Allow Algo Trading และ Allow DLL imports</li>
+<li>กด F7 บนกราฟ แท็บ Common ติ๊ก Allow Algo Trading และ Allow DLL imports</li>
 <li>ปุ่ม Algo Trading บนแถบเครื่องมือเป็นสีเขียว และไอคอนข้างชื่อ EA บนกราฟเป็นสีฟ้า</li>
 <li>ถ้า EA มีไฟล์ .dll มาด้วย ไฟล์อยู่ใน MQL5 → Libraries ของชุดเดียวกัน</li>
 <li>อ่านบรรทัดล่าสุดในแท็บ Experts และ Journal แล้วจดเวลาที่เกิดปัญหา</li>
