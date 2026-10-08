@@ -3,7 +3,7 @@
  * พื้นกรมท่าเข้ม + แสงสี + ลวดลาย · การ์ดกระจกเบลอใบเดียว: หัวการ์ด → ติดต่อทีม → ขั้นตอน (เส้นเวลา) → ข้อมูลก่อนตัดสินใจ → โซเชียล → คำเตือน → เอกสาร
  * ไม่มีเงา · แยกกลุ่มด้วยเส้นบาง
  * สีปุ่มบอกหน้าที่ (บนกระจกโทนกรมท่า):
- *   ทอง ตัวกรมท่า = ลงมือทำ (สมัครบัญชี เข้า Portal ดาวน์โหลด)
+ *   ทองสีเดียว (แฟลท) ตัวกรมท่า = ลงมือทำ (สมัครบัญชี เข้า Portal ดาวน์โหลด)
  *   เส้นขาว พื้นใส = อ่านคู่มือ / ไปหน้าในเว็บ
  *   เขียว LINE = คุยกับทีมงาน · OpenChat ขาวขอบเขียว
  * ทุกคลาสขึ้นต้นด้วย .link-hub / .lh-
@@ -321,7 +321,7 @@ a.lh-btn-signup:visited,
 a.lh-btn-accent:visited,
 a.lh-btn-download:visited {
 	border-color: var(--go-gold);
-	background: linear-gradient(180deg, var(--go-gold-1) 0%, var(--go-gold) 55%, var(--go-gold-3) 100%);
+	background: var(--go-gold);
 	color: var(--go-navy);
 	font-weight: 600;
 }
@@ -329,10 +329,9 @@ a.lh-btn-download:visited {
 a.lh-btn-signup:hover,
 a.lh-btn-accent:hover,
 a.lh-btn-download:hover {
-	border-color: var(--go-gold-1);
-	background: linear-gradient(180deg, var(--go-gold-1) 0%, var(--go-gold) 55%, var(--go-gold-3) 100%);
+	border-color: #E3B03C;
+	background: #E3B03C;
 	color: var(--go-navy);
-	filter: brightness(1.06);
 }
 
 .lh-btn-signup .lh-ic,

@@ -4,7 +4,7 @@ Theme URI: https://eawing.co/
 Author: EA WING Team
 Author URI: https://eawing.co/
 Description: ธีมเว็บไซต์ EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 · ดีไซน์ Glass Sky (ฟ้า กระจกฝ้า น้ำเงินกับทอง) · มีหน้าคู่มือ ทดสอบ แพ็กเกจ เอกสาร บทความ เครื่องคำนวณ Lot/Drawdown และหน้า EA WING Setup สำหรับตั้งค่าเว็บ · แก้ทุกข้อความได้ใน Customizer
-Version: 1.0.33
+Version: 1.0.34
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -8790,4 +8790,44 @@ svg[data-icon="warn"] {
 .tile:has(> svg[data-icon="warn"]) {
 	border-color: var(--warn-line) !important;
 	background: #FEF3C7 !important;
+}
+
+/* ==========================================================
+   49) ทองแบบแฟลท (เจ้าของขอ 8 ต.ค. 2026: ปุ่มทองไล่สีดูโบราณ)
+   ทองสีเดียว #EFC25A ตัวกรมท่า · ชี้แล้วเข้มขึ้น · ใช้กับปุ่มทอง ป้าย และกระเบื้องไอคอนทองทั้งเว็บ
+   (ตัวแปร --grad-* ยังชื่อเดิม แต่เป็นสีเดียว เพื่อให้ทุกจุดที่อ้างถึงเปลี่ยนตาม)
+   ========================================================== */
+:root {
+	--gold-flat: #EFC25A;
+	--gold-flat-hover: #E3B03C;
+	--grad-fire: linear-gradient(var(--gold-flat), var(--gold-flat));
+	--grad-gold: linear-gradient(var(--gold-flat), var(--gold-flat));
+}
+
+.btn-fire,
+.btn-fire:visited {
+	border-color: transparent;
+	background: var(--gold-flat);
+	color: var(--navy);
+}
+
+.btn-fire:hover,
+.btn-fire:focus-visible {
+	background: var(--gold-flat-hover);
+	color: var(--navy);
+	filter: none;
+}
+
+.tile.tile--gold {
+	background: var(--gold-flat) !important;
+}
+
+.plan-card.is-featured {
+	border: 2px solid var(--gold-flat) !important;
+	background: #FFFFFF !important;
+}
+
+.calc-bar i,
+.reading-progress span {
+	background: var(--gold-flat) !important;
 }
