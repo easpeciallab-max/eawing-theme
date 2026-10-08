@@ -47,7 +47,7 @@ while ( have_posts() ) :
 	if ( '' !== $eaw_meta['published'] ) {
 		$eaw_meta_html .= '<span class="article-meta-item">' . eaw_icon( 'clock', 'icon icon-sm' ) . '<span>' . esc_html( eaw_mod( 'article_published_label' ) ) . '</span> <time datetime="' . esc_attr( $eaw_meta['published_iso'] ) . '">' . esc_html( $eaw_meta['published'] ) . '</time></span>';
 	}
-	if ( '' !== $eaw_meta['modified'] ) {
+	if ( '' !== $eaw_meta['modified'] && eaw_mod( 'article_show_updated' ) ) {
 		$eaw_meta_html .= '<span class="article-meta-item"><span>' . esc_html( eaw_mod( 'article_updated_label' ) ) . '</span> <time datetime="' . esc_attr( $eaw_meta['modified_iso'] ) . '">' . esc_html( $eaw_meta['modified'] ) . '</time></span>';
 	}
 	$eaw_meta_html .= '<span class="article-meta-item">' . eaw_icon( 'book', 'icon icon-sm' ) . '<span>' . esc_html( eaw_pages_count_text( 'article_reading_text', $eaw_meta['minutes'] ) ) . '</span></span>';

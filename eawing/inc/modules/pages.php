@@ -171,6 +171,7 @@ trading-plan",
 
 			/* ---------- บทความเดี่ยว (single.php) ---------- */
 			'article_published_label' => 'เผยแพร่',
+			'article_show_updated'    => false,
 			'article_updated_label'   => 'อัปเดตล่าสุด',
 			'article_reading_text'    => 'ใช้เวลาอ่านราว {n} นาที',
 			'article_toc_label'       => 'ในบทความนี้',
@@ -353,6 +354,7 @@ function eaw_pages_customizer_sections( $sections, $d ) {
 			'articles_guides_sub'     => array( 'รายการคู่มือ · คำอธิบาย', 'textarea' ),
 			'articles_guides_items'   => array( 'รายการคู่มือ (บรรทัดละ 1 เพจ รูปแบบ: slug | คำอธิบายหนึ่งบรรทัด · แสดงเฉพาะเพจที่เผยแพร่แล้ว)', 'textarea' ),
 			'article_published_label' => array( 'บทความ · ข้อความหน้าวันที่เผยแพร่', 'text' ),
+			'article_show_updated'    => array( 'บทความ · แสดงวันที่อัปเดตล่าสุดใต้หัวข้อ', 'checkbox', 'ปิดไว้ (8 ต.ค. 2026) · วันที่อัปเดตยังอยู่ใน schema ให้ Google อ่านเหมือนเดิม' ),
 			'article_updated_label'   => array( 'บทความ · ข้อความหน้าวันที่อัปเดต', 'text' ),
 			'article_reading_text'    => array( 'บทความ · เวลาอ่านโดยประมาณ ({n} = นาที)', 'text' ),
 			'article_toc_label'       => array( 'บทความ · หัวกล่องสารบัญ', 'text' ),
