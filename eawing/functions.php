@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.31' );
+define( 'EAW_VERSION', '1.0.32' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -881,7 +881,7 @@ function eaw_icon( $name, $class = 'icon' ) {
 		return '';
 	}
 
-	return '<svg class="' . esc_attr( $class ) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $svg[ $name ] . '</svg>';
+	return '<svg class="' . esc_attr( $class ) . '" data-icon="' . esc_attr( $name ) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $svg[ $name ] . '</svg>';
 }
 
 /* --------------------------------------------------------------

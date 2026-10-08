@@ -4,7 +4,7 @@ Theme URI: https://eawing.co/
 Author: EA WING Team
 Author URI: https://eawing.co/
 Description: ธีมเว็บไซต์ EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 · ดีไซน์ Glass Sky (ฟ้า กระจกฝ้า น้ำเงินกับทอง) · มีหน้าคู่มือ ทดสอบ แพ็กเกจ เอกสาร บทความ เครื่องคำนวณ Lot/Drawdown และหน้า EA WING Setup สำหรับตั้งค่าเว็บ · แก้ทุกข้อความได้ใน Customizer
-Version: 1.0.31
+Version: 1.0.32
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -8661,7 +8661,133 @@ body #wpadminbar * {
 	border: 1px solid rgba(10, 46, 102, 0.3) !important;
 }
 
+/* จอแคบ: ส่วนที่ตั้งใจถอดกรอบตัวนอกออก (กรอบอยู่ที่การ์ดด้านใน) · กันกฎด้านบนไปใส่กรอบเหลี่ยมซ้อน */
+@media (max-width: 760px) {
+	.gd-step {
+		border: 0 !important;
+	}
+}
+
+@media (max-width: 640px) {
+	.table-wrap--stack,
+	.cmp-wrap {
+		border: 0 !important;
+	}
+}
+
 /* ลูกแก้วตกแต่ง (.orb) ต้องอาศัยเงาให้ดูเป็นทรงกลม · เว็บไม่มีเงาแล้ว จึงซ่อนทั้งหมดให้หน้าสะอาด */
 .orb {
 	display: none !important;
+}
+
+/* ==========================================================
+   48) สีตามความหมาย (เจ้าของขอ 8 ต.ค. 2026): ถูก = เขียว · ผิด/ไม่มี = แดง · คำเตือน = เหลืองอำพัน · เคล็ดลับ = เขียว
+   ใช้แทนสีทอง/กรมท่าของธีมในเครื่องหมายทุกจุด · ข้อมูล/หมายเหตุทั่วไปยังเป็นฟ้า
+   ========================================================== */
+:root {
+	--ok: #16A34A;
+	--ok-ink: #15803D;
+	--ok-bg: #DCFCE7;
+	--ok-line: #86EFAC;
+	--bad: #DC2626;
+	--bad-bg: #FEE2E2;
+	--bad-line: #FCA5A5;
+	--warn: #D97706;
+	--warn-ink: #78350F;
+	--warn-bg: #FFFBEB;
+	--warn-line: #FCD34D;
+}
+
+/* เครื่องหมายถูกแบบวงกลม: ตารางเทียบแพ็กเกจ · รายการในการ์ดแพ็กเกจ · เช็กลิสต์ในคู่มือ */
+.cmp-mark--yes,
+.plan-check,
+.gd-mark {
+	border-color: var(--ok-line) !important;
+	background: var(--ok-bg) !important;
+	color: var(--ok-ink) !important;
+	box-shadow: inset 0 0 0 1px var(--ok-line) !important;
+}
+
+/* เครื่องหมายผิด/ไม่มี */
+.cmp-mark--no {
+	background: var(--bad-bg) !important;
+	color: var(--bad) !important;
+	box-shadow: inset 0 0 0 1px var(--bad-line) !important;
+}
+
+/* รายการ ✓ / ✗ ในเนื้อหาเพจและบทความ */
+.checklist li::before {
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315803D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.2 4.2L19 7'/%3E%3C/svg%3E") center / 13px no-repeat,
+		var(--ok-bg) !important;
+	box-shadow: inset 0 0 0 1px var(--ok-line) !important;
+}
+
+.crosslist li::before {
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DC2626' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7 7 17'/%3E%3C/svg%3E") center / 11px no-repeat,
+		var(--bad-bg) !important;
+	box-shadow: inset 0 0 0 1px var(--bad-line) !important;
+}
+
+/* ไอคอน ✓ หน้ารายการ (แพ็กเกจหน้าแรก · โหมด Lite/Full · สิ่งที่ต้องเตรียมในแผงติดต่อ · ท้ายเว็บ) */
+.hm-checks .icon,
+.hp-checks .icon,
+.ctc-ask-list .icon,
+.foot-points .icon {
+	color: var(--ok) !important;
+}
+
+/* เช็กลิสต์พร้อมเริ่มหน้าแรก: ติ๊กแล้วเป็นเขียว */
+.hp-ready-box:checked + .hp-ready-tick {
+	border-color: var(--ok) !important;
+	background: var(--ok) !important;
+	color: #FFFFFF !important;
+}
+
+/* กล่องเคล็ดลับ (✓) = เขียว */
+.callout--tip {
+	border-color: var(--ok-line) !important;
+	background: #F0FDF4 !important;
+}
+
+.callout--tip::before {
+	border-color: #FFFFFF;
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.2 4.2L19 7'/%3E%3C/svg%3E") center / 15px no-repeat,
+		var(--ok) !important;
+}
+
+/* กล่องคำเตือน (!) = เหลืองอำพัน */
+.callout--warn {
+	border-color: var(--warn-line) !important;
+	background: var(--warn-bg) !important;
+	color: var(--warn-ink) !important;
+}
+
+.callout--warn::before {
+	border-color: #FFFFFF;
+	background: var(--warn) !important;
+	color: #FFFFFF !important;
+}
+
+.hm-note--warn {
+	border-color: var(--warn-line) !important;
+	background: var(--warn-bg) !important;
+	color: var(--warn-ink) !important;
+}
+
+/* ไอคอนคำเตือน (!) ทุกจุด = อำพัน · บนพื้นกรมท่า (/go) ใช้อำพันสว่าง */
+svg[data-icon="warn"] {
+	color: var(--warn) !important;
+}
+
+.lh-note svg[data-icon="warn"] {
+	color: #FBBF24 !important;
+}
+
+/* กระเบื้องไอคอนที่เป็นคำเตือน (กล่องความเสี่ยงท้ายเว็บ หน้าความเสี่ยง ท้ายบทความ) */
+.tile:has(> svg[data-icon="warn"]) {
+	border-color: var(--warn-line) !important;
+	background: #FEF3C7 !important;
 }
