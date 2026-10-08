@@ -102,6 +102,12 @@ while ( have_posts() ) :
 							);
 							?>
 
+							<?php
+							if ( function_exists( 'eaw_cluster_box' ) ) {
+								eaw_cluster_box();
+							}
+							?>
+
 							<div class="article-share">
 								<span class="article-share-label"><?php echo esc_html( eaw_mod( 'article_share_label' ) ); ?></span>
 								<div class="article-share-btns">

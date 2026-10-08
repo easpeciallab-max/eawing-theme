@@ -15,6 +15,7 @@
 
 ## เอกสาร
 - `docs/plan.md` แผนทั้งเว็บ: เพจ, SEO รายหน้า, กฎลิงก์ภายใน/ภายนอก, บทความรอบแรก, เก็บกวาด eawing.co, ลำดับงาน
+- `docs/content-plan.md` แผนบทความ 8 กลุ่ม (เสาหลัก + บทความเสริม) 123 บทใหม่ ลงวันละบท 08:00 น. 15 ต.ค. 2026 ถึง 14 ก.พ. 2027 · กฎลิงก์ใน/นอก ตารางสะพานข้ามกลุ่ม ปฏิทินทั้งหมด
 - `docs/design.md` ระบบดีไซน์ Glass Sky · ต้นแบบ `dev/mockup/` (เปิดที่ `/mockup/` ใน preview)
 - `dev/content-spec.md` กติกาเขียนเนื้อหาเพจ/บทความ · `dev/image-shot-list.md` ภาพหน้าจอคู่มือที่เจ้าของต้องถ่าย
 
@@ -49,9 +50,10 @@
 
 ## โครงโค้ด (สรุป)
 - `functions.php` bootstrap + `eaw_defaults()` + helper (`eaw_mod`, `eaw_lines`, `eaw_logo_url`, `eaw_wordmark_url` …) แล้ว require `inc/*.php` และ glob `inc/modules/*.php`
-- โมดูล: `chrome` (header/footer/dock/CTA) · `home` · `homeplus` (ส่วนเสริมหน้าแรก: story, แท็บ Lite/Full, การ์ดล็อกอินจำลอง, ตารางเปรียบเทียบ, เช็กลิสต์พร้อมเริ่ม, บทความล่าสุด, FAQ ข้อ 11 ถึง 14) · `pages` · `guides` · `go` · `consent` (PDPA) · `infra` (REST, hardening, ฟอนต์)
+- โมดูล: `chrome` (header/footer/dock/CTA) · `home` · `homeplus` (ส่วนเสริมหน้าแรก: story, แท็บ Lite/Full, การ์ดล็อกอินจำลอง, ตารางเปรียบเทียบ, เช็กลิสต์พร้อมเริ่ม, บทความล่าสุด, FAQ ข้อ 11 ถึง 14) · `pages` · `guides` · `go` · `consent` (PDPA) · `infra` (REST, hardening, ฟอนต์, กันบทความตั้งเวลาพลาด) · `clusters` (เสาหลักของแต่ละหมวด `eaw_cluster_pillars()`, กล่อง "บทความในชุดนี้" ท้ายบทความ, เสาหลักขึ้นก่อนในหน้าหมวด)
 - `inc/setup.php` manifest เพจ `eaw_site_pages()` + บทความ `eaw_seed_article_covers()` + หน้า admin **ลักษณะ → EA WING Setup**
-- หมวดบทความ 4 หมวด: วางแผนการเทรด · ติดตามผล · บริหารความเสี่ยง · พื้นฐาน EA และ MT5 (`ea-basics` เพิ่ม 7 ต.ค. 2026) · หน้า /articles/ มีการ์ดหมวด (`articles_pillars_*`) ก่อนรายการคู่มือ
+- หมวดบทความ 8 หมวด = 8 กลุ่ม (8 ต.ค. 2026 · `eaw_article_categories()` ใน setup.php ที่เดียว): EA และบอทเทรด (`ea-basics`) · ใช้งาน MT5 (`mt5`) · VPS สำหรับ EA (`vps`) · เทรดทองคำ XAUUSD (`gold-trading`) · บริหารความเสี่ยง · วางแผนการเทรด · ติดตามผล · บัญชีและโบรกเกอร์ (`broker-account`) · หน้า /articles/ มีการ์ดหมวด (`articles_pillars_*`) ก่อนรายการคู่มือ
+- บทความ: ทุกไฟล์ใน `inc/content/articles/` ถูกนำเข้าอัตโนมัติ · meta `date` = ตั้งเวลาลง (WordPress scheduled) · `rev` ≥ 2 = ปุ่ม Setup "อัปเดตบทความที่มีอยู่" แทนเนื้อหา (ไม่มี rev = ไม่ทับของที่แก้ใน wp-admin) · ปุ่มเดียวกันย้ายหมวด ตั้งชื่อ/คำอธิบายหมวด และเลื่อนวันลงของบทความที่ยังไม่ถึงวัน
 - `inc/seo.php` schema/OG/robots/redirect map (`eaw_redirect_map`) · `inc/shortcodes.php` `[eawing_line|brand|broker|calc]`
 - CSS: `style.css` (ฐานเดิม + section 43 Glass Sky foundation ท้ายไฟล์) แล้วตามด้วย `assets/css/<module>.css` ที่ enqueue อัตโนมัติ
 

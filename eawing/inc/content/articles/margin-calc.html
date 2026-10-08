@@ -1,0 +1,131 @@
+<!--meta {"title":"คำนวณ Margin ยังไง: สูตรแต่ละแบบใน MT5 พร้อมตัวอย่าง","seo_title":"คำนวณ Margin ยังไง สูตรและตัวอย่างใน MT5 · EA WING","description":"คำนวณ Margin ยังไงให้ตรงกับ MT5 สูตรคำนวณ Margin Forex และ CFD การแปลงสกุลเงิน ตัวคูณ Margin rate และวิธีหา Lot สูงสุดจาก Free Margin พร้อมตัวอย่าง","keyword":"คำนวณ margin","excerpt":"สูตรบรรทัดเดียวใช้ได้ไม่ทุกสัญลักษณ์ ดูวิธีคำนวณ Margin แต่ละแบบที่ MT5 ใช้ การแปลงสกุลเงินของคู่เงินต่าง ๆ ทองคำ ตัวคูณที่โบรกเกอร์ตั้ง และขั้นตอนอ่านค่าจากหน้า Specification","category":"บริหารความเสี่ยง","kicker":"Risk Management","date":"2027-01-17 08:00"} -->
+<p class="lead">คำนวณ Margin ให้ตรงกับตัวเลขที่ MT5 กันไว้จริง ต้องรู้มากกว่าสูตร Lot คูณ Contract size หารด้วย Leverage เพราะแต่ละสัญลักษณ์ใช้วิธีคิดต่างกัน ต้องแปลงสกุลเงิน และโบรกเกอร์ยังตั้งตัวคูณเพิ่มได้ บทความนี้ไล่สูตรทุกแบบที่เจอบ่อย พร้อมตัวอย่างคู่เงินสี่คู่และทองคำที่คิดตัวเลขแล้ว ซึ่งเป็นพื้นฐานสำคัญของ<a href="{{home}}/money-management/">การบริหารเงินและความเสี่ยงในการเทรด</a></p>
+<div class="callout callout--info"><p><strong>สรุปสั้น:</strong> คู่เงินส่วนใหญ่ใช้สูตร Lot × Contract size ÷ Leverage ได้ผลเป็นสกุลหลักของคู่ แล้วแปลงเป็นสกุลเงินบัญชี · ทองและ CFD ส่วนใหญ่มีราคาอยู่ในสูตรด้วย · ตัวเลขสุดท้ายอาจถูกคูณด้วย Margin rate ที่โบรกเกอร์ตั้ง · ค่าทั้งหมดดูได้จากหน้า Specification ใน MT5</p></div>
+
+<h2>ข้อมูล 6 อย่างที่ต้องมีก่อนเริ่มคิด</h2>
+<p>ถ้ายังไม่ชัดว่า Margin กับ Leverage สัมพันธ์กันอย่างไร อ่านพื้นฐานใน<a href="{{home}}/leverage-margin/">Leverage คืออะไร และ Margin ทำงานอย่างไร</a>ก่อน บทความนี้ต่อจากตรงนั้น โดยเน้นวิธีคิดให้ได้ตัวเลขที่ตรงกับบัญชีจริง</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>ข้อมูล</th><th>ดูที่ไหน</th><th>ทำไมสำคัญ</th></tr></thead>
+<tbody>
+<tr><td>ขนาด Lot</td><td>ออเดอร์ที่จะเปิด</td><td>Margin โตตาม Lot แบบเส้นตรง</td></tr>
+<tr><td>Contract size</td><td>Specification</td><td>ปริมาณจริงใน 1 Lot เช่น 100,000 หน่วยของคู่เงิน หรือ 100 ออนซ์ของทองในหลายบัญชี</td></tr>
+<tr><td>วิธีคำนวณ (Calculation)</td><td>Specification</td><td>บอกว่ามีราคาอยู่ในสูตรหรือไม่ และใช้ Leverage หรือไม่</td></tr>
+<tr><td>Margin currency</td><td>Specification</td><td>ผลลัพธ์ออกมาเป็นสกุลนี้ ต้องแปลงเป็นสกุลเงินบัญชีก่อนใช้</td></tr>
+<tr><td>Leverage ของบัญชี</td><td>พื้นที่สมาชิกของโบรกเกอร์</td><td>ตัวหารในสูตรแบบที่ใช้ Leverage</td></tr>
+<tr><td>Margin rate</td><td>Specification</td><td>ตัวคูณเพิ่มเติม ถ้าไม่ใช่ 1 ตัวเลขจะต่างจากสูตรพื้นฐาน</td></tr>
+</tbody>
+</table></div>
+
+<h2>สูตรคำนวณ Margin Forex และ CFD ที่ MT5 ใช้</h2>
+<p>MT5 มีวิธีคิด Margin หลายแบบ แต่ละสัญลักษณ์ถูกตั้งไว้แบบเดียว ชื่อที่เห็นในช่อง Calculation ของหน้า Specification อาจต่างกันเล็กน้อยตามเวอร์ชัน แบบที่คนเทรด Forex และทองเจอบ่อยมีดังนี้</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>แบบ</th><th>สูตร</th><th>ผลลัพธ์เป็นสกุล</th></tr></thead>
+<tbody>
+<tr><td>Forex</td><td>Lot × Contract size ÷ Leverage</td><td>สกุลหลักของคู่ (ตัวหน้า)</td></tr>
+<tr><td>Forex No Leverage</td><td>Lot × Contract size</td><td>สกุลหลักของคู่</td></tr>
+<tr><td>CFD</td><td>Lot × Contract size × ราคา</td><td>Margin currency ของสัญลักษณ์</td></tr>
+<tr><td>CFD Leverage</td><td>Lot × Contract size × ราคา ÷ Leverage</td><td>Margin currency ของสัญลักษณ์</td></tr>
+<tr><td>Futures</td><td>Lot × Initial margin</td><td>ตามที่ตลาดกำหนด</td></tr>
+</tbody>
+</table></div>
+<p>ราคาในสูตรคือ Ask สำหรับฝั่ง Buy และ Bid สำหรับฝั่ง Sell ส่วนสูตรของแบบอื่น เช่น ดัชนีหรือหุ้นในตลาดจริง ดูได้จาก<a href="https://www.metatrader5.com/en/terminal/help/trading_advanced/margin_forex" target="_blank" rel="noopener">คู่มือการคำนวณ Margin ของ MetaTrader 5</a> (ภาษาอังกฤษ) ซึ่งเป็นแหล่งที่สูตรในบทความนี้อ้างอิง</p>
+
+<h2>ตัวอย่างคู่เงิน 4 คู่: แปลงสกุลเงินอย่างไร</h2>
+<p>สมมติบัญชีสกุล USD, Leverage 1:500, เปิด 0.10 Lot ทุกคู่ (Contract size 100,000) และราคาสมมติ EURUSD 1.1000, GBPUSD 1.3000, USDJPY 150.00, EURGBP 0.8500 ขั้นแรกของทุกคู่เหมือนกัน คือ 0.10 × 100,000 ÷ 500 = 20 หน่วยของสกุลหลัก</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>คู่เงิน</th><th>Margin ก่อนแปลง</th><th>แปลงเป็น USD อย่างไร</th><th>Margin ที่ใช้</th></tr></thead>
+<tbody>
+<tr><td>EURUSD</td><td>20 EUR</td><td>20 × 1.1000</td><td>22.00 USD</td></tr>
+<tr><td>GBPUSD</td><td>20 GBP</td><td>20 × 1.3000</td><td>26.00 USD</td></tr>
+<tr><td>USDJPY</td><td>20 USD</td><td>ไม่ต้องแปลง</td><td>20.00 USD</td></tr>
+<tr><td>EURGBP</td><td>20 EUR</td><td>แปลง EUR เป็น USD ด้วย EURUSD 1.1000</td><td>22.00 USD</td></tr>
+</tbody>
+</table></div>
+<p>สองข้อที่หลายคนพลาด ข้อแรก ราคาของ USDJPY ไม่มีผลกับ Margin ในบัญชี USD เลย เพราะสกุลหลักคือ USD อยู่แล้ว ข้อสอง EURGBP ไม่ได้ใช้ราคา EURGBP ในการแปลง แต่ใช้อัตราของสกุลหลัก (EUR) เทียบกับสกุลเงินบัญชี (USD) ตามหลักที่ MT5 ใช้แปลง Margin currency เป็นสกุลเงินฝาก</p>
+
+<h2>คำนวณ Margin ทองคำ XAUUSD</h2>
+<p>ทองในแต่ละโบรกเกอร์อาจตั้งเป็นแบบ Forex (สกุลหลักคือ XAU) หรือแบบ CFD Leverage ข่าวดีคือในบัญชี USD สองแบบนี้ให้ผลเท่ากัน เพราะการแปลง XAU เป็น USD ก็คือการคูณด้วยราคาทองนั่นเอง</p>
+<p><strong>Margin ทอง = Lot × Contract size × ราคาทอง ÷ Leverage</strong></p>
+<p>สมมติราคาทอง 3,500 USD ต่อออนซ์ (ตัวเลขสมมติ ราคาจริงต่างจากนี้ได้มาก) Contract size 100 ออนซ์ เปิด 0.10 Lot มูลค่าสถานะคือ 0.10 × 100 × 3,500 = 35,000 USD</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Leverage ที่ใช้กับทอง</th><th>Margin ของ 0.10 Lot</th><th>Margin ของ 1.00 Lot</th></tr></thead>
+<tbody>
+<tr><td>1:100</td><td>350 USD</td><td>3,500 USD</td></tr>
+<tr><td>1:200</td><td>175 USD</td><td>1,750 USD</td></tr>
+<tr><td>1:500</td><td>70 USD</td><td>700 USD</td></tr>
+<tr><td>1:1000</td><td>35 USD</td><td>350 USD</td></tr>
+</tbody>
+</table></div>
+<p>เพราะราคาอยู่ในสูตร เมื่อทองแพงขึ้น ออเดอร์ขนาดเดิมจะใช้ Margin มากขึ้นตาม และบางโบรกเกอร์ตั้ง Leverage ของโลหะต่ำกว่า Leverage ของบัญชี ให้ตรวจจากหน้า Specification ของบัญชีตัวเองเสมอ ส่วนเรื่องว่าทอง 1 Lot เท่ากับกี่ออนซ์ และราคาขยับ 1 จุดเป็นเงินเท่าไร อ่านต่อใน<a href="{{home}}/gold-lot-size/">ทองคำ 1 Lot เท่ากับเท่าไหร่</a></p>
+
+<h2>Margin rate และ Hedged margin: ทำไมตัวเลขไม่ตรงสูตร</h2>
+<h3>Margin rate</h3>
+<p>หน้า Specification มีส่วน Margin rates ที่โบรกเกอร์ตั้งตัวคูณแยกตามประเภทออเดอร์ได้ ตัวคูณนี้ถูกใช้หลังแปลงเป็นสกุลเงินบัญชีแล้ว ถ้าค่าเป็น 1 ตัวเลขจะตรงกับสูตรพื้นฐาน ถ้าเป็น 2 Margin จะเป็นสองเท่า ตัวอย่างทอง 0.10 Lot ที่ 1:500 ข้างบนจะกลายเป็น 70 × 2 = 140 USD (ตัวคูณ 2 เป็นค่าสมมติ)</p>
+<h3>Hedged margin</h3>
+<p>บนบัญชีระบบ Hedging ถ้าถือ Buy และ Sell สัญลักษณ์เดียวกันพร้อมกัน ส่วนที่หักล้างกันอาจคิด Margin ต่ำลง เป็นศูนย์ หรือคิดตามขาที่ใหญ่กว่า แล้วแต่ค่าที่โบรกเกอร์ตั้งในช่อง Hedged margin ความเสี่ยงของการถือสองฝั่งแบบนี้อธิบายไว้ในเรื่อง <a href="{{home}}/hedging/">Hedging คืออะไร</a></p>
+
+<h2>หา Lot สูงสุดจาก Free Margin และเหตุที่ไม่ควรเปิดเต็ม</h2>
+<p>สูตรกลับด้านใช้หาว่าเงินที่มีเปิดได้ใหญ่สุดเท่าไร</p>
+<p><strong>Lot สูงสุด = Free Margin ÷ Margin ที่ใช้ต่อ 1 Lot</strong></p>
+<p>สมมติ Equity 500 USD ยังไม่มีออเดอร์ ราคาทอง 3,500 Leverage 1:500 Margin ต่อ 1 Lot คือ 700 USD จึงเปิดได้สูงสุดราว 500 ÷ 700 = 0.71 Lot แต่ตัวเลขนี้คือเพดานของระบบ ไม่ใช่ขนาดที่ควรใช้ เทียบสองกรณีภายใต้สมมติฐาน Stop Out 50% และไม่นับ Spread</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>ขนาด</th><th>Margin ที่ใช้</th><th>Margin Level ตอนเปิด</th><th>เงินเปลี่ยนต่อราคาขยับ 1 USD</th><th>ราคาสวนเท่าไรถึง Stop Out</th></tr></thead>
+<tbody>
+<tr><td>0.71 Lot (เปิดเกือบเต็ม)</td><td>497 USD</td><td>ราว 100.6%</td><td>71 USD</td><td>ราว 3.5 USD</td></tr>
+<tr><td>0.05 Lot</td><td>35 USD</td><td>ราว 1,428.6%</td><td>5 USD</td><td>ราว 96.5 USD</td></tr>
+</tbody>
+</table></div>
+<p>วิธีคิดแถวแรก: Stop Out 50% ของ Margin 497 USD คือ Equity เหลือราว 248.5 USD รับขาดทุนได้ราว 251.5 USD หารด้วย 71 USD ต่อการขยับ 1 USD ได้ราว 3.5 USD ซึ่งทองขยับได้ในไม่กี่นาที แถวแรกยังเปิดมาพร้อม Margin Level แทบชนระดับเตือนตั้งแต่ต้น ความหมายของตัวเลขนี้และระดับที่ควรเหลือไว้อยู่ใน<a href="{{home}}/margin-level/">Margin Level ควรเหลือเท่าไหร่</a></p>
+
+<h2>อ่านค่าจากหน้า Specification แล้วคิดเองทีละขั้น</h2>
+<ol class="guide-steps">
+<li><h3>เปิด Specification ของสัญลักษณ์</h3><p>กด Ctrl+M เปิด Market Watch คลิกขวาที่ชื่อสัญลักษณ์ แล้วเลือก Specification</p></li>
+<li><h3>จดค่าที่ใช้ในสูตร</h3><p>Contract size, Calculation, Margin currency และตัวคูณในส่วน Margin rates ถ้าเป็นบัญชี Hedging ให้ดูช่อง Hedged margin ด้วย</p></li>
+<li><h3>เลือกสูตรตามช่อง Calculation</h3><p>ใช้ตารางสูตรข้างบน แทนค่าแล้วคิดผลในสกุล Margin currency</p></li>
+<li><h3>แปลงเป็นสกุลเงินบัญชีแล้วคูณ Margin rate</h3><p>ใช้อัตราของ Margin currency เทียบกับสกุลเงินบัญชี แล้วคูณตัวคูณที่จดไว้</p></li>
+<li><h3>ยืนยันบนบัญชีทดลอง</h3><p>เปิด Lot เล็กที่สุดบนบัญชีทดลองของโบรกเกอร์เดียวกัน แล้วดูช่อง Margin ในแท็บ Trade (Ctrl+T) ถ้าไม่ตรงกับที่คิด มักมีตัวคูณหรือ Leverage ของสัญลักษณ์ที่ยังไม่ได้นับ</p></li>
+</ol>
+
+<h2>ข้อผิดพลาดที่ทำให้ตัวเลขไม่ตรงกับ MT5</h2>
+<ul class="crosslist">
+<li><strong>ใช้สกุลตัวหลังของคู่เงินเป็นฐาน</strong> แบบ Forex ผลลัพธ์อยู่ในสกุลตัวหน้า ต้องแปลงจากสกุลนั้น</li>
+<li><strong>คิดว่าทองใช้ Leverage เท่าบัญชีเสมอ</strong> หลายโบรกเกอร์จำกัด Leverage ของโลหะแยกต่างหาก</li>
+<li><strong>ลืมตัวคูณ Margin rate</strong> ตัวเลขจึงต่างจากที่เห็นใน MT5 แล้วคิดว่าโปรแกรมคำนวณผิด</li>
+<li><strong>ดู Balance แทน Free Margin</strong> เงินที่ใช้เปิดออเดอร์ใหม่ได้คือ Free Margin ซึ่งคิดจาก Equity ลบ Margin ที่ใช้อยู่</li>
+<li><strong>ไม่รวม Margin ของทุกระบบในบัญชี</strong> EA หลายตัวและออเดอร์มือใช้ Free Margin ก้อนเดียวกัน</li>
+<li><strong>สับสนหน่วยของบัญชี Cent</strong> ยอดเงินแสดงเป็นเซนต์ และ Contract size อาจไม่เหมือนบัญชีมาตรฐาน ต้องอ่าน Specification ของบัญชีนั้นโดยเฉพาะ</li>
+</ul>
+<p>การเลือก Leverage ของบัญชีให้เหมาะกับแผนความเสี่ยงเป็นอีกเรื่องที่เกี่ยวกันโดยตรง ดูแนวคิดได้ใน<a href="{{home}}/leverage-choice/">Leverage เท่าไหร่ดี</a></p>
+
+<h2>คนใช้ EA ควรเช็ก Margin ตอนไหน</h2>
+<p>EA เปิดออเดอร์เองตามเงื่อนไข คุณจึงไม่ได้กด Lot ทีละครั้ง แต่ยังควรคิดตัวเลขนี้ไว้ล่วงหน้าในสามจังหวะ</p>
+<ul class="checklist">
+<li><strong>ก่อนเปิดใช้ครั้งแรก</strong> ตรวจ Contract size, Leverage และตัวคูณของสัญลักษณ์ที่ EA จะเทรด</li>
+<li><strong>เมื่อราคาสินทรัพย์เปลี่ยนไปมาก</strong> โดยเฉพาะทอง ซึ่งราคาอยู่ในสูตรโดยตรง</li>
+<li><strong>หลังฝากหรือถอนเงิน</strong> Free Margin เปลี่ยนทันที แต่ออเดอร์ที่เปิดอยู่ยังใช้ Margin เท่าเดิม</li>
+</ul>
+<p>ผู้ใช้ EA WING ที่แนบ EA บนกราฟ XAUUSD M1 ให้ตรวจค่าของทองในบัญชีตัวเองตามขั้นตอนข้างบน ถ้าแท็บ Experts หรือ Journal แจ้งว่าเงินไม่พอเปิดออเดอร์ ให้ส่งภาพแดชบอร์ดกับแท็บนั้นปรึกษาทีมงานก่อนปรับค่าใด</p>
+
+<h2>คำถามที่พบบ่อย</h2>
+<div class="faq-block">
+<details class="faq-item"><summary><span>ทำไม Margin ใน MT5 ไม่ตรงกับที่คำนวณเอง?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>สาเหตุที่พบบ่อยคือใช้วิธีคำนวณผิดแบบ ลืมแปลงสกุลเงิน ลืมตัวคูณ Margin rate หรือ Leverage ของสัญลักษณ์ไม่เท่ากับของบัญชี ไล่ตรวจตามหน้า Specification ทีละช่องแล้วมักเจอคำตอบ</p></div></details>
+<details class="faq-item"><summary><span>Margin ที่ถูกกันไว้ได้คืนเมื่อไร?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>ได้คืนเมื่อปิดออเดอร์ Margin ไม่ใช่ค่าธรรมเนียม แต่เป็นเงินที่ถูกกันไว้ระหว่างถือสถานะ สิ่งที่ทำให้เงินลดจริงคือผลขาดทุน Spread ค่าคอม และ Swap</p></div></details>
+<details class="faq-item"><summary><span>สูตรคำนวณ Margin Forex ใช้กับทุกโบรกเกอร์ได้ไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>โครงสูตรเหมือนกันเพราะมาจากวิธีคิดของ MT5 แต่ค่าที่ใส่ในสูตรต่างกันได้ ทั้ง Contract size, Leverage ของแต่ละสัญลักษณ์ และตัวคูณ จึงต้องอ่านค่าจากบัญชีที่ใช้จริงทุกครั้ง</p></div></details>
+<details class="faq-item"><summary><span>Margin เหลือเยอะแปลว่าเปิด Lot ใหญ่ได้อย่างปลอดภัยใช่ไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>ไม่ใช่ Free Margin บอกว่าเปิดได้แค่ไหน แต่ไม่ได้บอกว่าควรเปิดแค่ไหน ขนาดที่ควรใช้ควรมาจากเงินที่ยอมเสียได้ต่อออเดอร์และระยะที่ราคาอาจวิ่งสวน ไม่ใช่จากเงินที่เหลือในบัญชี</p></div></details>
+</div>
+
+<div class="callout callout--warn"><p><strong>คำเตือนความเสี่ยง:</strong> การเทรด Forex ทองคำ และ CFD ที่ใช้ Leverage มีความเสี่ยงสูง อาจสูญเสียเงินทุนบางส่วนหรือทั้งหมด การคำนวณ Margin ถูกต้องไม่ได้ทำให้การเทรดปลอดภัย และไม่ได้ป้องกันการขาดทุน ผลในอดีตไม่ได้รับประกันผลลัพธ์ในอนาคต ตัวเลขทั้งหมดเป็นตัวอย่างสมมติเพื่ออธิบายสูตร อ่าน<a href="{{home}}/risk-disclosure/">คำเตือนความเสี่ยงการใช้ EA</a>ก่อนใช้เงินจริง</p></div>
+
+<div class="related-links"><h2>อ่านต่อ</h2><ul>
+<li><a href="{{home}}/leverage-margin/">Leverage, Margin และ Stop Out สำหรับคนใช้ EA</a></li>
+<li><a href="{{home}}/margin-level/">ระดับ Margin Level ที่ควรเหลือไว้</a></li>
+<li><a href="{{home}}/what-is-lot/">Lot คือขนาดสัญญาเท่าไร</a></li>
+<li><a href="{{home}}/gold-lot-size/">ทอง 1 Lot กับมูลค่าต่อจุด</a></li>
+</ul></div>
+
+<p>เมื่อรู้ Margin แล้ว ขั้นต่อไปคือเลือกขนาด Lot จากเงินที่ยอมเสียต่อออเดอร์ ลองคิดด้วย<a href="{{home}}/tools/">เครื่องคำนวณ Lot ตามความเสี่ยง</a> ถ้าอยากให้ช่วยดูค่าใน Specification ของบัญชี ทักทีมงานคนไทยได้ทาง LINE</p>
+[eawing_line pos="article-margin-calc"]ให้ทีมงานช่วยดูค่า Margin ทาง LINE[/eawing_line]

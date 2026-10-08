@@ -21,7 +21,9 @@ The first line must be a meta comment with JSON, and the body is plain HTML (no 
 - `description` is the meta description. Aim for 120 to 155 Thai characters and include the focus keyword naturally.
 - `keyword` is the focus keyword (Thai or mixed), e.g. `EA MT5`, `VPS สำหรับ EA`.
 - `excerpt` is 1 to 2 sentences, used for article cards. It is for articles only.
-- `category` is for articles only and must be one of the three brand pillars: `วางแผนการเทรด` (kicker `Trading Plan`), `ติดตามผล` (kicker `Monitoring`), `บริหารความเสี่ยง` (kicker `Risk Management`), or `พื้นฐาน EA และ MT5` (kicker `EA Basics`, added 7 Oct 2026 for install and troubleshooting topics). `dev/check-content.php` rejects anything else, and `dev/preview/cover.php` maps each one to its cover kicker and tile colour.
+- `category` is for articles only and must be one of the 8 article clusters (8 Oct 2026, `eaw_article_categories()` in `inc/setup.php`, plan in `docs/content-plan.md`): `EA และบอทเทรด` (kicker `EA & Bots`, slug ea-basics), `ใช้งาน MT5` (`MT5 Guide`), `VPS สำหรับ EA` (`VPS`), `เทรดทองคำ XAUUSD` (`Gold Trading`), `บริหารความเสี่ยง` (`Risk Management`), `วางแผนการเทรด` (`Trading Plan`), `ติดตามผล` (`Monitoring`), `บัญชีและโบรกเกอร์` (`Broker & Account`). `dev/check-content.php` rejects anything else, and `dev/preview/cover.php` maps each one to its cover kicker and tile colour.
+- `date` (articles, optional) is the scheduled publish time in site time (Asia/Bangkok), format `"2026-10-15 08:00"`. On import a future date becomes a WordPress scheduled post, a past date publishes with that date. The checker rejects two articles with the same date.
+- `rev` (optional) is the content revision. Setup's "อัปเดตบทความที่มีอยู่" replaces the live article only when the file's `rev` is 2 or more and higher than the imported one (files without `rev` are never overwritten, so edits made in wp-admin stay).
 - `kicker` is a small English label above the H1 on pages (e.g. `Guide`, `Account`, `VPS · Windows`).
 
 ## Shortcodes (rendered live by the theme)
@@ -60,11 +62,13 @@ Valid page slugs:
 
 Articles link each other as `{{home}}/<article-slug>/`, because posts use the /%postname%/ permalink.
 
-Articles are imported as drafts and published one by one. Until a seed article is published, the theme removes links that point to it (`eaw_unlink_slugs()` in `inc/setup.php`): an item in a `related-links` list that holds only that link disappears, and a link inside a sentence becomes plain text. So write sentences that still read correctly without the link.
+Articles with a `date` are imported as scheduled posts (others as drafts). Until a seed article is published, the theme removes links that point to it (`eaw_unlink_slugs()` in `inc/setup.php`): an item in a `related-links` list that holds only that link disappears, and a link inside a sentence becomes plain text. So write sentences that still read correctly without the link.
 
 On pages that go live before the articles (guides, backtest, forward-test), wrap a "read more in article X" sentence in `<span class="xref">…</span>` (or use `<p class="xref">` for a whole paragraph). The theme then hides the whole sentence while its target is still a draft, instead of leaving an unlinked title behind. `dev/check-content.php` simulates "every article is a draft" and fails if headings, tables, FAQ items or risk warnings would be lost.
 
-A new article needs three things: the file in `inc/content/articles/`, its slug in `eaw_seed_article_covers()` (`inc/setup.php`), and a cover built with `dev/make-covers.php` (icon per slug in `dev/preview/cover.php`). Put the keyword phrase before a colon in the title when you can ("Drawdown คืออะไร: ..."), because the cover prints the part before the colon large and the rest as a subtitle.
+A new article needs two things: the file in `inc/content/articles/` (every file there is picked up automatically) and a cover built with `dev/make-covers.php` (icon per slug in `dev/preview/cover.php`).
+
+**Clusters (pillar + supporting articles).** Each category has one pillar article (`eaw_cluster_pillars()` in `inc/modules/clusters.php`). Supporting articles link up to the pillar in the opening, to 2 to 3 siblings, to 1 to 2 articles of other clusters, and to one money page at the end. The pillar links down to every supporting article. The theme also prints an automatic "บทความในชุดนี้" box under each article (published posts only) and puts the pillar first on its category page. Put the keyword phrase before a colon in the title when you can ("Drawdown คืออะไร: ..."), because the cover prints the part before the colon large and the rest as a subtitle.
 
 ## HTML components (styled by the theme; use exactly these classes)
 

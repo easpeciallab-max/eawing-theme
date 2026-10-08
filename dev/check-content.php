@@ -16,8 +16,9 @@ $articles = array_map(
 );
 $valid    = array_merge( $pages, $articles );
 $problems = 0;
-// article categories = the three EA WING pillars + EA basics (dev/content-spec.md · cover map in dev/preview/cover.php)
-$cats_ok = array( 'วางแผนการเทรด', 'ติดตามผล', 'บริหารความเสี่ยง', 'พื้นฐาน EA และ MT5' );
+// article categories = the 8 article clusters (eaw_article_categories() in inc/setup.php · docs/content-plan.md)
+$cats_ok = array_values( array_map( function ( $c ) { return $c[0]; }, eaw_article_categories() ) );
+$dates   = array();
 
 foreach ( array_merge( glob( $root . 'pages/*.html' ), glob( $root . 'articles/*.html' ) ) as $file ) {
 	$rel   = basename( dirname( $file ) ) . '/' . basename( $file, '.html' );
@@ -43,9 +44,31 @@ foreach ( array_merge( glob( $root . 'pages/*.html' ), glob( $root . 'articles/*
 			if ( ! empty( $meta['category'] ) && ! in_array( $meta['category'], $cats_ok, true ) ) {
 				$issue[] = 'meta.category "' . $meta['category'] . '" not one of ' . implode( ' / ', $cats_ok );
 			}
+			if ( isset( $meta['date'] ) ) {
+				if ( ! preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/', (string) $meta['date'] ) ) {
+					$issue[] = 'meta.date must be "YYYY-MM-DD HH:MM"';
+				} elseif ( isset( $dates[ $meta['date'] ] ) ) {
+					$issue[] = 'meta.date same as ' . $dates[ $meta['date'] ];
+				} else {
+					$dates[ $meta['date'] ] = $rel;
+				}
+			}
+			if ( false !== strpos( $raw, '{{home}}/go/' ) ) {
+				$issue[] = 'article links /go/ (use the money page + [eawing_line])';
+			}
 		}
 		if ( ! empty( $meta['seo_title'] ) && mb_strlen( $meta['seo_title'] ) > 65 ) {
 			$issue[] = 'seo_title > 65 chars';
+		}
+	}
+	if ( preg_match( '/[\x{2013}\x{2014}]/u', $raw ) ) {
+		$issue[] = 'en/em dash (use · or :)';
+	}
+	if ( preg_match_all( '#<a\s[^>]*href="https?://[^"]*"[^>]*>#i', $raw, $ext ) ) {
+		foreach ( $ext[0] as $tag ) {
+			if ( false === strpos( $tag, 'target="_blank"' ) || ! preg_match( '/rel="[^"]*noopener/', $tag ) ) {
+				$issue[] = 'external link without target="_blank" rel="noopener": ' . mb_substr( $tag, 0, 70 );
+			}
 		}
 	}
 	if ( preg_match( '/<h1[\s>]/i', $raw ) ) {

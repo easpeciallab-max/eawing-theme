@@ -1,0 +1,114 @@
+<!--meta {"title":"Not enough money ใน MT5 แปลว่าอะไร: เงินไม่พอเปิดออเดอร์ แก้ยังไง","seo_title":"Not enough money MT5 แปลว่าอะไร แก้ยังไง · EA WING","description":"Not enough money ใน MT5 (รหัส 10019) แปลว่า Free Margin ไม่พอสำหรับออเดอร์ที่ส่ง ดูวิธีคิด Margin หา Lot ที่เปิดได้ สาเหตุที่พบบ่อย และวิธีแก้เมื่อมาจาก EA","keyword":"not enough money mt5","excerpt":"ข้อความ Not enough money ไม่ได้แปลว่าเงินในบัญชีหมด แต่แปลว่า Free Margin ตอนนั้นไม่พอสำหรับออเดอร์ที่ส่ง ดูวิธีคำนวณ สาเหตุที่ทำให้ Free Margin หายไป และสิ่งที่ไม่ควรทำเมื่อเจอข้อความนี้","category":"ใช้งาน MT5","kicker":"MT5 Guide","date":"2027-01-08 08:00"} -->
+<p class="lead">Not enough money ใน MT5 แปลว่าเงินที่ยังว่างอยู่ในบัญชี (Free Margin) ไม่พอเป็นหลักประกันของออเดอร์ที่เพิ่งส่งไป เซิร์ฟเวอร์จึงปฏิเสธคำสั่งนั้น ออเดอร์เดิมที่เปิดอยู่ไม่ได้ถูกแตะ และไม่ได้แปลว่าเงินในบัญชีหมด ถ้ายังไม่คุ้นกับแท็บและตัวเลขในโปรแกรม อ่าน<a href="{{home}}/mt5-guide/">คู่มือ MetaTrader 5 สำหรับมือใหม่</a>ประกอบ</p>
+<div class="callout callout--info"><p><strong>สรุปสั้น:</strong> รหัสนี้คือ 10019 เกิดเมื่อ Margin ที่ออเดอร์ต้องใช้มากกว่า Free Margin ตอนส่งคำสั่ง · เช็ก Free Margin ในแท็บ Trade (Ctrl+T) แล้วคำนวณ Margin ของออเดอร์จาก Lot ขนาดสัญญา ราคา และ Leverage · ทางแก้ที่ถูกคือลด Lot หรือทบทวนออเดอร์อื่นที่กิน Margin อยู่ ไม่ใช่รีบเพิ่ม Leverage หรือเติมเงินทันที · ถ้ามาจาก EA ให้ส่ง Log ให้ผู้พัฒนาก่อนแก้ค่าใด</p></div>
+
+<h2>Not enough money MT5 คืออะไร เห็นได้ที่ไหน</h2>
+<p>ทุกคำสั่งเทรดได้รหัสผลกลับมาจากเซิร์ฟเวอร์ รหัส 10019 ชื่อ TRADE_RETCODE_NO_MONEY คำอธิบายในเอกสารคือเงินไม่พอสำหรับทำคำขอนั้นให้สำเร็จ ดูได้ใน<a href="https://www.mql5.com/en/docs/constants/errorswarnings/enum_trade_return_codes" target="_blank" rel="noopener">รายการรหัสผลคำสั่งเทรดของ MQL5</a> (ภาษาอังกฤษ) ในโปรแกรมคุณอาจเห็นข้อความนี้ได้หลายแบบ</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>ที่ที่เห็น</th><th>ลักษณะข้อความ</th></tr></thead>
+<tbody>
+<tr><td>หน้าต่างคำสั่งบนคอมหรือมือถือ</td><td>แจ้งว่าเงินไม่พอหลังกดซื้อหรือขาย</td></tr>
+<tr><td>แท็บ Journal</td><td>บรรทัดคำสั่งที่ไม่สำเร็จ ท้ายบรรทัดมีคำว่า No money หรือ Not enough money</td></tr>
+<tr><td>แท็บ Experts</td><td>ข้อความที่ EA พิมพ์เอง อาจมีรหัส 10019 หรือคำว่าเงินไม่พอ</td></tr>
+<tr><td>Strategy Tester</td><td>บรรทัดใน Journal ของการทดสอบ เมื่อเงินทุนจำลองไม่พอสำหรับขนาดออเดอร์</td></tr>
+</tbody>
+</table></div>
+<p>ข้อความนี้เป็นหนึ่งในกลุ่ม Error ที่เจอบ่อยที่สุดของ MT5 ภาพรวมของรหัสอื่นอยู่ในบทความ<a href="{{home}}/mt5-error-codes/">รวม Error MT5 ที่เจอบ่อยและวิธีแก้</a></p>
+
+<h2>MT5 เงินไม่พอ ทั้งที่ Balance ยังมีเงิน</h2>
+<p>คำถามแรกที่ทุกคนถามคือ "บัญชีมีเงินอยู่ ทำไมบอกว่าไม่พอ" คำตอบคือ MT5 ไม่ได้ดู Balance แต่ดู Free Margin ซึ่งคือ Equity ลบด้วย Margin ที่ถูกกันไว้ให้ออเดอร์ที่เปิดอยู่ ตัวเลขสามตัวนี้อยู่ในบรรทัดสรุปของแท็บ Trade</p>
+<ul class="checklist">
+<li><strong>Balance</strong> เงินที่ปิดผลแล้ว ไม่ขยับตามออเดอร์ที่ยังเปิด</li>
+<li><strong>Equity</strong> Balance บวกกำไรขาดทุนลอย ลดลงทันทีเมื่อออเดอร์ติดลบ</li>
+<li><strong>Free Margin</strong> Equity ลบ Margin ที่ใช้อยู่ นี่คือตัวที่ตัดสินว่าเปิดออเดอร์ใหม่ได้ไหม</li>
+</ul>
+<p>บัญชีที่ Balance 1,000 USD แต่มีออเดอร์ติดลบลอยอยู่และใช้ Margin ไปมาก อาจเหลือ Free Margin ไม่กี่ดอลลาร์ สูตรและความสัมพันธ์ของ Margin Level กับ Stop Out อธิบายละเอียดไว้ใน<a href="{{home}}/leverage-margin/">Leverage และ Margin</a></p>
+
+<h2>คิดให้ออกว่าออเดอร์นี้ต้องใช้ Margin เท่าไร</h2>
+<p>สำหรับสัญลักษณ์ที่คิด Margin แบบใช้ Leverage อย่างทองคำและ CFD ส่วนใหญ่ <a href="https://www.metatrader5.com/en/terminal/help/trading_advanced/margin_forex" target="_blank" rel="noopener">คู่มือการคำนวณ Margin ของ MetaTrader 5</a> (ภาษาอังกฤษ) ให้สูตรไว้ว่า</p>
+<p><strong>Margin = Lot × Contract size × ราคาเปิด ÷ Leverage</strong></p>
+<p>จากนั้นโบรกเกอร์อาจคูณด้วยอัตรา Margin ของสัญลักษณ์นั้นอีกชั้น ค่าเหล่านี้ดูได้จาก Market Watch (Ctrl+M) คลิกขวาที่สัญลักษณ์ เลือก Specification แล้วดู Contract size และส่วน Margin ข้อควรรู้คือตัวเลข Margin ในหน้านั้นคำนวณตอนเปิดหน้าต่าง ไม่อัปเดตตามราคาแบบเรียลไทม์</p>
+<h3>ตัวอย่างสมมติ: หาขนาด Lot ที่เปิดได้</h3>
+<p>สมมติบัญชีสกุล USD มี Free Margin 120 USD ทอง 1 Lot เท่ากับ 100 ออนซ์ ราคา 3,000 USD และ Leverage 1:200 (ตัวเลขสมมติทั้งหมด ไม่ใช่สเปกของโบรกเกอร์ใด)</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Lot ที่ส่ง</th><th>Margin ที่ต้องใช้</th><th>ผล</th></tr></thead>
+<tbody>
+<tr><td>0.05</td><td>0.05 × 100 × 3,000 ÷ 200 = 75 USD</td><td>เปิดได้ เหลือ Free Margin 45 USD</td></tr>
+<tr><td>0.08</td><td>0.08 × 100 × 3,000 ÷ 200 = 120 USD</td><td>เปิดได้พอดี แต่ Free Margin เหลือศูนย์</td></tr>
+<tr><td>0.10</td><td>0.10 × 100 × 3,000 ÷ 200 = 150 USD</td><td>Not enough money</td></tr>
+</tbody>
+</table></div>
+<p>แถว 0.08 คือกับดัก ระบบยอมให้เปิด แต่ไม่เหลือที่ให้ขาดทุนลอยแม้แต่นิดเดียว ราคาขยับสวนนิดเดียว Margin Level ก็ร่วงทันที ขนาดที่ควรเปิดจึงต้องคิดจากเงินที่ยอมเสียได้ต่อไม้ ไม่ใช่จากเพดานที่ระบบยอมให้ ใช้<a href="{{home}}/tools/">เครื่องคำนวณขนาด Lot</a> ช่วยคิดได้</p>
+
+<h2>สาเหตุที่ทำให้ Free Margin ไม่พอ</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>สาเหตุ</th><th>สิ่งที่ควรเช็ก</th></tr></thead>
+<tbody>
+<tr><td>Lot ใหญ่เกินทุน</td><td>ขนาดที่ส่งเทียบกับผลคำนวณด้านบน</td></tr>
+<tr><td>ออเดอร์อื่นกิน Margin อยู่</td><td>ช่อง Margin ในแท็บ Trade และออเดอร์ของ EA ตัวอื่นหรือที่เปิดมือในบัญชีเดียวกัน</td></tr>
+<tr><td>ขาดทุนลอยดึง Equity ลง</td><td>ส่วนต่างระหว่าง Balance กับ Equity</td></tr>
+<tr><td>ถอนเงินหรือโอนเงินออก</td><td>ประวัติฝากถอนในแท็บ History</td></tr>
+<tr><td>Leverage หรืออัตรา Margin ต่ำกว่าที่คิด</td><td>Leverage ในพื้นที่สมาชิกของโบรกเกอร์ และส่วน Margin ใน Specification ซึ่งบางสินค้าตั้งไว้ต่างจากคู่เงิน</td></tr>
+<tr><td>โบรกเกอร์ปรับ Margin ชั่วคราว</td><td>ประกาศของโบรกเกอร์ช่วงก่อนข่าวสำคัญหรือวันหยุดยาว</td></tr>
+<tr><td>เงินยังไม่เข้าบัญชีเทรด</td><td>บางโบรกเกอร์แยกกระเป๋าเงินกับบัญชีเทรด ต้องโอนเข้าบัญชีเทรดก่อน</td></tr>
+<tr><td>คำสั่งรอทำงานตอนเงินตึง</td><td>คำสั่งที่วางไว้นานแล้วถูกปฏิเสธตอนถึงราคา</td></tr>
+</tbody>
+</table></div>
+<h3>บัญชี Hedging กับ Margin ของสถานะสวนทาง</h3>
+<p>บนบัญชีแบบ Hedging โบรกเกอร์อาจคิด Margin ของสถานะ Buy กับ Sell ที่สวนกันต่ำกว่าการถือขาเดียว หรือคิดจากขาที่ใหญ่กว่า วิธีที่ใช้ขึ้นกับโบรกเกอร์ คนที่คิดว่าเปิดสวนทางแล้วจะไม่ใช้ Margin เพิ่มจึงเจอ Not enough money ได้ ดูความต่างของสองระบบใน<a href="{{home}}/mt5-hedging-netting/">บัญชี Hedging กับ Netting</a></p>
+
+<h2>ไล่แก้ทีละขั้นเมื่อเทรดมือ</h2>
+<ol class="guide-steps">
+<li><h3>ดู Free Margin ตอนนี้</h3><p>กด Ctrl+T เปิด Toolbox แท็บ Trade อ่าน Equity, Margin และ Free Margin ในบรรทัดสรุป</p></li>
+<li><h3>คำนวณ Margin ของออเดอร์ที่จะส่ง</h3><p>ใช้สูตรด้านบนกับ Contract size และ Leverage ของบัญชีคุณ ถ้ามากกว่า Free Margin ก็จะถูกปฏิเสธทุกครั้ง</p></li>
+<li><h3>ลดขนาด Lot ตามแผนความเสี่ยง</h3><p>เลือก Lot ที่เหลือ Free Margin เผื่อไว้มากพอสำหรับขาดทุนลอย อย่าเปิดจนชนเพดาน</p></li>
+<li><h3>ทบทวนออเดอร์ที่เปิดอยู่</h3><p>ถ้ามีออเดอร์เก่าที่ไม่อยู่ในแผนแล้ว พิจารณาตามแผนว่าควรปิดหรือไม่ อย่าปิดออเดอร์ของ EA เพียงเพื่อเปิดออเดอร์มือ</p></li>
+<li><h3>เช็กบัญชีและสเปกอีกรอบ</h3><p>ดูว่าล็อกอินถูกบัญชี เงินเข้าบัญชีเทรดแล้ว และ Leverage ตรงกับที่คิด</p></li>
+</ol>
+
+<h2>Not enough money ใน Strategy Tester</h2>
+<p>ข้อความเดียวกันขึ้นตอนทดสอบย้อนหลังได้ เมื่อเงินทุนจำลองน้อยเกินไปสำหรับขนาดออเดอร์ที่ EA ส่ง หรือ Leverage ที่ตั้งในหน้า Settings ของ Strategy Tester (Ctrl+R) ต่ำกว่าบัญชีจริง ให้ตั้ง Deposit และ Leverage ให้ตรงกับบัญชีที่จะใช้จริง อย่าตั้งทุนจำลองสูงเกินจริงเพื่อให้ข้อความหายไป เพราะผลที่ได้จะไม่สะท้อนบัญชีของคุณ ปัญหาอื่นของการทดสอบอยู่ในบทความ<a href="{{home}}/mt5-backtest-not-working/">Backtest MT5 ไม่ได้: สาเหตุและวิธีแก้</a></p>
+
+<h2>เมื่อข้อความมาจาก EA</h2>
+<p>ถ้าบรรทัดนี้ขึ้นใน Journal ทั้งที่คุณไม่ได้กดอะไร แปลว่า EA พยายามเปิดออเดอร์ที่ใหญ่กว่า Free Margin ตอนนั้น อาจเพราะขนาดออเดอร์ที่ตั้งไว้ไม่เข้ากับทุน มี EA หลายตัวใช้ Free Margin ก้อนเดียวกัน หรือบัญชีมีขาดทุนลอยอยู่มาก คนที่วางแผนรัน EA กับทุนไม่มาก อ่านวิธีคิดก่อนเริ่มได้ใน<a href="{{home}}/ea-small-capital/">ใช้ EA ทุนน้อยได้ไหม</a></p>
+<ul class="crosslist">
+<li><strong>รีบเพิ่ม Leverage</strong> ทำให้เปิดออเดอร์ใหญ่ขึ้นได้ แต่ไม่ได้ลดความเสี่ยงของออเดอร์นั้น</li>
+<li><strong>เติมเงินทันทีโดยไม่ดูสาเหตุ</strong> ถ้าต้นเหตุคือขนาดออเดอร์ที่ใหญ่เกิน เงินที่เติมก็เสี่ยงไปด้วย</li>
+<li><strong>แก้ค่าตั้งของ EA เอง</strong> โดยไม่รู้ว่าค่านั้นส่งผลกับขนาดออเดอร์และความเสี่ยงอย่างไร</li>
+</ul>
+<p>ผู้ใช้ EA WING ที่เห็นข้อความนี้ในแท็บ Experts หรือ Journal ให้ส่งภาพแดชบอร์ด ภาพแท็บ Experts และบรรทัดสรุปในแท็บ Trade ให้ทีมงานทาง LINE แล้วปรึกษาก่อนปรับค่าใดบนแดชบอร์ด</p>
+
+<h2>Not enough money ต่างจาก Margin Call และ Stop Out</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>เหตุการณ์</th><th>เกิดอะไรขึ้น</th><th>ออเดอร์เดิม</th></tr></thead>
+<tbody>
+<tr><td>Not enough money</td><td>คำสั่งใหม่ถูกปฏิเสธเพราะ Free Margin ไม่พอ</td><td>ไม่ถูกแตะ</td></tr>
+<tr><td>Margin Call</td><td>Margin Level ลดถึงระดับเตือนของโบรกเกอร์</td><td>ยังเปิดอยู่ แต่บัญชีเข้าเขตอันตราย</td></tr>
+<tr><td>Stop Out</td><td>Margin Level ลดถึงระดับบังคับปิด</td><td>ถูกปิดทีละออเดอร์จนกว่าระดับจะกลับขึ้นมา</td></tr>
+</tbody>
+</table></div>
+<p>Not enough money จึงเป็นสัญญาณเตือนล่วงหน้าที่ดี ถ้าเห็นบ่อย แปลว่าบัญชีใช้ Margin ใกล้เพดานอยู่เป็นประจำ ควรทบทวนขนาดออเดอร์ก่อนจะไปถึงสองแถวล่าง</p>
+
+<div class="callout callout--warn"><p><strong>คำเตือนความเสี่ยง:</strong> บัญชีที่เจอ Not enough money บ่อยคือบัญชีที่ใช้ Margin สูงจนเสี่ยงต่อ Stop Out เมื่อราคาสวนทาง การเทรด Forex ทองคำ และ CFD ที่ใช้ Leverage มีความเสี่ยงสูง อาจสูญเสียเงินทุนบางส่วนหรือทั้งหมด ผลในอดีตไม่ได้รับประกันผลลัพธ์ในอนาคต ตัวเลขในบทความนี้เป็นตัวอย่างสมมติเพื่ออธิบายการคำนวณ อ่าน <a href="{{home}}/risk-disclosure/">ความเสี่ยงของการเทรดที่ใช้ Leverage</a> ก่อนใช้เงินจริง</p></div>
+
+<h2>คำถามที่พบบ่อยเรื่อง Not enough money</h2>
+<div class="faq-block">
+<details class="faq-item"><summary><span>เพิ่งฝากเงินแล้ว แต่ยังขึ้น Not enough money?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>เช็กว่าเงินเข้าบัญชีเทรดที่ล็อกอินอยู่จริงหรือยัง บางโบรกเกอร์รับเงินเข้ากระเป๋าเงินก่อน แล้วต้องโอนต่อเข้าบัญชีเทรด ดูยอด Balance ในแท็บ Trade และรายการในแท็บ History ถ้ายอดยังไม่ขึ้น ดูขั้นตอนฝากเงินที่หน้า<a href="{{home}}/deposit/">คู่มือฝากเงิน</a></p></div></details>
+<details class="faq-item"><summary><span>ปิดออเดอร์ไม่ได้เพราะ Not enough money ได้ไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>ปกติการปิดสถานะไม่ต้องใช้ Margin เพิ่ม ข้อความนี้จึงมักเกิดกับการเปิดออเดอร์ใหม่ ถ้าคุณพยายามปิดด้วยการเปิดออเดอร์ฝั่งตรงข้ามบนบัญชี Hedging นั่นคือการเปิดสถานะใหม่ ให้ใช้คำสั่งปิดสถานะโดยตรงแทน</p></div></details>
+<details class="faq-item"><summary><span>บัญชี Cent เจอข้อความนี้ด้วยไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>เจอได้เหมือนกัน หลักคิดเดียวกัน แต่หน่วยเงินและขนาดสัญญาของบัญชี Cent ต่างจากบัญชีปกติ ให้ใช้ค่า Contract size และสกุลเงินจาก Specification ของบัญชีนั้นในการคำนวณ ไม่ใช่ตัวเลขของบัญชีปกติ</p></div></details>
+<details class="faq-item"><summary><span>Free Margin เป็นบวก ทำไมยังเปิดไม่ได้?</span><i class="faq-plus" aria-hidden="true"></i></summary>
+<div class="faq-answer"><p>Free Margin ต้องมากกว่า Margin ของออเดอร์ใหม่ทั้งก้อน ไม่ใช่แค่มากกว่าศูนย์ และราคาอาจขยับระหว่างที่คำสั่งเดินทางไปเซิร์ฟเวอร์ ถ้าเงินเหลือพอดีเส้น คำสั่งก็ถูกปฏิเสธได้</p></div></details>
+</div>
+
+<div class="related-links"><h2>อ่านต่อ</h2><ul>
+<li><a href="{{home}}/mt5-guide/">MT5 คืออะไร ใช้ทำอะไรได้บ้าง</a></li>
+<li><a href="{{home}}/mt5-error-codes/">Error MT5 อื่นที่เจอบ่อย</a></li>
+<li><a href="{{home}}/mt5-invalid-stops/">Invalid stops และ Error 10016</a></li>
+<li><a href="{{home}}/leverage-margin/">Leverage คืออะไร: Margin และ Stop Out</a></li>
+</ul></div>
+
+<p>ก่อนวาง EA บนบัญชีจริง ตรวจขนาดสัญญาของทองและ Leverage ของบัญชีให้แน่ใจตั้งแต่ขั้นติดตั้ง ดูขั้นตอนทั้งหมดได้ที่<a href="{{home}}/how-to-install/">ติดตั้ง EA WING บนกราฟ XAUUSD M1</a> ถ้าเจอข้อความนี้แล้วไม่แน่ใจว่าเริ่มแก้ตรงไหน ส่งภาพมาถามทีมงานได้</p>
+[eawing_line pos="article-mt5-not-enough-money"]ถามทีมงานเรื่อง Margin ไม่พอทาง LINE[/eawing_line]

@@ -155,11 +155,15 @@ function eaw_pages_defaults( $d ) {
 			'articles_next_label'       => 'ถัดไป',
 			'articles_empty_text'       => 'บทความชุดแรกกำลังทยอยเผยแพร่ ระหว่างนี้เริ่มจากคู่มือด้านล่าง ซึ่งพาตั้งแต่เตรียมบัญชีไปจนถึงรัน EA บน VPS',
 			'articles_pillars_title'    => 'เลือกอ่านตามเรื่องที่อยากรู้',
-			'articles_pillars_sub'      => 'บทความทั้งหมดเขียนสำหรับคนใช้ EA บน MetaTrader 5 ตั้งแต่ยังไม่เคยติดตั้ง ไปจนถึงดูแลพอร์ตที่รันอยู่ทุกวัน ถ้าเพิ่งเริ่มให้อ่านหมวดพื้นฐานก่อน ถ้ากำลังติดปัญหาข้ามไปหมวดที่ตรงกับอาการได้เลย',
+			'articles_pillars_sub'      => 'บทความทั้งหมดเขียนสำหรับคนใช้ EA บน MetaTrader 5 ตั้งแต่ยังไม่เคยติดตั้ง ไปจนถึงดูแลพอร์ตที่รันอยู่ทุกวัน ถ้าเพิ่งเริ่มให้อ่านหมวด EA และบอทเทรดก่อน ถ้ากำลังติดปัญหาข้ามไปหมวดที่ตรงกับอาการได้เลย',
 			'articles_pillars_order'    => "ea-basics
-trading-plan
+gold-trading
+mt5
+risk-management
+vps
+broker-account
 monitoring
-risk-management",
+trading-plan",
 			'articles_guides_kicker'    => 'Guides',
 			'articles_guides_title'     => 'คู่มือใช้งานทีละขั้น',
 			'articles_guides_sub'       => 'ไม่ต้องอ่านเรียงก็ได้ เลือกคู่มือที่ตรงกับงานตรงหน้า ทุกหน้าอธิบายเป็นภาษาไทยพร้อมจุดที่มักพลาด',

@@ -771,3 +771,33 @@ function eaw_infra_page_cache_ttl() {
 	header( 'Cache-Control: public, max-age=0, s-maxage=' . $ttl );
 }
 add_action( 'template_redirect', 'eaw_infra_page_cache_ttl', 98 );
+
+/**
+ * กันบทความตั้งเวลาไม่ขึ้น (Missed schedule): WP-Cron ทำงานเมื่อมีคนเปิดเว็บ เว็บที่คนเข้าน้อยหรือมีแคชหน้า
+ * อาจพลาดเวลา · เช็กทุก 5 นาทีจากคำขอใดก็ได้ แล้วเผยแพร่บทความที่เลยเวลาแล้วด้วยฟังก์ชันของ WordPress เอง
+ */
+function eaw_infra_publish_missed() {
+	if ( wp_doing_ajax() || get_transient( 'eaw_missed_check' ) ) {
+		return;
+	}
+	set_transient( 'eaw_missed_check', 1, 5 * MINUTE_IN_SECONDS );
+	$ids = get_posts(
+		array(
+			'post_type'      => 'post',
+			'post_status'    => 'future',
+			'date_query'     => array(
+				array(
+					'column' => 'post_date_gmt',
+					'before' => gmdate( 'Y-m-d H:i:s' ),
+				),
+			),
+			'fields'         => 'ids',
+			'posts_per_page' => 10,
+			'no_found_rows'  => true,
+		)
+	);
+	foreach ( $ids as $id ) {
+		check_and_publish_future_post( $id );
+	}
+}
+add_action( 'init', 'eaw_infra_publish_missed', 20 );

@@ -51,6 +51,10 @@ function eaw_site_pages() {
  * ฟังก์ชันนี้ไม่อ่านไฟล์ จึงเรียกจากหน้าเว็บได้ทุกคำขอ
  */
 function eaw_seed_article_covers() {
+	return eaw_seed_article_slugs();
+}
+
+function eaw_seed_article_covers_legacy() {
 	/* บทความรอบแรกของ EA WING (docs/plan.md ข้อ 4) · slug ที่ยังไม่มีไฟล์เนื้อหาจะถูกข้ามอัตโนมัติ */
 	return array(
 		'trading-plan-for-ea'     => 'eawing-plan-fly-further-sky.webp',
@@ -78,6 +82,25 @@ function eaw_seed_article_covers() {
 }
 
 /**
+ * slug ของบทความเริ่มต้นทั้งหมด = ไฟล์ใน inc/content/articles/ · บทความที่ไม่มีแบนเนอร์สำรองในรายการเดิมใช้แบนเนอร์กลาง
+ * (ปกจริงของแต่ละบทอยู่ที่ covers/<slug>.webp)
+ */
+function eaw_seed_article_slugs() {
+	static $map = null;
+	if ( null !== $map ) {
+		return $map;
+	}
+	$map = eaw_seed_article_covers_legacy();
+	foreach ( (array) glob( get_template_directory() . '/inc/content/articles/*.html' ) as $file ) {
+		$slug = basename( $file, '.html' );
+		if ( ! isset( $map[ $slug ] ) ) {
+			$map[ $slug ] = 'eawing-plan-sky-blue.webp';
+		}
+	}
+	return $map;
+}
+
+/**
  * บทความเริ่มต้น (slug => ไฟล์ + รูปหน้าปก) · อ่านไฟล์เนื้อหา ใช้ในหน้า Setup เท่านั้น
  */
 function eaw_seed_articles() {
@@ -92,7 +115,9 @@ function eaw_seed_articles() {
 		if ( null === $meta ) {
 			continue; // ยังไม่มีไฟล์เนื้อหา
 		}
-		$own           = 'covers/' . $slug . '.webp';
+		/* บทความที่เขียนใหม่ (rev ≥ 2) ใช้ปกชื่อใหม่ covers/<slug>-r<rev>.webp ถ้ามี (Cloudflare และ Media Library ผูกรูปกับชื่อไฟล์) */
+		$rev           = ! empty( $meta['rev'] ) ? (int) $meta['rev'] : 1;
+		$own           = 'covers/' . $slug . ( $rev > 1 && file_exists( $img . 'covers/' . $slug . '-r' . $rev . '.webp' ) ? '-r' . $rev : '' ) . '.webp';
 		$list[ $slug ] = array(
 			'title'   => ! empty( $meta['title'] ) ? $meta['title'] : $slug,
 			'content' => 'articles/' . $slug,
@@ -592,41 +617,43 @@ function eaw_setup_import_articles( $publish = false ) {
 			$log[] = '• มีอยู่แล้ว: ' . $slug;
 			continue;
 		}
-		$meta = $art['meta'];
-		$cat  = 0;
-		if ( ! empty( $meta['category'] ) ) {
-			$cat_slug = eaw_article_category_slug( $meta['category'] );
-			$term     = term_exists( $cat_slug, 'category' );
-			if ( ! $term ) {
-				$term = wp_insert_term( $meta['category'], 'category', array( 'slug' => $cat_slug ) );
-			}
-			if ( ! is_wp_error( $term ) ) {
-				$cat = (int) ( is_array( $term ) ? $term['term_id'] : $term );
-			}
-		}
-		$id = wp_insert_post(
-			array(
-				'post_type'     => 'post',
-				'post_status'   => $publish ? 'publish' : 'draft',
-				'post_title'    => wp_slash( $art['title'] ),
-				'post_name'     => $slug,
-				'post_content'  => wp_slash( eaw_seed_content( $art['content'] ) ),
-				'post_excerpt'  => isset( $meta['excerpt'] ) ? wp_slash( $meta['excerpt'] ) : '',
-				'post_category' => $cat ? array( $cat ) : array(),
-			),
-			true
+		$meta   = $art['meta'];
+		$cat    = eaw_article_category_id( isset( $meta['category'] ) ? $meta['category'] : '' );
+		$status = $publish ? 'publish' : 'draft';
+		$post   = array(
+			'post_type'     => 'post',
+			'post_title'    => wp_slash( $art['title'] ),
+			'post_name'     => $slug,
+			'post_content'  => wp_slash( eaw_seed_content( $art['content'] ) ),
+			'post_excerpt'  => isset( $meta['excerpt'] ) ? wp_slash( $meta['excerpt'] ) : '',
+			'post_category' => $cat ? array( $cat ) : array(),
 		);
+		/* มีวันลงในไฟล์: อนาคต = ตั้งเวลา (ระบบตั้งเวลาของ WordPress) · เลยมาแล้ว = เผยแพร่ด้วยวันนั้น */
+		$date = eaw_seed_article_date( $meta );
+		if ( $date ) {
+			$status                = strtotime( $date[1] . ' UTC' ) > time() ? 'future' : 'publish';
+			$post['post_date']     = $date[0];
+			$post['post_date_gmt'] = $date[1];
+		}
+		$post['post_status'] = $status;
+		$id                  = wp_insert_post( $post, true );
 		if ( is_wp_error( $id ) ) {
 			$log[] = '✗ ' . $slug . ' · ' . $id->get_error_message();
 			continue;
 		}
 		eaw_apply_seo_meta( $id, $meta );
+		update_post_meta( $id, 'eaw_seed_rev', ! empty( $meta['rev'] ) ? (int) $meta['rev'] : 1 );
 		// รูปปกเฉพาะบทความ (covers/) ใช้ชื่อบทความเป็น alt · แบนเนอร์สำรองใช้ alt กลาง
 		$thumb = eaw_banner_attachment( $art['cover'], 0 === strpos( $art['cover'], 'covers/' ) ? $art['title'] : '' );
 		if ( $thumb ) {
 			set_post_thumbnail( $id, $thumb );
 		}
-		$log[] = '✓ ' . ( $publish ? 'เผยแพร่' : 'ฉบับร่าง' ) . ': ' . $art['title'];
+		$labels = array(
+			'publish' => 'เผยแพร่',
+			'draft'   => 'ฉบับร่าง',
+			'future'  => 'ตั้งเวลา ' . ( $date ? $meta['date'] : '' ),
+		);
+		$log[]  = '✓ ' . $labels[ $status ] . ': ' . $art['title'];
 	}
 	return $log ? $log : array( '• ไม่มีไฟล์บทความให้นำเข้า' );
 }
@@ -635,11 +662,23 @@ function eaw_setup_import_articles( $publish = false ) {
  * คำอธิบายหมวดบทความ (ใช้เป็น meta description ของหน้าหมวดผ่าน %%term_description%% ของ Yoast)
  */
 function eaw_article_category_descriptions() {
+	return wp_list_pluck( eaw_article_categories(), 1 );
+}
+
+/**
+ * หมวดบทความ 8 หมวด = 8 กลุ่มบทความ (docs/content-plan.md) · slug => array( ชื่อหมวด, คำอธิบาย )
+ * ชื่อหมวดในไฟล์บทความ (meta category) ต้องตรงกับชื่อที่นี่ · ปุ่ม "อัปเดตบทความที่มีอยู่" ตั้งชื่อและคำอธิบายให้ตรงเสมอ
+ */
+function eaw_article_categories() {
 	return array(
-		'trading-plan'    => 'บทความวางแผนการเทรดสำหรับคนใช้ EA บน MT5: เขียนแผนก่อนเริ่ม กำหนดความเสี่ยงต่อออเดอร์ แบ่งทุนหลายบัญชี และตั้งเพดานขาดทุนรายวัน',
-		'monitoring'      => 'บทความติดตามผล EA บน MT5: ดูพอร์ตผ่านแอปมือถือ ตั้งแจ้งเตือนด้วย MetaQuotes ID อ่าน Log ในแท็บ Journal และ Experts และดึงรายงานประวัติมาทบทวน',
-		'risk-management' => 'บทความบริหารความเสี่ยงสำหรับคนใช้ EA: แยก Equity กับ Balance คำนวณ Risk Reward ระวังความเสี่ยงซ้อนจาก Correlation และเตรียมพอร์ตรับ Gap วันจันทร์',
-		'ea-basics'       => 'พื้นฐาน EA และ MT5 สำหรับมือใหม่: EA คืออะไร ปุ่ม Algo Trading กับ Allow DLL imports เปิดกราฟ XAUUSD M1 เลือก VPS และไล่แก้เมื่อ EA ไม่เปิดออเดอร์',
+		'ea-basics'       => array( 'EA และบอทเทรด', 'EA และบอทเทรดบน MT5: EA คืออะไร EA เทรดทองทำงานยังไง เลือก EA ตัวไหนดี ฟรีกับเสียเงินต่างกันยังไง และสัญญาณเตือนบอทเทรดหลอก' ),
+		'mt5'             => array( 'ใช้งาน MT5', 'คู่มือใช้งาน MetaTrader 5: ตั้งค่าที่ EA ต้องใช้ เพิ่มสัญลักษณ์ อ่านเวลาเซิร์ฟเวอร์ และแก้อาการ MT5 ค้าง ไม่ขึ้นราคา หรือขึ้น Error ที่เจอบ่อย' ),
+		'vps'             => array( 'VPS สำหรับ EA', 'VPS สำหรับรัน EA ทั้งวันทั้งคืน: เลือกสเปกและผู้ให้บริการ เข้า VPS จากคอมและมือถือ ตั้งค่าไม่ให้ MT5 หยุด และแก้ปัญหา Remote Desktop หลุด' ),
+		'gold-trading'    => array( 'เทรดทองคำ XAUUSD', 'ความรู้เทรดทองคำ XAUUSD: เวลาตลาดตามเวลาไทย ขนาด Lot และ Pip คำนวณกำไรขาดทุน ปัจจัยที่ทำให้ทองขึ้นลง และข่าวเศรษฐกิจที่ทำให้ราคาผันผวน' ),
+		'risk-management' => array( 'บริหารความเสี่ยง', 'บริหารความเสี่ยงสำหรับคนใช้ EA: Drawdown Margin Level Stop Out ขนาด Lot Equity กับ Balance และความเสี่ยงของกลยุทธ์ที่ควรรู้ก่อนใช้เงินจริง' ),
+		'trading-plan'    => array( 'วางแผนการเทรด', 'วางแผนการเทรดก่อนเปิดใช้ EA: เขียนแผน กำหนดความเสี่ยงต่อออเดอร์ แบ่งทุน ตั้งเพดานขาดทุน จิตวิทยาการเทรด และเรื่องที่มือใหม่ควรรู้ก่อนเริ่ม' ),
+		'monitoring'      => array( 'ติดตามผล', 'ติดตามผล EA บน MT5: ดูพอร์ตบนมือถือ ตั้งแจ้งเตือน อ่าน Log แชร์ผลด้วย Investor Password และ Myfxbook และอ่านค่าอย่าง Profit Factor ให้เป็น' ),
+		'broker-account'  => array( 'บัญชีและโบรกเกอร์', 'บัญชีเทรดและโบรกเกอร์สำหรับ EA: เลือกโบรกเกอร์ ประเภทบัญชี Spread Swap การยืนยันตัวตน และการฝากถอนเงินกับ Zaurix' ),
 	);
 }
 
@@ -773,13 +812,110 @@ function eaw_setup_seo() {
  * slug ภาษาอังกฤษของหมวดบทความ (URL อ่านง่าย ไม่เป็นภาษาไทยเข้ารหัส)
  */
 function eaw_article_category_slug( $name ) {
-	$map = array(
-		'วางแผนการเทรด'   => 'trading-plan',
-		'ติดตามผล'        => 'monitoring',
-		'บริหารความเสี่ยง' => 'risk-management',
-		'พื้นฐาน EA และ MT5' => 'ea-basics',
-	);
+	$map = array( 'พื้นฐาน EA และ MT5' => 'ea-basics' ); // ชื่อเดิมของหมวด ea-basics (ก่อน 8 ต.ค. 2026)
+	foreach ( eaw_article_categories() as $slug => $cat ) {
+		$map[ $cat[0] ] = $slug;
+	}
 	return isset( $map[ $name ] ) ? $map[ $name ] : sanitize_title( $name );
+}
+
+/**
+ * term_id ของหมวดตามชื่อในไฟล์บทความ (สร้างหมวดถ้ายังไม่มี · ใช้ชื่อและคำอธิบายจาก eaw_article_categories())
+ */
+function eaw_article_category_id( $name ) {
+	if ( '' === trim( (string) $name ) ) {
+		return 0;
+	}
+	$slug = eaw_article_category_slug( $name );
+	$term = term_exists( $slug, 'category' );
+	if ( ! $term ) {
+		$cats = eaw_article_categories();
+		$term = wp_insert_term(
+			isset( $cats[ $slug ] ) ? $cats[ $slug ][0] : $name,
+			'category',
+			array(
+				'slug'        => $slug,
+				'description' => isset( $cats[ $slug ] ) ? $cats[ $slug ][1] : '',
+			)
+		);
+	}
+	if ( is_wp_error( $term ) ) {
+		return 0;
+	}
+	return (int) ( is_array( $term ) ? $term['term_id'] : $term );
+}
+
+/**
+ * วันลงจากไฟล์บทความ ("date":"2026-10-15 08:00" เวลาไทยตามที่ตั้งในเว็บ) → array( post_date, post_date_gmt ) หรือ null
+ */
+function eaw_seed_article_date( $meta ) {
+	if ( empty( $meta['date'] ) || ! preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/', (string) $meta['date'] ) ) {
+		return null;
+	}
+	$local = $meta['date'] . ':00';
+	return array( $local, get_gmt_from_date( $local ) );
+}
+
+/**
+ * อัปเดตบทความที่นำเข้าแล้ว: หมวดให้ตรงไฟล์ · ชื่อและคำอธิบายหมวด · เนื้อหารุ่นใหม่ (rev ในไฟล์มากกว่าที่เคยนำเข้า)
+ * · วันตั้งเวลาของบทความที่ยังไม่ถึงวันลง · ไม่แตะเนื้อหาบทความที่ไฟล์ไม่มี rev (กันทับที่แก้ในหลังบ้าน)
+ */
+function eaw_setup_sync_articles() {
+	$log = array();
+	foreach ( eaw_article_categories() as $slug => $cat ) {
+		$term = get_term_by( 'slug', $slug, 'category' );
+		if ( $term && ( $term->name !== $cat[0] || trim( (string) $term->description ) !== $cat[1] ) ) {
+			wp_update_term( $term->term_id, 'category', array( 'name' => $cat[0], 'description' => $cat[1] ) );
+			$log[] = '✓ หมวด ' . $cat[0] . ' · ตั้งชื่อและคำอธิบายแล้ว';
+		}
+	}
+	foreach ( eaw_seed_articles() as $slug => $art ) {
+		$found = eaw_find_post( $slug );
+		if ( ! $found ) {
+			continue;
+		}
+		$meta = $art['meta'];
+		$cat  = eaw_article_category_id( isset( $meta['category'] ) ? $meta['category'] : '' );
+		if ( $cat && wp_get_post_categories( $found->ID ) !== array( $cat ) ) {
+			wp_set_post_categories( $found->ID, array( $cat ) );
+			$log[] = '↻ ย้ายหมวด: ' . $slug . ' → ' . $meta['category'];
+		}
+		$rev  = ! empty( $meta['rev'] ) ? (int) $meta['rev'] : 1;
+		$prev = (int) get_post_meta( $found->ID, 'eaw_seed_rev', true );
+		if ( $rev >= 2 && $prev < $rev ) {
+			wp_update_post(
+				array(
+					'ID'           => $found->ID,
+					'post_title'   => wp_slash( $art['title'] ),
+					'post_content' => wp_slash( eaw_seed_content( $art['content'] ) ),
+					'post_excerpt' => isset( $meta['excerpt'] ) ? wp_slash( $meta['excerpt'] ) : $found->post_excerpt,
+				)
+			);
+			eaw_apply_seo_meta( $found->ID, $meta );
+			update_post_meta( $found->ID, 'eaw_seed_rev', $rev );
+			if ( 0 === strpos( $art['cover'], 'covers/' ) ) {
+				$thumb = eaw_banner_attachment( $art['cover'], $art['title'] );
+				if ( $thumb ) {
+					set_post_thumbnail( $found->ID, $thumb );
+				}
+			}
+			$log[] = '↻ เนื้อหารุ่น ' . $rev . ': ' . $slug;
+		}
+		$date = eaw_seed_article_date( $meta );
+		if ( $date && 'future' === $found->post_status && $found->post_date !== $date[0] ) {
+			wp_update_post(
+				array(
+					'ID'            => $found->ID,
+					'post_status'   => 'future',
+					'post_date'     => $date[0],
+					'post_date_gmt' => $date[1],
+					'edit_date'     => true,
+				)
+			);
+			$log[] = '⏰ เลื่อนวันลง: ' . $slug . ' → ' . $meta['date'];
+		}
+	}
+	return $log ? $log : array( '• ทุกบทความตรงกับไฟล์แล้ว' );
 }
 
 /**
@@ -843,6 +979,9 @@ function eaw_setup_handle() {
 	if ( 'articles' === $do ) {
 		$log = array_merge( $log, eaw_setup_import_articles( ! empty( $_POST['eaw_publish'] ) ) );
 	}
+	if ( 'article_sync' === $do ) {
+		$log = array_merge( $log, eaw_setup_sync_articles() );
+	}
 	if ( 'seo' === $do ) {
 		$log = array_merge( $log, eaw_setup_seo() );
 	}
@@ -895,9 +1034,10 @@ function eaw_setup_screen() {
 			<?php wp_nonce_field( 'eaw_setup' ); ?>
 			<input type="hidden" name="action" value="eaw_setup">
 			<h2 style="margin-top:0">2) นำเข้าบทความ SEO (<?php echo (int) count( eaw_seed_articles() ); ?> บทความ)</h2>
-			<p>บทความเข้ามาเป็น <strong>ฉบับร่าง</strong> พร้อมหมวด (วางแผนการเทรด · ติดตามผล · บริหารความเสี่ยง) คำอธิบาย SEO และรูปหน้าปก · ตรวจอ่านแล้วค่อยเผยแพร่ทีละเรื่อง ตามแผนคือวันเว้นวัน เวลา 09:00 น.</p>
-			<p><label><input type="checkbox" name="eaw_publish" value="1"> เผยแพร่ทันที (ไม่แนะนำ)</label></p>
-			<p><button class="button button-primary" name="eaw_do" value="articles">นำเข้าบทความ</button></p>
+			<p>นำเข้าเฉพาะบทความที่ยังไม่มีในเว็บ พร้อมหมวด คำอธิบาย SEO และรูปหน้าปก · บทความที่มีวันลงในไฟล์จะเข้าเป็น <strong>ตั้งเวลา</strong> ตามปฏิทินใน docs/content-plan.md (WordPress เผยแพร่เองเมื่อถึงเวลา) · บทความที่ไม่มีวันลงเข้าเป็นฉบับร่าง</p>
+			<p><label><input type="checkbox" name="eaw_publish" value="1"> เผยแพร่ทันทีสำหรับบทความที่ไม่มีวันลง (ไม่แนะนำ)</label></p>
+			<p><button class="button button-primary" name="eaw_do" value="articles">นำเข้าบทความ</button>
+				<button class="button" name="eaw_do" value="article_sync">อัปเดตบทความที่มีอยู่ (หมวด · รุ่นใหม่ · วันลง)</button></p>
 		</form>
 
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:0 0 26px;padding:18px 20px;background:#fff;border:1px solid #dcdcde;border-radius:8px;max-width:760px">
