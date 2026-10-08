@@ -62,6 +62,9 @@ function eaw_figure_registry() {
 			'license-flow' => array( 'eawing-license-flow-v2.webp', 'eawing-license-flow-mobile-v2.webp', 'แผนภาพขั้นตอนเปิดสิทธิ์ EA WING: ส่งเลขบัญชีทาง LINE ทีมงานเปิดสิทธิ์ใน 5 นาที การ์ดล็อกอินเป็นสีเขียว และทำงานต่อได้ 72 ชั่วโมงเมื่อเน็ตหลุด' ),
 			'vps-flow'     => array( 'eawing-vps-flow-v2.webp', 'eawing-vps-flow-mobile-v2.webp', 'แผนภาพการใช้ Windows VPS รัน EA: เช่า VPS ลง MT5 และ EA ต่อจากคอมหรือมือถือ แล้วปิดเครื่องของคุณได้' ),
 			'account-flow' => array( 'eawing-account-flow-v2.webp', 'eawing-account-flow-mobile-v2.webp', 'แผนภาพเปิดบัญชี MT5 สำหรับใช้ EA 4 ขั้น: สมัคร ยืนยันตัวตน สร้างบัญชีเทรด และส่งเลขบัญชีให้ทีมงาน' ),
+			/* ภาพหน้าจอ MT5 (assets/img/install/) · ช่อง 4-5 = ขนาดจริง · ช่อง 6 = แสดงขนาดจริงกลางกรอบ (ภาพเล็ก) */
+			'mt5-open-data-folder' => array( '../install/eawing-mt5-open-data-folder-v1.webp', '', 'เมนู File ของ MT5 ที่ชี้ไปที่ Open Data Folder', 620, 300, true ),
+			'mt5-navigator'        => array( '../install/eawing-mt5-navigator-v1.webp', '', 'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มี EA_WING_V4.2', 210, 270, true ),
 		)
 	);
 }
@@ -84,11 +87,13 @@ function eaw_sc_figure( $atts ) {
 	$fig  = $all[ $name ];
 	$base = get_template_directory_uri() . '/assets/img/illus/';
 	$alt  = '' !== trim( (string) $atts['alt'] ) ? $atts['alt'] : $fig[2];
-	$html = '<figure class="eaw-figure"><picture>';
+	$w    = isset( $fig[3] ) ? (int) $fig[3] : 1600;
+	$h    = isset( $fig[4] ) ? (int) $fig[4] : 760;
+	$html = '<figure class="eaw-figure' . ( ! empty( $fig[5] ) ? ' eaw-figure--fit' : '' ) . '"><picture>';
 	if ( ! empty( $fig[1] ) ) {
 		$html .= '<source media="(max-width: 680px)" srcset="' . esc_url( $base . $fig[1] ) . '" width="800" height="1140">';
 	}
-	$html .= '<img src="' . esc_url( $base . $fig[0] ) . '" alt="' . esc_attr( $alt ) . '" width="1600" height="760" loading="lazy" decoding="async"></picture>';
+	$html .= '<img src="' . esc_url( $base . $fig[0] ) . '" alt="' . esc_attr( $alt ) . '" width="' . $w . '" height="' . $h . '" loading="lazy" decoding="async"></picture>';
 	if ( '' !== trim( (string) $atts['caption'] ) ) {
 		$html .= '<figcaption>' . esc_html( $atts['caption'] ) . '</figcaption>';
 	}

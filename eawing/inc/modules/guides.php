@@ -535,6 +535,11 @@ function eaw_guide_flat_defaults() {
 		$flat[ 'inst_step' . $i . '_desc' ]  = $step[1];
 		$flat += eaw_guide_media_defaults( 'inst_step' . $i, $step[2], $step[3] );
 	}
+	/* ภาพหน้าจอที่มากับธีม (8 ต.ค. 2026 · จากหน้าคู่มือเว็บในเครือของเจ้าของ แก้ชื่อไฟล์/ชื่อ EA เป็น EA WING) · อัปโหลดภาพใหม่ใน Customizer ได้ */
+	$flat['inst_step2_img']     = 'assets/img/install/eawing-mt5-experts-folder-v1.webp';
+	$flat['inst_step2_img_alt'] = 'โฟลเดอร์ MQL5 → Experts ของ MT5 ที่มีไฟล์ EA_WING_V4.2 วางอยู่';
+	$flat['inst_step4_img']     = 'assets/img/install/eawing-mt5-xauusd-m1-chart-v1.webp';
+	$flat['inst_step4_img_alt'] = 'กราฟ XAUUSD.c กรอบเวลา M1 ใน MT5 ที่วาง EA_WING_V4.2 แล้ว ชื่อ EA กับไอคอนหมวกอยู่มุมขวาบน';
 	$flat['install_note']     = $in['note'];
 	$flat['inst_check_title'] = $in['check_title'];
 	$flat['inst_check']       = $in['check'];

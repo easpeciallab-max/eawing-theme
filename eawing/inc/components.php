@@ -372,6 +372,18 @@ function eaw_media_info( $url, $width, $height ) {
 		'height' => (int) $height,
 		'srcset' => '',
 	);
+	/* ไฟล์ในธีม (assets/...) อ่านขนาดจริงจากไฟล์ · ภาพหน้าจอแต่ละภาพสัดส่วนไม่เท่ากัน */
+	$theme = get_template_directory_uri() . '/';
+	if ( 0 === strpos( $url, $theme . 'assets/' ) ) {
+		$file = get_template_directory() . '/' . substr( $url, strlen( $theme ) );
+		$size = is_readable( $file ) ? @getimagesize( $file ) : false; // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		if ( $size ) {
+			$info['width']  = (int) $size[0];
+			$info['height'] = (int) $size[1];
+		}
+		$cache[ $url ] = $info;
+		return $info;
+	}
 	$id = function_exists( 'attachment_url_to_postid' ) ? (int) attachment_url_to_postid( $url ) : 0;
 	if ( $id ) {
 		$meta = wp_get_attachment_metadata( $id );
@@ -401,7 +413,7 @@ function eaw_media_picture( $key, $src, $alt, $width, $height, $eager = false ) 
 		esc_attr( (string) $main['width'] ),
 		esc_attr( (string) $main['height'] )
 	);
-	$mobile = $key ? trim( (string) eaw_mod( $key . '_img_mobile' ) ) : '';
+	$mobile = $key ? eaw_theme_asset_url( eaw_mod( $key . '_img_mobile' ) ) : '';
 	if ( '' === $mobile ) {
 		return $img;
 	}
@@ -455,7 +467,7 @@ function eaw_media_slot( $key, $args = array() ) {
 			'class'   => '',
 		)
 	);
-	$src     = trim( (string) eaw_mod( $key . '_img' ) );
+	$src     = eaw_theme_asset_url( eaw_mod( $key . '_img' ) ); // ค่า assets/... = ภาพที่มากับธีม
 	$alt     = (string) eaw_mod( $key . '_img_alt' );
 	$note    = trim( (string) eaw_mod( $key . '_img_note' ) );
 	$caption = '' !== $args['caption'] ? $args['caption'] : trim( (string) eaw_mod( $key . '_img_caption' ) );

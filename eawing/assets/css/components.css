@@ -482,3 +482,18 @@
 	color: var(--muted, #4A5A78);
 	text-align: center;
 }
+
+/* ภาพหน้าจอเล็ก (เช่น หน้าต่าง Navigator): แสดงไม่เกินขนาดจริง วางกลางกรอบ ไม่ยืดจนแตก */
+.eaw-figure--fit {
+	padding: 14px;
+	text-align: center;
+}
+
+.eaw-figure--fit picture,
+.eaw-figure--fit img,
+.entry-content .eaw-figure--fit img {
+	display: inline-block;
+	width: auto;
+	max-width: 100%;
+	border-radius: 10px;
+}
