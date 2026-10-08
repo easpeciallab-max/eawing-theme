@@ -1662,6 +1662,33 @@ a.hm-card:hover .hm-arrow {
 	color: var(--navy);
 }
 
+/* ภาพจริงจากแดชบอร์ด (แทนภาพวาดเมื่อใส่ภาพไว้) */
+.hp-shot {
+	display: grid;
+	gap: 10px;
+	margin: 0;
+}
+
+.hp-shot-frame {
+	display: block;
+	overflow: hidden;
+	border: 1px solid rgba(10, 46, 102, 0.12);
+	border-radius: 16px;
+	background: #FAFCFE;
+}
+
+.hp-shot-frame img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.hp-shot figcaption {
+	font-size: 0.8rem;
+	line-height: 1.5;
+	color: var(--hm-muted);
+}
+
 .hp-checks {
 	display: grid;
 	gap: 8px;

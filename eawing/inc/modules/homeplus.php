@@ -47,11 +47,16 @@ function eaw_homeplus_defaults( $d ) {
 			'home_mode1_title'     => 'เน้นคุมความเสี่ยง',
 			'home_mode1_text'      => 'โหมดที่ EA ใช้ทันทีหลังติดตั้ง เหมาะกับคนที่เพิ่งเริ่ม ต้องการให้บัญชีแกว่งน้อยกว่า และอยากเรียนรู้การทำงานของระบบไปก่อน',
 			'home_mode1_points'    => "เป็นค่าเริ่มต้นหลังติดตั้ง\nความเสี่ยงต่ำกว่าโหมด Full\nเหมาะกับช่วงเริ่มต้นและบัญชีเดโม",
+			'home_mode1_img'       => 'assets/img/install/eawing-mode-lite-v1.webp',
+			'home_mode1_img_alt'   => 'แดชบอร์ด EA WING ที่เลือกโหมด Lite ไว้ ใต้ปุ่มเขียนว่า Lite บินต่ำ',
 			'home_mode2_label'     => 'Full',
 			'home_mode2_tag'       => 'บินสูง',
 			'home_mode2_title'     => 'ความเสี่ยงสูงกว่า',
 			'home_mode2_text'      => 'โหมดสำหรับคนที่เข้าใจระบบแล้วและรับความผันผวนของบัญชีได้มากกว่า ทั้งโอกาสและความเสี่ยงจึงสูงขึ้นตามไปด้วย ควรคุยกับทีมงานก่อนเปลี่ยนมาใช้',
 			'home_mode2_points'    => "บัญชีผันผวนมากกว่าโหมด Lite\nเหมาะกับผู้ที่ใช้ระบบจนคุ้นแล้ว\nปรึกษาทีมงานก่อนเปลี่ยนโหมด",
+			'home_mode2_img'       => 'assets/img/install/eawing-mode-full-v1.webp',
+			'home_mode2_img_alt'   => 'แดชบอร์ด EA WING ที่เลือกโหมด Full ไว้ ใต้ปุ่มเขียนว่า Full บินสูง',
+			'home_modes_img_cap'   => 'ปุ่มเลือกโหมดบนแดชบอร์ด EA WING 4.2 จริง',
 			'home_modes_note'      => 'เปลี่ยนโหมดได้จากปุ่มบนแดชบอร์ด ถ้ามีออเดอร์เปิดอยู่ EA จะรอให้ชุดนั้นปิดก่อนจึงเปลี่ยน และไม่ว่าโหมดไหนก็ขาดทุนได้',
 
 			/* ---------- [license] การ์ดล็อกอิน ---------- */
@@ -150,11 +155,16 @@ function eaw_homeplus_customizer_sections( $sections, $d ) {
 				'home_mode1_title'  => array( 'แท็บ 1 · หัวข้อ', 'text' ),
 				'home_mode1_text'   => array( 'แท็บ 1 · คำอธิบาย', 'textarea', $rule ),
 				'home_mode1_points' => array( 'แท็บ 1 · จุดสำคัญ (บรรทัดละ 1 ข้อ)', 'textarea', $rule ),
+				'home_mode1_img'     => array( 'แท็บ 1 · ภาพ (ไม่ใส่ = ภาพวาดเส้นทางบิน)', 'image', 'ภาพแดชบอร์ดตอนเลือกโหมดนี้ · ไม่มีเลขบัญชีหรือยอดเงิน' ),
+				'home_mode1_img_alt' => array( 'แท็บ 1 · คำอธิบายภาพ (alt)', 'text' ),
 				'home_mode2_label'  => array( 'แท็บ 2 · ชื่อโหมด', 'text' ),
 				'home_mode2_tag'    => array( 'แท็บ 2 · ป้ายเล็ก', 'text' ),
 				'home_mode2_title'  => array( 'แท็บ 2 · หัวข้อ', 'text' ),
 				'home_mode2_text'   => array( 'แท็บ 2 · คำอธิบาย', 'textarea', $rule ),
 				'home_mode2_points' => array( 'แท็บ 2 · จุดสำคัญ (บรรทัดละ 1 ข้อ)', 'textarea', $rule ),
+				'home_mode2_img'     => array( 'แท็บ 2 · ภาพ (ไม่ใส่ = ภาพวาดเส้นทางบิน)', 'image', 'ภาพแดชบอร์ดตอนเลือกโหมดนี้ · ไม่มีเลขบัญชีหรือยอดเงิน' ),
+				'home_mode2_img_alt' => array( 'แท็บ 2 · คำอธิบายภาพ (alt)', 'text' ),
+				'home_modes_img_cap' => array( 'คำบรรยายใต้ภาพทั้งสองแท็บ', 'text' ),
 				'home_modes_note'   => array( 'หมายเหตุท้ายส่วน', 'textarea' ),
 			),
 		),
@@ -340,12 +350,15 @@ function eaw_homeplus_modes() {
 			'title'  => trim( (string) eaw_mod( 'home_mode' . $i . '_title' ) ),
 			'text'   => trim( (string) eaw_mod( 'home_mode' . $i . '_text' ) ),
 			'points' => eaw_lines( eaw_mod( 'home_mode' . $i . '_points' ) ),
+			'img'    => eaw_theme_asset_url( eaw_mod( 'home_mode' . $i . '_img' ) ), // assets/... = ภาพที่มากับธีม
+			'alt'    => trim( (string) eaw_mod( 'home_mode' . $i . '_img_alt' ) ),
 		);
 	}
 	if ( ! $modes ) {
 		return;
 	}
-	$note = trim( (string) eaw_mod( 'home_modes_note' ) );
+	$note    = trim( (string) eaw_mod( 'home_modes_note' ) );
+	$img_cap = trim( (string) eaw_mod( 'home_modes_img_cap' ) );
 	?>
 <section class="glass-panel hm-panel hp-modes" id="modes" aria-labelledby="hp-modes-title" data-hp-tabs>
 	<?php eaw_homeplus_head( 'hp-modes-title', eaw_mod( 'home_modes_title' ), eaw_mod( 'home_modes_sub' ) ); ?>
@@ -363,6 +376,17 @@ function eaw_homeplus_modes() {
 		<div class="hp-modes-panels">
 			<?php foreach ( $modes as $i => $mode ) : ?>
 				<div class="hp-mode hp-mode--<?php echo (int) $i; ?>" id="hp-mode-<?php echo (int) $i; ?>" role="tabpanel" aria-labelledby="hp-mode-tab-<?php echo (int) $i; ?>" data-alt="<?php echo 1 === $i ? 'low' : 'high'; ?>">
+					<?php if ( '' !== $mode['img'] ) : ?>
+						<?php $info = eaw_media_info( $mode['img'], 852, 408 ); ?>
+						<figure class="hp-shot">
+							<span class="hp-shot-frame">
+								<img src="<?php echo esc_url( $mode['img'] ); ?>" alt="<?php echo esc_attr( '' !== $mode['alt'] ? $mode['alt'] : $mode['label'] ); ?>" width="<?php echo (int) $info['width']; ?>" height="<?php echo (int) $info['height']; ?>" loading="lazy" decoding="async">
+							</span>
+							<?php if ( '' !== $img_cap ) : ?>
+								<figcaption><?php echo esc_html( $img_cap ); ?></figcaption>
+							<?php endif; ?>
+						</figure>
+					<?php else : ?>
 					<div class="hp-alt" aria-hidden="true">
 						<svg viewBox="0 0 220 150" focusable="false">
 							<path class="hp-alt-line" d="M10 30H210M10 75H210M10 120H210"/>
@@ -374,6 +398,7 @@ function eaw_homeplus_modes() {
 						</svg>
 						<span class="hp-alt-label"><?php echo esc_html( $mode['tag'] ); ?></span>
 					</div>
+					<?php endif; ?>
 					<div class="hp-mode-copy">
 						<p class="hp-mode-name"><?php echo esc_html( $mode['label'] ); ?></p>
 						<?php if ( '' !== $mode['title'] ) : ?>
