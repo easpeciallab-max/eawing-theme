@@ -424,46 +424,46 @@ function eaw_guide_install_data() {
 		'kicker'      => 'Install Guide',
 		'sub'         => 'วางไฟล์ EA WING ลงใน MT5 เปิด Algo Trading กับ DLL ลากลงกราฟ XAUUSD M1 แล้วรอการ์ดล็อกอินเป็นสีเขียว',
 		'intro'       => 'ไฟล์ {brand} ดาวน์โหลดได้จากหน้า [ลิงก์รวม](/go/) หรือขอทาง LINE ในไฟล์ .zip มีตัว EA ไฟล์เดียว (โหมด Lite และ Full อยู่ในไฟล์แล้ว) คู่มือ PDF และวิธีติดตั้ง EA จะทำงานกับบัญชีที่ทีมงานเปิดสิทธิ์ให้แล้วเท่านั้น หน้านี้พาติดตั้งบน MT5 เวอร์ชัน Windows ซึ่งใช้ขั้นตอนเดียวกันทั้งบนคอมและบน VPS',
-		'quick'       => 'แตก zip → วาง EA_WING_V4.2.ex5 ลง MQL5 → Experts → Refresh → Options ติ๊ก Allow algorithmic trading และ Allow DLL imports → เปิดกราฟ XAUUSD M1 → ลาก EA ลงกราฟ (แท็บ Common ติ๊ก Algo Trading และ DLL) → ปุ่ม Algo Trading สีเขียว → การ์ดล็อกอินสีเขียว',
+		'quick'       => 'File → Open Data Folder → วาง EA_WING_V4.2.ex5 ใน MQL5 → Experts → Refresh ใน Navigator → ลากลงกราฟ XAUUSD M1 → แท็บ Common ติ๊ก Algo Trading และ DLL (และใน Tools → Options) → ปุ่ม Algo Trading สีเขียว → การ์ดล็อกอินสีเขียว',
 		'req_title'   => 'ต้องมีก่อนติดตั้ง',
 		'req'         => "บัญชี MT5 ที่เข้าด้วยรหัสผ่านหลัก | ยังไม่มีบัญชี เริ่มที่ [เปิดบัญชี MT5](/open-mt5-account/)\nMT5 เวอร์ชัน Windows | บนคอมหรือ VPS (แอปมือถือรัน EA ไม่ได้)\nไฟล์ EA WING (.zip) | ดาวน์โหลดจาก [หน้าลิงก์รวม](/go/) หรือขอทาง LINE\nสิทธิ์ใช้งานของบัญชี | ส่งเลขบัญชี MT5 และชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE\nWindows VPS (แนะนำ) | ให้ MT5 เปิดได้ตลอด 24 ชั่วโมง ดู [คู่มือ VPS บน Windows](/vps-windows/)",
 		'req_note'    => '',
 		'steps'       => array(
 			array(
-				'เปิด MT5 และเข้าบัญชีเทรด',
-				"เปิด MetaTrader 5 บนเครื่องที่จะให้ EA ทำงาน แล้วเข้าบัญชีที่จะขอสิทธิ์ด้วยรหัสผ่านหลัก รหัสนักลงทุน (Investor) ใช้ดูบัญชีได้อย่างเดียว EA จะส่งคำสั่งไม่ผ่าน\n\nยังไม่เคยติดตั้งโปรแกรม ทำตาม [ติดตั้งและล็อกอิน MT5](/mt5-login/) ให้เสร็จก่อน",
-				'MT5 บน Windows ที่เข้าบัญชีเทรดแล้ว',
-				'MT5 ทั้งหน้าต่างหลังเข้าบัญชี มุมขวาล่างแสดงว่าต่อเซิร์ฟเวอร์อยู่ · ซ่อนเลขบัญชีกับยอดเงิน',
+				'เปิดโฟลเดอร์ข้อมูลของ MT5',
+				"เปิด MetaTrader 5 บนคอมหรือ VPS แล้วเข้าบัญชีที่จะขอสิทธิ์ด้วยรหัสผ่านหลัก (รหัสนักลงทุนหรือ Investor ใช้ดูบัญชีได้อย่างเดียว EA ส่งคำสั่งไม่ผ่าน) จากนั้นคลิกเมนู File แล้วเลือก Open Data Folder เพื่อเปิดที่เก็บไฟล์ของ MT5 ชุดนี้\n\nยังไม่เคยติดตั้งโปรแกรม ทำตาม [ติดตั้งและล็อกอิน MT5](/mt5-login/) ให้เสร็จก่อน",
+				'เมนู File ของ MT5 ที่ชี้ไปที่ Open Data Folder',
+				'เมนู File ของ MT5 ที่ชี้ Open Data Folder',
 			),
 			array(
-				'วางไฟล์ EA ลงโฟลเดอร์ Experts',
-				'แตกไฟล์ .zip ที่ดาวน์โหลดมาก่อน แล้วใน MT5 ไปที่ File → Open Data Folder เปิด MQL5 → Experts วางไฟล์ EA_WING_V4.2.ex5 ลงไปไฟล์เดียว (ไม่ต้องใช้ไฟล์ .set เพราะโหมด Lite และ Full อยู่ในตัว EA แล้ว) กลับไปที่ Navigator (Ctrl+N) คลิกขวาที่หัวข้อ Expert Advisors แล้วกด Refresh',
-				'ไฟล์ EA_WING_V4.2.ex5 ในโฟลเดอร์ Experts',
-				'หน้าต่าง Explorer ของ Data Folder ที่เปิดเข้า MQL5 → Experts แล้วเห็นไฟล์ EA_WING_V4.2.ex5',
+				'วางไฟล์ EA_WING_V4.2 ในโฟลเดอร์ Experts',
+				"แตกไฟล์ .zip ที่ดาวน์โหลดมาก่อน แล้วในหน้าต่างที่เพิ่งเปิดขึ้น ดับเบิลคลิกเข้า MQL5 ต่อด้วย Experts วางไฟล์ EA_WING_V4.2.ex5 ลงไปไฟล์เดียว ไม่ต้องใช้ไฟล์ .set เพราะโหมด Lite และ Full อยู่ในตัว EA แล้ว",
+				'โฟลเดอร์ MQL5 → Experts ของ MT5 ที่มีไฟล์ EA_WING_V4.2 วางอยู่',
+				'โฟลเดอร์ MQL5 → Experts ที่เห็นไฟล์ EA_WING_V4.2',
 			),
 			array(
-				'เปิด Algo Trading และ DLL',
-				'ไปที่ Tools → Options (Ctrl+O) แท็บ Expert Advisors ติ๊กให้ครบสองช่อง คือ Allow algorithmic trading และ Allow DLL imports แล้วกด OK EA WING ต้องเปิด DLL ทั้งตอนรันจริงและตอนทดสอบใน Strategy Tester ถ้าไม่ติ๊ก EA จะโหลดไม่ขึ้น',
-				'แท็บ Expert Advisors ที่ติ๊ก Allow algorithmic trading และ Allow DLL imports',
-				'หน้าต่าง Options แท็บ Expert Advisors ช่อง Allow algorithmic trading และ Allow DLL imports ถูกติ๊กทั้งคู่',
+				'หา EA WING ใน Navigator',
+				"กลับมาที่ MT5 เปิดหน้าต่าง Navigator (Ctrl+N) ดูในหมวด Expert Advisors ต้องเห็นชื่อ EA_WING_V4.2 ถ้ายังไม่ขึ้น คลิกขวาที่หัวข้อ Expert Advisors แล้วเลือก Refresh หรือปิดเปิด MT5 ใหม่หนึ่งครั้ง",
+				'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มี EA_WING_V4.2',
+				'Navigator หมวด Expert Advisors ที่เห็น EA_WING_V4.2',
 			),
 			array(
 				'ลาก EA ลงกราฟ XAUUSD M1',
-				"1. เปิดกราฟ XAUUSD แล้วเลือกกรอบเวลา M1 (ชื่อสัญลักษณ์อาจมีตัวท้ายตามชนิดบัญชี เช่น .c หรือ .s)\n2. ใน Navigator ลาก EA WING ไปปล่อยบนกราฟ\n3. หน้าต่างคุณสมบัติ EA จะเปิดขึ้น ที่แท็บ Common ให้ติ๊ก Allow Algo Trading และ Allow DLL imports แล้วกด OK\n\nหนึ่งกราฟวาง EA ได้หนึ่งตัว",
+				"เปิดกราฟ XAUUSD แล้วกดปุ่ม M1 บนแถบกรอบเวลา (บางบัญชีชื่อสัญลักษณ์มีตัวท้าย เช่น XAUUSD.c) จากนั้นลาก EA_WING_V4.2 จาก Navigator ไปปล่อยบนกราฟ เมื่อติดตั้งเสร็จ ชื่อ EA จะขึ้นที่มุมขวาบนของกราฟ\n\nหนึ่งกราฟวาง EA ได้หนึ่งตัว และไม่ควรเปลี่ยนกรอบเวลาของกราฟที่ EA ทำงานอยู่",
+				'กราฟ XAUUSD.c กรอบเวลา M1 ใน MT5 ที่วาง EA_WING_V4.2 แล้ว ชื่อ EA กับไอคอนหมวกอยู่มุมขวาบน',
+				'กราฟ XAUUSD M1 ที่มีชื่อ EA มุมขวาบน',
+			),
+			array(
+				'ติ๊ก Allow Algo Trading และ Allow DLL imports',
+				"หน้าต่างคุณสมบัติของ EA จะเปิดขึ้นเองหลังลากลงกราฟ ที่แท็บ Common ให้ติ๊ก Allow Algo Trading และ Allow DLL imports แล้วกด OK (กด F7 บนกราฟเพื่อเรียกหน้าต่างนี้กลับมาได้)\n\nใน Tools → Options (Ctrl+O) แท็บ Expert Advisors ต้องติ๊ก Allow algorithmic trading กับ Allow DLL imports ด้วย EA WING ต้องใช้ DLL ในการทำงาน ถ้าติ๊กไม่ครบทั้งสองที่ EA จะโหลดไม่ขึ้น",
+				'แท็บ Common ของ EA_WING_V4.2 ที่ติ๊ก Allow Algo Trading และ Allow DLL imports',
 				'แท็บ Common ที่ติ๊ก Allow Algo Trading และ Allow DLL imports',
-				'แท็บ Common ของหน้าต่างคุณสมบัติ EA ช่อง Allow Algo Trading และ Allow DLL imports ถูกติ๊ก',
 			),
 			array(
-				'เปิดปุ่ม Algo Trading และดูผลล็อกอิน',
-				"กดปุ่ม Algo Trading ที่แถบด้านบนของ MT5 ให้เป็นสีเขียว (หรือกด Ctrl+E) ประมาณ 1 วินาทีหลังลาก EA ลงกราฟ EA จะตรวจเลขบัญชีกับระบบเอง ไม่ต้องใส่รหัสหรือลิงก์ใน MT5\n\nขึ้นหน้าต่าง \"ล็อกอินสำเร็จ\" แปลว่าใช้งานได้ ถ้าขึ้น \"ล็อกอินไม่ผ่าน\" แปลว่าบัญชียังไม่ได้รับสิทธิ์ ส่งเลขบัญชี (ดูได้ในการ์ดล็อกอินบนแดชบอร์ด) และชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE เมื่อทีมงานเพิ่มสิทธิ์แล้ว EA จะเริ่มทำงานเองภายใน 5 นาที ไม่ต้องลากใหม่",
-				'หน้าต่างล็อกอินสำเร็จของ EA WING บนกราฟ',
-				'กราฟที่มีแดชบอร์ด EA WING และหน้าต่างล็อกอินสำเร็จ · ซ่อนเลขบัญชีและยอดเงิน',
-			),
-			array(
-				'เลือกโหมดและตรวจแดชบอร์ด',
-				'โหมดเริ่มต้นคือ Lite ซึ่งเน้นคุมความเสี่ยง ส่วน Full มีความเสี่ยงสูงกว่า เปลี่ยนโหมดได้จากปุ่มบนแดชบอร์ด ถ้ามีออเดอร์ค้างอยู่ EA จะรอให้ปิดก่อนจึงเปลี่ยน ดูท้ายแผงว่าขึ้น EA WING v4.2 และการ์ดล็อกอินเป็นสีเขียว รายละเอียดทุกปุ่มอยู่ในคู่มือ PDF ในไฟล์ zip',
-				'แดชบอร์ด EA WING ที่การ์ดล็อกอินเป็นสีเขียว',
-				'แดชบอร์ด EA WING ทั้งแผง เห็นการ์ดล็อกอินสีเขียวและเลขเวอร์ชัน · ซ่อนเลขบัญชีและยอดเงิน',
+				'เปิดปุ่ม Algo Trading แล้วดูการ์ดล็อกอิน',
+				"กดปุ่ม Algo Trading ที่แถบด้านบนของ MT5 ให้เป็นสีเขียว (หรือกด Ctrl+E) EA จะตรวจเลขบัญชีกับระบบเองภายในไม่กี่วินาที ไม่ต้องใส่รหัสหรือลิงก์ใน MT5 ขึ้นหน้าต่าง \"ล็อกอินสำเร็จ\" แปลว่าพร้อมใช้งาน ถ้าขึ้น \"ล็อกอินไม่ผ่าน\" ส่งเลขบัญชี (ดูได้ในการ์ดล็อกอินบนแดชบอร์ด) และชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE เมื่อเพิ่มสิทธิ์แล้ว EA จะเริ่มทำงานเองภายใน 5 นาที ไม่ต้องลากใหม่\n\nโหมดเริ่มต้นคือ Lite ซึ่งเน้นคุมความเสี่ยง ส่วน Full มีความเสี่ยงสูงกว่า เปลี่ยนโหมดได้จากปุ่มบนแดชบอร์ด รายละเอียดทุกปุ่มอยู่ในคู่มือ PDF ในไฟล์ zip",
+				'หน้าต่างล็อกอินสำเร็จและแดชบอร์ด EA WING บนกราฟ',
+				'กราฟที่มีแดชบอร์ด EA WING การ์ดล็อกอินสีเขียว และปุ่ม Algo Trading สีเขียว · ซ่อนเลขบัญชีและยอดเงิน',
 			),
 		),
 		'note'        => 'เมนูและชื่อปุ่มอาจต่างไปตามรุ่นของ MT5 ถ้าหาไม่เจอ ถ่ายภาพหน้าจอส่งทาง LINE แล้วทีมงานจะช่วยชี้ตำแหน่งให้',
@@ -535,11 +535,12 @@ function eaw_guide_flat_defaults() {
 		$flat[ 'inst_step' . $i . '_desc' ]  = $step[1];
 		$flat += eaw_guide_media_defaults( 'inst_step' . $i, $step[2], $step[3] );
 	}
-	/* ภาพหน้าจอที่มากับธีม (8 ต.ค. 2026 · จากหน้าคู่มือเว็บในเครือของเจ้าของ แก้ชื่อไฟล์/ชื่อ EA เป็น EA WING) · อัปโหลดภาพใหม่ใน Customizer ได้ */
-	$flat['inst_step2_img']     = 'assets/img/install/eawing-mt5-experts-folder-v1.webp';
-	$flat['inst_step2_img_alt'] = 'โฟลเดอร์ MQL5 → Experts ของ MT5 ที่มีไฟล์ EA_WING_V4.2 วางอยู่';
-	$flat['inst_step4_img']     = 'assets/img/install/eawing-mt5-xauusd-m1-chart-v1.webp';
-	$flat['inst_step4_img_alt'] = 'กราฟ XAUUSD.c กรอบเวลา M1 ใน MT5 ที่วาง EA_WING_V4.2 แล้ว ชื่อ EA กับไอคอนหมวกอยู่มุมขวาบน';
+	/* ภาพหน้าจอขั้น 1 ถึง 5 มากับธีม (8 ต.ค. 2026 · ลำดับขั้นตามคู่มือ FENIX เว็บในเครือของเจ้าของ · ภาพแก้ชื่อไฟล์/ชื่อ EA เป็น EA_WING_V4.2 และเพิ่มช่อง Allow DLL imports ในแท็บ Common) · ขั้น 6 รอภาพแดชบอร์ดจริง · อัปโหลดภาพใหม่ใน Customizer ได้ */
+	$flat['inst_step1_img'] = 'assets/img/install/eawing-mt5-open-data-folder-v1.webp';
+	$flat['inst_step2_img'] = 'assets/img/install/eawing-mt5-experts-folder-v1.webp';
+	$flat['inst_step3_img'] = 'assets/img/install/eawing-mt5-navigator-v1.webp';
+	$flat['inst_step4_img'] = 'assets/img/install/eawing-mt5-xauusd-m1-chart-v1.webp';
+	$flat['inst_step5_img'] = 'assets/img/install/eawing-mt5-common-tab-v1.webp';
 	$flat['install_note']     = $in['note'];
 	$flat['inst_check_title'] = $in['check_title'];
 	$flat['inst_check']       = $in['check'];
