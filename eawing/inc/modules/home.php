@@ -110,10 +110,10 @@ function eaw_home_defaults( $d ) {
 			'install_home_sub'      => 'ย้ายไฟล์เข้าโฟลเดอร์ Experts เปิดปุ่ม Algo Trading แล้วดูว่า EA เริ่มทำงาน',
 			'home_install_btn'      => 'อ่านคู่มือติดตั้ง',
 			'home_install_btn_url'  => '/how-to-install/',
-			'ih_step1_img'          => '',
+			'ih_step1_img'          => 'assets/img/install/eawing-dashboard-home-v1.webp',
 			'ih_step1_img_mobile'   => '',
-			'ih_step1_img_alt'      => 'ภาพประกอบขั้นตอนติดตั้ง EA WING ใน MT5',
-			'ih_step1_img_caption'  => 'ภาพประกอบเท่านั้น ไม่ได้แสดงผลการเทรด',
+			'ih_step1_img_alt'      => 'แดชบอร์ด EA WING บนกราฟ XAUUSD ที่ขึ้น AutoTrading เปิดอยู่ และการ์ดล็อกอินสำเร็จ',
+			'ih_step1_img_caption'  => 'แดชบอร์ด EA WING 4.2 จริง · เลขบัญชีในภาพเป็นตัวอย่าง',
 			'ih_step1_img_note'     => 'ไม่ใส่ = ใช้ภาพวาดของธีม · ภาพที่เหมาะ: โฟลเดอร์ MQL5 → Experts หรือกราฟที่มี EA ติดอยู่ ไม่มีเลขบัญชี · ขนาดประมาณ 1280x720 px',
 			'home_shots_note'       => 'ภาพบนการ์ดเป็นภาพประกอบ ไม่ได้แสดงผลการเทรดจริง',
 			'tests_note'            => 'เมื่อเผยแพร่ผลทดสอบ เราจะแจ้งเงื่อนไขที่ใช้ทดสอบไว้ครบ ตัวเลขในอดีตไม่ได้รับประกันผลในอนาคต',
@@ -700,7 +700,7 @@ function eaw_home_media_args( $key, $width, $height, $args = array() ) {
  * @param string $art  ภาพวาดสำรอง: bt | fw | install
  */
 function eaw_home_shot_media( $key, $art ) {
-	$src = trim( (string) eaw_mod( $key . '_img' ) );
+	$src = eaw_theme_asset_url( eaw_mod( $key . '_img' ) ); // assets/... = ภาพที่มากับธีม
 	if ( '' !== $src ) {
 		$alt  = trim( (string) eaw_mod( $key . '_img_alt' ) );
 		$cap  = trim( (string) eaw_mod( $key . '_img_caption' ) );

@@ -86,8 +86,8 @@ function eaw_go_defaults( $d ) {
 			'go_step3_badge'         => '',
 			'go_deposit_label'       => 'เข้า Portal Zaurix',
 			'go_deposit_url'         => 'https://portal.zaurix.com/',
-			'go_deposit_guide_label' => '',
-			'go_deposit_guide_url'   => '',
+			'go_deposit_guide_label' => 'วิธีฝากเงินทีละขั้น',
+			'go_deposit_guide_url'   => '/deposit/',
 
 			/* ขั้น 4 · ไฟล์ EA */
 			'go_step4_title'         => 'ดาวน์โหลดไฟล์ EA WING',

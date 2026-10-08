@@ -45,6 +45,7 @@ Valid page slugs:
 - `pricing`
 - `risk-disclosure`
 - `open-mt5-account`
+- `deposit`
 - `mt5-login`
 - `vps-windows`
 - `vps-android`

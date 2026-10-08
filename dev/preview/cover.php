@@ -16,6 +16,7 @@ $page_covers = array(
 	'forward-test'     => array( 'Forward Test: ทดสอบ EA กับตลาดจริง', 'ผลทดสอบ', 'pulse', 'sky' ),
 	'how-to-install'   => array( 'ติดตั้ง EA WING บน MT5: ทีละขั้น พร้อมไล่แก้ปัญหา', 'คู่มือ', 'download', 'gold' ),
 	'open-mt5-account' => array( 'เปิดบัญชี MT5: ทีละขั้นสำหรับใช้ EA', 'คู่มือ', 'user', 'sky' ),
+	'deposit'          => array( 'ฝากเงิน Zaurix: เข้าบัญชีเทรด MT5 ทีละขั้น', 'คู่มือ', 'dollar', 'gold' ),
 	'mt5-login'        => array( 'ติดตั้งและล็อกอิน MT5: คอม มือถือ และ VPS', 'คู่มือ', 'monitor', 'blue' ),
 	'vps-windows'      => array( 'รัน EA บน Windows VPS: ทำงานต่อเนื่องทั้งวันทั้งคืน', 'คู่มือ', 'windows', 'sky' ),
 	'vps-android'      => array( 'เข้า VPS จาก Android: ดูแล EA ผ่านมือถือ', 'คู่มือ', 'android', 'gold' ),

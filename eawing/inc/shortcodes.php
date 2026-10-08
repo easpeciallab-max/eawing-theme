@@ -67,6 +67,7 @@ function eaw_figure_registry() {
 			'mt5-navigator'        => array( '../install/eawing-mt5-navigator-v1.webp', '', 'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มี EA_WING_V4.2', 210, 270, true ),
 			/* ครอปจากแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า V4.2 (ไม่มีตัวเลขเทรด/ส่วนตั้งค่า) */
 			'login-card-states'    => array( '../install/eawing-login-card-states-v1.webp', '', 'การ์ดล็อกอินบนแดชบอร์ด EA WING 4 แบบ: ล็อกอินสำเร็จ (เขียว) กำลังตรวจสิทธิ์และใช้แบบผ่อนผัน (เหลือง) และล็อกอินไม่ผ่าน (แดง)', 822, 350 ),
+			'dashboard-overview'   => array( '../install/eawing-dashboard-overview-v1.webp', '', 'ภาพรวมแดชบอร์ด EA WING 4.2 พร้อมหมายเลขกำกับ 17 จุด ฝั่งซ้ายเป็นสถานะและปุ่มหลัก ฝั่งขวาเป็นการปรับค่าระหว่างวันและข้อมูลตะกร้า', 1400, 952 ),
 			'modes-version'        => array( '../install/eawing-modes-version-v1.webp', '', 'ปุ่มเลือกโหมด Lite และ Full บนแดชบอร์ด EA WING และแถบท้ายแผงที่บอกเวอร์ชัน EA WING v4.2', 822, 370 ),
 		)
 	);
