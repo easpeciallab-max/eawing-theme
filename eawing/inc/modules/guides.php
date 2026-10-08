@@ -516,7 +516,7 @@ function eaw_guide_install_data() {
 		'kicker'      => 'Install Guide',
 		'sub'         => 'วางไฟล์ EA WING ลงใน MT5 เปิด Algo Trading กับ DLL ลากลงกราฟ XAUUSD M1 แล้วรอการ์ดล็อกอินเป็นสีเขียว',
 		'intro'       => 'ไฟล์ {brand} ดาวน์โหลดได้จากหน้า [ลิงก์รวม](/go/) หรือขอทาง LINE ในไฟล์ .zip มีตัว EA ไฟล์เดียว (โหมด Lite และ Full อยู่ในไฟล์แล้ว) คู่มือ PDF และวิธีติดตั้ง EA จะทำงานกับบัญชีที่ทีมงานเปิดสิทธิ์ให้แล้วเท่านั้น หน้านี้พาติดตั้งบน MT5 เวอร์ชัน Windows ซึ่งใช้ขั้นตอนเดียวกันทั้งบนคอมและบน VPS',
-		'quick'       => 'File → Open Data Folder → วาง EA_WING_V4.2.ex5 ใน MQL5 → Experts → Refresh ใน Navigator → ลากลงกราฟ XAUUSD M1 → แท็บ Common ติ๊ก Algo Trading และ DLL (และใน Tools → Options) → ปุ่ม Algo Trading สีเขียว → การ์ดล็อกอินสีเขียว',
+		'quick'       => 'File → Open Data Folder → วาง EA_WING_V4.2.ex5 ใน MQL5 → Experts → Refresh ใน Navigator → ลากลงกราฟ XAUUSD M1 → แท็บ Common ติ๊ก Algo Trading · แท็บ Dependencies ติ๊ก DLL (และใน Tools → Options) → ปุ่ม Algo Trading สีเขียว → การ์ดล็อกอินสีเขียว',
 		'req_title'   => 'ต้องมีก่อนติดตั้ง',
 		'req'         => "บัญชี MT5 ที่เข้าด้วยรหัสผ่านหลัก | ยังไม่มีบัญชี เริ่มที่ [เปิดบัญชี MT5](/open-mt5-account/)\nMT5 เวอร์ชัน Windows | บนคอมหรือ VPS (แอปมือถือรัน EA ไม่ได้)\nไฟล์ EA WING (.zip) | ดาวน์โหลดจาก [หน้าลิงก์รวม](/go/) หรือขอทาง LINE\nสิทธิ์ใช้งานของบัญชี | ส่งเลขบัญชี MT5 และชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE\nWindows VPS (แนะนำ) | ให้ MT5 เปิดได้ตลอด 24 ชั่วโมง ดู [คู่มือ VPS บน Windows](/vps-windows/)",
 		'req_note'    => '',
@@ -547,9 +547,9 @@ function eaw_guide_install_data() {
 			),
 			array(
 				'ติ๊ก Allow Algo Trading และ Allow DLL imports',
-				"หน้าต่างคุณสมบัติของ EA จะเปิดขึ้นเองหลังลากลงกราฟ ที่แท็บ Common ให้ติ๊ก Allow Algo Trading และ Allow DLL imports แล้วกด OK (กด F7 บนกราฟเพื่อเรียกหน้าต่างนี้กลับมาได้)\n\nใน Tools → Options (Ctrl+O) แท็บ Expert Advisors ต้องติ๊ก Allow algorithmic trading กับ Allow DLL imports ด้วย EA WING ต้องใช้ DLL ในการทำงาน ถ้าติ๊กไม่ครบทั้งสองที่ EA จะโหลดไม่ขึ้น",
-				'แท็บ Common ของ EA_WING_V4.2 ที่ติ๊ก Allow Algo Trading และ Allow DLL imports',
-				'แท็บ Common ที่ติ๊ก Allow Algo Trading และ Allow DLL imports',
+				"หน้าต่างคุณสมบัติของ EA จะเปิดขึ้นเองหลังลากลงกราฟ ที่แท็บ Common ให้ติ๊ก Allow Algo Trading แล้วไปที่แท็บ Dependencies ซึ่งมีเพิ่มมาเพราะ EA WING ใช้ DLL ติ๊ก Allow DLL imports แล้วกด OK (กด F7 บนกราฟเพื่อเรียกหน้าต่างนี้กลับมาได้)\n\nใน Tools → Options (Ctrl+O) แท็บ Expert Advisors ต้องติ๊ก Allow algorithmic trading กับ Allow DLL imports ด้วย EA WING ต้องใช้ DLL ในการทำงาน ถ้าติ๊กไม่ครบทั้งสองที่ EA จะโหลดไม่ขึ้น",
+				'แท็บ Common ของ EA_WING_V4.2 ที่ติ๊ก Allow Algo Trading',
+				'แท็บ Common ที่ติ๊ก Allow Algo Trading (ช่อง Allow DLL imports อยู่แท็บ Dependencies)',
 			),
 			array(
 				'เปิดปุ่ม Algo Trading แล้วดูการ์ดล็อกอิน',
@@ -560,7 +560,7 @@ function eaw_guide_install_data() {
 		),
 		'note'        => 'เมนูและชื่อปุ่มอาจต่างไปตามรุ่นของ MT5 ถ้าหาไม่เจอ ถ่ายภาพหน้าจอส่งทาง LINE แล้วทีมงานจะช่วยชี้ตำแหน่งให้',
 		'check_title' => 'ตรวจความพร้อมก่อนปล่อยให้ EA ทำงาน',
-		'check'       => "การ์ดล็อกอินบนแดชบอร์ด | สีเขียวคือผ่าน (บอกวันหมดอายุ) · สีเหลืองคือกำลังตรวจ ผ่อนผัน หรือใกล้หมดอายุ · สีแดงคือไม่ผ่าน (บอกเหตุผล)\nปุ่ม Algo Trading | เป็นสีเขียว (Ctrl+E ใช้สลับเปิดปิด)\nAllow DLL imports | ติ๊กทั้งใน Tools → Options และในแท็บ Common ของ EA\nกราฟ | XAUUSD กรอบเวลา M1\nแท็บ Experts | มีข้อความจาก EA ว่าเริ่มทำงาน และไม่มีบรรทัดผิดพลาดซ้ำ\nเครื่องที่รัน | บัญชีนี้มี EA ทำงานอยู่บนเครื่องนี้เครื่องเดียว และเครื่องเปิดค้างได้ตลอด",
+		'check'       => "การ์ดล็อกอินบนแดชบอร์ด | สีเขียวคือผ่าน (บอกวันหมดอายุ) · สีเหลืองคือกำลังตรวจ ผ่อนผัน หรือใกล้หมดอายุ · สีแดงคือไม่ผ่าน (บอกเหตุผล)\nปุ่ม Algo Trading | เป็นสีเขียว (Ctrl+E ใช้สลับเปิดปิด)\nAllow DLL imports | ติ๊กทั้งใน Tools → Options และในแท็บ Dependencies ของ EA\nกราฟ | XAUUSD กรอบเวลา M1\nแท็บ Experts | มีข้อความจาก EA ว่าเริ่มทำงาน และไม่มีบรรทัดผิดพลาดซ้ำ\nเครื่องที่รัน | บัญชีนี้มี EA ทำงานอยู่บนเครื่องนี้เครื่องเดียว และเครื่องเปิดค้างได้ตลอด",
 		'check_note'  => 'ช่วงแรกที่ยังไม่มีออเดอร์เป็นเรื่องปกติ EA เปิดออเดอร์เมื่อเงื่อนไขของระบบครบเท่านั้น ถ้าเน็ตหลุดชั่วคราว EA ยังทำงานต่อได้ 72 ชั่วโมงนับจากการตรวจสิทธิ์ครั้งล่าสุด',
 		'cta_title'   => 'ติดตั้งแล้วยังไม่ขึ้น ให้ทีมงานช่วยไล่',
 		'cta_text'    => 'แนบภาพ MT5 ที่เห็นกราฟ การ์ดล็อกอิน และแท็บ Experts ส่งทาง LINE ทีมงานคนไทยจะไล่ดูว่าค้างขั้นไหนและแก้ตรงจุดใด',
@@ -630,12 +630,12 @@ function eaw_guide_flat_defaults() {
 		$flat[ 'inst_step' . $i . '_desc' ]  = $step[1];
 		$flat += eaw_guide_media_defaults( 'inst_step' . $i, $step[2], $step[3] );
 	}
-	/* ภาพหน้าจอขั้น 1 ถึง 5 มากับธีม (8 ต.ค. 2026 · ลำดับขั้นตามคู่มือเว็บในเครือของเจ้าของ · ภาพแก้ชื่อไฟล์/ชื่อ EA เป็น EA_WING_V4.2 และเพิ่มช่อง Allow DLL imports ในแท็บ Common) · ขั้น 6 ครอปจากภาพแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า V4.2 (เฉพาะหัวแผง สถานะ AutoTrading และการ์ดล็อกอิน ตัดตัวเลขและส่วนตั้งค่าออก) · อัปโหลดภาพใหม่ใน Customizer ได้ */
+	/* ภาพหน้าจอขั้น 1 ถึง 5 มากับธีม (8 ต.ค. 2026 · ลำดับขั้นตามคู่มือเว็บในเครือของเจ้าของ · ภาพแก้ชื่อไฟล์/ชื่อ EA เป็น EA_WING_V4.2 · ขั้น 5 เป็นแท็บ Common ตามจริง ช่อง DLL อยู่แท็บ Dependencies ตามคู่มือ MT5) · ขั้น 6 ครอปจากภาพแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า V4.2 (เฉพาะหัวแผง สถานะ AutoTrading และการ์ดล็อกอิน ตัดตัวเลขและส่วนตั้งค่าออก) · อัปโหลดภาพใหม่ใน Customizer ได้ */
 	$flat['inst_step1_img'] = 'assets/img/install/eawing-mt5-open-data-folder-v1.webp';
 	$flat['inst_step2_img'] = 'assets/img/install/eawing-mt5-experts-folder-v1.webp';
 	$flat['inst_step3_img'] = 'assets/img/install/eawing-mt5-navigator-v1.webp';
 	$flat['inst_step4_img'] = 'assets/img/install/eawing-mt5-xauusd-m1-chart-v1.webp';
-	$flat['inst_step5_img'] = 'assets/img/install/eawing-mt5-common-tab-v1.webp';
+	$flat['inst_step5_img'] = 'assets/img/install/eawing-mt5-common-tab-v2.webp';
 	$flat['inst_step6_img']     = 'assets/img/install/eawing-dashboard-login-ok-v1.webp';
 	$flat['inst_step6_img_alt'] = 'แดชบอร์ด EA WING บนกราฟ XAUUSD.c ที่ขึ้น AutoTrading เปิดอยู่ และการ์ดล็อกอินสำเร็จสีเขียว';
 	$flat['install_note']     = $in['note'];

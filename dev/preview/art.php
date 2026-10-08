@@ -8,6 +8,7 @@
  * license-flow: เปิดสิทธิ์ (ส่งเลขบัญชี → 5 นาที → การ์ดเขียว → ผ่อนผัน 72 ชม.) · หน้า how-to-install
  * vps-flow: VPS ช่วยให้ EA ทำงานทั้งวัน · หน้า vps-windows / vps-android / vps-ios
  * account-flow: เปิดบัญชี MT5 4 ขั้น · หน้า open-mt5-account
+ * แผนภาพเสาหลัก 8 กลุ่มบทความ (ea-loop, mt5-map, vps-path, gold-sessions, risk-layers, plan-cycle, monitor-rhythm, broker-checklist) อยู่ใน art-types.php
  *
  * @var string $fx_art_name set by router.php
  */
@@ -61,6 +62,8 @@ $arts = array(
 		'icon'  => 'shield',
 	),
 );
+require __DIR__ . '/art-types.php';
+$arts = array_merge( $arts, eaw_art_pillar_data() );
 if ( ! isset( $arts[ $fx_art_name ] ) ) {
 	http_response_code( 404 );
 	echo 'No art: ' . htmlspecialchars( $fx_art_name );
@@ -115,14 +118,18 @@ h1{font-family:"Kanit",sans-serif;font-size:<?php echo $tall ? 50 : 54; ?>px;fon
 .arrow svg{width:34px;height:34px;stroke-width:2.6;<?php echo $tall ? 'transform:rotate(90deg);' : ''; ?>}
 .note{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:16px;padding:22px 28px;border-radius:24px;background:var(--navy);color:#fff;font-family:"Kanit",sans-serif;font-size:<?php echo $tall ? 26 : 27; ?>px;font-weight:500;line-height:1.4;text-align:<?php echo $tall ? 'left' : 'center'; ?>}
 .note svg{flex:0 0 auto;width:38px;height:38px;color:var(--gold-1);stroke-width:1.8}
+<?php echo eaw_art_types_css(); // phpcs:ignore WordPress.Security.EscapeOutput -- static CSS ?>
 </style>
 </head>
-<body>
+<body class="<?php echo $tall ? 'is-tall' : 'is-wide'; ?>">
 <div class="wrap">
 	<div class="head">
 		<h1><?php echo esc_html( $a['title'] ); ?></h1>
 		<p class="sub"><?php echo esc_html( $a['sub'] ); ?></p>
 	</div>
+	<?php if ( ! empty( $a['type'] ) && 'steps' !== $a['type'] ) : ?>
+		<?php echo eaw_art_types_body( $a, $tall ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside ?>
+	<?php else : ?>
 	<div class="steps">
 		<?php foreach ( $a['steps'] as $i => $s ) : ?>
 			<?php if ( $i ) : ?>
@@ -138,7 +145,10 @@ h1{font-family:"Kanit",sans-serif;font-size:<?php echo $tall ? 50 : 54; ?>px;fon
 			</div>
 		<?php endforeach; ?>
 	</div>
+	<?php endif; ?>
+	<?php if ( ! empty( $a['note'] ) ) : ?>
 	<p class="note"><?php echo eaw_icon( isset( $a['icon'] ) ? $a['icon'] : 'shield' ); // phpcs:ignore WordPress.Security.EscapeOutput -- trusted SVG ?><span><?php echo esc_html( $a['note'] ); ?></span></p>
+	<?php endif; ?>
 </div>
 </body>
 </html>

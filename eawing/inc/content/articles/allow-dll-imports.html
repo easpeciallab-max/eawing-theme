@@ -20,7 +20,7 @@
 <p>MT5 แยกการอนุญาตเป็นสองระดับ คือระดับโปรแกรมที่คุม EA ทุกตัว และระดับ EA แต่ละตัวบนกราฟ ต้องเปิดทั้งสองจุดให้ตรงกัน</p>
 <ol class="guide-steps">
 <li><h3>จุดที่ 1: Tools → Options แท็บ Expert Advisors</h3><p>กด Ctrl+O หรือเปิดเมนู Tools แล้วเลือก Options คลิกแท็บ Expert Advisors ติ๊ก Allow algorithmic trading และ Allow DLL imports แล้วกด OK ข้างช่อง DLL อาจมีข้อความเตือนว่าอาจเป็นอันตรายและควรเปิดเฉพาะโปรแกรมที่เชื่อถือได้ ซึ่งเป็นคำเตือนมาตรฐานของ MT5</p></li>
-<li><h3>จุดที่ 2: หน้าต่างคุณสมบัติของ EA</h3><p>ลาก EA จาก Navigator (Ctrl+N) ลงกราฟ หน้าต่างคุณสมบัติจะเด้งขึ้นมา ในแท็บ Common ให้ติ๊ก Allow Algo Trading และ Allow DLL imports แล้วกด OK</p></li>
+<li><h3>จุดที่ 2: หน้าต่างคุณสมบัติของ EA</h3><p>ลาก EA จาก Navigator (Ctrl+N) ลงกราฟ หน้าต่างคุณสมบัติจะเด้งขึ้นมา ในแท็บ Common ให้ติ๊ก Allow Algo Trading แล้วไปที่แท็บ Dependencies (มีเฉพาะ EA ที่ใช้ DLL) ติ๊ก Allow DLL imports แล้วกด OK ถ้าติ๊กช่อง DLL ใน Options ไว้แล้ว ช่องนี้จะติ๊กมาให้เอง</p></li>
 <li><h3>ตรวจว่าเปิดครบ</h3><p>ปุ่ม Algo Trading บนแถบเครื่องมือด้านบนต้องเป็นสีเขียว และไอคอนเล็กข้างชื่อ EA ที่มุมขวาบนของกราฟต้องเป็นสีฟ้า ถ้าเป็นสีเทาแปลว่ายังมีสวิตช์ใดปิดอยู่</p></li>
 </ol>
 <div class="callout callout--tip"><p><strong>EA ที่ติดกราฟอยู่ก่อนแล้ว:</strong> ถ้าคุณเพิ่งไปติ๊กใน Options ทีหลัง ให้กด F7 บนกราฟนั้นเพื่อเปิดคุณสมบัติของ EA แล้วตรวจแท็บ Common อีกรอบ หรือถอด EA ออกแล้วลากลงใหม่ จะชัวร์กว่าการรอให้ระบบรับค่าเอง</p></div>
@@ -32,7 +32,7 @@
 <thead><tr><th>สิ่งที่เห็น</th><th>ดูต่อที่ไหน</th><th>แก้อย่างไร</th></tr></thead>
 <tbody>
 <tr><td>ลาก EA ลงกราฟแล้วหลุดออกเองทันที</td><td>แท็บ Experts และ Journal ใน Toolbox (Ctrl+T)</td><td>ติ๊กทั้งสองจุด แล้วลากลงกราฟใหม่</td></tr>
-<tr><td>มีชื่อ EA บนกราฟ แต่ไม่มีแผงหรือข้อความใดขึ้นมา</td><td>บรรทัดล่าสุดในแท็บ Experts</td><td>กด F7 ตรวจแท็บ Common</td></tr>
+<tr><td>มีชื่อ EA บนกราฟ แต่ไม่มีแผงหรือข้อความใดขึ้นมา</td><td>บรรทัดล่าสุดในแท็บ Experts</td><td>กด F7 ตรวจแท็บ Common และแท็บ Dependencies</td></tr>
 <tr><td>ข้อความทำนองว่าไม่อนุญาตให้เรียกใช้ DLL หรือโหลดไลบรารีไม่ได้</td><td>แท็บ Experts หรือ Journal</td><td>ตรวจช่อง DLL ใน Options และไฟล์ .dll (ถ้า EA ตัวนั้นมี) ว่าอยู่ใน MQL5 → Libraries</td></tr>
 <tr><td>Strategy Tester เริ่มแล้วจบทันทีหรือไม่ยอมเริ่ม</td><td>แท็บ Journal ของหน้าต่าง Strategy Tester</td><td>ติ๊กใน Tools → Options แล้วเริ่มทดสอบใหม่</td></tr>
 </tbody></table></div>
@@ -43,7 +43,7 @@
 <h3>สิ่งที่ควรทำ</h3>
 <ul class="checklist">
 <li>ใช้ไฟล์ EA และไฟล์ .dll ที่ได้จากผู้ขายโดยตรงเท่านั้น และเก็บไฟล์ต้นฉบับไว้เทียบเสมอ</li>
-<li>ติ๊กช่อง DLL ในแท็บ Common เฉพาะ EA ที่จำเป็นต้องใช้ ตัวอื่นที่ไม่ต้องใช้ไม่ต้องติ๊ก</li>
+<li>ติ๊กช่อง DLL ในแท็บ Dependencies เฉพาะ EA ที่จำเป็นต้องใช้ ตัวอื่นที่ไม่ต้องใช้ไม่ต้องติ๊ก</li>
 <li>ใช้ VPS หรือเครื่องที่แยกไว้รัน EA โดยเฉพาะ ไม่เก็บไฟล์ส่วนตัว รหัสผ่านธนาคาร หรือกระเป๋าเงินดิจิทัลไว้ในเครื่องเดียวกัน</li>
 <li>เปิดโปรแกรมป้องกันไวรัสของ Windows ไว้ตามปกติ</li>
 </ul>
@@ -55,7 +55,7 @@
 </ul>
 
 <h2>Allow DLL imports ใน Strategy Tester</h2>
-<p>หลายคนติ๊กช่อง DLL ในแท็บ Common ตอนลากลงกราฟแล้ว EA ทำงานปกติ แต่พอเปิด Strategy Tester (Ctrl+R) เพื่อทดสอบย้อนหลัง กลับเริ่มไม่ได้ เพราะการทดสอบไม่ได้ผ่านหน้าต่างคุณสมบัติบนกราฟ ตัวทดสอบอ้างอิงการอนุญาตระดับโปรแกรมใน Tools → Options แท็บ Expert Advisors ถ้าช่องนั้นว่าง EA ที่ใช้ DLL จะโหลดไม่ขึ้นในการทดสอบ เหตุผลจะอยู่ในแท็บ Journal ของหน้าต่าง Strategy Tester ไม่ใช่ Journal หลักของโปรแกรม</p>
+<p>หลายคนติ๊กช่อง DLL ในแท็บ Dependencies ตอนลากลงกราฟแล้ว EA ทำงานปกติ แต่พอเปิด Strategy Tester (Ctrl+R) เพื่อทดสอบย้อนหลัง กลับเริ่มไม่ได้ เพราะการทดสอบไม่ได้ผ่านหน้าต่างคุณสมบัติบนกราฟ ตัวทดสอบอ้างอิงการอนุญาตระดับโปรแกรมใน Tools → Options แท็บ Expert Advisors ถ้าช่องนั้นว่าง EA ที่ใช้ DLL จะโหลดไม่ขึ้นในการทดสอบ เหตุผลจะอยู่ในแท็บ Journal ของหน้าต่าง Strategy Tester ไม่ใช่ Journal หลักของโปรแกรม</p>
 <p>EA ที่ผูกสิทธิ์กับเลขบัญชี มักต้องตรวจสิทธิ์ผ่านก่อนทดสอบเช่นกัน ดังนั้นถ้าติ๊ก DLL แล้วยังเริ่มไม่ได้ ให้ดูว่า MT5 ล็อกอินบัญชีที่ได้รับสิทธิ์และต่อเน็ตอยู่ แนวทางการทดสอบย้อนหลังอยู่ในหน้า<a href="{{home}}/backtest/">Backtest EA</a></p>
 
 <h2>ย้ายไป VPS หรือลง MT5 ใหม่ ต้องติ๊กอีกรอบ</h2>
@@ -72,7 +72,7 @@
 <ul class="checklist">
 <li>เปิด MT5 ชุดที่ใช้จริง ไม่ใช่ชุดอื่นบนเครื่องเดียวกัน</li>
 <li>Tools → Options แท็บ Expert Advisors ติ๊กทั้ง Allow algorithmic trading และช่อง DLL</li>
-<li>กด F7 บนกราฟ แท็บ Common ติ๊ก Allow Algo Trading และ Allow DLL imports</li>
+<li>กด F7 บนกราฟ แท็บ Common ติ๊ก Allow Algo Trading และแท็บ Dependencies ติ๊ก Allow DLL imports</li>
 <li>ปุ่ม Algo Trading บนแถบเครื่องมือเป็นสีเขียว และไอคอนข้างชื่อ EA บนกราฟเป็นสีฟ้า</li>
 <li>ถ้า EA มีไฟล์ .dll มาด้วย ไฟล์อยู่ใน MQL5 → Libraries ของชุดเดียวกัน</li>
 <li>อ่านบรรทัดล่าสุดในแท็บ Experts และ Journal แล้วจดเวลาที่เกิดปัญหา</li>
@@ -85,11 +85,11 @@
 <details class="faq-item"><summary><span>ติ๊กช่อง DLL แล้วเครื่องจะติดไวรัสไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
 <div class="faq-answer"><p>การติ๊กช่องนี้ไม่ได้ทำให้เครื่องติดไวรัสเอง แต่เปิดทางให้ EA เรียกใช้ DLL ได้ ความปลอดภัยจึงขึ้นกับว่าไฟล์ EA และไฟล์ .dll มาจากไหน ใช้เฉพาะไฟล์จากผู้ขายที่ไว้ใจได้ และแยกเครื่องรัน EA ออกจากข้อมูลสำคัญ</p></div></details>
 <details class="faq-item"><summary><span>ติ๊กใน Options แล้ว ทำไมยังต้องติ๊กในแท็บ Common อีก?</span><i class="faq-plus" aria-hidden="true"></i></summary>
-<div class="faq-answer"><p>เพราะ MT5 แยกการอนุญาตเป็นระดับโปรแกรมกับระดับ EA แต่ละตัว ช่องใน Options คือการยอมให้ใช้ DLL ได้ในโปรแกรมนี้ ส่วนช่องในแท็บ Common คือการยอมให้ EA ตัวนั้นบนกราฟนั้นใช้ ต้องเปิดทั้งสองจุด</p></div></details>
+<div class="faq-answer"><p>เพราะ MT5 แยกการอนุญาตเป็นระดับโปรแกรมกับระดับ EA แต่ละตัว ช่องใน Options คือการยอมให้ใช้ DLL ได้ในโปรแกรมนี้ ส่วนช่องในแท็บ Dependencies คือการยอมให้ EA ตัวนั้นบนกราฟนั้นใช้ ช่องใน Options ยังเป็นค่าเริ่มต้นของช่องนี้ด้วย ติ๊กไว้ทั้งสองจุดจะไม่พลาด</p></div></details>
 <details class="faq-item"><summary><span>แอป MT5 บนมือถือมีช่องอนุญาต DLL ไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
 <div class="faq-answer"><p>ไม่มี เพราะแอปมือถือทั้ง Android และ iOS รัน EA ไม่ได้ ช่องนี้มีเฉพาะ MT5 รุ่นคอมพิวเตอร์บน Windows หรือบน VPS ส่วนมือถือใช้ดูผลและรีโมตเข้า VPS ด้วย Windows App</p></div></details>
 <details class="faq-item"><summary><span>EA WING ต้องติ๊ก Allow DLL imports ไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
-<div class="faq-answer"><p>ต้องติ๊ก EA WING ต้องใช้ DLL ในการทำงาน ติ๊กทั้งใน Tools → Options แท็บ Expert Advisors และในแท็บ Common ตอนลากลงกราฟ XAUUSD M1 ถ้าไม่ติ๊ก EA จะโหลดไม่ขึ้นทั้งบนกราฟและใน Strategy Tester</p></div></details>
+<div class="faq-answer"><p>ต้องติ๊ก EA WING ต้องใช้ DLL ในการทำงาน ติ๊กทั้งใน Tools → Options แท็บ Expert Advisors และในแท็บ Dependencies ตอนลากลงกราฟ XAUUSD M1 ถ้าไม่ติ๊ก EA จะโหลดไม่ขึ้นทั้งบนกราฟและใน Strategy Tester</p></div></details>
 </div>
 
 <div class="callout callout--warn"><p><strong>คำเตือนความเสี่ยง:</strong> การติ๊กช่อง DLL แก้ได้แค่ปัญหาทางเทคนิค ไม่ได้ลดความเสี่ยงของตลาด การเทรด Forex ทองคำ และ CFD ด้วย EA มีความเสี่ยงสูง อาจสูญเสียเงินทุนบางส่วนหรือทั้งหมด และผลในอดีตไม่ได้รับประกันผลในอนาคต อ่าน<a href="{{home}}/risk-disclosure/">ความเสี่ยงการใช้ EA</a>ก่อนใช้เงินจริง</p></div>

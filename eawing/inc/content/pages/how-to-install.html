@@ -1,4 +1,4 @@
-<!--meta {"title":"ติดตั้ง EA WING บน MT5 ทีละขั้น","seo_title":"วิธีลง EA ใน MT5 ทีละขั้น พร้อมไล่แก้ปัญหา · EA WING","description":"วิธีลง EA ใน MT5 ทีละขั้น วางไฟล์ใน Experts เปิด Algo Trading และ DLL ลงกราฟ XAUUSD M1 อ่านการ์ดล็อกอิน ไล่แก้อาการที่เจอบ่อย และรัน EA WING บน VPS","keyword":"ลง EA ใน MT5","kicker":"Install","rev":11} -->
+<!--meta {"title":"ติดตั้ง EA WING บน MT5 ทีละขั้น","seo_title":"วิธีลง EA ใน MT5 ทีละขั้น พร้อมไล่แก้ปัญหา · EA WING","description":"วิธีลง EA ใน MT5 ทีละขั้น วางไฟล์ใน Experts เปิด Algo Trading และ DLL ลงกราฟ XAUUSD M1 อ่านการ์ดล็อกอิน ไล่แก้อาการที่เจอบ่อย และรัน EA WING บน VPS","keyword":"ลง EA ใน MT5","kicker":"Install","rev":12} -->
 <p class="lead">ขั้นตอนหลักด้านบนพาคุณลง EA ใน MT5 จนการ์ดล็อกอินขึ้นสีเขียวแล้ว ส่วนนี้คือรายละเอียดที่ช่วยให้การติดตั้ง EA WING เรียบร้อยตั้งแต่ครั้งแรก ตั้งแต่ของที่อยู่ในไฟล์ ตำแหน่งโฟลเดอร์ สวิตช์ที่ซ่อนอยู่ในเมนู Options ระบบสิทธิ์ใช้งาน อาการเสียที่พบบ่อย ไปจนถึงเครื่องที่ใช้รันข้ามวันข้ามคืนและการเปลี่ยนรุ่น คิดเสียว่าเป็นเช็กลิสต์ก่อนบินที่ต้องผ่านให้ครบทุกข้อ</p>
 
 <h2>รู้จักไฟล์ก่อนลง EA ใน MT5</h2>
@@ -34,7 +34,7 @@
 <li><strong>กลุ่ม Disable algorithmic trading when...</strong> เป็นเบรกกันพลาด ทุกครั้งที่คุณย้ายไปบัญชีอื่น เปลี่ยนโปรไฟล์หน้าจอ หรือสลับคู่สินทรัพย์และกรอบเวลาบนกราฟ ระบบจะดับ Algo Trading ให้เองทันที ดีในแง่ความปลอดภัย แต่ต้องจำว่าหลังทำสิ่งเหล่านี้ คุณต้องเปิดกลับด้วยตัวเอง</li>
 <li><strong>Allow WebRequest for listed URL</strong> EA WING ไม่ต้องเพิ่มที่อยู่เว็บใดในช่องนี้ การตรวจสิทธิ์ฝังอยู่ในตัว EA แล้ว</li>
 </ul>
-<p>นอกจากเมนูนี้ ยังมีอีกสองจุดที่ต้องเปิดให้ตรงกัน จุดแรกคือแท็บ Common ของหน้าต่างคุณสมบัติ EA ที่เด้งขึ้นตอนลาก EA ลงกราฟ (กด F7 บนกราฟเพื่อเรียกกลับมา) ต้องติ๊กทั้ง Allow Algo Trading และ Allow DLL imports จุดที่สองคือปุ่ม Algo Trading บนแถบเครื่องมือด้านบนที่ต้องเป็นสีเขียว เมื่อครบทุกจุด ไอคอนเล็กข้างชื่อ EA ที่มุมขวาบนของกราฟจะเป็นสีฟ้า ถ้ายังเป็นสีเทาแปลว่ามีจุดใดจุดหนึ่งปิดอยู่ อ่านคำอธิบายจากผู้พัฒนาแพลตฟอร์มได้ที่ <a href="https://www.metatrader5.com/en/terminal/help/algotrading/trade_robots_indicators" target="_blank" rel="noopener">คู่มือ Expert Advisors ของ MetaTrader 5</a> และ <a href="https://www.metatrader5.com/en/terminal/help/startworking/settings" target="_blank" rel="noopener">หน้าอธิบาย Platform Settings</a> (ภาษาอังกฤษ)</p>
+<p>นอกจากเมนูนี้ ยังมีอีกสองจุดที่ต้องเปิดให้ตรงกัน จุดแรกคือหน้าต่างคุณสมบัติ EA ที่เด้งขึ้นตอนลาก EA ลงกราฟ (กด F7 บนกราฟเพื่อเรียกกลับมา) แท็บ Common ติ๊ก Allow Algo Trading และแท็บ Dependencies ติ๊ก Allow DLL imports จุดที่สองคือปุ่ม Algo Trading บนแถบเครื่องมือด้านบนที่ต้องเป็นสีเขียว เมื่อครบทุกจุด ไอคอนเล็กข้างชื่อ EA ที่มุมขวาบนของกราฟจะเป็นสีฟ้า ถ้ายังเป็นสีเทาแปลว่ามีจุดใดจุดหนึ่งปิดอยู่ อ่านคำอธิบายจากผู้พัฒนาแพลตฟอร์มได้ที่ <a href="https://www.metatrader5.com/en/terminal/help/algotrading/trade_robots_indicators" target="_blank" rel="noopener">คู่มือ Expert Advisors ของ MetaTrader 5</a> และ <a href="https://www.metatrader5.com/en/terminal/help/startworking/settings" target="_blank" rel="noopener">หน้าอธิบาย Platform Settings</a> (ภาษาอังกฤษ)</p>
 
 <h2>ลงกราฟ XAUUSD กรอบเวลา M1</h2>
 <p>EA WING ออกแบบให้ทำงานบนกราฟ XAUUSD กรอบเวลา M1 เปิด Market Watch (Ctrl+M) หาชื่อ XAUUSD แล้วลากออกมาเป็นกราฟใหม่ จากนั้นกดปุ่ม M1 บนแถบกรอบเวลา ชื่อสัญลักษณ์ของแต่ละบัญชีอาจมีตัวท้ายต่างกัน เช่น XAUUSD.c ในบัญชีเซนต์ หรือ XAUUSD.s ในบัญชีมาตรฐาน ให้ใช้ชื่อที่ปรากฏใน Market Watch ของบัญชีคุณเอง หาไม่เจอให้คลิกขวาใน Market Watch แล้วเลือก Show All</p>
@@ -93,7 +93,7 @@
 <thead><tr><th>สิ่งที่เห็น</th><th>สาเหตุที่น่าสงสัย</th><th>ลองทำแบบนี้</th></tr></thead>
 <tbody>
 <tr><td>ชื่อ EA ไม่อยู่ในรายการของ Navigator</td><td>ไฟล์ไปอยู่ผิดที่ เช่น ใน Indicators หรือใน MT5 คนละชุด หรือยังเป็นไฟล์ .zip อยู่</td><td>แตกไฟล์ก่อน แล้วเข้าโฟลเดอร์ข้อมูลผ่านเมนู File ของหน้าต่างที่ใช้จริง ย้าย .ex5 ไปไว้ใน Experts แล้วสั่ง Refresh</td></tr>
-<tr><td>ลาก EA ขึ้นกราฟแล้วหลุดออกเอง หรือไม่มีแดชบอร์ดขึ้นมา</td><td>ยังไม่ได้ติ๊ก Allow DLL imports</td><td>ติ๊กทั้งใน Tools → Options แท็บ Expert Advisors และในแท็บ Common ของ EA แล้วลากลงกราฟใหม่ ถ้ายังหลุด อ่านบรรทัดล่าสุดในแท็บ Experts แล้วแคปส่งทีมงาน</td></tr>
+<tr><td>ลาก EA ขึ้นกราฟแล้วหลุดออกเอง หรือไม่มีแดชบอร์ดขึ้นมา</td><td>ยังไม่ได้ติ๊ก Allow DLL imports</td><td>ติ๊กทั้งใน Tools → Options แท็บ Expert Advisors และในแท็บ Dependencies ของ EA แล้วลากลงกราฟใหม่ ถ้ายังหลุด อ่านบรรทัดล่าสุดในแท็บ Experts แล้วแคปส่งทีมงาน</td></tr>
 <tr><td>ขึ้นหน้าต่าง "ล็อกอินไม่ผ่าน" หรือการ์ดล็อกอินเป็นสีแดง</td><td>บัญชีนี้ยังไม่ได้รับสิทธิ์ หรือสิทธิ์หมดอายุ</td><td>ส่งเลขบัญชีกับชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE เมื่อเพิ่มสิทธิ์แล้ว EA เริ่มทำงานเองภายใน 5 นาที</td></tr>
 <tr><td>ไอคอนข้างชื่อ EA บนกราฟเป็นสีเทา</td><td>สวิตช์ Algo Trading บนแถบด้านบนยังดับอยู่ หรือแท็บ Common ของ EA ยังไม่ได้ติ๊กอนุญาต</td><td>กดเปิดปุ่มบนแถบเครื่องมือให้เป็นสีเขียว แล้วกด F7 บนกราฟเพื่อตรวจแท็บ Common</td></tr>
 <tr><td>Algo Trading ดับเองหลังสลับบัญชีหรือเปลี่ยนกราฟ</td><td>เบรกกันพลาดในกลุ่ม Disable algorithmic trading when... ทำงานตามที่ตั้งไว้</td><td>เปิดปุ่มกลับ แล้วพิจารณาว่าจะคงตัวเลือกนั้นไว้หรือไม่</td></tr>
@@ -123,7 +123,7 @@
 <li><strong>เลือกจังหวะ</strong> รอให้ไม่มีออเดอร์ของ EA เปิดค้างอยู่ หรือทำตอนตลาดปิดช่วงสุดสัปดาห์ ถ้ายังมีออเดอร์ค้าง ถามทีมงานก่อนว่าควรรอหรือเปลี่ยนได้เลย</li>
 <li><strong>ถอดตัวเก่าออก</strong> คลิกขวาบนกราฟแล้วถอด EA WING ตัวเดิมออก</li>
 <li><strong>ใส่ไฟล์ใหม่</strong> แตก .zip รุ่นใหม่ วางไฟล์ .ex5 ในโฟลเดอร์ MQL5 → Experts แล้วคลิกขวาใน Navigator สั่ง Refresh</li>
-<li><strong>ลากรุ่นใหม่ลงกราฟ</strong> ลงบนกราฟ XAUUSD M1 เดิม แท็บ Common ติ๊ก Allow Algo Trading และ Allow DLL imports แล้วกด OK</li>
+<li><strong>ลากรุ่นใหม่ลงกราฟ</strong> ลงบนกราฟ XAUUSD M1 เดิม แท็บ Common ติ๊ก Allow Algo Trading และแท็บ Dependencies ติ๊ก Allow DLL imports แล้วกด OK</li>
 <li><strong>ยืนยันว่าทำงาน</strong> ดูท้ายแผงแดชบอร์ดว่าขึ้นเลขรุ่นใหม่ และการ์ดล็อกอินเป็นสีเขียว ไม่ต้องขอสิทธิ์ใหม่ถ้ายังใช้บัญชีเดิม ใครรันไว้หลายเครื่อง อย่าลืมเปลี่ยนให้ครบทุกที่</li>
 </ol>
 <p>สิ่งที่เปลี่ยนในแต่ละรุ่นอยู่ในไฟล์ "มีอะไรใหม่" ที่มากับ .zip อ่านก่อนอัปเดตทุกครั้ง ติดขั้นตอนไหน ส่งภาพหน้าจอแดชบอร์ด แท็บ Experts หรือ Journal ให้ทีมงานคนไทยช่วยดูได้ทาง LINE</p>
@@ -134,7 +134,7 @@
 <details class="faq-item"><summary><span>ต้องใส่รหัสหรือลิงก์อะไรใน MT5 ไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
 <div class="faq-answer"><p>ไม่ต้อง การตรวจสิทธิ์ฝังอยู่ในตัว EA แล้ว คุณแค่ส่งเลขบัญชีและชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE เมื่อเปิดสิทธิ์แล้ว EA จะตรวจผ่านเองหลังลากลงกราฟ</p></div></details>
 <details class="faq-item"><summary><span>ทำไมต้องติ๊ก Allow DLL imports?</span><i class="faq-plus" aria-hidden="true"></i></summary>
-<div class="faq-answer"><p>EA WING ต้องใช้ DLL ในการทำงาน ถ้าไม่ติ๊ก EA จะโหลดไม่ขึ้นทั้งบนกราฟและใน Strategy Tester ต้องติ๊กสองที่ คือใน Tools → Options แท็บ Expert Advisors และในแท็บ Common ตอนลาก EA ลงกราฟ</p></div></details>
+<div class="faq-answer"><p>EA WING ต้องใช้ DLL ในการทำงาน ถ้าไม่ติ๊ก EA จะโหลดไม่ขึ้นทั้งบนกราฟและใน Strategy Tester ต้องติ๊กสองที่ คือใน Tools → Options แท็บ Expert Advisors และในแท็บ Dependencies ตอนลาก EA ลงกราฟ</p></div></details>
 <details class="faq-item"><summary><span>ใช้กับบัญชีเดโมได้ไหม?</span><i class="faq-plus" aria-hidden="true"></i></summary>
 <div class="faq-answer"><p>ได้ ถ้าบัญชีเดโมนั้นได้รับสิทธิ์แล้ว EA WING ต้องล็อกอินผ่านทุกกรณี ทั้งบัญชีจริง บัญชีเดโม และการทดสอบย้อนหลัง ส่งเลขบัญชีเดโมให้ทีมงานได้แบบเดียวกับบัญชีจริง</p></div></details>
 <details class="faq-item"><summary><span>ลง EA ในแอป MT5 บนโทรศัพท์ได้หรือเปล่า?</span><i class="faq-plus" aria-hidden="true"></i></summary>

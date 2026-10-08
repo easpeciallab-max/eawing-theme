@@ -62,6 +62,15 @@ function eaw_figure_registry() {
 			'license-flow' => array( 'eawing-license-flow-v2.webp', 'eawing-license-flow-mobile-v2.webp', 'แผนภาพขั้นตอนเปิดสิทธิ์ EA WING: ส่งเลขบัญชีทาง LINE ทีมงานเปิดสิทธิ์ใน 5 นาที การ์ดล็อกอินเป็นสีเขียว และทำงานต่อได้ 72 ชั่วโมงเมื่อเน็ตหลุด' ),
 			'vps-flow'     => array( 'eawing-vps-flow-v2.webp', 'eawing-vps-flow-mobile-v2.webp', 'แผนภาพการใช้ Windows VPS รัน EA: เช่า VPS ลง MT5 และ EA ต่อจากคอมหรือมือถือ แล้วปิดเครื่องของคุณได้' ),
 			'account-flow' => array( 'eawing-account-flow-v2.webp', 'eawing-account-flow-mobile-v2.webp', 'แผนภาพเปิดบัญชี MT5 สำหรับใช้ EA 4 ขั้น: สมัคร ยืนยันตัวตน สร้างบัญชีเทรด และส่งเลขบัญชีให้ทีมงาน' ),
+			/* แผนภาพเสาหลักของ 8 กลุ่มบทความ (dev/preview/art-types.php · 8 ต.ค. 2026) */
+			'ea-loop'          => array( 'eawing-ea-loop-v2.webp', 'eawing-ea-loop-mobile-v2.webp', 'แผนภาพ EA ทำงานอย่างไรใน MT5: ราคาใหม่เข้ามา EA ตรวจเงื่อนไข ส่งคำสั่งเมื่อครบเงื่อนไข และโบรกเกอร์รับคำสั่ง วนซ้ำทุกครั้งที่ราคาขยับ' ),
+			'mt5-map'          => array( 'eawing-mt5-map-v2.webp', 'eawing-mt5-map-mobile-v2.webp', 'แผนที่หน้าจอ MT5 หกจุดที่คนใช้ EA ต้องรู้จัก: ปุ่ม Algo Trading, Market Watch, Navigator, กราฟ, Toolbox และ Strategy Tester พร้อมปุ่มลัด' ),
+			'vps-path'         => array( 'eawing-vps-path-v2.webp', 'eawing-vps-path-mobile-v2.webp', 'แผนภาพ VPS สำหรับ EA สามช่วง: เลือก ตั้งค่า และดูแล พร้อมรายการที่ต้องทำในแต่ละช่วง' ),
+			'gold-sessions'    => array( 'eawing-gold-sessions-v2.webp', 'eawing-gold-sessions-mobile-v2.webp', 'ไทม์ไลน์หนึ่งวันของทองคำ XAUUSD ตามเวลาไทยช่วงเวลามาตรฐานของสหรัฐฯ: พักรายวัน ช่วงเอเชีย ยุโรปเปิด ยุโรปและสหรัฐฯ ซ้อนกัน และช่วงสหรัฐฯ พร้อมเวลาข่าวสหรัฐฯ และ FOMC โดยประมาณ' ),
+			'risk-layers'      => array( 'eawing-risk-layers-v2.webp', 'eawing-risk-layers-mobile-v2.webp', 'แผนภาพชั้นป้องกันความเสี่ยงของพอร์ต 6 ชั้น: ความเสี่ยงต่อออเดอร์ ขนาด Lot เพดานขาดทุนรายวัน Drawdown ที่รับได้ Margin Level และ Stop Out และเงินเย็น' ),
+			'plan-cycle'       => array( 'eawing-plan-cycle-v2.webp', 'eawing-plan-cycle-mobile-v2.webp', 'แผนภาพวงจรแผนการเทรดของคนใช้ EA 6 ขั้น: ตั้งเป้าหมาย กำหนดความเสี่ยง ทดสอบ เริ่มบัญชีจริงขนาดเล็ก ติดตามผล และทบทวนปรับแผน' ),
+			'monitor-rhythm'   => array( 'eawing-monitor-rhythm-v2.webp', 'eawing-monitor-rhythm-mobile-v2.webp', 'แผนภาพจังหวะติดตามผล EA รายวัน รายสัปดาห์ และรายเดือน พร้อมสิ่งที่ต้องเช็กในแต่ละรอบ' ),
+			'broker-checklist' => array( 'eawing-broker-checklist-v2.webp', 'eawing-broker-checklist-mobile-v2.webp', 'เช็กลิสต์เลือกโบรกเกอร์สำหรับ EA 6 ข้อ: ใบอนุญาต รองรับ MT5 และ EA ต้นทุนการเทรด สเปกสัญลักษณ์ ฝากถอนเงิน และลองด้วยเงินน้อยก่อน' ),
 			/* ภาพหน้าจอ MT5 (assets/img/install/) · ช่อง 4-5 = ขนาดจริง · ช่อง 6 = แสดงขนาดจริงกลางกรอบ (ภาพเล็ก) */
 			'mt5-open-data-folder' => array( '../install/eawing-mt5-open-data-folder-v1.webp', '', 'เมนู File ของ MT5 ที่ชี้ไปที่ Open Data Folder', 620, 300, true ),
 			'mt5-navigator'        => array( '../install/eawing-mt5-navigator-v1.webp', '', 'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มี EA_WING_V4.2', 210, 270, true ),
