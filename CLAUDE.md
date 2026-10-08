@@ -65,5 +65,5 @@
 - เพจเก่า results / guides / risk-warning อยู่ในถังขยะ (redirect 301 ทำงาน)
 - 2 ต.ค. 2026: รัน "3) ตั้งค่า SEO และระบบ" แล้ว · Yoast มีองค์กร/โลโก้/รูปแชร์เริ่มต้น/Facebook · ปิด author/date/format archive · ชื่อหน้าหมวด ค้นหา 404 เป็นไทย · คอมเมนต์ปิดทั้งเว็บ · schema ผู้เขียนบทความ = องค์กร EA WING
 - ผลตรวจ SEO (สคริปต์ crawl sitemap): ทุกหน้ามี title/description/H1 เดียว/og:image · รูปมี alt และขนาดครบ · ไม่มีหน้ากำพร้า · ลิงก์นอกมี noopener ครบ · canonical ยังไม่ออกเพราะทั้งเว็บ noindex (Yoast ใส่ให้เองเมื่อเปิดให้ค้นหา)
-- 7 ต.ค. 2026: เปิดให้ค้นหาแล้ว (index) · Search Console ยืนยันแบบโดเมนและส่ง sitemap แล้ว · GA4 / Pixel ยังไม่ตั้ง
+- 7 ต.ค. 2026: เปิดให้ค้นหาแล้ว (index) · Search Console ยืนยันแบบโดเมนและส่ง sitemap แล้ว · 8 ต.ค. 2026: GA4 `G-VZPGBNF86F` (พร็อพเพอร์ตี้ EA WING ในบัญชี FENIX PRO EA) ใส่ใน Customizer หมวด 18 แล้ว · ทดสอบผ่าน: ก่อนยินยอมไม่โหลดแท็ก หลังยินยอมส่ง page_view + line_click · ห้ามเชื่อม Analytics ผ่าน Site Kit (แท็กซ้ำ ข้าม PDPA) · Meta Pixel ยังไม่ตั้ง
 - 7 ต.ค. 2026: ปลั๊กอินเหลือ Yoast SEO · WP Pusher · Site Kit · Yoast Duplicate Post (เจ้าของลบ Elementor/Elementor Pro/GTranslate/PixelYourSite และเมนูเก่าแล้ว) · เมนูเหลือ "EA WING · เมนูหลัก" · ไม่ทำส่วนรีวิว (เจ้าของตัดออก)
