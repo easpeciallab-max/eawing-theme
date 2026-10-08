@@ -535,12 +535,14 @@ function eaw_guide_flat_defaults() {
 		$flat[ 'inst_step' . $i . '_desc' ]  = $step[1];
 		$flat += eaw_guide_media_defaults( 'inst_step' . $i, $step[2], $step[3] );
 	}
-	/* ภาพหน้าจอขั้น 1 ถึง 5 มากับธีม (8 ต.ค. 2026 · ลำดับขั้นตามคู่มือเว็บในเครือของเจ้าของ · ภาพแก้ชื่อไฟล์/ชื่อ EA เป็น EA_WING_V4.2 และเพิ่มช่อง Allow DLL imports ในแท็บ Common) · ขั้น 6 รอภาพแดชบอร์ดจริง · อัปโหลดภาพใหม่ใน Customizer ได้ */
+	/* ภาพหน้าจอขั้น 1 ถึง 5 มากับธีม (8 ต.ค. 2026 · ลำดับขั้นตามคู่มือเว็บในเครือของเจ้าของ · ภาพแก้ชื่อไฟล์/ชื่อ EA เป็น EA_WING_V4.2 และเพิ่มช่อง Allow DLL imports ในแท็บ Common) · ขั้น 6 ครอปจากภาพแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า V4.2 (เฉพาะหัวแผง สถานะ AutoTrading และการ์ดล็อกอิน ตัดตัวเลขและส่วนตั้งค่าออก) · อัปโหลดภาพใหม่ใน Customizer ได้ */
 	$flat['inst_step1_img'] = 'assets/img/install/eawing-mt5-open-data-folder-v1.webp';
 	$flat['inst_step2_img'] = 'assets/img/install/eawing-mt5-experts-folder-v1.webp';
 	$flat['inst_step3_img'] = 'assets/img/install/eawing-mt5-navigator-v1.webp';
 	$flat['inst_step4_img'] = 'assets/img/install/eawing-mt5-xauusd-m1-chart-v1.webp';
 	$flat['inst_step5_img'] = 'assets/img/install/eawing-mt5-common-tab-v1.webp';
+	$flat['inst_step6_img']     = 'assets/img/install/eawing-dashboard-login-ok-v1.webp';
+	$flat['inst_step6_img_alt'] = 'แดชบอร์ด EA WING บนกราฟ XAUUSD.c ที่ขึ้น AutoTrading เปิดอยู่ และการ์ดล็อกอินสำเร็จสีเขียว';
 	$flat['install_note']     = $in['note'];
 	$flat['inst_check_title'] = $in['check_title'];
 	$flat['inst_check']       = $in['check'];
