@@ -1034,7 +1034,7 @@ function eaw_guide_steps( $key_prefix, $dl_prefix = '', $note = '' ) {
 	$admin = current_user_can( 'edit_theme_options' );
 	for ( $i = 1; $i <= eaw_guide_step_count(); $i++ ) {
 		$key   = $key_prefix . $i;
-		$title = trim( (string) eaw_mod( $key . '_title' ) );
+		$title = trim( eaw_guide_tokens( (string) eaw_mod( $key . '_title' ) ) );
 		$desc  = trim( (string) eaw_mod( $key . '_desc' ) );
 		if ( '' === $title && '' === $desc ) {
 			continue;

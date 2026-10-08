@@ -1246,3 +1246,52 @@ function eaw_seo_oembed_hide_author( $data ) {
 	return $data;
 }
 add_filter( 'oembed_response_data', 'eaw_seo_oembed_hide_author', 20 );
+
+/**
+ * ภาพที่มากับธีม (ภาพหน้าจอคู่มือ แผนภาพ [eawing_figure] ภาพหน้าแรก) ใส่ใน image sitemap ของ Yoast
+ * Yoast อ่านเฉพาะ <img> ในเนื้อหาและภาพเด่น จึงไม่เห็นภาพที่ธีมแสดงจาก Customizer
+ */
+function eaw_seo_sitemap_theme_images( $images, $post_id ) {
+	$images = is_array( $images ) ? $images : array();
+	$post   = get_post( $post_id );
+	if ( ! $post ) {
+		return $images;
+	}
+	$keys = array();
+	$slug = (string) $post->post_name;
+	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
+		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'hero_image' );
+	} elseif ( function_exists( 'eaw_guide_map' ) ) {
+		$map    = eaw_guide_map();
+		$prefix = isset( $map[ $slug ] ) ? $map[ $slug ] . '_step' : ( 'how-to-install' === $slug ? 'inst_step' : '' );
+		if ( '' !== $prefix ) {
+			for ( $i = 1; $i <= eaw_guide_step_count(); $i++ ) {
+				$keys[] = $prefix . $i . '_img';
+			}
+		}
+	}
+	$urls = array();
+	foreach ( $keys as $key ) {
+		$url = eaw_theme_asset_url( eaw_mod( $key ) );
+		if ( '' !== $url ) {
+			$urls[] = $url;
+		}
+	}
+	if ( function_exists( 'eaw_figure_registry' ) && preg_match_all( '/\[eawing_figure[^\]]*name="([a-z0-9-]+)"/', (string) $post->post_content, $m ) ) {
+		$registry = eaw_figure_registry();
+		foreach ( array_unique( $m[1] ) as $name ) {
+			if ( ! empty( $registry[ $name ][0] ) ) {
+				$file   = (string) $registry[ $name ][0];
+				$urls[] = get_template_directory_uri() . '/assets/img/' . ( 0 === strpos( $file, '../' ) ? substr( $file, 3 ) : 'illus/' . $file );
+			}
+		}
+	}
+	$have = wp_list_pluck( $images, 'src' );
+	foreach ( array_unique( $urls ) as $url ) {
+		if ( ! in_array( $url, $have, true ) ) {
+			$images[] = array( 'src' => esc_url_raw( $url ) );
+		}
+	}
+	return $images;
+}
+add_filter( 'wpseo_sitemap_urlimages', 'eaw_seo_sitemap_theme_images', 10, 2 );

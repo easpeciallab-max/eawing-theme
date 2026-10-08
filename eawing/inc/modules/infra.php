@@ -451,6 +451,11 @@ add_action( 'template_redirect', 'eaw_infra_block_author_enum', 1 );
  * 2) Hardening
  * ============================================================== */
 
+/**
+ * ปิดการแปลงอักขระอัตโนมัติของ WordPress (" - " กลายเป็น en dash · เว็บนี้ห้ามใช้ dash ยาว)
+ */
+add_filter( 'run_wptexturize', '__return_false' );
+
 /* คอมเมนต์และ pingback: เว็บนี้ไม่เปิดให้คอมเมนต์ ปิดทุกชั้นแม้โพสต์ใดตั้งค่าหลุด */
 function eaw_infra_disable_discussion() {
 	foreach ( array( 'post', 'page', 'attachment' ) as $post_type ) {
