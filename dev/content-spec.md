@@ -68,6 +68,8 @@ On pages that go live before the articles (guides, backtest, forward-test), wrap
 
 A new article needs two things: the file in `inc/content/articles/` (every file there is picked up automatically) and a cover built with `dev/make-covers.php` (icon per slug in `dev/preview/cover.php`).
 
+**Brand links to the homepage** (owner, 8 Oct 2026): only where it reads naturally. Link an existing sentence that introduces EA WING (e.g. "EA WING เป็นไฟล์ EA ที่คุณรันบน MT5"), anchor = the brand name. Never add a templated brand sentence to every article, never link the brand inside partner disclosures, parentheses or sensitive topics (martingale, grid, hedging, scalping). The header logo already links home on every page. About a third of the articles link home.
+
 **Clusters (pillar + supporting articles).** Each category has one pillar article (`eaw_cluster_pillars()` in `inc/modules/clusters.php`). Supporting articles link up to the pillar in the opening, to 2 to 3 siblings, to 1 to 2 articles of other clusters, and to one money page at the end. The pillar links down to every supporting article. The theme also prints an automatic "บทความในชุดนี้" box under each article (published posts only) and puts the pillar first on its category page. Put the keyword phrase before a colon in the title when you can ("Drawdown คืออะไร: ..."), because the cover prints the part before the colon large and the rest as a subtitle.
 
 ## HTML components (styled by the theme; use exactly these classes)
