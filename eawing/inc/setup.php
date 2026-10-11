@@ -910,6 +910,7 @@ function eaw_setup_sync_articles() {
 				$thumb = (int) eaw_banner_attachment( $art['cover'], $art['title'] );
 				if ( $thumb && $thumb !== $current ) {
 					set_post_thumbnail( $found->ID, $thumb );
+					wp_update_post( array( 'ID' => $found->ID ) ); // บันทึกซ้ำให้ Yoast อ่าน og:image ใหม่ (Yoast จำค่าไว้จนกว่าจะบันทึกโพสต์)
 					$log[] = '↻ ภาพเด่น: ' . $slug . ' → ' . basename( $art['cover'] );
 				}
 			}
