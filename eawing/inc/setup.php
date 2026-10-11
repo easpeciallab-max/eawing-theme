@@ -115,9 +115,16 @@ function eaw_seed_articles() {
 		if ( null === $meta ) {
 			continue; // ยังไม่มีไฟล์เนื้อหา
 		}
-		/* บทความที่เขียนใหม่ (rev ≥ 2) ใช้ปกชื่อใหม่ covers/<slug>-r<rev>.webp ถ้ามี (Cloudflare และ Media Library ผูกรูปกับชื่อไฟล์) */
+		/* บทความที่เขียนใหม่ใช้ปกชื่อใหม่ covers/<slug>-r<N>.webp (Cloudflare และ Media Library ผูกรูปกับชื่อไฟล์)
+		 * เลือก N สูงสุดที่มีไฟล์และไม่เกิน rev ของเนื้อหา · เนื้อหาขึ้นรุ่นโดยปกเดิมยังใช้ได้จึงไม่ต้องทำปกใหม่ทุกรุ่น */
 		$rev           = ! empty( $meta['rev'] ) ? (int) $meta['rev'] : 1;
-		$own           = 'covers/' . $slug . ( $rev > 1 && file_exists( $img . 'covers/' . $slug . '-r' . $rev . '.webp' ) ? '-r' . $rev : '' ) . '.webp';
+		$own           = 'covers/' . $slug . '.webp';
+		for ( $r = $rev; $r >= 2; $r-- ) {
+			if ( file_exists( $img . 'covers/' . $slug . '-r' . $r . '.webp' ) ) {
+				$own = 'covers/' . $slug . '-r' . $r . '.webp';
+				break;
+			}
+		}
 		$list[ $slug ] = array(
 			'title'   => ! empty( $meta['title'] ) ? $meta['title'] : $slug,
 			'content' => 'articles/' . $slug,
@@ -893,13 +900,19 @@ function eaw_setup_sync_articles() {
 			);
 			eaw_apply_seo_meta( $found->ID, $meta );
 			update_post_meta( $found->ID, 'eaw_seed_rev', $rev );
-			if ( 0 === strpos( $art['cover'], 'covers/' ) ) {
-				$thumb = eaw_banner_attachment( $art['cover'], $art['title'] );
-				if ( $thumb ) {
+			$log[] = '↻ เนื้อหารุ่น ' . $rev . ': ' . $slug;
+		}
+		/* ภาพเด่น = ปกรุ่นล่าสุดของบทความ · แก้เฉพาะเมื่อภาพเด่นปัจจุบันเป็นปกที่ธีมนำเข้าเอง (ภาพที่เจ้าของเลือกเองไม่ถูกแตะ) */
+		if ( 0 === strpos( $art['cover'], 'covers/' ) ) {
+			$ours    = array_map( 'intval', (array) get_option( 'eaw_banner_attachments', array() ) );
+			$current = (int) get_post_thumbnail_id( $found->ID );
+			if ( ! $current || in_array( $current, $ours, true ) ) {
+				$thumb = (int) eaw_banner_attachment( $art['cover'], $art['title'] );
+				if ( $thumb && $thumb !== $current ) {
 					set_post_thumbnail( $found->ID, $thumb );
+					$log[] = '↻ ภาพเด่น: ' . $slug . ' → ' . basename( $art['cover'] );
 				}
 			}
-			$log[] = '↻ เนื้อหารุ่น ' . $rev . ': ' . $slug;
 		}
 		$date = eaw_seed_article_date( $meta );
 		if ( $date && 'future' === $found->post_status && $found->post_date !== $date[0] ) {
