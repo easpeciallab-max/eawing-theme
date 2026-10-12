@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.50' );
+define( 'EAW_VERSION', '1.0.51' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -353,7 +353,7 @@ function eaw_defaults() {
 			'bt_stat7_value'      => '55.3% ของทุนตั้งต้น',
 			'bt_stat8_label'      => 'จำนวนออเดอร์รวม',
 			'bt_stat8_value'      => '34,011',
-			'backtest_img'        => '',
+			'backtest_img'        => 'assets/img/results/eawing-backtest-lite-2026-v1.webp',
 
 
 			/* หน้า How to Install · รูปประกอบขั้นตอน */
