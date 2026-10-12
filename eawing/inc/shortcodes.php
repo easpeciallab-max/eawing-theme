@@ -110,6 +110,9 @@ function eaw_figure_registry() {
 			'login-card-states'    => array( '../install/eawing-login-card-states-v2.webp', '', 'การ์ดล็อกอินบนแดชบอร์ด EA WING 4 แบบ: ล็อกอินสำเร็จ (เขียว) กำลังตรวจสิทธิ์และใช้แบบผ่อนผัน (เหลือง) และล็อกอินไม่ผ่าน (แดง)', 822, 368 ),
 			'dashboard-overview'   => array( '../install/eawing-dashboard-overview-v2.webp', '', 'ภาพรวมแดชบอร์ด EA WING พร้อมหมายเลขกำกับ 17 จุด ฝั่งซ้ายเป็นสถานะ ปุ่มโหมด 3 ปุ่ม และปุ่มหลัก ฝั่งขวาเป็นการปรับค่าระหว่างวันและข้อมูลตะกร้า', 1400, 980 ),
 			'modes-version'        => array( '../install/eawing-modes-version-v2.webp', '', 'ปุ่มเลือกโหมด Lite Advance และ Full บนแดชบอร์ด EA WING ใต้ปุ่มบอกระดับความเสี่ยงของแต่ละโหมด และแถบท้ายแผงที่บอกเวอร์ชันของ EA', 849, 524 ),
+			/* รายงาน Strategy Tester ของจริง รุ่น 5.0 (assets/img/results/ · ครอปส่วน Results + กราฟ Balance จากรายงาน MT5 ต้นฉบับ ไม่ตัดต่อ) · ของโหมด Lite อยู่ในช่องรูปของหน้า (backtest_img) */
+			'backtest-advance'     => array( '../results/eawing-backtest-advance-v5-2026-v1.webp', '', 'ส่วน Results ของรายงาน Strategy Tester ของ EA WING 5.0 โหมด Advance ช่วง 1 ม.ค. ถึง 30 ก.ย. 2026: Initial Deposit 20,000 Total Net Profit 103,912.47 Profit Factor 2.44 Equity Drawdown Maximal 14,850.29 Total Trades 20,337 และกราฟ Balance', 1120, 872 ),
+			'backtest-full'        => array( '../results/eawing-backtest-full-v5-2026-v1.webp', '', 'ส่วน Results ของรายงาน Strategy Tester ของ EA WING 5.0 โหมด Full ช่วง 1 ม.ค. ถึง 30 ก.ย. 2026: Initial Deposit 30,000 Total Net Profit 188,048.46 Profit Factor 2.46 Equity Drawdown Maximal 25,069.86 Total Trades 20,406 และกราฟ Balance', 1120, 872 ),
 		)
 	);
 }
