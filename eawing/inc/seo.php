@@ -120,16 +120,19 @@ add_filter( 'eaw_customizer_sections', 'eaw_seo_customizer_sections', 20, 2 );
 
 /**
  * ข้อความล้วนสำหรับ schema / meta description
- * แทน [eawing_brand] และ [eawing_broker] ด้วยค่าจริงก่อน แล้วตัด shortcode อื่นทิ้ง (ปุ่ม เครื่องคิด)
+ * แทน [eawing_brand] [eawing_broker] และ [eawing_ea] ด้วยค่าจริงก่อน แล้วตัด shortcode อื่นทิ้ง (ปุ่ม เครื่องคิด)
  */
 function eaw_seo_plain_text( $html ) {
 	$html = preg_replace_callback(
-		'/\[eawing_(brand|broker)([^\]]*)\]/',
+		'/\[eawing_(brand|broker|ea)([^\]]*)\]/',
 		function ( $m ) {
 			if ( 'brand' === $m[1] ) {
 				return function_exists( 'eaw_sc_brand' ) ? eaw_sc_brand() : 'EA WING';
 			}
 			$atts = shortcode_parse_atts( $m[2] );
+			if ( 'ea' === $m[1] ) {
+				return function_exists( 'eaw_sc_ea' ) ? eaw_sc_ea( is_array( $atts ) ? $atts : array() ) : '';
+			}
 			return function_exists( 'eaw_sc_broker' ) && ( empty( $atts['field'] ) || 'url' !== $atts['field'] ) ? eaw_sc_broker( is_array( $atts ) ? $atts : array() ) : '';
 		},
 		(string) $html
@@ -1260,7 +1263,7 @@ function eaw_seo_sitemap_theme_images( $images, $post_id ) {
 	$keys = array();
 	$slug = (string) $post->post_name;
 	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
-		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'hero_image' );
+		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'hero_image' );
 	} elseif ( function_exists( 'eaw_guide_map' ) ) {
 		$map    = eaw_guide_map();
 		$prefix = isset( $map[ $slug ] ) ? $map[ $slug ] . '_step' : ( 'how-to-install' === $slug ? 'inst_step' : '' );

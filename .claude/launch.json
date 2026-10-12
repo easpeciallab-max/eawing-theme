@@ -4,8 +4,8 @@
     {
       "name": "eawing-preview",
       "runtimeExecutable": "C:/Users/THANAWUT HR/AppData/Local/Microsoft/WinGet/Packages/PHP.PHP.8.4_Microsoft.Winget.Source_8wekyb3d8bbwe/php.exe",
-      "runtimeArgs": ["-d", "extension_dir=C:/Users/THANAWUT HR/AppData/Local/Microsoft/WinGet/Packages/PHP.PHP.8.4_Microsoft.Winget.Source_8wekyb3d8bbwe/ext", "-d", "extension=mbstring", "-d", "extension=gd", "-S", "localhost:8765", "dev/preview/router.php"],
-      "port": 8765
+      "runtimeArgs": ["-d", "extension_dir=C:/Users/THANAWUT HR/AppData/Local/Microsoft/WinGet/Packages/PHP.PHP.8.4_Microsoft.Winget.Source_8wekyb3d8bbwe/ext", "-d", "extension=mbstring", "-d", "extension=gd", "-S", "localhost:8775", "dev/preview/router.php"],
+      "port": 8775
     }
   ]
 }

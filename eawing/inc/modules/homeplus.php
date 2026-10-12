@@ -3,13 +3,13 @@
  * EA WING · ส่วนเสริมของหน้าแรก (เพิ่ม 6 ต.ค. 2026 · เจ้าของขอเนื้อหามากขึ้นและลูกเล่น)
  *
  * ลำดับบนหน้า (front-page.php เรียก eaw_homeplus_section()):
- *   about → [story] EA WING คืออะไร → features → [modes] Lite / Full (แท็บสลับ) → devices
+ *   about → [story] EA WING คืออะไร → features → [modes] Lite / Advance / Full (แท็บสลับ) → devices
  *   → [license] การ์ดล็อกอินจำลอง (แตะเปลี่ยนสี) → tests → [compare] เทรดเอง กับ EA WING → steps
  *   → [ready] เช็กลิสต์พร้อมเริ่ม (ติ๊กแล้วแถบคืบหน้าขยับ) → pricing → [articles] บทความล่าสุด → faq → risk
  *
  * - ข้อความทุกคำเป็น setting (ค่าเริ่มต้น eaw_homeplus_defaults · ช่องใน Customizer หมวด 2.9 ถึง 2.14)
  * - ไม่มี JS ก็อ่านได้ครบ (แท็บแสดงทุกแผง · การ์ดแสดงทุกสถานะ · เช็กลิสต์เป็นรายการธรรมดา) · home.js เพิ่มการโต้ตอบ
- * - ข้อเท็จจริงจากชุดส่งลูกค้าของเจ้าของเท่านั้น (XAUUSD M1 · Lite/Full · DLL · ระบบสิทธิ์) ไม่มีตัวเลขผลเทรด
+ * - ข้อเท็จจริงจากชุดส่งลูกค้าของเจ้าของเท่านั้น (XAUUSD M1 · Lite/Advance/Full · DLL · ระบบสิทธิ์) ไม่มีตัวเลขผลเทรด
  *
  * @package eawing
  */
@@ -29,7 +29,7 @@ function eaw_homeplus_defaults( $d ) {
 			'home_story_title'  => 'EA WING คืออะไร และทำงานบน MT5 อย่างไร',
 			'home_story_lead'   => 'EA ย่อมาจาก Expert Advisor คือโปรแกรมเทรดอัตโนมัติที่ทำงานอยู่ใน MetaTrader 5 คอยอ่านราคาทุกช่วงเวลา แล้วส่งคำสั่งซื้อขายตามกติกาที่เขียนไว้ล่วงหน้า EA WING คือ EA ที่ทีมงานคนไทยพัฒนาและดูแลเอง ออกแบบให้ทำตามแผนอย่างสม่ำเสมอ ไม่เหนื่อย ไม่หลุดวินัยตามอารมณ์ของตลาด และมีคู่มือภาษาไทยทุกขั้นตอนตั้งแต่เปิดบัญชีจนรันบน VPS',
 			'home_story_blocks' => "ทำงานบนกราฟทองคำ XAUUSD M1 | EA WING ออกแบบให้ทำงานบนกราฟ XAUUSD กรอบเวลา M1 ในโปรแกรม MetaTrader 5 บน Windows หรือ VPS เมื่อวางลงกราฟแล้ว EA จะดูราคาทุกแท่งและตัดสินใจตามเงื่อนไขของระบบ คุณจึงไม่ต้องนั่งเฝ้าจอทั้งวัน แค่เปิดแอป MT5 บนมือถือเช็กบัญชีเป็นช่วง ๆ\n"
-				. "สองโหมดในไฟล์เดียว | ไฟล์ EA มีทั้งโหมด Lite ที่เน้นคุมความเสี่ยงและเป็นค่าเริ่มต้น กับโหมด Full ที่ความเสี่ยงสูงกว่า เปลี่ยนได้จากปุ่มบนแดชบอร์ดโดยไม่ต้องโหลดไฟล์ค่าตั้งเพิ่ม และ EA จำตัวเลือกไว้ให้แม้ปิดเปิด MT5 ใหม่\n"
+				. "สามโหมดในไฟล์เดียว | ไฟล์ EA มีโหมด Lite ซึ่งเป็นค่าเริ่มต้น โหมด Advance และโหมด Full ระดับความเสี่ยงสูงขึ้นตามลำดับ เปลี่ยนได้จากปุ่มบนแดชบอร์ดโดยไม่ต้องโหลดไฟล์ค่าตั้งเพิ่ม และ EA จำตัวเลือกไว้ให้แม้ปิดเปิด MT5 ใหม่\n"
 				. "เงินอยู่ในบัญชีของคุณเสมอ | EA WING ไม่รับฝากเงินและไม่มีสิทธิ์ถอนเงิน เงินทุนอยู่ในบัญชี MT5 ที่คุณเปิดกับโบรกเกอร์ในชื่อของคุณเอง EA ทำได้เพียงส่งคำสั่งซื้อขายในบัญชีนั้น และคุณหยุดหรือถอด EA ออกจากกราฟได้ทุกเมื่อ\n"
 				. "สิทธิ์ใช้งานผูกกับเลขบัญชี | ไฟล์ EA ดาวน์โหลดได้เปิดเผย แต่จะทำงานเฉพาะบัญชีที่ทีมงานเปิดสิทธิ์ให้ การ์ดล็อกอินบนแดชบอร์ดบอกสถานะสิทธิ์ตลอดเวลา และถ้าเน็ตหลุดชั่วคราว EA ยังทำงานต่อได้ในช่วงผ่อนผัน",
 			'home_story_img'        => 'assets/img/illus/eawing-how-it-works-v2.webp',
@@ -38,26 +38,33 @@ function eaw_homeplus_defaults( $d ) {
 			'home_story_btn'    => 'อ่านขั้นตอนติดตั้งแบบละเอียด',
 			'home_story_url'    => '/how-to-install/',
 
-			/* ---------- [modes] Lite / Full ---------- */
+			/* ---------- [modes] Lite / Advance / Full (รุ่น 5.0 · 12 ต.ค. 2026) ---------- */
 			'show_home_modes'      => true,
-			'home_modes_title'     => 'เลือกระดับการบิน: โหมด Lite หรือ Full',
-			'home_modes_sub'       => 'EA WING มีสองโหมดในไฟล์เดียว แตะเพื่อดูความต่าง แล้วเลือกให้เข้ากับความเสี่ยงที่คุณรับได้',
+			'home_modes_title'     => 'เลือกระดับการบิน: โหมด Lite, Advance หรือ Full',
+			'home_modes_sub'       => 'EA WING มีสามโหมดในไฟล์เดียว แตะเพื่อดูความต่าง แล้วเลือกให้เข้ากับเงินในบัญชีและความเสี่ยงที่คุณรับได้',
 			'home_mode1_label'     => 'Lite',
-			'home_mode1_tag'       => 'บินต่ำ · ค่าเริ่มต้น',
-			'home_mode1_title'     => 'เน้นคุมความเสี่ยง',
-			'home_mode1_text'      => 'โหมดที่ EA ใช้ทันทีหลังติดตั้ง เหมาะกับคนที่เพิ่งเริ่ม ต้องการให้บัญชีแกว่งน้อยกว่า และอยากเรียนรู้การทำงานของระบบไปก่อน',
-			'home_mode1_points'    => "เป็นค่าเริ่มต้นหลังติดตั้ง\nความเสี่ยงต่ำกว่าโหมด Full\nเหมาะกับช่วงเริ่มต้นและบัญชีเดโม",
-			'home_mode1_img'       => 'assets/img/install/eawing-mode-lite-v1.webp',
-			'home_mode1_img_alt'   => 'แดชบอร์ด EA WING ที่เลือกโหมด Lite ไว้ ใต้ปุ่มเขียนว่า Lite บินต่ำ',
-			'home_mode2_label'     => 'Full',
-			'home_mode2_tag'       => 'บินสูง',
-			'home_mode2_title'     => 'ความเสี่ยงสูงกว่า',
-			'home_mode2_text'      => 'โหมดสำหรับคนที่เข้าใจระบบแล้วและรับความผันผวนของบัญชีได้มากกว่า ทั้งโอกาสและความเสี่ยงจึงสูงขึ้นตามไปด้วย ควรคุยกับทีมงานก่อนเปลี่ยนมาใช้',
-			'home_mode2_points'    => "บัญชีผันผวนมากกว่าโหมด Lite\nเหมาะกับผู้ที่ใช้ระบบจนคุ้นแล้ว\nปรึกษาทีมงานก่อนเปลี่ยนโหมด",
-			'home_mode2_img'       => 'assets/img/install/eawing-mode-full-v1.webp',
-			'home_mode2_img_alt'   => 'แดชบอร์ด EA WING ที่เลือกโหมด Full ไว้ ใต้ปุ่มเขียนว่า Full บินสูง',
-			'home_modes_img_cap'   => 'ปุ่มเลือกโหมดบนแดชบอร์ด EA WING 4.2 จริง',
-			'home_modes_note'      => 'เปลี่ยนโหมดได้จากปุ่มบนแดชบอร์ด ถ้ามีออเดอร์เปิดอยู่ EA จะรอให้ชุดนั้นปิดก่อนจึงเปลี่ยน และไม่ว่าโหมดไหนก็ขาดทุนได้',
+			'home_mode1_tag'       => 'บินต่ำ · เริ่มต้น',
+			'home_mode1_title'     => 'ระดับความเสี่ยงต่ำสุดในสามโหมด',
+			'home_mode1_text'      => 'โหมดที่ EA ใช้ทันทีหลังติดตั้ง เหมาะกับคนที่เพิ่งเริ่มและอยากเรียนรู้การทำงานของระบบไปก่อน ใต้ปุ่มโหมดบนแดชบอร์ดบอกไว้ว่าโหมดนี้ควรมีเงินในบัญชีกี่เท่าของทุนคิดไม้',
+			'home_mode1_points'    => "เป็นค่าเริ่มต้นหลังติดตั้ง\nแดชบอร์ดระบุความเสี่ยงระดับ 1 จาก 3\nเหมาะกับช่วงเริ่มต้นและบัญชีเดโม",
+			'home_mode1_img'       => 'assets/img/install/eawing-mode-lite-v2.webp',
+			'home_mode1_img_alt'   => 'แดชบอร์ด EA WING ที่เลือกโหมด Lite ไว้ ใต้ปุ่มเขียนว่า Lite บินต่ำ เงิน 1 เท่าของทุนคิดไม้ ความเสี่ยงระดับ 1 จาก 3',
+			'home_mode2_label'     => 'Advance',
+			'home_mode2_tag'       => 'บินกลาง',
+			'home_mode2_title'     => 'ระดับกลาง เพิ่มมาในรุ่น 5.0',
+			'home_mode2_text'      => 'โหมดที่อยู่ระหว่าง Lite กับ Full ขนาดออเดอร์เมื่อเทียบกับทุนคิดไม้ใหญ่กว่าโหมด Lite จึงต้องมีเงินสำรองในบัญชีมากกว่า ควรคุยกับทีมงานก่อนเปลี่ยนมาใช้',
+			'home_mode2_points'    => "แดชบอร์ดระบุความเสี่ยงระดับ 2 จาก 3\nต้องมีเงินสำรองในบัญชีมากกว่าโหมด Lite\nปรึกษาทีมงานก่อนเปลี่ยนโหมด",
+			'home_mode2_img'       => 'assets/img/install/eawing-mode-advance-v1.webp',
+			'home_mode2_img_alt'   => 'แดชบอร์ด EA WING ที่เลือกโหมด Advance ไว้ ใต้ปุ่มเขียนว่า Advance บินกลาง เงิน 2 เท่าของทุนคิดไม้ ความเสี่ยงระดับ 2 จาก 3',
+			'home_mode3_label'     => 'Full',
+			'home_mode3_tag'       => 'บินสูง',
+			'home_mode3_title'     => 'ระดับความเสี่ยงสูงสุด',
+			'home_mode3_text'      => 'โหมดสำหรับคนที่เข้าใจระบบแล้วและรับความผันผวนของบัญชีได้มาก ขนาดออเดอร์เมื่อเทียบกับทุนคิดไม้ใหญ่ที่สุด จึงต้องมีเงินสำรองในบัญชีมากที่สุดในสามโหมด ควรคุยกับทีมงานก่อนเปลี่ยนมาใช้',
+			'home_mode3_points'    => "แดชบอร์ดระบุความเสี่ยงระดับ 3 จาก 3\nต้องมีเงินสำรองในบัญชีมากที่สุด\nปรึกษาทีมงานก่อนเปลี่ยนโหมด",
+			'home_mode3_img'       => 'assets/img/install/eawing-mode-full-v2.webp',
+			'home_mode3_img_alt'   => 'แดชบอร์ด EA WING ที่เลือกโหมด Full ไว้ ใต้ปุ่มเขียนว่า Full บินสูง เงิน 3 เท่าของทุนคิดไม้ ความเสี่ยงระดับ 3 จาก 3',
+			'home_modes_img_cap'   => 'ปุ่มเลือกโหมดบนแดชบอร์ด EA WING จริง',
+			'home_modes_note'      => 'เปลี่ยนโหมดได้จากปุ่มบนแดชบอร์ด ถ้ามีออเดอร์เปิดอยู่ EA จะรอให้ชุดนั้นปิดก่อนจึงเปลี่ยน ยิ่งโหมดสูงยิ่งต้องมีเงินสำรองในบัญชีมากขึ้น รายละเอียดของแต่ละโหมดอยู่ในคู่มือ PDF และไม่ว่าโหมดไหนก็ขาดทุนได้ถึงขั้นเสียเงินทั้งบัญชี',
 
 			/* ---------- [license] การ์ดล็อกอิน ---------- */
 			'show_home_license'    => true,
@@ -110,8 +117,8 @@ function eaw_homeplus_defaults( $d ) {
 			/* ---------- FAQ ข้อ 11 ถึง 14 (ต่อจากหมวด 2.7) ---------- */
 			'faq11_q' => 'EA WING ทำงานกับสินทรัพย์อะไร?',
 			'faq11_a' => 'EA WING ออกแบบให้ทำงานบนกราฟ XAUUSD หรือทองคำ กรอบเวลา M1 ในโปรแกรม MetaTrader 5 ชื่อสัญลักษณ์อาจมีตัวท้ายต่างกันตามประเภทบัญชี เช่น XAUUSD.c ในบัญชีเซนต์ หรือ XAUUSD.s ในบัญชีมาตรฐาน ให้ใช้ชื่อที่เห็นใน Market Watch ของบัญชีคุณ',
-			'faq12_q' => 'โหมด Lite กับ Full ต่างกันอย่างไร?',
-			'faq12_a' => 'ทั้งสองโหมดอยู่ในไฟล์เดียวกัน โหมด Lite เน้นคุมความเสี่ยงและเป็นค่าเริ่มต้นหลังติดตั้ง ส่วนโหมด Full มีความเสี่ยงสูงกว่า เหมาะกับคนที่ใช้ระบบจนคุ้นแล้ว เปลี่ยนได้จากปุ่มบนแดชบอร์ด และควรคุยกับทีมงานก่อนเปลี่ยน',
+			'faq12_q' => 'โหมด Lite, Advance และ Full ต่างกันอย่างไร?',
+			'faq12_a' => 'ทั้งสามโหมดอยู่ในไฟล์เดียวกัน โหมด Lite เป็นค่าเริ่มต้นหลังติดตั้งและเป็นระดับความเสี่ยงต่ำสุด ถัดไปคือ Advance และ Full ซึ่งขนาดออเดอร์เมื่อเทียบกับทุนคิดไม้ใหญ่ขึ้น จึงต้องมีเงินสำรองในบัญชีมากขึ้นตามลำดับ เปลี่ยนได้จากปุ่มบนแดชบอร์ด ทุกโหมดขาดทุนได้ และควรคุยกับทีมงานก่อนเปลี่ยน',
 			'faq13_q' => 'ทำไมต้องติ๊ก Allow DLL imports?',
 			'faq13_a' => 'EA WING ต้องใช้ DLL ในการทำงาน ถ้าไม่ติ๊ก EA จะโหลดไม่ขึ้นทั้งบนกราฟและใน Strategy Tester ต้องติ๊กสองที่ คือ Tools ไปที่ Options แท็บ Expert Advisors และในแท็บ Dependencies ตอนลาก EA ลงกราฟ ขั้นตอนพร้อมภาพอยู่ในคู่มือติดตั้ง',
 			'faq14_q' => 'ค่าแพ็กเกจจ่ายครั้งเดียว หรือต้องจ่ายรายเดือน?',
@@ -145,26 +152,33 @@ function eaw_homeplus_customizer_sections( $sections, $d ) {
 			),
 		),
 		'eaw_home_modes'    => array(
-			'title'  => '2.10) หน้าแรก · โหมด Lite / Full (แท็บสลับ)',
+			'title'  => '2.10) หน้าแรก · โหมด Lite / Advance / Full (แท็บสลับ)',
 			'fields' => array(
 				'show_home_modes'   => array( 'แสดงส่วนนี้', 'checkbox' ),
 				'home_modes_title'  => array( 'หัวข้อ (H2)', 'text' ),
 				'home_modes_sub'    => array( 'คำอธิบายใต้หัวข้อ', 'textarea' ),
-				'home_mode1_label'  => array( 'แท็บ 1 · ชื่อโหมด', 'text' ),
+				'home_mode1_label'  => array( 'แท็บ 1 · ชื่อโหมด (ว่าง = ซ่อนแท็บนี้)', 'text' ),
 				'home_mode1_tag'    => array( 'แท็บ 1 · ป้ายเล็ก', 'text' ),
 				'home_mode1_title'  => array( 'แท็บ 1 · หัวข้อ', 'text' ),
 				'home_mode1_text'   => array( 'แท็บ 1 · คำอธิบาย', 'textarea', $rule ),
 				'home_mode1_points' => array( 'แท็บ 1 · จุดสำคัญ (บรรทัดละ 1 ข้อ)', 'textarea', $rule ),
 				'home_mode1_img'     => array( 'แท็บ 1 · ภาพ (ไม่ใส่ = ภาพวาดเส้นทางบิน)', 'image', 'ภาพแดชบอร์ดตอนเลือกโหมดนี้ · ไม่มีเลขบัญชีหรือยอดเงิน' ),
 				'home_mode1_img_alt' => array( 'แท็บ 1 · คำอธิบายภาพ (alt)', 'text' ),
-				'home_mode2_label'  => array( 'แท็บ 2 · ชื่อโหมด', 'text' ),
+				'home_mode2_label'  => array( 'แท็บ 2 · ชื่อโหมด (ว่าง = ซ่อนแท็บนี้)', 'text' ),
 				'home_mode2_tag'    => array( 'แท็บ 2 · ป้ายเล็ก', 'text' ),
 				'home_mode2_title'  => array( 'แท็บ 2 · หัวข้อ', 'text' ),
 				'home_mode2_text'   => array( 'แท็บ 2 · คำอธิบาย', 'textarea', $rule ),
 				'home_mode2_points' => array( 'แท็บ 2 · จุดสำคัญ (บรรทัดละ 1 ข้อ)', 'textarea', $rule ),
 				'home_mode2_img'     => array( 'แท็บ 2 · ภาพ (ไม่ใส่ = ภาพวาดเส้นทางบิน)', 'image', 'ภาพแดชบอร์ดตอนเลือกโหมดนี้ · ไม่มีเลขบัญชีหรือยอดเงิน' ),
 				'home_mode2_img_alt' => array( 'แท็บ 2 · คำอธิบายภาพ (alt)', 'text' ),
-				'home_modes_img_cap' => array( 'คำบรรยายใต้ภาพทั้งสองแท็บ', 'text' ),
+				'home_mode3_label'  => array( 'แท็บ 3 · ชื่อโหมด (ว่าง = ซ่อนแท็บนี้)', 'text' ),
+				'home_mode3_tag'    => array( 'แท็บ 3 · ป้ายเล็ก', 'text' ),
+				'home_mode3_title'  => array( 'แท็บ 3 · หัวข้อ', 'text' ),
+				'home_mode3_text'   => array( 'แท็บ 3 · คำอธิบาย', 'textarea', $rule ),
+				'home_mode3_points' => array( 'แท็บ 3 · จุดสำคัญ (บรรทัดละ 1 ข้อ)', 'textarea', $rule ),
+				'home_mode3_img'     => array( 'แท็บ 3 · ภาพ (ไม่ใส่ = ภาพวาดเส้นทางบิน)', 'image', 'ภาพแดชบอร์ดตอนเลือกโหมดนี้ · ไม่มีเลขบัญชีหรือยอดเงิน' ),
+				'home_mode3_img_alt' => array( 'แท็บ 3 · คำอธิบายภาพ (alt)', 'text' ),
+				'home_modes_img_cap' => array( 'คำบรรยายใต้ภาพทุกแท็บ', 'text' ),
 				'home_modes_note'   => array( 'หมายเหตุท้ายส่วน', 'textarea' ),
 			),
 		),
@@ -335,11 +349,11 @@ function eaw_homeplus_story() {
 }
 
 /* ==============================================================
- * [modes] Lite / Full · แท็บสลับ (ไม่มี JS = แสดงทั้งสองแผง)
+ * [modes] Lite / Advance / Full · แท็บสลับ (ไม่มี JS = แสดงทุกแผง)
  * ============================================================== */
 function eaw_homeplus_modes() {
 	$modes = array();
-	for ( $i = 1; $i <= 2; $i++ ) {
+	for ( $i = 1; $i <= 3; $i++ ) {
 		$label = trim( (string) eaw_mod( 'home_mode' . $i . '_label' ) );
 		if ( '' === $label ) {
 			continue;
@@ -359,13 +373,20 @@ function eaw_homeplus_modes() {
 	}
 	$note    = trim( (string) eaw_mod( 'home_modes_note' ) );
 	$img_cap = trim( (string) eaw_mod( 'home_modes_img_cap' ) );
+	$first   = (int) key( $modes );
+	/* ภาพวาดสำรอง (ใช้เมื่อแท็บไม่มีภาพ): ระดับความสูงของเส้นทางบิน ต่ำ กลาง สูง */
+	$alt     = array(
+		1 => array( 'low', 'M14 128 C70 124 120 112 200 100', 'translate(176 86)' ),
+		2 => array( 'mid', 'M14 128 C70 118 120 88 200 66', 'translate(176 52)' ),
+		3 => array( 'high', 'M14 128 C70 110 120 60 200 30', 'translate(176 16)' ),
+	);
 	?>
 <section class="glass-panel hm-panel hp-modes" id="modes" aria-labelledby="hp-modes-title" data-hp-tabs>
 	<?php eaw_homeplus_head( 'hp-modes-title', eaw_mod( 'home_modes_title' ), eaw_mod( 'home_modes_sub' ) ); ?>
 	<div class="hp-modes-body">
 		<div class="hp-modes-tabs" role="tablist" aria-label="<?php echo esc_attr( wp_strip_all_tags( (string) eaw_mod( 'home_modes_title' ) ) ); ?>" hidden>
 			<?php foreach ( $modes as $i => $mode ) : ?>
-				<button type="button" class="hp-mode-tab" role="tab" id="hp-mode-tab-<?php echo (int) $i; ?>" aria-controls="hp-mode-<?php echo (int) $i; ?>" aria-selected="<?php echo 1 === $i ? 'true' : 'false'; ?>" tabindex="<?php echo 1 === $i ? '0' : '-1'; ?>">
+				<button type="button" class="hp-mode-tab" role="tab" id="hp-mode-tab-<?php echo (int) $i; ?>" aria-controls="hp-mode-<?php echo (int) $i; ?>" aria-selected="<?php echo $first === $i ? 'true' : 'false'; ?>" tabindex="<?php echo $first === $i ? '0' : '-1'; ?>">
 					<span class="hp-mode-tab-name"><?php echo esc_html( $mode['label'] ); ?></span>
 					<?php if ( '' !== $mode['tag'] ) : ?>
 						<span class="hp-mode-tab-tag"><?php echo esc_html( $mode['tag'] ); ?></span>
@@ -375,9 +396,9 @@ function eaw_homeplus_modes() {
 		</div>
 		<div class="hp-modes-panels">
 			<?php foreach ( $modes as $i => $mode ) : ?>
-				<div class="hp-mode hp-mode--<?php echo (int) $i; ?>" id="hp-mode-<?php echo (int) $i; ?>" role="tabpanel" aria-labelledby="hp-mode-tab-<?php echo (int) $i; ?>" data-alt="<?php echo 1 === $i ? 'low' : 'high'; ?>">
+				<div class="hp-mode hp-mode--<?php echo (int) $i; ?>" id="hp-mode-<?php echo (int) $i; ?>" role="tabpanel" aria-labelledby="hp-mode-tab-<?php echo (int) $i; ?>" data-alt="<?php echo esc_attr( $alt[ $i ][0] ); ?>">
 					<?php if ( '' !== $mode['img'] ) : ?>
-						<?php $info = eaw_media_info( $mode['img'], 852, 408 ); ?>
+						<?php $info = eaw_media_info( $mode['img'], 852, 422 ); ?>
 						<figure class="hp-shot">
 							<span class="hp-shot-frame">
 								<img src="<?php echo esc_url( $mode['img'] ); ?>" alt="<?php echo esc_attr( '' !== $mode['alt'] ? $mode['alt'] : $mode['label'] ); ?>" width="<?php echo (int) $info['width']; ?>" height="<?php echo (int) $info['height']; ?>" loading="lazy" decoding="async">
@@ -390,8 +411,8 @@ function eaw_homeplus_modes() {
 					<div class="hp-alt" aria-hidden="true">
 						<svg viewBox="0 0 220 150" focusable="false">
 							<path class="hp-alt-line" d="M10 30H210M10 75H210M10 120H210"/>
-							<path class="hp-alt-path" d="<?php echo 1 === $i ? 'M14 128 C70 124 120 112 200 100' : 'M14 128 C70 110 120 60 200 30'; ?>"/>
-							<g class="hp-alt-wing" transform="<?php echo 1 === $i ? 'translate(176 86)' : 'translate(176 16)'; ?>">
+							<path class="hp-alt-path" d="<?php echo esc_attr( $alt[ $i ][1] ); ?>"/>
+							<g class="hp-alt-wing" transform="<?php echo esc_attr( $alt[ $i ][2] ); ?>">
 								<path d="M0 14 C10 6 20 2 32 0 C24 6 18 10 14 16 Z" />
 								<path d="M10 16 C18 12 26 10 36 10 C28 14 22 18 18 22 Z" opacity=".7"/>
 							</g>

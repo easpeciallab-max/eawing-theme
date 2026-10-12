@@ -1498,7 +1498,7 @@ a.hm-card:hover .hm-arrow {
 	color: var(--hm-ink-2);
 }
 
-/* ---------- modes (แท็บ Lite / Full) ---------- */
+/* ---------- modes (แท็บ Lite / Advance / Full) ---------- */
 .hp-modes-body {
 	margin-top: 22px;
 }
@@ -1591,6 +1591,10 @@ a.hm-card:hover .hm-arrow {
 }
 
 .hp-mode--2 .hp-mode-copy > p.hp-mode-name {
+	color: var(--navy);
+}
+
+.hp-mode--3 .hp-mode-copy > p.hp-mode-name {
 	color: var(--gold-text);
 }
 
@@ -1625,6 +1629,10 @@ a.hm-card:hover .hm-arrow {
 }
 
 .hp-mode--2 .hp-alt-path {
+	stroke: var(--navy);
+}
+
+.hp-mode--3 .hp-alt-path {
 	stroke: var(--gold-3);
 }
 
@@ -1633,6 +1641,10 @@ a.hm-card:hover .hm-arrow {
 }
 
 .hp-mode--2 .hp-alt-wing {
+	fill: var(--navy);
+}
+
+.hp-mode--3 .hp-alt-wing {
 	fill: var(--gold-3);
 }
 

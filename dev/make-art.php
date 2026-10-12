@@ -2,14 +2,14 @@
 /**
  * Build in-content illustrations: eawing/assets/img/illus/<name>-v2.webp (wide) + <name>-mobile-v2.webp (tall) · เปลี่ยนเลข v เมื่อภาพเปลี่ยน (Cloudflare แคชตาม URL).
  *
- * Needs the preview server (php -S localhost:8765 dev/preview/router.php), Google Chrome and GD:
+ * Needs the preview server (php -S localhost:8775 dev/preview/router.php), Google Chrome and GD:
  *   php -d extension=gd dev/make-art.php how-it-works
  * Template: dev/preview/art.php (route /__art/<name>/?layout=wide|tall).
  */
 
 $root   = dirname( __DIR__ );
 $outdir = $root . '/eawing/assets/img/illus';
-$base   = getenv( 'EAW_PREVIEW' ) ? getenv( 'EAW_PREVIEW' ) : 'http://localhost:8765';
+$base   = getenv( 'EAW_PREVIEW' ) ? getenv( 'EAW_PREVIEW' ) : 'http://localhost:8775';
 $chrome = getenv( 'CHROME_BIN' );
 if ( ! $chrome ) {
 	foreach ( array( 'C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe', '/usr/bin/google-chrome', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' ) as $c ) {

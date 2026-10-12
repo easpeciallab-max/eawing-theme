@@ -2,7 +2,7 @@
 /**
  * Build article cover images: eawing/assets/img/covers/<slug>.webp (1200×630).
  *
- * Needs the preview server running (php -S localhost:8765 dev/preview/router.php),
+ * Needs the preview server running (php -S localhost:8775 dev/preview/router.php),
  * Google Chrome, and the GD extension:
  *   php -d extension=mbstring -d extension=gd dev/make-covers.php [slug ...]
  * Without arguments every article in eaw_seed_articles() is rendered.
@@ -12,7 +12,7 @@
 
 $root   = dirname( __DIR__ );
 $outdir = $root . '/eawing/assets/img/covers';
-$base   = getenv( 'EAW_PREVIEW' ) ? getenv( 'EAW_PREVIEW' ) : 'http://localhost:8765';
+$base   = getenv( 'EAW_PREVIEW' ) ? getenv( 'EAW_PREVIEW' ) : 'http://localhost:8775';
 
 $chrome = getenv( 'CHROME_BIN' );
 if ( ! $chrome ) {

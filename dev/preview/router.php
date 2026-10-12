@@ -1,6 +1,6 @@
 <?php
 /**
- * Local preview router: php -S localhost:8765 dev/preview/router.php (from repo root)
+ * Local preview router: php -S localhost:8775 dev/preview/router.php (from repo root)
  * Renders theme templates with stub WP functions so layout/CSS can be checked in a browser.
  */
 

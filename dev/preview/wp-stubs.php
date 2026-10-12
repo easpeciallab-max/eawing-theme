@@ -3,7 +3,7 @@
  * Minimal WordPress stubs for previewing the theme locally without WordPress.
  * Not part of the theme - WP Pusher only deploys eawing/.
  *
- * Usage: php -S localhost:8765 dev/preview/router.php  (run from repo root)
+ * Usage: php -S localhost:8775 dev/preview/router.php  (run from repo root)
  */
 
 define( 'ABSPATH', __DIR__ . '/' );
@@ -105,12 +105,12 @@ function get_bloginfo( $k = 'name' ) {
 	$m = array( 'name' => 'EA WING', 'description' => 'ผู้ช่วยเทรดอัตโนมัติสำหรับ MT5', 'charset' => 'UTF-8' );
 	return isset( $m[ $k ] ) ? $m[ $k ] : '';
 }
-function home_url( $p = '' ) { return 'http://localhost:8765' . ( $p ? '/' . ltrim( $p, '/' ) : '/' ); }
+function home_url( $p = '' ) { return 'http://localhost:8775' . ( $p ? '/' . ltrim( $p, '/' ) : '/' ); }
 function site_url( $p = '' ) { return home_url( $p ); }
 function admin_url( $p = '' ) { return home_url( 'wp-admin/' . $p ); }
 function get_template_directory() { return fx_theme_dir(); }
 function get_stylesheet_directory() { return fx_theme_dir(); }
-function get_template_directory_uri() { return 'http://localhost:8765/theme'; }
+function get_template_directory_uri() { return 'http://localhost:8775/theme'; }
 function get_stylesheet_directory_uri() { return get_template_directory_uri(); }
 function get_stylesheet_uri() { return get_template_directory_uri() . '/style.css'; }
 function get_theme_mod( $k, $d = false ) { return $d; }

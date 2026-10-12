@@ -5,6 +5,7 @@
  * [eawing_line pos="xxx"]ข้อความปุ่ม[/eawing_line]  ปุ่ม LINE (ลิงก์จาก Customizer)
  * [eawing_brand]                                   ชื่อแบรนด์
  * [eawing_broker] / [eawing_broker field="server"] ชื่อโบรกเกอร์ / ชื่อเซิร์ฟเวอร์ MT5 (ตั้งค่าใน Customizer)
+ * [eawing_ea] / [eawing_ea field="name|version|bt_range"] ชื่อไฟล์ EA รุ่นปัจจุบัน (EA_WING_V5.0.ex5) / ชื่อไม่มีนามสกุล / เลขรุ่น / ช่วงวันที่ Backtest มาตรฐาน
  * [eawing_calc type="lot|drawdown"]                เครื่องคำนวณ (JS ใน main.js)
  * [eawing_figure name="license-flow" alt="" caption=""] แผนภาพในธีม (assets/img/illus · รายชื่อใน eaw_figure_registry())
  *
@@ -51,6 +52,37 @@ function eaw_sc_broker( $atts ) {
 add_shortcode( 'eawing_broker', 'eaw_sc_broker' );
 
 /**
+ * รุ่นของไฟล์ EA ที่แจกอยู่ · ตั้งที่เดียว (Customizer หมวด 29: ea_version, ea_bt_from, ea_bt_to) แล้วทุกหน้าเปลี่ยนตาม
+ * เนื้อหาเพจ/บทความใช้ [eawing_ea] · ข้อความคู่มือใน Customizer ใช้ {ea} {ea_file} {ea_version} {bt_range} (eaw_guide_tokens)
+ */
+function eaw_ea_version() {
+	$v = preg_replace( '/[^0-9.]/', '', (string) eaw_mod( 'ea_version' ) );
+	return '' !== $v ? $v : '5.0';
+}
+
+function eaw_ea_name() {
+	return 'EA_WING_V' . eaw_ea_version();
+}
+
+function eaw_ea_bt_range() {
+	return trim( (string) eaw_mod( 'ea_bt_from' ) ) . ' ถึง ' . trim( (string) eaw_mod( 'ea_bt_to' ) );
+}
+
+function eaw_sc_ea( $atts ) {
+	$atts = shortcode_atts( array( 'field' => 'file' ), $atts, 'eawing_ea' );
+	switch ( $atts['field'] ) {
+		case 'name':
+			return esc_html( eaw_ea_name() );
+		case 'version':
+			return esc_html( eaw_ea_version() );
+		case 'bt_range':
+			return esc_html( eaw_ea_bt_range() );
+	}
+	return esc_html( eaw_ea_name() . '.ex5' );
+}
+add_shortcode( 'eawing_ea', 'eaw_sc_ea' );
+
+/**
  * แผนภาพในเนื้อหา (สร้างด้วย dev/make-art.php) · ชื่อ => ไฟล์กว้าง, ไฟล์มือถือ, alt ตั้งต้น
  * เปลี่ยนภาพเมื่อไหร่ให้เปลี่ยนเลข v ในชื่อไฟล์ (Cloudflare แคชตาม URL)
  */
@@ -73,11 +105,11 @@ function eaw_figure_registry() {
 			'broker-checklist' => array( 'eawing-broker-checklist-v2.webp', 'eawing-broker-checklist-mobile-v2.webp', 'เช็กลิสต์เลือกโบรกเกอร์สำหรับ EA 6 ข้อ: ใบอนุญาต รองรับ MT5 และ EA ต้นทุนการเทรด สเปกสัญลักษณ์ ฝากถอนเงิน และลองด้วยเงินน้อยก่อน' ),
 			/* ภาพหน้าจอ MT5 (assets/img/install/) · ช่อง 4-5 = ขนาดจริง · ช่อง 6 = แสดงขนาดจริงกลางกรอบ (ภาพเล็ก) */
 			'mt5-open-data-folder' => array( '../install/eawing-mt5-open-data-folder-v1.webp', '', 'เมนู File ของ MT5 ที่ชี้ไปที่ Open Data Folder', 620, 300, true ),
-			'mt5-navigator'        => array( '../install/eawing-mt5-navigator-v1.webp', '', 'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มี EA_WING_V4.2', 210, 270, true ),
-			/* ครอปจากแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า V4.2 (ไม่มีตัวเลขเทรด/ส่วนตั้งค่า) */
-			'login-card-states'    => array( '../install/eawing-login-card-states-v1.webp', '', 'การ์ดล็อกอินบนแดชบอร์ด EA WING 4 แบบ: ล็อกอินสำเร็จ (เขียว) กำลังตรวจสิทธิ์และใช้แบบผ่อนผัน (เหลือง) และล็อกอินไม่ผ่าน (แดง)', 822, 350 ),
-			'dashboard-overview'   => array( '../install/eawing-dashboard-overview-v1.webp', '', 'ภาพรวมแดชบอร์ด EA WING 4.2 พร้อมหมายเลขกำกับ 17 จุด ฝั่งซ้ายเป็นสถานะและปุ่มหลัก ฝั่งขวาเป็นการปรับค่าระหว่างวันและข้อมูลตะกร้า', 1400, 952 ),
-			'modes-version'        => array( '../install/eawing-modes-version-v1.webp', '', 'ปุ่มเลือกโหมด Lite และ Full บนแดชบอร์ด EA WING และแถบท้ายแผงที่บอกเวอร์ชัน EA WING v4.2', 822, 370 ),
+			'mt5-navigator'        => array( '../install/eawing-mt5-navigator-v2.webp', '', 'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มีไฟล์ EA WING', 210, 270, true ),
+			/* ครอปจากแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้ารุ่น 5.0 (ภาพฝังในไฟล์ PDF ไม่ได้แก้ไข) */
+			'login-card-states'    => array( '../install/eawing-login-card-states-v2.webp', '', 'การ์ดล็อกอินบนแดชบอร์ด EA WING 4 แบบ: ล็อกอินสำเร็จ (เขียว) กำลังตรวจสิทธิ์และใช้แบบผ่อนผัน (เหลือง) และล็อกอินไม่ผ่าน (แดง)', 822, 368 ),
+			'dashboard-overview'   => array( '../install/eawing-dashboard-overview-v2.webp', '', 'ภาพรวมแดชบอร์ด EA WING พร้อมหมายเลขกำกับ 17 จุด ฝั่งซ้ายเป็นสถานะ ปุ่มโหมด 3 ปุ่ม และปุ่มหลัก ฝั่งขวาเป็นการปรับค่าระหว่างวันและข้อมูลตะกร้า', 1400, 980 ),
+			'modes-version'        => array( '../install/eawing-modes-version-v2.webp', '', 'ปุ่มเลือกโหมด Lite Advance และ Full บนแดชบอร์ด EA WING ใต้ปุ่มบอกระดับความเสี่ยงของแต่ละโหมด และแถบท้ายแผงที่บอกเวอร์ชันของ EA', 849, 524 ),
 		)
 	);
 }

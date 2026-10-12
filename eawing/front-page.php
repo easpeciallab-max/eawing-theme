@@ -2,7 +2,7 @@
 /**
  * Front page · EA WING · ดีไซน์ Glass Sky (docs/design.md · ต้นแบบ dev/mockup/index.html)
  *
- * hero → about → story → features (4 การ์ด) → modes (Lite/Full) → devices → license (การ์ดล็อกอิน) → tests (3 การ์ด)
+ * hero → about → story → features (4 การ์ด) → modes (Lite/Advance/Full) → devices → license (การ์ดล็อกอิน) → tests (3 การ์ด)
  * → compare → how (6 ขั้น) → ready (เช็กลิสต์) → pricing → articles → faq (14 ข้อ) → risk
  * - ส่วนเสริม story/modes/license/compare/ready/articles อยู่ใน inc/modules/homeplus.php
  * - แต่ละส่วนเป็นแผงกระจก (.glass-panel) ห่างกัน 14px อยู่ในกรอบหน้าเว็บที่ header เปิดไว้ (โมดูล chrome)

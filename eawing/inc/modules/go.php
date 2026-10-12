@@ -96,10 +96,10 @@ function eaw_go_defaults( $d ) {
 			'go_step4_badge'         => '',
 			'go_download_line_label' => eaw_go_legacy( 'go_step4', 'ขอรับไฟล์ EA ทาง LINE' ),
 			'go_fast_img'            => 'assets/img/eawing-download-card-v42.webp',
-			'go_fast_url'            => 'assets/downloads/EA_WING_V4.2.zip',
+			'go_fast_url'            => 'assets/downloads/EA_WING_V5.0.zip',
 			'go_fast_alt'            => 'ดาวน์โหลด EA WING Expert Advisor สำหรับ MT5',
-			'go_fast_label'          => 'ดาวน์โหลด EA WING V4.2',
-			'go_fast_version'        => 'V4.2',
+			'go_fast_label'          => 'ดาวน์โหลด EA WING V5.0',
+			'go_fast_version'        => 'V5.0',
 			'go_fast_version_label'  => 'อัปเดตล่าสุด',
 			'go_license_line_label'  => 'ขอเปิดสิทธิ์ทาง LINE',
 
@@ -235,7 +235,7 @@ function eaw_go_sections( $sections, $d ) {
 			'go_fast_label'          => array( 'ขั้นรับไฟล์ EA · ข้อความปุ่มดาวน์โหลด (ใต้รูปการ์ด · ว่าง = ไม่มีปุ่ม)', 'text' ),
 			'go_fast_img'            => array( 'ขั้นรับไฟล์ EA · รูปการ์ดดาวน์โหลด (ไม่บังคับ)', 'image', 'แนะนำภาพแนวนอน 1200×630px · มีรูป + ลิงก์ = แสดงเป็นการ์ดรูปแทนปุ่ม' ),
 			'go_fast_alt'            => array( 'ขั้นรับไฟล์ EA · คำอธิบายรูปการ์ด (alt)', 'text' ),
-			'go_fast_version'        => array( 'ขั้นรับไฟล์ EA · เลขเวอร์ชันบนการ์ด (เช่น V4.2 · ว่าง = ไม่แสดงป้าย)', 'text' ),
+			'go_fast_version'        => array( 'ขั้นรับไฟล์ EA · เลขเวอร์ชันบนการ์ด (เช่น V5.0 · ว่าง = ไม่แสดงป้าย)', 'text' ),
 			'go_fast_version_label'  => array( 'ขั้นรับไฟล์ EA · คำหน้าเลขเวอร์ชัน', 'text' ),
 			'go_license_line_label'  => array( 'ขั้นรับไฟล์ EA · ปุ่ม LINE ขอเปิดสิทธิ์ (แสดงคู่กับไฟล์ดาวน์โหลด · ว่าง = ซ่อน)', 'text' ),
 

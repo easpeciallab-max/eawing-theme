@@ -43,7 +43,7 @@ if ( isset( $_GET['fx_chrome_demo'] ) ) {
 				array(
 					'line_url'          => 'https://lin.ee/example',
 					'line_openchat_url' => 'https://line.me/ti/g2/example',
-					'line_qr_image'     => 'http://localhost:8765/theme/assets/img/brand/eawing-icon-512.png',
+					'line_qr_image'     => 'http://localhost:8775/theme/assets/img/brand/eawing-icon-512.png',
 					'facebook_url'      => 'https://www.facebook.com/example',
 					'youtube_url'       => 'https://www.youtube.com/@example',
 					'contact_email'     => 'team@example.com',

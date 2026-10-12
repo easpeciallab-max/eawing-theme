@@ -18,10 +18,10 @@ push ขึ้น `main` แล้วกด หลังบ้าน > WP Pusher
 ## พัฒนาในเครื่อง
 
 ```bash
-php -d extension=mbstring -d extension=gd -S localhost:8765 dev/preview/router.php
+php -d extension=mbstring -d extension=gd -S localhost:8775 dev/preview/router.php
 ```
 
-http://localhost:8765/ · ต้นแบบดีไซน์ http://localhost:8765/mockup/
+http://localhost:8775/ · ต้นแบบดีไซน์ http://localhost:8775/mockup/
 
 ตรวจก่อน commit:
 

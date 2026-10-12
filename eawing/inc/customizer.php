@@ -630,13 +630,16 @@ function eaw_customize_register( $wp_customize ) {
 	);
 
 	$sections['eaw_broker'] = array(
-		'title'       => '29) โบรกเกอร์ (ใช้ในคู่มือเปิดบัญชี / ล็อกอิน)',
+		'title'       => '29) โบรกเกอร์ และรุ่นของไฟล์ EA',
 		'description' => 'ข้อความเหล่านี้แทรกในเนื้อหาคู่มือผ่าน shortcode [eawing_broker] · ถ้าไม่มีโบรกเกอร์พาร์ตเนอร์ ปล่อยค่าเริ่มต้นไว้ได้',
 		'fields'      => array(
 			'broker_name'        => array( 'ชื่อโบรกเกอร์', 'text' ),
 			'broker_server'      => array( 'ชื่อเซิร์ฟเวอร์ MT5', 'text' ),
 			'broker_signup_url'  => array( 'ลิงก์สมัครบัญชี (ถ้ามี · ใช้ในหน้า /go ขั้นที่ 1)', 'url' ),
 			'broker_signup_text' => array( 'ข้อความปุ่มสมัครบัญชี', 'text' ),
+			'ea_version'         => array( 'ไฟล์ EA · เลขรุ่นที่แจกอยู่ (เช่น 5.0 · ชื่อไฟล์ในเนื้อหาจะเป็น EA_WING_V5.0.ex5 ผ่าน shortcode [eawing_ea])', 'text' ),
+			'ea_bt_from'         => array( 'ไฟล์ EA · วันเริ่มของช่วง Backtest มาตรฐาน (รูปแบบ 2026.01.01)', 'text' ),
+			'ea_bt_to'           => array( 'ไฟล์ EA · วันจบของช่วง Backtest มาตรฐาน (ค่าที่กรอกในช่อง Date ของ Strategy Tester)', 'text' ),
 		),
 	);
 

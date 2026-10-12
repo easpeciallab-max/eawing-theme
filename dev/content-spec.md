@@ -33,6 +33,7 @@ The first line must be a meta comment with JSON, and the body is plain HTML (no 
 - `[eawing_brand]` renders "EA WING".
 - `[eawing_broker]` renders the broker name set in the Customizer. The default reads like "โบรกเกอร์ที่คุณเลือก", so write sentences that still work generically.
 - `[eawing_broker field="server"]` renders the MT5 server name the owner sets. The default is a generic phrase like "ชื่อเซิร์ฟเวอร์ที่ได้รับทางอีเมล".
+- `[eawing_ea]` renders the current EA file name (`EA_WING_V5.0.ex5`). `[eawing_ea field="name"]` drops the extension, `field="version"` gives `5.0`, and `field="bt_range"` gives the standard Strategy Tester date range (`2026.01.01 ถึง 2026.10.01`). Never type the file name, version number or backtest range by hand: they change with every release and `dev/check-content.php` rejects them. EA WING has three modes: Lite (default, risk level 1 of 3), Advance and Full. Write "Lite, Advance และ Full" and do not describe Lite as risk-controlling or less volatile.
 - `[eawing_figure name="license-flow"]` renders a theme diagram (wide + mobile versions, alt text built in). Names: `how-it-works`, `license-flow`, `vps-flow`, `account-flow` (registry `eaw_figure_registry()` in `inc/shortcodes.php`, images made with `dev/make-art.php`). Put it on its own line. Optional `alt=""` and `caption=""`.
 - `[eawing_calc type="lot"]` renders the lot size calculator, and `[eawing_calc type="drawdown"]` renders the drawdown recovery calculator. Use these only where relevant.
 
