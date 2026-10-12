@@ -129,7 +129,7 @@ function eaw_go_defaults( $d ) {
 
 			/* กลุ่มข้อมูลก่อนเริ่ม */
 			'go_info_title'          => 'ข้อมูลก่อนตัดสินใจ',
-			'go_btn1_label'          => 'ดูผล Forward Test',
+			'go_btn1_label'          => 'คู่มือ Forward Test',
 			'go_btn1_url'            => '/forward-test/',
 			'go_btn2_label'          => 'แพ็กเกจ & ราคา',
 			'go_btn2_url'            => '/pricing/',

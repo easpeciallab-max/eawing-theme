@@ -34,9 +34,9 @@ function eaw_pages_defaults( $d ) {
 			'backtest_intro'       => 'Backtest ไม่ได้ตอบว่า EA จะทำเงินได้เท่าไร สิ่งที่ได้คือภาพนิสัยของระบบในตลาดที่ผ่านมาแล้ว ทั้งความถี่ในการเข้าเทรด ระยะเวลาที่ถือออเดอร์ และช่วงที่บัญชีติดลบหนักที่สุด ข้อมูลชุดนี้ใช้วางแผนทุนและเพดานขาดทุน ก่อนพาระบบไปเจอราคาสด',
 			'backtest_img_mobile'  => '',
 			'backtest_img_alt'     => '',
-			'backtest_img_caption' => 'ภาพนี้อธิบายขั้นตอนตั้งค่า ไม่ได้แสดงผลทดสอบ',
-			'backtest_img_note'    => 'ใช้ภาพหน้าต่าง Settings ของ Strategy Tester ที่เห็นช่อง Expert, Timeframe, Date และ Modelling ปิดหรือเบลอชื่อสัญลักษณ์และค่าตั้งเฉพาะของ EA ห้ามมีตัวเลขผลทดสอบ และห้ามทำภาพให้คล้ายหน้ารายงานของเว็บติดตามผลภายนอก',
-			'backtest_note'        => 'อย่าเทียบผล Backtest ข้ามชุดถ้าเงื่อนไขไม่ตรงกัน ทั้งแหล่งราคาที่โหลดมา Modelling ที่เลือก Spread กับค่าธรรมเนียมที่ใส่ และค่า Delays ชุดไหนไม่เปิดเผยเงื่อนไขเหล่านี้ ให้ถือว่ายังสรุปอะไรจากชุดนั้นไม่ได้',
+			'backtest_img_caption' => 'รายงาน Strategy Tester ของ EA WING 4.2 โหมด Lite · XAUUSD.c M1 · 1 ม.ค. ถึง 31 ส.ค. 2026 · เป็นผลทดสอบย้อนหลัง ไม่ใช่ผลการเทรดจริง และไม่รับประกันผลในอนาคต',
+			'backtest_img_note'    => 'ใช้ภาพรายงาน Strategy Tester ของจริงเท่านั้น (ชุดเดียวกับตัวเลขในช่องสถิติ) ห้ามตัดต่อหรือทำภาพขึ้นใหม่ และต้องมีคำบรรยายว่าเป็นผลทดสอบย้อนหลัง',
+			'backtest_note'        => 'เงื่อนไขของตัวเลขชุดนี้: Strategy Tester ของ MT5 แบบ Every tick based on real ticks (History Quality 99%) โหมด Lite ทุนตั้งต้น 10,000 USD · ค่าตั้งของโหมด Lite ถูกปรับจูนจากข้อมูลช่วงเดียวกับที่ใช้ทดสอบ ผลช่วงนี้จึงมีแนวโน้มดีกว่าที่ควรคาดหวังในช่วงอื่น · ช่วง 15 ม.ค. ถึง 3 มิ.ย. 2026 MT5 ไม่มีราคา tick จริง จึงจำลองราคาจากแท่ง 1 นาที · ระหว่างทดสอบ Equity เคยติดลบลอยสูงสุด 5,528.28 USD เท่ากับ 55.3% ของทุนตั้งต้น · โบรกเกอร์ Spread และ Leverage ต่างกัน ผลก็ต่างกัน',
 			'backtest_disclaimer'  => 'ตัวเลขทดสอบย้อนหลังคำนวณจากราคาในอดีต ใช้ศึกษาว่าระบบทำงานอย่างไร แต่ไม่ได้บอกว่าผลแบบเดิมจะเกิดซ้ำ และไม่ใช่คำแนะนำให้ลงทุน การเทรด Forex และ CFD เสี่ยงสูง คุณอาจขาดทุนจนเงินในบัญชีลดลงมากหรือหมดลง',
 			'backtest_cta_title'   => 'อยากให้ทีมงานช่วยดูค่าที่ตั้งไว้?',
 			'backtest_cta_text'    => 'ส่งภาพหน้าต่าง Settings มาทาง LINE แล้วถามได้ว่าช่องไหนยังไม่ตรงกับบัญชีที่คุณตั้งใจใช้',
@@ -66,10 +66,6 @@ function eaw_pages_defaults( $d ) {
 			'forward_kicker'       => 'Forward Test',
 			'forward_sub'          => 'ขั้นติดตามผลก่อนขยายทุน: ปล่อย EA เทรดกับราคาสดบน Demo หรือเงินก้อนที่เสียได้ แล้วดูว่าผลจริงห่างจาก Strategy Tester แค่ไหน',
 			'forward_intro'        => 'ในช่วง Forward Test ระบบรับมือกับราคาสดทีละวัน จะใช้บัญชี Demo บัญชี Cent หรือบัญชีจริงที่ใส่เงินไว้น้อยก็ได้ ตัวเลขที่ได้รวมผลของ Spread ที่ขยับจริง ราคาที่คลาด และเครื่องที่ต้องออนไลน์ทุกวัน จึงเป็นข้อมูลที่ควรมีในมือก่อนตัดสินใจเพิ่มเงิน',
-			'forward_img_mobile'   => '',
-			'forward_img_alt'      => '',
-			'forward_img_caption'  => 'ภาพนี้ชี้จุดที่ควรอ่านบน MT5 ไม่ได้แสดงผลทดสอบ',
-			'forward_img_note'     => 'ใช้ภาพที่ชี้ตำแหน่งที่ควรดู เช่น แท็บ History หรือเส้น Balance กับ Equity ปิดตัวเลขและชื่อสัญลักษณ์ทุกจุดให้มองไม่เห็น ห้ามทำภาพให้คล้ายหน้าเว็บติดตามผลของบุคคลที่สาม',
 			'forward_note'         => 'ผลจากช่วงหนึ่งใช้แทนช่วงอื่นไม่ได้ ทุกครั้งที่อ่านตัวเลขชุดใด ให้ดูประกอบว่ารันมานานเท่าไร ใช้บัญชีประเภทไหน และมีการฝากหรือถอนเงินระหว่างทางหรือไม่',
 			'forward_disclaimer'   => 'ผล Forward Test เป็นภาพของช่วงที่รันเท่านั้น จะรันบน Demo หรือเงินจริงก็ตาม ตัวเลขนี้ไม่ได้รับรองผลในอนาคต และไม่ใช่คำแนะนำให้ลงทุน การเทรด Forex และ CFD เสี่ยงสูง คุณอาจขาดทุนจนเงินในบัญชีลดลงมากหรือหมดลง',
 			'forward_cta_title'    => 'พร้อมลองกับราคาสดแล้วหรือยัง?',
@@ -212,11 +208,6 @@ function eaw_pages_customizer_sections( $sections, $d ) {
 		$stats_bt[ 'bt_stat' . $i . '_label' ] = array( 'สถิติ ' . $i . ' · หัวข้อ', 'text' );
 		$stats_bt[ 'bt_stat' . $i . '_value' ] = array( 'สถิติ ' . $i . ' · ค่า (ขึ้นต้นด้วย "ระบุ" = ยังไม่แสดง)', 'text' );
 	}
-	$stats_fw = array();
-	for ( $i = 1; $i <= 6; $i++ ) {
-		$stats_fw[ 'fw_stat' . $i . '_label' ] = array( 'สถิติ ' . $i . ' · หัวข้อ', 'text' );
-		$stats_fw[ 'fw_stat' . $i . '_value' ] = array( 'สถิติ ' . $i . ' · ค่า (ขึ้นต้นด้วย "ระบุ" = ยังไม่แสดง)', 'text' );
-	}
 
 	$sections['eaw_backtest'] = array(
 		'title'       => '20) หน้า Backtest',
@@ -229,12 +220,12 @@ function eaw_pages_customizer_sections( $sections, $d ) {
 			),
 			$stats_bt,
 			array(
-				'results_pending_label' => array( 'การ์ดยังไม่มีผลทดสอบ · ป้ายเล็ก (ใช้ทั้งหน้า Backtest และ Forward)', 'text' ),
+				'results_pending_label' => array( 'การ์ดยังไม่มีผลทดสอบ · ป้ายเล็ก (หน้า Backtest)', 'text' ),
 				'results_pending_title' => array( 'การ์ดยังไม่มีผลทดสอบ · หัวข้อ (แสดงเมื่อยังไม่กรอกตัวเลขจริง)', 'text' ),
 				'results_pending_text'  => array( 'การ์ดยังไม่มีผลทดสอบ · รายละเอียด', 'textarea' ),
 				'results_pending_value' => array( 'การ์ดยังไม่มีผลทดสอบ · ป้ายแทนค่าในช่องสถิติที่ยังไม่กรอก', 'text', 'แสดงใต้หัวข้อสถิติแต่ละช่องจนกว่าจะกรอกตัวเลขจริง (ใช้ทั้งหน้า Backtest และ Forward)' ),
 			),
-			eaw_media_fields( 'backtest', 'ภาพประกอบวิธีทดสอบ (ไม่ใช่ภาพผล)' ),
+			eaw_media_fields( 'backtest', 'ภาพรายงาน Strategy Tester (ของจริง ชุดเดียวกับช่องสถิติ)' ),
 			array(
 				'backtest_note'       => array( 'หมายเหตุเงื่อนไขการทดสอบ', 'textarea' ),
 				'backtest_disclaimer' => array( 'Disclaimer (จำเป็น ห้ามลบ)', 'textarea' ),
@@ -246,18 +237,14 @@ function eaw_pages_customizer_sections( $sections, $d ) {
 
 	$sections['eaw_forward'] = array(
 		'title'       => '21) หน้า Forward Test',
-		'description' => 'กรอกผลการทดสอบบนบัญชีจริง/เดโมที่ตรวจสอบได้เท่านั้น ห้ามใส่ตัวเลขสมมติ และห้ามลบ Disclaimer',
+		'description' => 'หน้านี้เป็นคู่มือวิธีทำ Forward Test ด้วยบัญชีของผู้ใช้เอง ไม่มีช่องผลทดสอบ ลิงก์ผล หรือรูปผล (เจ้าของตัดออก 12 ต.ค. 2026 เพราะไม่มีผล Forward Test ของ EA WING เอง · ห้ามใส่ผลของแบรนด์อื่น)',
 		'fields'      => array_merge(
 			array(
 				'forward_kicker' => array( 'ป้ายเล็กเหนือชื่อหน้า (อังกฤษสั้น ๆ)', 'text' ),
 				'forward_sub'    => array( 'คำโปรยใต้ชื่อหน้า', 'text' ),
 				'forward_intro'  => array( 'ย่อหน้าเกริ่นนำ', 'textarea' ),
 			),
-			$stats_fw,
-			eaw_media_fields( 'forward', 'ภาพประกอบวิธีอ่านผล (ไม่ใช่ภาพผล)' ),
 			array(
-				'forward_link_label' => array( 'ข้อความปุ่มลิงก์ผลที่ตรวจสอบได้ (ถ้ามี)', 'text' ),
-				'forward_link_url'   => array( 'ลิงก์ผลที่ตรวจสอบได้ (เช่น หน้าติดตามผลของบุคคลที่สาม)', 'url' ),
 				'forward_note'       => array( 'หมายเหตุ', 'textarea' ),
 				'forward_disclaimer' => array( 'Disclaimer (จำเป็น ห้ามลบ)', 'textarea' ),
 				'forward_cta_title'  => array( 'บล็อกติดต่อท้ายหน้า · หัวข้อ', 'text' ),
@@ -1008,8 +995,6 @@ function eaw_pages_tests_top( $type ) {
 	$key   = $is_bt ? 'backtest' : 'forward';
 	$intro = eaw_mod( $key . '_intro' );
 	$note  = eaw_mod( $key . '_note' );
-	$link  = trim( (string) eaw_mod( 'forward_link_url' ) );
-	$label = trim( (string) eaw_mod( 'forward_link_label' ) );
 	?>
 	<section class="pg-sec tests-top">
 		<div class="container">
@@ -1018,26 +1003,19 @@ function eaw_pages_tests_top( $type ) {
 					<p class="tests-lead"><?php echo eaw_text( $intro ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside ?></p>
 				<?php endif; ?>
 
-				<?php eaw_pages_stats( $is_bt ? 'bt' : 'fw', $is_bt ? 8 : 6, $type ); ?>
-
-				<?php if ( ! $is_bt && '' !== $link && '' !== $label ) : ?>
-					<p class="tests-link">
-						<a class="btn btn-ghost" href="<?php echo esc_url( $link ); ?>" target="_blank" rel="noopener nofollow">
-							<span><?php echo esc_html( $label ); ?></span>
-							<?php echo eaw_icon( 'external', 'icon icon-sm' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-						</a>
-					</p>
-				<?php endif; ?>
-
 				<?php
-				eaw_media_slot(
-					$key,
-					array(
-						'width'  => 1280,
-						'height' => 720,
-						'class'  => 'tests-figure',
-					)
-				);
+				/* Forward Test เป็นคู่มือล้วน: ไม่มีช่องผล ลิงก์ผล หรือรูปผล (EA WING ไม่มีผล Forward Test ของตัวเอง · 12 ต.ค. 2026) */
+				if ( $is_bt ) {
+					eaw_pages_stats( 'bt', 8, $type );
+					eaw_media_slot(
+						$key,
+						array(
+							'width'  => 1280,
+							'height' => 720,
+							'class'  => 'tests-figure',
+						)
+					);
+				}
 				?>
 
 				<div class="tests-notes<?php echo eaw_pages_has( $note ) ? '' : ' tests-notes--solo'; ?>">

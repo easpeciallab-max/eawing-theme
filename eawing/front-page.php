@@ -270,7 +270,7 @@ if ( eaw_mod( 'show_install_home' ) ) {
 	$eaw_tests_note = trim( (string) eaw_mod( 'tests_note' ) );
 	// ยังไม่มีตัวเลขจริงทั้ง Backtest และ Forward → เติมประโยค "ยังไม่มีผลทดสอบ" ข้างหน้า
 	$eaw_no_stats = true;
-	foreach ( array( array( 'bt_stat', 8 ), array( 'fw_stat', 6 ) ) as $eaw_sp ) {
+	foreach ( array( array( 'bt_stat', 8 ) ) as $eaw_sp ) {
 		for ( $eaw_si = 1; $eaw_si <= $eaw_sp[1]; $eaw_si++ ) {
 			if ( ! eaw_is_placeholder( eaw_mod( $eaw_sp[0] . $eaw_si . '_value' ) ) ) {
 				$eaw_no_stats = false;

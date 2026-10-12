@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.49' );
+define( 'EAW_VERSION', '1.0.50' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -338,39 +338,23 @@ function eaw_defaults() {
 
 			/* หน้า Backtest · ช่องผลทดสอบ (ค่าที่ขึ้นต้นด้วย "ระบุ" = ยังไม่กรอก และจะไม่แสดง) */
 			'bt_stat1_label'      => 'ช่วงข้อมูลที่ใช้ทดสอบ',
-			'bt_stat1_value'      => 'ระบุช่วงวันที่',
-			'bt_stat2_label'      => 'สินทรัพย์',
-			'bt_stat2_value'      => 'ระบุสินทรัพย์ที่ทดสอบ',
-			'bt_stat3_label'      => 'Timeframe',
-			'bt_stat3_value'      => 'ระบุ Timeframe',
+			'bt_stat1_value'      => '1 ม.ค. ถึง 31 ส.ค. 2026',
+			'bt_stat2_label'      => 'สินทรัพย์และโบรกเกอร์',
+			'bt_stat2_value'      => 'XAUUSD.c · Zaurix',
+			'bt_stat3_label'      => 'Timeframe และโหมด',
+			'bt_stat3_value'      => 'M1 · โหมด Lite',
 			'bt_stat4_label'      => 'ทุนตั้งต้นในการทดสอบ',
-			'bt_stat4_value'      => 'ระบุทุน',
+			'bt_stat4_value'      => '10,000 USD',
 			'bt_stat5_label'      => 'Net Profit ในรายงาน',
-			'bt_stat5_value'      => 'ระบุค่าจากรายงาน',
+			'bt_stat5_value'      => '49,873.83 USD',
 			'bt_stat6_label'      => 'Profit Factor',
-			'bt_stat6_value'      => 'ระบุค่าจากรายงาน',
-			'bt_stat7_label'      => 'Max Drawdown',
-			'bt_stat7_value'      => 'ระบุ %',
+			'bt_stat6_value'      => '2.37',
+			'bt_stat7_label'      => 'ติดลบลอยสูงสุด (Equity Drawdown 5,528.28 USD)',
+			'bt_stat7_value'      => '55.3% ของทุนตั้งต้น',
 			'bt_stat8_label'      => 'จำนวนออเดอร์รวม',
-			'bt_stat8_value'      => 'ระบุจำนวน',
+			'bt_stat8_value'      => '34,011',
 			'backtest_img'        => '',
 
-			/* หน้า Forward Test · ช่องผลทดสอบ */
-			'fw_stat1_label'     => 'ช่วงเวลาที่รัน',
-			'fw_stat1_value'     => 'ระบุช่วงวันที่',
-			'fw_stat2_label'     => 'ประเภทบัญชี',
-			'fw_stat2_value'     => 'ระบุ Demo หรือ Real',
-			'fw_stat3_label'     => 'สินทรัพย์',
-			'fw_stat3_value'     => 'ระบุสินทรัพย์ที่ทดสอบ',
-			'fw_stat4_label'     => 'ทุนตั้งต้น',
-			'fw_stat4_value'     => 'ระบุทุน',
-			'fw_stat5_label'     => 'ผลตอบแทนสะสมในช่วงที่รัน',
-			'fw_stat5_value'     => 'ระบุ %',
-			'fw_stat6_label'     => 'Max Drawdown',
-			'fw_stat6_value'     => 'ระบุ %',
-			'forward_img'        => '',
-			'forward_link_label' => '',
-			'forward_link_url'   => '',
 
 			/* หน้า How to Install · รูปประกอบขั้นตอน */
 			'inst_step1_img'    => '',
