@@ -115,14 +115,15 @@ A new article needs two things: the file in `inc/content/articles/` (every file 
 2. **Never invent performance numbers.** That means no win rate, profit %, drawdown %, trade counts or "results" for EA WING. Generic educational examples are fine when they are clearly hypothetical (e.g. "สมมติทุน 1,000 USD เสี่ยง 1% = 10 USD"), are about maths or risk, and are never about EA WING's results.
 3. **Never promise or guarantee profit.** Avoid words like "รวยเร็ว", "กำไรแน่นอน", "ไม่มีขาดทุน" or "การันตี", except when warning against them.
 4. **Every page and article must include risk context.** At least one `callout--warn` that says trading carries risk and can lose capital, and that past results do not guarantee future results.
-5. **Do not invent facts about the business.** That covers company name, address, registration, broker partnerships, prices, refund terms, and team names or photos. Where such a fact is needed, either keep it generic ("ทีมงาน", "โบรกเกอร์ที่รองรับ") or use the shortcodes above. For legal pages, write standard clauses and refer to the business as "[eawing_brand]" or "เรา".
-6. **Keep technical facts about MT5, VPS and Windows App accurate.**
+5. **EA WING product facts come only from the owner's 5.0 documents** (owner decision, 12 Oct 2026; see rule 2 in `CLAUDE.md`). EA WING is a "ระบบทบไม้": it opens orders as a set, adds bigger recovery orders when price goes against it (up to 9 steps), and the preset modes have no automatic stop loss, so an account can be wiped out. Say this wherever EA WING's results or risks are discussed; never soften it. When you explain the modes, give the recommended account money: Lite 1x, Advance 2x, Full 3x of "ทุนคิดไม้". Recommended capital: cent account about 1,000 USD (100,000 cent) or more, standard account about 100,000 USD or more. A daily profit target is a stop point of the system, never an expected return. Do not use profit percentages, monthly results, or any numbers from version 4.2.
+6. **Do not invent facts about the business.** That covers company name, address, registration, broker partnerships, prices, refund terms, and team names or photos. Where such a fact is needed, either keep it generic ("ทีมงาน", "โบรกเกอร์ที่รองรับ") or use the shortcodes above. For legal pages, write standard clauses and refer to the business as "[eawing_brand]" or "เรา".
+7. **Keep technical facts about MT5, VPS and Windows App accurate.**
    - Microsoft's remote desktop app on Android/iOS is now called "Windows App" (formerly "Remote Desktop").
    - The MT5 data folder path is File → Open Data Folder → MQL5 → Experts.
    - The toolbar button is called "Algo Trading" in current MT5 builds (formerly "AutoTrading").
    - The Strategy Tester opens with Ctrl+R.
    - EAs cannot run in the MT5 mobile app.
    - Use .ex5 for compiled files.
-7. **SEO:** use the focus keyword in the title, the first paragraph, at least one H2, and naturally 3 to 6 times in total. Add related Thai search phrases, such as บอทเทรด, โรบอทเทรด, EA เทรดทอง, EA forex, MT5, and วิธีติดตั้ง EA.
-8. **Structure and length:** articles are 1,200 to 2,200 Thai words, with 6 to 12 H2s, some H3s, and a FAQ block (3 to 5 Qs) near the end. They end with a short CTA paragraph plus `[eawing_line]`. Guide pages follow the per-page outline you are given.
-9. Write English technical terms in normal case (e.g. "Stop Loss"). The theme uppercases them visually.
+8. **SEO:** use the focus keyword in the title, the first paragraph, at least one H2, and naturally 3 to 6 times in total. Add related Thai search phrases, such as บอทเทรด, โรบอทเทรด, EA เทรดทอง, EA forex, MT5, and วิธีติดตั้ง EA.
+9. **Structure and length:** articles are 1,200 to 2,200 Thai words, with 6 to 12 H2s, some H3s, and a FAQ block (3 to 5 Qs) near the end. They end with a short CTA paragraph plus `[eawing_line]`. Guide pages follow the per-page outline you are given.
+10. Write English technical terms in normal case (e.g. "Stop Loss"). The theme uppercases them visually.
