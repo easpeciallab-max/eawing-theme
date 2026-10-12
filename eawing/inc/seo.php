@@ -1178,6 +1178,10 @@ function eaw_seo_legacy_redirects() {
 		$path = substr( $path, strlen( $home ) );
 	}
 	$path = strtolower( trailingslashit( '/' . ltrim( rawurldecode( $path ), '/' ) ) );
+	/* ไฟล์ EA รุ่นเก่าที่ถอดออกจากธีมแล้ว (ลิงก์ตรงที่เคยแชร์ไว้) → หน้าลิงก์รวม ซึ่งมีไฟล์รุ่นปัจจุบัน */
+	if ( preg_match( '#/assets/downloads/ea_wing_v[0-9.]+\.zip/$#', $path ) ) {
+		$map[ $path ] = '/go/';
+	}
 	if ( empty( $map[ $path ] ) ) {
 		return;
 	}
