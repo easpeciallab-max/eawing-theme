@@ -11,6 +11,8 @@
  * - HTML ไม่มีสคริปต์ GA4 หรือ Pixel ติดมา · consent.js ค่อยใส่สคริปต์ของหมวดที่ผู้เข้าชมกดอนุญาต
  * - Consent Mode v2: <head> ประกาศทุกสัญญาณเป็น denied ไว้ก่อน แล้ว consent.js ส่ง update เมื่อได้รับอนุญาต
  * - เงื่อนไขเปิดการ์ดอัตโนมัติ: มีรหัส GA4/Pixel ถูกรูปแบบ หรือเจ้าของเว็บติ๊ก show_cookie_consent
+ * - การ์ดพูดถึงเฉพาะบริการที่ใส่รหัสไว้จริง: {tools} ใน cookie_consent_text = ชื่อบริการที่มีรหัส · ไม่มีรหัสใดเลย = consent_none_text
+ *   หมวดวิเคราะห์/การตลาดพิมพ์เมื่อมีรหัส GA4/Pixel ของหมวดนั้น · ไม่มี Pixel = ไม่มีหมวดการตลาด สัญญาณโฆษณาของ Google จึง denied ตลอด
  * - รูปแบบคุกกี้ eaw_consent: v<รุ่น>.a<0|1|->.m<0|1|->.t<unix> ("-" คือหมวดที่ตอนตอบยังไม่มีบริการ) · 365 วัน · SameSite=Lax
  * - คำบนการ์ดแก้ได้ทั้งหมดที่ ปรับแต่ง → หมวด 18 (eaw_cookie)
  * - เปิดการ์ดซ้ำจากที่ไหนก็ได้ด้วย <a href="#cookie-settings"> หรือคลาส .cookie-reopen (ตัวช่วย: eaw_consent_link())
@@ -31,11 +33,14 @@ function eaw_consent_defaults( $d ) {
 	return array_merge(
 		$d,
 		array(
-			/* คีย์เดิมที่ใช้ต่อ · show_cookie_consent = แสดงการ์ดแม้ยังไม่มีรหัสติดตาม · cookie_consent_text = ข้อความชั้นแรก */
+			/* คีย์เดิมที่ใช้ต่อ · show_cookie_consent = แสดงการ์ดแม้ยังไม่มีรหัสติดตาม · cookie_consent_text = ข้อความชั้นแรก ({tools} = บริการที่ใส่รหัสไว้) */
 			'show_cookie_consent'      => false,
-			'cookie_consent_text'      => 'EA WING เปิดเฉพาะคุกกี้ที่จำเป็นต่อการทำงานของเว็บไว้ก่อน ส่วน Google Analytics (วิเคราะห์การใช้งาน) และ Meta Pixel (การตลาด) จะเริ่มทำงานหลังคุณกดยอมรับเท่านั้น เปลี่ยนตัวเลือกภายหลังได้จากลิงก์ "ตั้งค่าคุกกี้"',
+			'cookie_consent_text'      => 'EA WING เปิดเฉพาะคุกกี้ที่จำเป็นต่อการทำงานของเว็บไว้ก่อน ส่วน {tools} จะเริ่มทำงานหลังคุณกดยอมรับเท่านั้น เปลี่ยนตัวเลือกภายหลังได้จากลิงก์ "ตั้งค่าคุกกี้"',
 			'ga_measurement_id'        => '',
 			'fb_pixel_id'              => '',
+			'consent_tool_ga_label'    => 'Google Analytics (วิเคราะห์การใช้งาน)',
+			'consent_tool_pixel_label' => 'Meta Pixel (การตลาด)',
+			'consent_tools_join'       => 'และ',
 
 			'consent_version'          => '1',
 			'consent_kicker'           => 'คุกกี้และ PDPA',
@@ -55,9 +60,13 @@ function eaw_consent_defaults( $d ) {
 			'consent_analytics_name'   => 'วิเคราะห์การใช้งาน',
 			'consent_analytics_desc'   => 'Google Analytics ช่วยนับจำนวนผู้เข้าชม หน้าที่ถูกเปิด และปุ่มที่ถูกกด เพื่อปรับเนื้อหาให้ใช้งานง่ายขึ้น เริ่มทำงานหลังคุณยินยอมเท่านั้น',
 			'consent_analytics_detail' => "ผู้ให้บริการ · Google (Google Analytics 4)\n_ga · รหัสสุ่มที่แยกเบราว์เซอร์หนึ่งออกจากอีกเบราว์เซอร์ โดยไม่รู้ว่าผู้ใช้เป็นใคร · ไม่เกินประมาณ 2 ปี\n_ga_* · บันทึกสถานะของการเข้าชมรอบปัจจุบัน · ไม่เกินประมาณ 2 ปี",
+			/* ต่อท้ายรายละเอียดหมวดวิเคราะห์ เมื่อมี GA4 แต่ไม่มี Meta Pixel (ไม่มีหมวดการตลาดให้เปิด สัญญาณโฆษณาจึง denied ตลอด) */
+			'consent_ads_off_detail'   => 'สัญญาณโฆษณา (Google Consent Mode) · ปิดอยู่เสมอ เพราะเว็บนี้ไม่มีหมวดการตลาดให้เปิด Google จึงไม่ได้รับอนุญาตให้ใช้ข้อมูลการเข้าชมเพื่องานโฆษณา',
 			'consent_marketing_name'   => 'การตลาด',
 			'consent_marketing_desc'   => 'Meta Pixel วัดว่าโฆษณาบน Facebook และ Instagram พาคนมาที่เว็บไซต์ได้แค่ไหน และใช้กำหนดกลุ่มผู้ชมโฆษณา เริ่มทำงานหลังคุณยินยอมเท่านั้น',
-			'consent_marketing_detail' => "ผู้ให้บริการ · Meta Platforms (Meta Pixel)\n_fbp · ระบุเบราว์เซอร์เพื่อวัดผลโฆษณา · ประมาณ 90 วัน\n_fbc · จดรหัสคลิกของโฆษณาที่พาคุณมายังเว็บ · ประมาณ 90 วัน\nผู้ให้บริการ · Google (เฉพาะเมื่อเว็บใช้ GA4)\n_gcl_au / _gcl_* · ผูกการเข้าชมเข้ากับแคมเปญโฆษณาบนเครือข่าย Google · ประมาณ 90 วัน\nสัญญาณโฆษณา (Google Consent Mode) · อนุญาตให้ Google ใช้ข้อมูลการเข้าชมเพื่องานโฆษณา · มีผลเมื่อเปิดหมวดนี้เท่านั้น",
+			'consent_marketing_detail' => "ผู้ให้บริการ · Meta Platforms (Meta Pixel)\n_fbp · ระบุเบราว์เซอร์เพื่อวัดผลโฆษณา · ประมาณ 90 วัน\n_fbc · จดรหัสคลิกของโฆษณาที่พาคุณมายังเว็บ · ประมาณ 90 วัน",
+			/* ต่อท้ายรายละเอียดหมวดการตลาด เมื่อมีทั้ง Meta Pixel และ GA4 */
+			'consent_marketing_google_detail' => "ผู้ให้บริการ · Google (Google Analytics 4)\n_gcl_au / _gcl_* · ผูกการเข้าชมเข้ากับแคมเปญโฆษณาบนเครือข่าย Google · ประมาณ 90 วัน\nสัญญาณโฆษณา (Google Consent Mode) · อนุญาตให้ Google ใช้ข้อมูลการเข้าชมเพื่องานโฆษณา · มีผลเมื่อเปิดหมวดนี้เท่านั้น",
 			'consent_none_text'        => 'เว็บนี้ใช้แค่คุกกี้ที่จำเป็นในขณะนี้ เพราะยังไม่ได้เชื่อม Google Analytics หรือ Meta Pixel',
 			'consent_prefs_note'       => 'เปลี่ยนตัวเลือกได้ทุกเมื่อจากลิงก์ "ตั้งค่าคุกกี้" ท้ายหน้าเว็บ การปฏิเสธไม่มีผลกับการอ่านเนื้อหาหรือการติดต่อทีมงานทาง LINE',
 			'consent_link_label'       => 'ตั้งค่าคุกกี้',
@@ -95,7 +104,10 @@ function eaw_consent_sections( $sections, $d ) {
 			'consent_version'          => array( 'เลขรุ่นของความยินยอม', 'text', 'บวกเลขขึ้นเมื่อเปลี่ยนวิธีใช้คุกกี้ ระบบจะขอความยินยอมใหม่จากทุกคน' ),
 			'consent_kicker'           => array( 'การ์ด · ข้อความเล็กเหนือหัวข้อ', 'text' ),
 			'consent_title'            => array( 'การ์ด · หัวข้อ', 'text' ),
-			'cookie_consent_text'      => array( 'การ์ด · ข้อความหลัก (ก่อนกดเลือกทีละหมวด)', 'textarea' ),
+			'cookie_consent_text'      => array( 'การ์ด · ข้อความหลัก (ก่อนกดเลือกทีละหมวด)', 'textarea', '{tools} = ชื่อบริการที่ใส่รหัสไว้จริงเท่านั้น (สองช่องถัดไป) · ถ้ายังไม่มีรหัสใดเลย การ์ดใช้ "ข้อความเมื่อยังไม่ได้ใส่รหัสติดตามใด ๆ" แทน' ),
+			'consent_tool_ga_label'    => array( 'การ์ด · ชื่อบริการ GA4 ที่ใช้แทน {tools}', 'text', 'แสดงเมื่อมี GA4 Measurement ID' ),
+			'consent_tool_pixel_label' => array( 'การ์ด · ชื่อบริการ Meta Pixel ที่ใช้แทน {tools}', 'text', 'แสดงเมื่อมี Meta Pixel ID' ),
+			'consent_tools_join'       => array( 'การ์ด · คำเชื่อมเมื่อมีทั้งสองบริการ', 'text' ),
 			'consent_policy_label'     => array( 'การ์ด · คำบนลิงก์ไปนโยบายคุกกี้', 'text' ),
 			'consent_accept_label'     => array( 'ข้อความปุ่ม · ยอมรับทุกหมวด', 'text' ),
 			'consent_reject_label'     => array( 'ข้อความปุ่ม · ปฏิเสธทุกหมวดที่ไม่จำเป็น', 'text' ),
@@ -111,9 +123,11 @@ function eaw_consent_sections( $sections, $d ) {
 			'consent_analytics_name'   => array( 'หมวดวัดสถิติ (GA4) · ชื่อหมวด', 'text' ),
 			'consent_analytics_desc'   => array( 'หมวดวัดสถิติ (GA4) · คำอธิบายสั้น', 'textarea' ),
 			'consent_analytics_detail' => array( 'หมวดวัดสถิติ (GA4) · รายละเอียดคุกกี้', 'textarea', $detail_hint ),
-			'consent_marketing_name'   => array( 'หมวดโฆษณา (Meta Pixel) · ชื่อหมวด', 'text' ),
+			'consent_ads_off_detail'   => array( 'หมวดวัดสถิติ (GA4) · บรรทัดต่อท้ายเมื่อไม่มี Meta Pixel', 'textarea', 'ไม่มีหมวดการตลาด สัญญาณโฆษณาของ Google จึงปิดตลอด · บรรทัดนี้บอกผู้เข้าชมให้รู้' ),
+			'consent_marketing_name'   => array( 'หมวดโฆษณา (Meta Pixel) · ชื่อหมวด', 'text', 'หมวดนี้แสดงเฉพาะเมื่อมี Meta Pixel ID' ),
 			'consent_marketing_desc'   => array( 'หมวดโฆษณา (Meta Pixel) · คำอธิบายสั้น', 'textarea' ),
 			'consent_marketing_detail' => array( 'หมวดโฆษณา (Meta Pixel) · รายละเอียดคุกกี้', 'textarea', $detail_hint ),
+			'consent_marketing_google_detail' => array( 'หมวดโฆษณา · บรรทัดต่อท้ายเมื่อมี GA4 ด้วย (สัญญาณโฆษณาของ Google)', 'textarea', $detail_hint ),
 			'consent_none_text'        => array( 'ข้อความเมื่อยังไม่ได้ใส่รหัสติดตามใด ๆ', 'textarea' ),
 			'consent_prefs_note'       => array( 'ข้อความใต้รายการหมวด (หน้าเลือกทีละหมวด)', 'textarea' ),
 			'consent_link_label'       => array( 'ข้อความลิงก์ "ตั้งค่าคุกกี้" (หน้า /go และจุดที่ใช้ eaw_consent_link)', 'text' ),
@@ -193,6 +207,47 @@ function eaw_consent_ids() {
 
 function eaw_consent_version() {
 	return max( 1, absint( eaw_mod( 'consent_version' ) ) );
+}
+
+/**
+ * ชื่อบริการที่ใส่รหัสไว้จริง (GA4 ก่อน Meta Pixel) ต่อกันด้วยคำเชื่อม · '' เมื่อยังไม่มีรหัสใดเลย
+ */
+function eaw_consent_tools_text() {
+	$ids    = eaw_consent_ids();
+	$labels = array();
+	if ( '' !== $ids['ga'] ) {
+		$labels[] = trim( (string) eaw_mod( 'consent_tool_ga_label' ) );
+	}
+	if ( '' !== $ids['pixel'] ) {
+		$labels[] = trim( (string) eaw_mod( 'consent_tool_pixel_label' ) );
+	}
+	$labels = array_values( array_filter( $labels, 'strlen' ) );
+	if ( count( $labels ) < 2 ) {
+		return $labels ? $labels[0] : '';
+	}
+	$last = array_pop( $labels );
+	$join = trim( (string) eaw_mod( 'consent_tools_join' ) );
+	return implode( ' ', $labels ) . ' ' . ( '' !== $join ? $join . ' ' : '' ) . $last;
+}
+
+/**
+ * ข้อความชั้นแรกของการ์ด: cookie_consent_text ที่แทน {tools} ด้วยบริการที่ใส่รหัสไว้
+ * ยังไม่มีรหัสใดเลย (การ์ดเปิดเพราะติ๊ก show_cookie_consent) = consent_none_text ไม่พูดถึงบริการที่ไม่ได้ทำงาน
+ */
+function eaw_consent_intro_text() {
+	$ids = eaw_consent_ids();
+	if ( '' === $ids['ga'] && '' === $ids['pixel'] ) {
+		return (string) eaw_mod( 'consent_none_text' );
+	}
+	$text = str_replace( '{tools}', eaw_consent_tools_text(), (string) eaw_mod( 'cookie_consent_text' ) );
+	return trim( preg_replace( '/[ \t]{2,}/', ' ', $text ) );
+}
+
+/**
+ * รวมรายละเอียดคุกกี้หลายชุด (บรรทัดละ 1 รายการ) · ข้ามชุดที่ว่าง
+ */
+function eaw_consent_join_details( ...$parts ) {
+	return implode( "\n", array_filter( array_map( 'trim', array_map( 'strval', $parts ) ), 'strlen' ) );
 }
 
 /**
@@ -318,7 +373,9 @@ function eaw_consent_card() {
 		? ' <a class="consent-policy" href="' . esc_url( $policy_url ) . '">' . esc_html( $policy_label ) . '</a>'
 		: '';
 	$detail_label = eaw_mod( 'consent_detail_label' );
+	$ids          = eaw_consent_ids();
 
+	/* พิมพ์เฉพาะหมวดที่มีบริการใส่รหัสไว้จริง · ไม่มี Pixel = ไม่มีหมวดการตลาด สัญญาณโฆษณาของ Google จึงคง denied (consent.js) */
 	$cats = array(
 		'necessary' => array(
 			'name'   => eaw_mod( 'consent_necessary_name' ),
@@ -326,19 +383,29 @@ function eaw_consent_card() {
 			'detail' => eaw_mod( 'consent_necessary_detail' ),
 			'icon'   => 'lock',
 		),
-		'analytics' => array(
+	);
+	if ( '' !== $ids['ga'] ) {
+		$cats['analytics'] = array(
 			'name'   => eaw_mod( 'consent_analytics_name' ),
 			'desc'   => eaw_mod( 'consent_analytics_desc' ),
-			'detail' => eaw_mod( 'consent_analytics_detail' ),
+			'detail' => eaw_consent_join_details(
+				eaw_mod( 'consent_analytics_detail' ),
+				'' === $ids['pixel'] ? eaw_mod( 'consent_ads_off_detail' ) : ''
+			),
 			'icon'   => 'chart',
-		),
-		'marketing' => array(
+		);
+	}
+	if ( '' !== $ids['pixel'] ) {
+		$cats['marketing'] = array(
 			'name'   => eaw_mod( 'consent_marketing_name' ),
 			'desc'   => eaw_mod( 'consent_marketing_desc' ),
-			'detail' => eaw_mod( 'consent_marketing_detail' ),
+			'detail' => eaw_consent_join_details(
+				eaw_mod( 'consent_marketing_detail' ),
+				'' !== $ids['ga'] ? eaw_mod( 'consent_marketing_google_detail' ) : ''
+			),
 			'icon'   => 'target',
-		),
-	);
+		);
+	}
 	?>
 <section class="consent" id="cookie-settings" aria-labelledby="consent-title" data-view="intro" hidden>
 	<div class="consent-head">
@@ -352,8 +419,10 @@ function eaw_consent_card() {
 	</div>
 
 	<div class="consent-body">
-		<p class="consent-text" data-show="intro"><?php echo esc_html( eaw_mod( 'cookie_consent_text' ) ); ?><?php echo $policy_link; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above ?></p>
-		<p class="consent-note consent-note--none" data-when="none" hidden><?php echo esc_html( eaw_mod( 'consent_none_text' ) ); ?></p>
+		<p class="consent-text" data-show="intro"><?php echo esc_html( eaw_consent_intro_text() ); ?><?php echo $policy_link; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above ?></p>
+		<?php if ( '' === $ids['ga'] && '' === $ids['pixel'] ) : ?>
+			<p class="consent-note consent-note--none" data-show="prefs" data-when="none" hidden><?php echo esc_html( eaw_mod( 'consent_none_text' ) ); ?></p>
+		<?php endif; ?>
 
 		<div class="consent-prefs" data-show="prefs" hidden>
 			<ul class="consent-cats">
