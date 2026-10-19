@@ -1179,7 +1179,7 @@ function eaw_seo_legacy_redirects() {
 	}
 	$path = strtolower( trailingslashit( '/' . ltrim( rawurldecode( $path ), '/' ) ) );
 	/* ไฟล์ EA รุ่นเก่าที่ถอดออกจากธีมแล้ว (ลิงก์ตรงที่เคยแชร์ไว้) → หน้าลิงก์รวม ซึ่งมีไฟล์รุ่นปัจจุบัน */
-	if ( preg_match( '#/assets/downloads/ea_wing_v[0-9.]+\.zip/$#', $path ) ) {
+	if ( preg_match( '#/assets/downloads/(ea_wing|wing_twin)_v[0-9.]+\.zip/$#', $path ) ) {
 		$map[ $path ] = '/go/';
 	}
 	if ( empty( $map[ $path ] ) ) {
@@ -1267,7 +1267,9 @@ function eaw_seo_sitemap_theme_images( $images, $post_id ) {
 	$keys = array();
 	$slug = (string) $post->post_name;
 	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
-		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'hero_image' );
+		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'home_twin_img', 'hero_image' );
+	} elseif ( 'wing-twin' === $slug ) {
+		$keys = array( 'twin_hero_img' );
 	} elseif ( function_exists( 'eaw_guide_map' ) ) {
 		$map    = eaw_guide_map();
 		$prefix = isset( $map[ $slug ] ) ? $map[ $slug ] . '_step' : ( 'how-to-install' === $slug ? 'inst_step' : '' );

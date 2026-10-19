@@ -202,6 +202,9 @@ endif;
 
 <?php eaw_homeplus_section( 'modes' ); ?>
 
+<?php /* ============ สินค้าตัวที่สอง WING TWIN (inc/modules/twin.php) ============ */ ?>
+<?php eaw_homeplus_section( 'twin' ); ?>
+
 <?php /* ============ WORKS ON · กระเบื้องอุปกรณ์ ลิงก์ไปคู่มือ + หมายเหตุเรื่องมือถือ ============ */ ?>
 <?php if ( eaw_mod( 'home_show_devices' ) ) : ?>
 	<?php

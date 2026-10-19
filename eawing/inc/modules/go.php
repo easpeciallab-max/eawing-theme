@@ -90,8 +90,8 @@ function eaw_go_defaults( $d ) {
 			'go_deposit_guide_url'   => '/deposit/',
 
 			/* ขั้น 4 · ไฟล์ EA */
-			'go_step4_title'         => 'ดาวน์โหลดไฟล์ EA WING',
-			'go_step4_desc'          => 'โหลดไฟล์ .zip (ตัว EA + คู่มือ PDF) แล้วส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์ทาง LINE เพื่อเปิดสิทธิ์ใช้งาน',
+			'go_step4_title'         => 'ดาวน์โหลดไฟล์ EA',
+			'go_step4_desc'          => 'เลือกไฟล์ .zip ของ EA WING หรือ WING TWIN (ตัว EA + คู่มือ PDF) แล้วส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์ทาง LINE เพื่อเปิดสิทธิ์ใช้งาน',
 			'go_step4_note'          => '',
 			'go_step4_badge'         => '',
 			'go_download_line_label' => eaw_go_legacy( 'go_step4', 'ขอรับไฟล์ EA ทาง LINE' ),
@@ -475,13 +475,14 @@ function eaw_go_asset_href( $url ) {
 
 /**
  * การ์ดดาวน์โหลดไฟล์ EA (รูป + ป้ายเวอร์ชัน + ปุ่มดาวน์โหลด) · ไม่มีลิงก์ไฟล์ = ''
+ * $prefix = go_fast (EA WING) หรือ go_twin (WING TWIN · inc/modules/twin.php) · ใช้คีย์ {prefix}_url|img|alt|label|version
  */
-function eaw_go_download() {
-	$href = eaw_go_asset_href( eaw_go_mod( 'go_fast_url' ) );
+function eaw_go_download_card( $prefix = 'go_fast', $pos = 'go-download' ) {
+	$href = eaw_go_asset_href( eaw_go_mod( $prefix . '_url' ) );
 	if ( '' === $href ) {
 		return '';
 	}
-	$attrs = array( 'data-go-pos' => 'go-download' );
+	$attrs = array( 'data-go-pos' => $pos );
 	if ( preg_match( '/\.(zip|ex5|set|pdf)([?#]|$)/i', $href ) ) {
 		$attrs['download'] = true;
 	}
@@ -491,9 +492,9 @@ function eaw_go_download() {
 	}
 
 	$html = '';
-	$img  = eaw_go_asset_href( eaw_go_mod( 'go_fast_img' ) );
+	$img  = eaw_go_asset_href( eaw_go_mod( $prefix . '_img' ) );
 	if ( '' !== $img ) {
-		$version = eaw_go_mod( 'go_fast_version' );
+		$version = eaw_go_mod( $prefix . '_version' );
 		$badge   = '';
 		if ( '' !== $version ) {
 			$badge = sprintf(
@@ -507,12 +508,12 @@ function eaw_go_download() {
 			esc_url( $href ),
 			eaw_go_attrs( $attrs ),
 			esc_url( $img ),
-			esc_attr( eaw_go_mod( 'go_fast_alt' ) ),
+			esc_attr( eaw_go_mod( $prefix . '_alt' ) ),
 			$badge
 		);
 	}
 
-	$label = eaw_go_mod( 'go_fast_label' );
+	$label = eaw_go_mod( $prefix . '_label' );
 	if ( '' !== $label ) {
 		$html .= sprintf(
 			'<a class="lh-btn lh-btn-download" href="%1$s"%2$s><span class="lh-ic">%3$s</span><span class="lh-lbl">%4$s</span></a>',
@@ -523,6 +524,10 @@ function eaw_go_download() {
 		);
 	}
 	return $html;
+}
+
+function eaw_go_download() {
+	return eaw_go_download_card( 'go_fast', 'go-download' );
 }
 
 /**
@@ -573,8 +578,13 @@ function eaw_go_steps() {
 	$body   .= eaw_go_button( 'lh-mini-btn', eaw_go_mod( 'go_deposit_guide_label' ), eaw_go_mod( 'go_deposit_guide_url' ), 'book' );
 	$steps[] = array( 'key' => 'deposit', 'n' => 3, 'body' => $body );
 
-	// 4 · ไฟล์ EA: การ์ด/ปุ่มดาวน์โหลด หรือปุ่ม LINE ขอไฟล์.
+	// 4 · ไฟล์ EA: การ์ด/ปุ่มดาวน์โหลด EA WING แล้วตามด้วยการ์ด WING TWIN (สินค้าตัวที่สอง) หรือปุ่ม LINE ขอไฟล์.
 	$body = eaw_go_download();
+	$twin = eaw_go_download_card( 'go_twin', 'go-download-twin' );
+	if ( '' !== $twin ) {
+		$twin .= eaw_go_button( 'lh-mini-btn', eaw_go_mod( 'go_twin_info_label' ), eaw_go_mod( 'go_twin_info_url' ), 'book' );
+		$body .= '<div class="lh-product">' . $twin . '</div>';
+	}
 	if ( '' === $body ) {
 		$body = eaw_go_line_button( eaw_go_mod( 'go_download_line_label' ), 'go-download' );
 	} else {

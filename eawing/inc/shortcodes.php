@@ -69,7 +69,21 @@ function eaw_ea_bt_range() {
 }
 
 function eaw_sc_ea( $atts ) {
-	$atts = shortcode_atts( array( 'field' => 'file' ), $atts, 'eawing_ea' );
+	$atts = shortcode_atts(
+		array(
+			'field'   => 'file',
+			'product' => '',
+		),
+		$atts,
+		'eawing_ea'
+	);
+	/* สินค้าตัวที่สอง WING TWIN (inc/modules/twin.php) · [eawing_ea product="twin" field="name|version"] */
+	if ( 'twin' === $atts['product'] && function_exists( 'eaw_twin_name' ) ) {
+		if ( 'version' === $atts['field'] ) {
+			return esc_html( eaw_twin_version() );
+		}
+		return esc_html( eaw_twin_name() . ( 'name' === $atts['field'] ? '' : '.ex5' ) );
+	}
 	switch ( $atts['field'] ) {
 		case 'name':
 			return esc_html( eaw_ea_name() );

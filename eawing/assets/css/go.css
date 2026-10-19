@@ -906,3 +906,14 @@ a.lh-feature:hover {
 		transition: none;
 	}
 }
+
+/* ---------- การ์ดสินค้าตัวที่สอง (WING TWIN) ในขั้นดาวน์โหลด ---------- */
+.lh-product {
+	margin: 16px 0 0;
+	padding: 16px 0 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.lh-product .lh-mini-btn {
+	margin-top: 2px;
+}

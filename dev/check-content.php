@@ -81,8 +81,8 @@ foreach ( array_merge( glob( $root . 'pages/*.html' ), glob( $root . 'articles/*
 		$issue[] = 'no callout--warn (risk context)';
 	}
 	/* ชื่อไฟล์ EA และช่วง Backtest มาตรฐานเปลี่ยนตามรุ่น: ต้องมาจาก [eawing_ea] ไม่พิมพ์ตรง ๆ */
-	if ( preg_match( '/EA_WING_V\d|2026\.01\.01 ถึง 2026\.\d\d\.\d\d/u', $raw ) ) {
-		$issue[] = 'hardcoded EA file name or backtest range (use [eawing_ea] / [eawing_ea field="bt_range"])';
+	if ( preg_match( '/EA_WING_V\d|WING_TWIN_V\d|2026\.01\.01 ถึง 2026\.\d\d\.\d\d/u', $raw ) ) {
+		$issue[] = 'hardcoded EA file name or backtest range (use [eawing_ea] / [eawing_ea product="twin"] / [eawing_ea field="bt_range"])';
 	}
 	if ( substr_count( $raw, '[eawing_line' ) !== substr_count( $raw, '[/eawing_line]' ) ) {
 		$issue[] = 'unbalanced [eawing_line]';

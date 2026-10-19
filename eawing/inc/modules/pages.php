@@ -661,7 +661,7 @@ function eaw_pages_illus( $type ) {
  * @param string $illus ชนิดภาพประกอบ (ดู eaw_pages_illus)
  */
 function eaw_pages_hero_media( $key, $illus = '' ) {
-	$src = '' !== $key ? trim( (string) eaw_mod( $key . '_hero_img' ) ) : '';
+	$src = '' !== $key ? eaw_theme_asset_url( eaw_mod( $key . '_hero_img' ) ) : '';
 	if ( '' !== $src ) {
 		$info = eaw_media_info( $src, 960, 720 );
 		return sprintf(
