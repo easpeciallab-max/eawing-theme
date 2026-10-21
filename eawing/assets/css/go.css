@@ -908,10 +908,16 @@ a.lh-feature:hover {
 }
 
 /* ---------- การ์ดสินค้าใบถัดไป (เรียงตามเลขรุ่น) ในขั้นดาวน์โหลด ---------- */
+/* ระยะล่าง 10px เท่าปุ่มอื่นในขั้น · ปุ่มสุดท้ายในกล่องถูกตัดระยะล่าง (.lh-mini-btn:last-child) จึงต้องเว้นที่กล่องแทน
+   ไม่อย่างนั้นปุ่ม LINE ที่ต่อท้ายจะติดกับปุ่มเล็กของการ์ดใบสุดท้าย */
 .lh-product {
-	margin: 16px 0 0;
+	margin: 16px 0 10px;
 	padding: 16px 0 0;
 	border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.lh-product:last-child {
+	margin-bottom: 0;
 }
 
 .lh-product .lh-mini-btn {

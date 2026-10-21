@@ -411,7 +411,7 @@ function eaw_chrome_nav_tree() {
 		),
 	);
 
-	/* สินค้าทั้งหมดเรียงตามเลขรุ่น (products.php) · EA WING ไม่มีเพจแยก ลิงก์ไปส่วนโหมดในหน้าแรก */
+	/* สินค้าทั้งหมดเรียงตามเลขรุ่น (products.php) · ทุกตัวมีเพจของตัวเอง */
 	$label = trim( (string) eaw_mod( 'nav_products_label' ) );
 	if ( '' !== $label && function_exists( 'eaw_products' ) ) {
 		$children = array();

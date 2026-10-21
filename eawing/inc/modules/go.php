@@ -101,6 +101,8 @@ function eaw_go_defaults( $d ) {
 			'go_fast_label'          => 'ดาวน์โหลด EA WING V5.0',
 			'go_fast_version'        => 'V5.0',
 			'go_fast_version_label'  => 'อัปเดตล่าสุด',
+			'go_fast_info_label'     => 'อ่านก่อนใช้ EA WING',
+			'go_fast_info_url'       => '/ea-wing/',
 			'go_license_line_label'  => 'ขอเปิดสิทธิ์ทาง LINE',
 
 			/* ขั้น 5 · ติดตั้ง EA */
@@ -237,6 +239,8 @@ function eaw_go_sections( $sections, $d ) {
 			'go_fast_alt'            => array( 'ขั้นรับไฟล์ EA · คำอธิบายรูปการ์ด (alt)', 'text' ),
 			'go_fast_version'        => array( 'ขั้นรับไฟล์ EA · เลขเวอร์ชันบนการ์ด (เช่น V5.0 · ว่าง = ไม่แสดงป้าย)', 'text' ),
 			'go_fast_version_label'  => array( 'ขั้นรับไฟล์ EA · คำหน้าเลขเวอร์ชัน', 'text' ),
+			'go_fast_info_label'     => array( 'ขั้นรับไฟล์ EA · ปุ่มเล็กใต้การ์ด EA WING · ข้อความ (ว่าง = ไม่มีปุ่ม)', 'text' ),
+			'go_fast_info_url'       => array( 'ขั้นรับไฟล์ EA · ปุ่มเล็กใต้การ์ด EA WING · ลิงก์', 'path' ),
 			'go_license_line_label'  => array( 'ขั้นรับไฟล์ EA · ปุ่ม LINE ขอเปิดสิทธิ์ (แสดงคู่กับไฟล์ดาวน์โหลด · ว่าง = ซ่อน)', 'text' ),
 
 			'go_step5_title'         => array( 'ขั้นติดตั้ง EA · หัวข้อ', 'text' ),

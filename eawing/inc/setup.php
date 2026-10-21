@@ -36,6 +36,7 @@ function eaw_site_pages() {
 		'tools'            => array( 'title' => 'เครื่องมือคำนวณ', 'template' => 'template-guide.php', 'content' => 'pages/tools', 'group' => 'guide', 'menu' => 'เครื่องคำนวณ Lot / Drawdown' ),
 		'pricing'          => array( 'title' => 'แพ็กเกจและราคา', 'template' => 'template-pricing.php', 'content' => 'pages/pricing', 'group' => 'pricing' ),
 		'wing-nitro'       => array( 'title' => 'WING NITRO', 'template' => 'template-nitro.php', 'content' => 'pages/wing-nitro', 'group' => 'product' ),
+		'ea-wing'          => array( 'title' => 'EA WING', 'template' => 'template-eawing.php', 'content' => 'pages/ea-wing', 'group' => 'product' ),
 		'wing-twin'        => array( 'title' => 'WING TWIN', 'template' => 'template-twin.php', 'content' => 'pages/wing-twin', 'group' => 'product' ),
 		'risk-disclosure'  => array( 'title' => 'ประกาศความเสี่ยง', 'template' => 'template-risk.php', 'content' => 'pages/risk-disclosure', 'group' => 'doc' ),
 		'about'            => array( 'title' => 'เกี่ยวกับเรา', 'template' => '', 'content' => 'pages/about', 'group' => 'doc' ),
@@ -601,7 +602,7 @@ function eaw_setup_menu_build() {
 	};
 
 	$add( 'หน้าแรก', home_url( '/' ) );
-	// สินค้าทั้งหมดเรียงตามเลขรุ่น (products.php) · EA WING ไม่มีเพจแยก ลิงก์ไปส่วนโหมดในหน้าแรก · หัวเมนูลิงก์ไปสินค้าตัวแรก
+	// สินค้าทั้งหมดเรียงตามเลขรุ่น (products.php) · หัวเมนูลิงก์ไปสินค้าตัวแรก
 	$list    = function_exists( 'eaw_products' ) ? eaw_products() : array();
 	$targets = array();
 	foreach ( $list as $item ) {

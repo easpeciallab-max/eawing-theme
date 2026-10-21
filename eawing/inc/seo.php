@@ -1268,8 +1268,13 @@ function eaw_seo_sitemap_theme_images( $images, $post_id ) {
 	$slug = (string) $post->post_name;
 	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
 		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'home_nitro_img', 'home_eawing_img', 'home_twin_img', 'hero_image' );
-	} elseif ( in_array( $slug, array( 'wing-nitro', 'wing-twin' ), true ) ) {
-		$keys = array( str_replace( 'wing-', '', $slug ) . '_hero_img' );
+	} elseif ( in_array( $slug, array( 'wing-nitro', 'ea-wing', 'wing-twin' ), true ) ) {
+		$prefix = array(
+			'wing-nitro' => 'nitro',
+			'ea-wing'    => 'eawing',
+			'wing-twin'  => 'twin',
+		);
+		$keys   = array( $prefix[ $slug ] . '_hero_img' );
 	} elseif ( function_exists( 'eaw_guide_map' ) ) {
 		$map    = eaw_guide_map();
 		$prefix = isset( $map[ $slug ] ) ? $map[ $slug ] . '_step' : ( 'how-to-install' === $slug ? 'inst_step' : '' );
