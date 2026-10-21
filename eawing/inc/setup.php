@@ -35,6 +35,7 @@ function eaw_site_pages() {
 		'vps-ios'          => array( 'title' => 'คู่มือ VPS บน iPhone', 'template' => 'template-guide.php', 'content' => 'pages/vps-ios', 'group' => 'guide', 'menu' => 'VPS บน iPhone / iPad' ),
 		'tools'            => array( 'title' => 'เครื่องมือคำนวณ', 'template' => 'template-guide.php', 'content' => 'pages/tools', 'group' => 'guide', 'menu' => 'เครื่องคำนวณ Lot / Drawdown' ),
 		'pricing'          => array( 'title' => 'แพ็กเกจและราคา', 'template' => 'template-pricing.php', 'content' => 'pages/pricing', 'group' => 'pricing' ),
+		'wing-nitro'       => array( 'title' => 'WING NITRO', 'template' => 'template-nitro.php', 'content' => 'pages/wing-nitro', 'group' => 'product' ),
 		'wing-twin'        => array( 'title' => 'WING TWIN', 'template' => 'template-twin.php', 'content' => 'pages/wing-twin', 'group' => 'product' ),
 		'risk-disclosure'  => array( 'title' => 'ประกาศความเสี่ยง', 'template' => 'template-risk.php', 'content' => 'pages/risk-disclosure', 'group' => 'doc' ),
 		'about'            => array( 'title' => 'เกี่ยวกับเรา', 'template' => '', 'content' => 'pages/about', 'group' => 'doc' ),
@@ -600,6 +601,18 @@ function eaw_setup_menu_build() {
 	};
 
 	$add( 'หน้าแรก', home_url( '/' ) );
+	// สินค้าทั้งหมดเรียงตามเลขรุ่น (products.php) · EA WING ไม่มีเพจแยก ลิงก์ไปส่วนโหมดในหน้าแรก · หัวเมนูลิงก์ไปสินค้าตัวแรก
+	$list    = function_exists( 'eaw_products' ) ? eaw_products() : array();
+	$targets = array();
+	foreach ( $list as $item ) {
+		$targets[ $item['label'] ] = '' !== $item['slug'] ? $item['slug'] : home_url( '/#modes' );
+	}
+	if ( $targets ) {
+		$products = $add( 'สินค้า', reset( $targets ) );
+		foreach ( $targets as $label => $target ) {
+			$add( $label, $target, $products );
+		}
+	}
 	$test = $add( 'การทดสอบ', 'backtest' );
 	foreach ( eaw_guide_links( array( 'test' ) ) as $slug => $link ) {
 		$add( $link['label'], $slug, $test );
@@ -609,7 +622,6 @@ function eaw_setup_menu_build() {
 		$add( $link['label'], $slug, $guide );
 	}
 	$add( 'แพ็กเกจ', 'pricing' );
-	$add( 'WING TWIN', 'wing-twin' );
 	$add( 'บทความ', 'articles' );
 	$add( 'ติดต่อ', 'go' );
 

@@ -91,7 +91,7 @@ function eaw_go_defaults( $d ) {
 
 			/* ขั้น 4 · ไฟล์ EA */
 			'go_step4_title'         => 'ดาวน์โหลดไฟล์ EA',
-			'go_step4_desc'          => 'เลือกไฟล์ .zip ของ EA WING หรือ WING TWIN (ตัว EA + คู่มือ PDF) แล้วส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์ทาง LINE เพื่อเปิดสิทธิ์ใช้งาน',
+			'go_step4_desc'          => 'เลือกไฟล์ .zip ของ EA ที่จะใช้ (ตัว EA + คู่มือ PDF) แล้วส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์ทาง LINE เพื่อเปิดสิทธิ์ใช้งาน',
 			'go_step4_note'          => '',
 			'go_step4_badge'         => '',
 			'go_download_line_label' => eaw_go_legacy( 'go_step4', 'ขอรับไฟล์ EA ทาง LINE' ),
@@ -578,13 +578,8 @@ function eaw_go_steps() {
 	$body   .= eaw_go_button( 'lh-mini-btn', eaw_go_mod( 'go_deposit_guide_label' ), eaw_go_mod( 'go_deposit_guide_url' ), 'book' );
 	$steps[] = array( 'key' => 'deposit', 'n' => 3, 'body' => $body );
 
-	// 4 · ไฟล์ EA: การ์ด/ปุ่มดาวน์โหลด EA WING แล้วตามด้วยการ์ด WING TWIN (สินค้าตัวที่สอง) หรือปุ่ม LINE ขอไฟล์.
-	$body = eaw_go_download();
-	$twin = eaw_go_download_card( 'go_twin', 'go-download-twin' );
-	if ( '' !== $twin ) {
-		$twin .= eaw_go_button( 'lh-mini-btn', eaw_go_mod( 'go_twin_info_label' ), eaw_go_mod( 'go_twin_info_url' ), 'book' );
-		$body .= '<div class="lh-product">' . $twin . '</div>';
-	}
+	// 4 · ไฟล์ EA: การ์ดดาวน์โหลดทุกสินค้าเรียงตามเลขรุ่น (products.php) หรือปุ่ม LINE ขอไฟล์.
+	$body = function_exists( 'eaw_go_product_downloads' ) ? eaw_go_product_downloads() : eaw_go_download();
 	if ( '' === $body ) {
 		$body = eaw_go_line_button( eaw_go_mod( 'go_download_line_label' ), 'go-download' );
 	} else {

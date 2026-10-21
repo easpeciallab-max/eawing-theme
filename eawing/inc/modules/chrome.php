@@ -83,6 +83,7 @@ add_filter(
 
 				/* เมนูหลัก (ใช้เมื่อยังไม่ได้สร้างเมนูใน WordPress) + ข้อความระบบ */
 				'nav_home_label'           => 'หน้าแรก',
+				'nav_products_label'       => 'สินค้า',
 				'nav_test_label'           => 'การทดสอบ',
 				'nav_guide_label'          => 'คู่มือการใช้งาน',
 				'nav_pricing_label'        => 'แพ็กเกจ',
@@ -215,6 +216,7 @@ add_filter(
 					'description' => 'ชื่อเมนูที่ใช้เมื่อยังไม่ได้ตั้งเมนูใน รูปแบบ → เมนู (แสดงเฉพาะหน้าที่เผยแพร่แล้ว) · "ติดต่อ" จะต่อท้ายเมนูหลักให้อัตโนมัติเมื่อหน้า /go/ เผยแพร่แล้วและเมนูยังไม่มีลิงก์ติดต่อ · ชื่อเว็บและคำโปรยข้างโลโก้มาจาก ตั้งค่า → ทั่วไป (ชื่อเว็บไซต์ / คำโปรย)',
 					'fields'      => array(
 						'nav_home_label'      => array( 'เมนู · หน้าแรก', 'text' ),
+						'nav_products_label'  => array( 'เมนู · กลุ่มสินค้า (เรียงตามเลขรุ่นเอง · ว่าง = ไม่แสดง)', 'text' ),
 						'nav_test_label'      => array( 'เมนู · กลุ่มการทดสอบ', 'text' ),
 						'nav_guide_label'     => array( 'เมนู · กลุ่มคู่มือ (ใช้เป็นหัวคอลัมน์คู่มือใน footer ด้วย)', 'text' ),
 						'nav_pricing_label'   => array( 'เมนู · แพ็กเกจ', 'text' ),
@@ -408,6 +410,35 @@ function eaw_chrome_nav_tree() {
 			'children' => array(),
 		),
 	);
+
+	/* สินค้าทั้งหมดเรียงตามเลขรุ่น (products.php) · EA WING ไม่มีเพจแยก ลิงก์ไปส่วนโหมดในหน้าแรก */
+	$label = trim( (string) eaw_mod( 'nav_products_label' ) );
+	if ( '' !== $label && function_exists( 'eaw_products' ) ) {
+		$children = array();
+		$active   = false;
+		foreach ( eaw_products() as $item ) {
+			$url = '' !== $item['slug'] ? eaw_chrome_page_url( $item['slug'] ) : home_url( '/#modes' );
+			if ( '' === $url ) {
+				continue;
+			}
+			$here       = '' !== $item['slug'] && is_page( $item['slug'] );
+			$active     = $active || $here;
+			$children[] = array(
+				'label'   => $item['label'],
+				'url'     => $url,
+				'current' => $here,
+			);
+		}
+		if ( $children ) {
+			$tree[] = array(
+				'label'    => $label,
+				'url'      => $children[0]['url'],
+				'current'  => false,
+				'ancestor' => $active,
+				'children' => $children,
+			);
+		}
+	}
 
 	$groups = array(
 		'test'  => array( 'nav_test_label', 'backtest' ),

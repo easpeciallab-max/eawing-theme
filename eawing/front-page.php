@@ -200,10 +200,10 @@ endif;
 </section>
 <?php endif; ?>
 
-<?php eaw_homeplus_section( 'modes' ); ?>
+<?php /* ============ สินค้าทั้งหมด เรียงตามเลขรุ่น (inc/modules/products.php) ============ */ ?>
+<?php eaw_homeplus_section( 'products' ); ?>
 
-<?php /* ============ สินค้าตัวที่สอง WING TWIN (inc/modules/twin.php) ============ */ ?>
-<?php eaw_homeplus_section( 'twin' ); ?>
+<?php eaw_homeplus_section( 'modes' ); ?>
 
 <?php /* ============ WORKS ON · กระเบื้องอุปกรณ์ ลิงก์ไปคู่มือ + หมายเหตุเรื่องมือถือ ============ */ ?>
 <?php if ( eaw_mod( 'home_show_devices' ) ) : ?>

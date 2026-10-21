@@ -1,10 +1,9 @@
 <?php
 /**
- * EA WING · สินค้าตัวที่สอง WING TWIN (เพิ่ม 19 ต.ค. 2026)
+ * EA WING · สินค้า WING TWIN (เพิ่ม 19 ต.ค. 2026)
  *
- * - หน้าสินค้า /wing-twin/ (template-twin.php): หัวเพจ + การ์ดข้อมูลสินค้า (twin_stat1..8) + เนื้อหายาวจาก inc/content/pages/wing-twin.html
- * - การ์ดดาวน์โหลดใบที่สองในหน้า /go (go_twin_* · go.php เรียก eaw_go_download_card())
- * - ส่วนแนะนำสินค้าในหน้าแรก [twin] ต่อจากส่วนโหมดของ EA WING (front-page.php เรียก eaw_homeplus_section( 'twin' ))
+ * - หน้าสินค้า /wing-twin/ (template-twin.php → eaw_products_page( 'twin' )): หัวเพจ + การ์ดข้อมูลสินค้า (twin_stat1..8) + เนื้อหายาวจาก inc/content/pages/wing-twin.html
+ * - การ์ดดาวน์โหลดในขั้น 4 ของหน้า /go (go_twin_*) และการ์ดในส่วนสินค้าหน้าแรก (home_twin_*) · ลำดับตามเลขรุ่น (products.php)
  * - แผนภาพรายงาน MT5 ของ 4 ชุด [eawing_figure name="twin-set1..4"] และชื่อไฟล์ผ่าน [eawing_ea product="twin"]
  *
  * ข้อเท็จจริงทุกข้อมาจากชุดของเจ้าของ D:/EA VIDEO/EA META DATA/EA WING/EA FILE DOWNLOAD/WING_TWIN_V6.1/
@@ -28,7 +27,7 @@ function eaw_twin_defaults( $d ) {
 			'twin_version'      => '6.1',
 
 			/* ---------- หน้า /wing-twin/ ---------- */
-			'twin_sub'          => 'EA เทรดทองคำ XAUUSD อัตโนมัติบน MT5 สินค้าตัวที่สองของ EA WING ทำงานด้วยเครื่องยนต์ DUAL GRID (กริดสองทาง) มีชุดค่าในตัว 4 ชุด เลือกขนาดได้ 1 ถึง 20 เท่า และตั้งเวลาเปิดรอบใหม่บนแดชบอร์ดได้ ไม่มีการตัดขาดทุน อ่านความเสี่ยงให้ครบก่อนใช้เงินจริง',
+			'twin_sub'          => 'EA เทรดทองคำ XAUUSD อัตโนมัติบน MT5 อีกหนึ่ง EA ของ EA WING ทำงานด้วยเครื่องยนต์ DUAL GRID (กริดสองทาง) มีชุดค่าในตัว 4 ชุด เลือกขนาดได้ 1 ถึง 20 เท่า และตั้งเวลาเปิดรอบใหม่บนแดชบอร์ดได้ ไม่มีการตัดขาดทุน อ่านความเสี่ยงให้ครบก่อนใช้เงินจริง',
 			'twin_hero_img'     => 'assets/img/products/wing-twin-card-v1.webp',
 			'twin_dl_url'       => 'assets/downloads/WING_TWIN_V6.1.zip',
 			'twin_dl_label'     => 'ดาวน์โหลด WING TWIN V6.1',
@@ -53,7 +52,7 @@ function eaw_twin_defaults( $d ) {
 			'twin_cta_title'    => 'สนใจ WING TWIN หรืออยากรู้ว่าชุดไหนเข้ากับทุนของคุณ',
 			'twin_cta_text'     => 'ใช้แพ็กเกจและราคาเดียวกับ EA WING 5.0 ทักทีมงานทาง LINE ถามว่าชุดไหนเข้ากับบัญชีของคุณ และขอเปิดสิทธิ์ใช้งาน ส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์มาได้เลย',
 
-			/* ---------- การ์ดดาวน์โหลดใบที่สองในหน้า /go ---------- */
+			/* ---------- การ์ดดาวน์โหลดในหน้า /go ---------- */
 			'go_twin_img'       => 'assets/img/products/wing-twin-go-card-v1.webp',
 			'go_twin_url'       => 'assets/downloads/WING_TWIN_V6.1.zip',
 			'go_twin_alt'       => 'ดาวน์โหลด EA WING TWIN Expert Advisor สำหรับ MT5',
@@ -62,15 +61,12 @@ function eaw_twin_defaults( $d ) {
 			'go_twin_info_label' => 'อ่านก่อนใช้ WING TWIN',
 			'go_twin_info_url'  => '/wing-twin/',
 
-			/* ---------- หน้าแรก [twin] ---------- */
-			'show_home_twin'    => true,
-			'home_twin_title'   => 'สินค้าตัวที่สอง: WING TWIN',
-			'home_twin_sub'     => 'EA ทองคำอีกแบบสำหรับบัญชีมาตรฐานสกุล USD ทำงานคนละวิธีกับ EA WING 5.0 จึงใช้บัญชีและทุนต่างกัน',
-			'home_twin_name'    => 'WING TWIN 6.1',
+			/* ---------- การ์ดในส่วนสินค้าหน้าแรก ---------- */
+			'home_twin_name'    => 'WING TWIN',
 			'home_twin_heading' => 'กริดสองทาง 4 ชุดในตัว',
 			'home_twin_text'    => 'ราคาวิ่งครบระยะกริดเมื่อไหร่ EA เปิดออเดอร์ตามทางที่ราคาวิ่ง ถ้าราคากลับทิศจะเปิดออเดอร์ฝั่งตรงข้ามที่ใหญ่กว่า แล้วปิดทุกออเดอร์พร้อมกันเมื่อกำไรลอยรวมถึงเป้า ใช้บัญชี Hedging บนกราฟ XAUUSD.s',
 			'home_twin_points'  => "4 ชุดในตัว: WING LIFE1 · WING LIFE2 · FULL TURBO1 · FULL TURBO2\nทุนขั้นต่ำ 10,000 USD (ชุดที่ 1 ถึง 2) และ 20,000 USD (ชุดที่ 3 ถึง 4) ต่อขนาด N = 1\nไม่มีการตัดขาดทุน ออเดอร์อาจค้างรอราคากลับได้หลายสัปดาห์",
-			'home_twin_img'     => 'assets/img/products/wing-twin-card-v1.webp',
+			'home_twin_img'     => 'assets/img/products/wing-twin-go-card-v1.webp',
 			'home_twin_img_alt' => 'การ์ดสินค้า EA WING TWIN Expert Advisor สำหรับ MT5',
 			'home_twin_btn'     => 'ดูรายละเอียด WING TWIN',
 			'home_twin_url'     => '/wing-twin/',
@@ -92,8 +88,8 @@ function eaw_twin_customizer_sections( $sections, $d ) {
 		$stats[ 'twin_stat' . $i . '_value' ] = array( 'การ์ดข้อมูล ' . $i . ' · ค่า', 'text' );
 	}
 	$sections['eaw_twin'] = array(
-		'title'       => '31) สินค้า WING TWIN (หน้า /wing-twin/ · การ์ด /go · หน้าแรก)',
-		'description' => 'สินค้าตัวที่สองของเว็บ · เนื้อหายาวของหน้าอยู่ที่ inc/content/pages/wing-twin.html (EA WING Setup) · เปลี่ยนรุ่น = แก้เลขรุ่น + ลิงก์ไฟล์ zip ทั้งสองช่อง + ภาพรายงาน MT5',
+		'title'       => '36) สินค้า WING TWIN (หน้า /wing-twin/ · การ์ด /go · หน้าแรก)',
+		'description' => 'ลำดับสินค้าในหน้าแรก /go และเมนูเรียงตามเลขรุ่นเอง · เนื้อหายาวของหน้าอยู่ที่ inc/content/pages/wing-twin.html (EA WING Setup) · เปลี่ยนรุ่น = แก้เลขรุ่น + ลิงก์ไฟล์ zip ทั้งสองช่อง + ภาพรายงาน MT5',
 		'fields'      => array_merge(
 			array(
 				'twin_version'  => array( 'เลขรุ่นของไฟล์ (เช่น 6.1 · ชื่อไฟล์ในเนื้อหาเป็น WING_TWIN_V6.1.ex5 ผ่าน [eawing_ea product="twin"])', 'text' ),
@@ -115,17 +111,14 @@ function eaw_twin_customizer_sections( $sections, $d ) {
 				'go_twin_version'   => array( 'หน้า /go · เลขเวอร์ชันบนการ์ด (ว่าง = ไม่แสดงป้าย)', 'text' ),
 				'go_twin_info_label' => array( 'หน้า /go · ปุ่มเล็กใต้การ์ด · ข้อความ (ว่าง = ไม่มีปุ่ม)', 'text' ),
 				'go_twin_info_url'  => array( 'หน้า /go · ปุ่มเล็กใต้การ์ด · ลิงก์', 'path' ),
-				'show_home_twin'    => array( 'หน้าแรก · แสดงส่วนสินค้า WING TWIN', 'checkbox' ),
-				'home_twin_title'   => array( 'หน้าแรก · หัวข้อส่วน (H2)', 'text' ),
-				'home_twin_sub'     => array( 'หน้าแรก · คำอธิบายใต้หัวข้อ', 'textarea' ),
-				'home_twin_name'    => array( 'หน้าแรก · ชื่อสินค้าตัวใหญ่', 'text' ),
-				'home_twin_heading' => array( 'หน้าแรก · หัวข้อย่อย', 'text' ),
-				'home_twin_text'    => array( 'หน้าแรก · คำอธิบาย', 'textarea', $rule ),
-				'home_twin_points'  => array( 'หน้าแรก · จุดสำคัญ (บรรทัดละ 1 ข้อ)', 'textarea', $rule ),
-				'home_twin_img'     => array( 'หน้าแรก · ภาพสินค้า', 'image' ),
-				'home_twin_img_alt' => array( 'หน้าแรก · คำอธิบายภาพ (alt)', 'text' ),
-				'home_twin_btn'     => array( 'หน้าแรก · ข้อความปุ่ม', 'text' ),
-				'home_twin_url'     => array( 'หน้าแรก · ลิงก์ปุ่ม', 'path', 'slug ในเว็บ เช่น /wing-twin/' ),
+				'home_twin_name'    => array( 'หน้าแรก การ์ดสินค้า · ชื่อ (เลขรุ่นต่อท้ายให้เอง)', 'text' ),
+				'home_twin_heading' => array( 'หน้าแรก การ์ดสินค้า · หัวข้อย่อย', 'text' ),
+				'home_twin_text'    => array( 'หน้าแรก การ์ดสินค้า · คำอธิบาย', 'textarea', $rule ),
+				'home_twin_points'  => array( 'หน้าแรก การ์ดสินค้า · จุดสำคัญ (บรรทัดละ 1 ข้อ)', 'textarea', $rule ),
+				'home_twin_img'     => array( 'หน้าแรก การ์ดสินค้า · ภาพ (2:1)', 'image' ),
+				'home_twin_img_alt' => array( 'หน้าแรก การ์ดสินค้า · คำอธิบายภาพ (alt)', 'text' ),
+				'home_twin_btn'     => array( 'หน้าแรก การ์ดสินค้า · ข้อความปุ่ม', 'text' ),
+				'home_twin_url'     => array( 'หน้าแรก การ์ดสินค้า · ลิงก์ปุ่ม', 'path', 'slug ในเว็บ เช่น /wing-twin/' ),
 			)
 		),
 	);
@@ -167,59 +160,3 @@ add_filter(
 		return $figs;
 	}
 );
-
-/* ==============================================================
- * หน้าแรก [twin] · ใช้โครงเดียวกับแผงโหมด (ภาพซ้าย ข้อความขวา) ไม่ต้องมี CSS เพิ่ม
- * ============================================================== */
-
-function eaw_homeplus_twin() {
-	$name = trim( (string) eaw_mod( 'home_twin_name' ) );
-	if ( '' === $name ) {
-		return;
-	}
-	$img    = eaw_theme_asset_url( eaw_mod( 'home_twin_img' ) );
-	$points = eaw_lines( eaw_mod( 'home_twin_points' ) );
-	$url    = eaw_home_link( eaw_mod( 'home_twin_url' ) );
-	$warn   = trim( (string) eaw_mod( 'twin_disclaimer' ) );
-	?>
-<section class="glass-panel hm-panel hp-modes hp-twin" id="wing-twin" aria-labelledby="hp-twin-title">
-	<?php eaw_homeplus_head( 'hp-twin-title', eaw_mod( 'home_twin_title' ), eaw_mod( 'home_twin_sub' ) ); ?>
-	<div class="hp-modes-body">
-		<div class="hp-modes-panels">
-			<div class="hp-mode hp-mode--3">
-				<?php if ( '' !== $img ) : ?>
-					<?php $info = eaw_media_info( $img, 1200, 675 ); ?>
-					<figure class="hp-shot">
-						<span class="hp-shot-frame">
-							<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( trim( (string) eaw_mod( 'home_twin_img_alt' ) ) ); ?>" width="<?php echo (int) $info['width']; ?>" height="<?php echo (int) $info['height']; ?>" loading="lazy" decoding="async">
-						</span>
-					</figure>
-				<?php endif; ?>
-				<div class="hp-mode-copy">
-					<p class="hp-mode-name"><?php echo esc_html( $name ); ?></p>
-					<?php if ( '' !== trim( (string) eaw_mod( 'home_twin_heading' ) ) ) : ?>
-						<h3 class="hp-h3"><?php echo esc_html( eaw_mod( 'home_twin_heading' ) ); ?></h3>
-					<?php endif; ?>
-					<?php if ( '' !== trim( (string) eaw_mod( 'home_twin_text' ) ) ) : ?>
-						<p><?php echo esc_html( eaw_mod( 'home_twin_text' ) ); ?></p>
-					<?php endif; ?>
-					<?php if ( $points ) : ?>
-						<ul class="hp-checks">
-							<?php foreach ( $points as $point ) : ?>
-								<li><?php echo eaw_icon( 'check', 'icon' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php echo esc_html( $point ); ?></span></li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
-					<?php if ( '' !== $url && '' !== trim( (string) eaw_mod( 'home_twin_btn' ) ) ) : ?>
-						<div class="hp-actions"><?php eaw_home_btn( eaw_mod( 'home_twin_btn' ), $url, 'btn btn-ghost hm-btn hm-btn--sm', 'arrow-ur' ); ?></div>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php if ( '' !== $warn ) : ?>
-		<p class="hm-note"><?php echo eaw_icon( 'warn', 'icon' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php echo esc_html( $warn ); ?></span></p>
-	<?php endif; ?>
-</section>
-	<?php
-}
