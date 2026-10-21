@@ -534,7 +534,9 @@ function eaw_chrome_menu_hash_items( $items ) {
 	$hashed  = array();
 	foreach ( $items as $item ) {
 		$parent[ (int) $item->db_id ] = (int) $item->menu_item_parent;
-		if ( ! empty( $item->current ) && false !== strpos( (string) $item->url, '#' ) ) {
+		/* หน้าแรกที่มี query (?utm=…) WordPress ใส่คลาส current-menu-item ให้ลิงก์หน้าแรกโดยไม่ตั้ง current จึงเช็กทั้งสองอย่าง */
+		$is_current = ! empty( $item->current ) || in_array( 'current-menu-item', (array) $item->classes, true );
+		if ( $is_current && false !== strpos( (string) $item->url, '#' ) ) {
 			$item->current = false;
 			$item->classes = array_values( array_diff( (array) $item->classes, array( 'current-menu-item', 'current_page_item' ) ) );
 			$hashed[]      = (int) $item->db_id;
