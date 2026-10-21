@@ -95,7 +95,7 @@ function eaw_go_defaults( $d ) {
 			'go_step4_note'          => '',
 			'go_step4_badge'         => '',
 			'go_download_line_label' => eaw_go_legacy( 'go_step4', 'ขอรับไฟล์ EA ทาง LINE' ),
-			'go_fast_img'            => 'assets/img/eawing-download-card-v42.webp',
+			'go_fast_img'            => 'assets/img/products/ea-wing-go-card-v2.webp',
 			'go_fast_url'            => 'assets/downloads/EA_WING_V5.0.zip',
 			'go_fast_alt'            => 'ดาวน์โหลด EA WING Expert Advisor สำหรับ MT5',
 			'go_fast_label'          => 'ดาวน์โหลด EA WING V5.0',

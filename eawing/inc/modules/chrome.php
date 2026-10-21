@@ -525,6 +525,56 @@ function eaw_chrome_fallback_menu() {
 }
 
 /**
+ * ลิงก์ไปส่วนหนึ่งในหน้า (มี # เช่น EA WING 5.0 → /#modes) ไม่นับเป็นหน้าปัจจุบัน
+ * WordPress ตัด # ทิ้งก่อนเทียบ URL ลิงก์นี้จึงถูกไฮไลต์ทุกครั้งที่อยู่หน้าแรก และลากหัวเมนู "สินค้า" ให้ไฮไลต์ตามไปด้วย
+ * เอาสถานะปัจจุบันออกจากลิงก์แบบนี้ แล้วเอาสถานะหัวเมนูออกจากหัวเมนูที่ไม่มีลูกเป็นหน้าปัจจุบันจริงเหลืออยู่
+ */
+function eaw_chrome_menu_hash_items( $items ) {
+	$parent  = array();
+	$hashed  = array();
+	foreach ( $items as $item ) {
+		$parent[ (int) $item->db_id ] = (int) $item->menu_item_parent;
+		if ( ! empty( $item->current ) && false !== strpos( (string) $item->url, '#' ) ) {
+			$item->current = false;
+			$item->classes = array_values( array_diff( (array) $item->classes, array( 'current-menu-item', 'current_page_item' ) ) );
+			$hashed[]      = (int) $item->db_id;
+		}
+	}
+	if ( ! $hashed ) {
+		return $items;
+	}
+	$ancestors = function ( $id ) use ( $parent ) {
+		$out = array();
+		$p   = isset( $parent[ $id ] ) ? $parent[ $id ] : 0;
+		while ( $p && ! isset( $out[ $p ] ) ) {
+			$out[ $p ] = true;
+			$p         = isset( $parent[ $p ] ) ? $parent[ $p ] : 0;
+		}
+		return $out;
+	};
+	$keep = array();
+	foreach ( $items as $item ) {
+		if ( ! empty( $item->current ) ) {
+			$keep += $ancestors( (int) $item->db_id );
+		}
+	}
+	$drop = array();
+	foreach ( $hashed as $id ) {
+		$drop += $ancestors( $id );
+	}
+	foreach ( $items as $item ) {
+		$id = (int) $item->db_id;
+		if ( isset( $drop[ $id ] ) && ! isset( $keep[ $id ] ) ) {
+			$item->current_item_ancestor = false;
+			$item->current_item_parent   = false;
+			$item->classes               = array_values( array_diff( (array) $item->classes, array( 'current-menu-ancestor', 'current-menu-parent', 'current_page_parent', 'current_page_ancestor' ) ) );
+		}
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_objects', 'eaw_chrome_menu_hash_items', 20 );
+
+/**
  * ต่อท้าย "ติดต่อ" (/go/) ในเมนูหลักที่สร้างเองใน WP
  * เฉพาะเมื่อหน้า go เผยแพร่แล้ว และเมนูยังไม่มีลิงก์ /go/ รายการชื่อเดียวกัน หรือลิงก์ LINE
  */

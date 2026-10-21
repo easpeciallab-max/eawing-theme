@@ -33,7 +33,7 @@ function eaw_nitro_defaults( $d ) {
 
 			/* ---------- หน้า /wing-nitro/ ---------- */
 			'nitro_sub'          => 'EA เทรดทองคำ XAUUSD อัตโนมัติบน MT5 มีชุดเดียวคือ NITRO (บินสูง · เน้นทำกำไร) ฝังในตัว ไม่ต้องเลือกโหมดหรือโหลดไฟล์ .set เปิดไม้เป็นตะกร้า ราคาสวนทางเติมไม้แก้และทบขนาดไม้ (ระบบมาร์ติงเกล) ไม่มีจุดตัดขาดทุน ขนาดไม้ตั้งด้วยระบบคูณ x1 ถึง x60 อ่านความเสี่ยงให้ครบก่อนใช้เงินจริง',
-			'nitro_hero_img'     => 'assets/img/products/wing-nitro-card-v1.webp',
+			'nitro_hero_img'     => 'assets/img/products/wing-nitro-card-v2.webp',
 			'nitro_dl_url'       => 'assets/downloads/WING_NITRO_V4.2.zip',
 			'nitro_dl_label'     => 'ดาวน์โหลด WING NITRO V4.2',
 			'nitro_stat1_label'  => 'ชุดค่าในตัว',
@@ -58,7 +58,7 @@ function eaw_nitro_defaults( $d ) {
 			'nitro_cta_text'     => 'บัญชีที่ใช้ EA WING 5.0 อยู่แล้วใช้ WING NITRO ได้ทันที ถ้ายังไม่มีสิทธิ์ ส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์ให้ทีมงานทาง LINE แล้วถามเรื่องเงินในบัญชีที่เหมาะกับคุณได้เลย',
 
 			/* ---------- การ์ดดาวน์โหลดในหน้า /go ---------- */
-			'go_nitro_img'        => 'assets/img/products/wing-nitro-go-card-v1.webp',
+			'go_nitro_img'        => 'assets/img/products/wing-nitro-go-card-v2.webp',
 			'go_nitro_url'        => 'assets/downloads/WING_NITRO_V4.2.zip',
 			'go_nitro_alt'        => 'ดาวน์โหลด WING NITRO Expert Advisor สำหรับ MT5',
 			'go_nitro_label'      => 'ดาวน์โหลด WING NITRO V4.2',
@@ -71,7 +71,7 @@ function eaw_nitro_defaults( $d ) {
 			'home_nitro_heading' => 'ชุดเดียว บินสูง เน้นทำกำไร',
 			'home_nitro_text'    => 'เปิดไม้เป็นตะกร้า ราคาสวนทางเติมไม้แก้เป็นขั้นบันไดและทบขนาดไม้ แล้วปิดทั้งตะกร้าเมื่อกำไรรวมถึงเป้า ขนาดไม้ตั้งด้วยระบบคูณ x1 ถึง x60',
 			'home_nitro_points'  => "ชุด NITRO ฝังในตัว ไม่ต้องเลือกโหมดหรือโหลดไฟล์ .set\nเงินในบัญชี 15,000 ต่อ x1 · บัญชีเซนต์เริ่ม 15,000 เซนต์ · บัญชี USD ต้องมี 100,000 USD ขึ้นไป\nระบบมาร์ติงเกล ไม่มีจุดตัดขาดทุน",
-			'home_nitro_img'     => 'assets/img/products/wing-nitro-go-card-v1.webp',
+			'home_nitro_img'     => 'assets/img/products/wing-nitro-go-card-v2.webp',
 			'home_nitro_img_alt' => 'การ์ดสินค้า WING NITRO Expert Advisor สำหรับ MT5',
 			'home_nitro_btn'     => 'ดูรายละเอียด WING NITRO',
 			'home_nitro_url'     => '/wing-nitro/',

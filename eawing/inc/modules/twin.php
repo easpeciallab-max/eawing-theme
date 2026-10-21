@@ -28,7 +28,7 @@ function eaw_twin_defaults( $d ) {
 
 			/* ---------- หน้า /wing-twin/ ---------- */
 			'twin_sub'          => 'EA เทรดทองคำ XAUUSD อัตโนมัติบน MT5 อีกหนึ่ง EA ของ EA WING ทำงานด้วยเครื่องยนต์ DUAL GRID (กริดสองทาง) มีชุดค่าในตัว 4 ชุด เลือกขนาดได้ 1 ถึง 20 เท่า และตั้งเวลาเปิดรอบใหม่บนแดชบอร์ดได้ ไม่มีการตัดขาดทุน อ่านความเสี่ยงให้ครบก่อนใช้เงินจริง',
-			'twin_hero_img'     => 'assets/img/products/wing-twin-card-v1.webp',
+			'twin_hero_img'     => 'assets/img/products/wing-twin-card-v2.webp',
 			'twin_dl_url'       => 'assets/downloads/WING_TWIN_V6.1.zip',
 			'twin_dl_label'     => 'ดาวน์โหลด WING TWIN V6.1',
 			'twin_stat1_label'  => 'เครื่องยนต์',
@@ -53,7 +53,7 @@ function eaw_twin_defaults( $d ) {
 			'twin_cta_text'     => 'ใช้แพ็กเกจและราคาเดียวกับ EA WING 5.0 ทักทีมงานทาง LINE ถามว่าชุดไหนเข้ากับบัญชีของคุณ และขอเปิดสิทธิ์ใช้งาน ส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์มาได้เลย',
 
 			/* ---------- การ์ดดาวน์โหลดในหน้า /go ---------- */
-			'go_twin_img'       => 'assets/img/products/wing-twin-go-card-v1.webp',
+			'go_twin_img'       => 'assets/img/products/wing-twin-go-card-v2.webp',
 			'go_twin_url'       => 'assets/downloads/WING_TWIN_V6.1.zip',
 			'go_twin_alt'       => 'ดาวน์โหลด EA WING TWIN Expert Advisor สำหรับ MT5',
 			'go_twin_label'     => 'ดาวน์โหลด WING TWIN V6.1',
@@ -66,7 +66,7 @@ function eaw_twin_defaults( $d ) {
 			'home_twin_heading' => 'กริดสองทาง 4 ชุดในตัว',
 			'home_twin_text'    => 'ราคาวิ่งครบระยะกริดเมื่อไหร่ EA เปิดออเดอร์ตามทางที่ราคาวิ่ง ถ้าราคากลับทิศจะเปิดออเดอร์ฝั่งตรงข้ามที่ใหญ่กว่า แล้วปิดทุกออเดอร์พร้อมกันเมื่อกำไรลอยรวมถึงเป้า ใช้บัญชี Hedging บนกราฟ XAUUSD.s',
 			'home_twin_points'  => "4 ชุดในตัว: WING LIFE1 · WING LIFE2 · FULL TURBO1 · FULL TURBO2\nทุนขั้นต่ำ 10,000 USD (ชุดที่ 1 ถึง 2) และ 20,000 USD (ชุดที่ 3 ถึง 4) ต่อขนาด N = 1\nไม่มีการตัดขาดทุน ออเดอร์อาจค้างรอราคากลับได้หลายสัปดาห์",
-			'home_twin_img'     => 'assets/img/products/wing-twin-go-card-v1.webp',
+			'home_twin_img'     => 'assets/img/products/wing-twin-go-card-v2.webp',
 			'home_twin_img_alt' => 'การ์ดสินค้า EA WING TWIN Expert Advisor สำหรับ MT5',
 			'home_twin_btn'     => 'ดูรายละเอียด WING TWIN',
 			'home_twin_url'     => '/wing-twin/',

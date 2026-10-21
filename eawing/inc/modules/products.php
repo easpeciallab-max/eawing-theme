@@ -189,7 +189,7 @@ function eaw_products_defaults( $d ) {
 			'home_eawing_heading' => 'สามโหมด Lite Advance Full',
 			'home_eawing_text'    => 'เปิดออเดอร์เป็นชุด ราคาสวนทางเติมไม้แก้ที่ใหญ่ขึ้นเป็นขั้นบันไดสูงสุด 9 ขั้น แล้วปิดทั้งชุดเมื่อถึงเป้ากำไร เลือกระดับความเสี่ยงได้สามโหมดจากแดชบอร์ด',
 			'home_eawing_points'  => "เงินในบัญชีที่แนะนำ 1 / 2 / 3 เท่าของทุนคิดไม้ ตามโหมด Lite Advance Full\nทุนแนะนำ: บัญชีเซนต์ราว 1,000 USD ขึ้นไป · บัญชีมาตรฐานราว 100,000 USD ขึ้นไป\nโหมดสำเร็จรูปไม่มีการตัดขาดทุนอัตโนมัติ",
-			'home_eawing_img'     => 'assets/img/eawing-download-card-v42.webp',
+			'home_eawing_img'     => 'assets/img/products/ea-wing-go-card-v2.webp',
 			'home_eawing_img_alt' => 'การ์ดสินค้า EA WING Expert Advisor สำหรับ MT5',
 			'home_eawing_btn'     => 'ดูสามโหมดของ EA WING',
 			'home_eawing_url'     => '#modes',
