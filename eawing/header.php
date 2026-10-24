@@ -66,6 +66,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( function_exists( 'eaw_chrome_language_switcher' ) ) {
 			eaw_chrome_language_switcher();
 		}
+		if ( function_exists( 'eaw_chrome_header_dash' ) ) {
+			eaw_chrome_header_dash();
+		}
 		if ( function_exists( 'eaw_chrome_header_cta' ) ) {
 			eaw_chrome_header_cta();
 		}

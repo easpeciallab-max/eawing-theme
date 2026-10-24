@@ -76,12 +76,14 @@ add_filter(
 				'footer_legal_items'       => "privacy-policy|นโยบายความเป็นส่วนตัว\nterms-of-use|เงื่อนไขการใช้บริการ",
 				'footer_backtop_text'      => 'กลับขึ้นด้านบน',
 
-				/* แถบล่างมือถือ (ปุ่มทองท้ายแถบ = ติดต่อ) */
-				'mobile_nav_test_label'    => 'การทดสอบ',
-				'mobile_nav_test_url'      => '/backtest/',
+				/* แถบล่างมือถือ (ปุ่มทองท้ายแถบ = ติดต่อ) · ช่อง 2 = แดชบอร์ด (ลิงก์ dashboard_url) */
+				'mobile_nav_dash_label'    => 'แดชบอร์ด',
 				'mobile_nav_contact_label' => 'ติดต่อ',
 
 				/* เมนูหลัก (ใช้เมื่อยังไม่ได้สร้างเมนูใน WordPress) + ข้อความระบบ */
+				/* ปุ่มไปแดชบอร์ดลูกค้า (Header + ช่อง 2 ของแถบล่างมือถือ) */
+				'dashboard_url'            => 'https://dashboard.eawing.co/',
+				'header_dash_label'        => 'แดชบอร์ด',
 				'nav_home_label'           => 'หน้าแรก',
 				'nav_products_label'       => 'สินค้า',
 				'nav_test_label'           => 'การทดสอบ',
@@ -196,8 +198,7 @@ add_filter(
 				'show_mobile_nav'          => array( 'แสดงเมนูลัดด้านล่างบนมือถือ', 'checkbox' ),
 				'mobile_nav_home_label'    => array( 'ช่อง 1 · ชื่อ', 'text' ),
 				'mobile_nav_home_url'      => array( 'ช่อง 1 · ลิงก์หรือ slug', 'text' ),
-				'mobile_nav_test_label'    => array( 'ช่อง 2 · ชื่อ', 'text' ),
-				'mobile_nav_test_url'      => array( 'ช่อง 2 · ลิงก์หรือ slug', 'text' ),
+				'mobile_nav_dash_label'    => array( 'ช่อง 2 · ชื่อปุ่มแดชบอร์ด (ลิงก์ตั้งที่หมวด 16.1 · ว่าง = ไม่แสดงช่องนี้)', 'text' ),
 				'mobile_nav_price_label'   => array( 'ช่อง 3 · ชื่อ', 'text' ),
 				'mobile_nav_price_url'     => array( 'ช่อง 3 · ลิงก์หรือ slug', 'text' ),
 				'mobile_nav_install_label' => array( 'ช่อง 4 · ชื่อ', 'text' ),
@@ -215,6 +216,8 @@ add_filter(
 					'title'       => '16.1) เมนูหลัก (Header) · ข้อความระบบ',
 					'description' => 'ชื่อเมนูที่ใช้เมื่อยังไม่ได้ตั้งเมนูใน รูปแบบ → เมนู (แสดงเฉพาะหน้าที่เผยแพร่แล้ว) · "ติดต่อ" จะต่อท้ายเมนูหลักให้อัตโนมัติเมื่อหน้า /go/ เผยแพร่แล้วและเมนูยังไม่มีลิงก์ติดต่อ · ชื่อเว็บและคำโปรยข้างโลโก้มาจาก ตั้งค่า → ทั่วไป (ชื่อเว็บไซต์ / คำโปรย)',
 					'fields'      => array(
+						'dashboard_url'       => array( 'ลิงก์แดชบอร์ดลูกค้า (ปุ่มบน Header และช่อง 2 ของแถบล่างมือถือ · ว่าง = ไม่แสดงทั้งสองที่)', 'text' ),
+						'header_dash_label'   => array( 'ปุ่มแดชบอร์ดบน Header · ชื่อ (ว่าง = ไม่แสดง)', 'text' ),
 						'nav_home_label'      => array( 'เมนู · หน้าแรก', 'text' ),
 						'nav_products_label'  => array( 'เมนู · กลุ่มสินค้า (เรียงตามเลขรุ่นเอง · ว่าง = ไม่แสดง)', 'text' ),
 						'nav_test_label'      => array( 'เมนู · กลุ่มการทดสอบ', 'text' ),
@@ -356,6 +359,23 @@ function eaw_chrome_brand( $class = '' ) {
 		<?php endif; ?>
 	</a>
 	<?php
+}
+
+/**
+ * ปุ่มเส้น "แดชบอร์ด" บน header (ข้างปุ่ม LINE) · ไม่มีลิงก์หรือชื่อ = ไม่พิมพ์ · จอที่มีแถบล่างซ่อนไว้ (แถบล่างมีช่องแดชบอร์ดแล้ว)
+ */
+function eaw_chrome_header_dash() {
+	$url   = trim( (string) eaw_mod( 'dashboard_url' ) );
+	$label = trim( (string) eaw_mod( 'header_dash_label' ) );
+	if ( '' === $url || '' === $label ) {
+		return;
+	}
+	printf(
+		'<a class="btn btn-ghost chrome-btn chrome-btn--sm header-dash" href="%1$s"><span>%2$s</span><span class="btn-ic" aria-hidden="true">%3$s</span></a>',
+		esc_url( eaw_link_url( $url ) ),
+		esc_html( $label ),
+		eaw_icon( 'gauge' ) // phpcs:ignore WordPress.Security.EscapeOutput
+	);
 }
 
 /**
@@ -823,10 +843,9 @@ function eaw_chrome_dock() {
 			'icon'  => 'home',
 		),
 		array(
-			'label' => eaw_mod( 'mobile_nav_test_label' ),
-			'url'   => eaw_link_url( eaw_mod( 'mobile_nav_test_url' ) ),
-			'icon'  => 'flask',
-			'group' => 'test',
+			'label' => '' !== trim( (string) eaw_mod( 'dashboard_url' ) ) ? eaw_mod( 'mobile_nav_dash_label' ) : '',
+			'url'   => eaw_link_url( eaw_mod( 'dashboard_url' ) ),
+			'icon'  => 'gauge',
 		),
 		array(
 			'label' => eaw_mod( 'mobile_nav_price_label' ),
@@ -879,19 +898,6 @@ function eaw_chrome_dock() {
 		if ( $hit && strlen( $path ) > $score ) {
 			$active = (int) $idx;
 			$score  = strlen( $path );
-		}
-	}
-
-	/* หน้า Forward Test อยู่กลุ่มเดียวกับ Backtest → ช่อง "การทดสอบ" เป็นช่องปัจจุบัน */
-	if ( -1 === $active && is_page() && function_exists( 'eaw_site_pages' ) ) {
-		$slug  = (string) get_post_field( 'post_name', get_queried_object_id() );
-		$pages = eaw_site_pages();
-		$group = isset( $pages[ $slug ]['group'] ) ? $pages[ $slug ]['group'] : '';
-		foreach ( $items as $idx => $item ) {
-			if ( '' !== $group && isset( $item['group'] ) && $item['group'] === $group ) {
-				$active = (int) $idx;
-				break;
-			}
 		}
 	}
 

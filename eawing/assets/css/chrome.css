@@ -221,6 +221,34 @@
 	margin-left: 0;
 }
 
+/* ปุ่มเส้น "แดชบอร์ด" ข้างปุ่ม LINE · พื้นใส ขอบกรมท่า (style.css ส่วน 46) */
+.header-dash.btn {
+	flex: 0 0 auto;
+	margin-right: 10px;
+}
+
+.header-dash .btn-ic {
+	background: var(--navy);
+	color: #FFFFFF;
+}
+
+/* จอกว้าง 1081–1279px เมนูหลักเต็มแถบ: ปุ่มแดชบอร์ดเหลือเฉพาะไอคอน (ชื่อยังอ่านได้ด้วยโปรแกรมอ่านหน้าจอ) */
+@media (min-width: 1081px) and (max-width: 1279px) {
+	.header-dash.btn {
+		gap: 0;
+		padding: 4px;
+	}
+
+	.header-dash > span:first-child {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+}
+
 /* ปุ่ม LINE บน header: สีเขียวของ LINE · วงกลมขาว โลโก้เขียว */
 .header-cta--line.btn,
 .header-cta--line.btn:visited {
@@ -654,7 +682,8 @@
 		padding: 6px 6px 6px 12px;
 	}
 
-	.has-dock .header-cta {
+	.has-dock .header-cta,
+	.has-dock .header-dash {
 		display: none;
 	}
 }
@@ -673,12 +702,14 @@
 	}
 
 	/* ไม่มีแถบล่าง: ปุ่มทองเหลือเฉพาะไอคอน (ชื่อปุ่มยังอ่านได้ด้วยโปรแกรมอ่านหน้าจอ) */
-	body:not(.has-dock) .header-cta.btn {
+	body:not(.has-dock) .header-cta.btn,
+	body:not(.has-dock) .header-dash.btn {
 		gap: 0;
 		padding: 4px;
 	}
 
-	body:not(.has-dock) .header-cta > span:first-child {
+	body:not(.has-dock) .header-cta > span:first-child,
+	body:not(.has-dock) .header-dash > span:first-child {
 		position: absolute;
 		width: 1px;
 		height: 1px;

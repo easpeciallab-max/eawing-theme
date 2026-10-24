@@ -2,3 +2,6 @@ dist/
 *.zip
 .env*
 !eawing/assets/downloads/*.zip
+
+# งานออกแบบแดชบอร์ด (ภาพหน้าจอจริงมีข้อมูลบัญชี) ไม่ขึ้น GitHub
+design/
