@@ -76,7 +76,7 @@ add_filter(
 				'footer_legal_items'       => "privacy-policy|นโยบายความเป็นส่วนตัว\nterms-of-use|เงื่อนไขการใช้บริการ",
 				'footer_backtop_text'      => 'กลับขึ้นด้านบน',
 
-				/* แถบล่างมือถือ (ปุ่มทองท้ายแถบ = ติดต่อ) · ช่อง 2 = แดชบอร์ด (ลิงก์ dashboard_url) */
+				/* แถบล่างมือถือ (ช่องท้ายแถบ = ติดต่อ) · ช่อง 2 = แดชบอร์ด (ลิงก์ dashboard_url) */
 				'mobile_nav_dash_label'    => 'แดชบอร์ด',
 				'mobile_nav_contact_label' => 'ติดต่อ',
 
@@ -193,7 +193,7 @@ add_filter(
 
 		$sections['eaw_mobile_nav'] = array(
 			'title'       => '16) เมนูลัดมือถือด้านล่าง',
-			'description' => 'แถบกระจกลอยด้านล่างบนจอมือถือ (กว้างไม่เกิน 820px) · ช่อง 1 ถึง 4 เป็นลิงก์ · ปุ่มทองท้ายแถบคือปุ่มติดต่อ: มีลิงก์ LINE = ทัก LINE · ไม่มี LINE = ไปหน้า /go/ (เมื่อเผยแพร่แล้ว) · ไม่มีทั้งคู่ = ไม่มีปุ่มทอง · ช่องที่ชื่อว่างจะถูกซ่อน · ช่องของหน้าปัจจุบันเป็นแคปซูลขาวให้อัตโนมัติ',
+			'description' => 'แถบกระจกลอยด้านล่างบนจอมือถือ (กว้างไม่เกิน 820px) · ช่อง 1 ถึง 4 เป็นลิงก์ (ช่อง 2 = แดชบอร์ด) · ช่องท้ายแถบคือช่องติดต่อ: มีลิงก์ LINE = ทัก LINE · ไม่มี LINE = ไปหน้า /go/ (เมื่อเผยแพร่แล้ว) · ไม่มีทั้งคู่ = ไม่แสดง · ช่องที่ชื่อว่างจะถูกซ่อน · ช่องของหน้าปัจจุบันเป็นแคปซูลขาวให้อัตโนมัติ',
 			'fields'      => array(
 				'show_mobile_nav'          => array( 'แสดงเมนูลัดด้านล่างบนมือถือ', 'checkbox' ),
 				'mobile_nav_home_label'    => array( 'ช่อง 1 · ชื่อ', 'text' ),
@@ -203,8 +203,8 @@ add_filter(
 				'mobile_nav_price_url'     => array( 'ช่อง 3 · ลิงก์หรือ slug', 'text' ),
 				'mobile_nav_install_label' => array( 'ช่อง 4 · ชื่อ', 'text' ),
 				'mobile_nav_install_url'   => array( 'ช่อง 4 · ลิงก์หรือ slug', 'text' ),
-				'mobile_nav_line_label'    => array( 'ปุ่มทอง · ชื่อเมื่อมีลิงก์ LINE (ใช้กับปุ่มทองบน Header ด้วย)', 'text' ),
-				'mobile_nav_contact_label' => array( 'ปุ่มทอง · ชื่อเมื่อยังไม่มี LINE (ไปหน้า /go/ · ใช้กับปุ่มทองบน Header ด้วย)', 'text' ),
+				'mobile_nav_line_label'    => array( 'ช่องท้ายแถบ · ชื่อเมื่อมีลิงก์ LINE', 'text' ),
+				'mobile_nav_contact_label' => array( 'ช่องท้ายแถบ · ชื่อเมื่อยังไม่มี LINE (ไปหน้า /go/)', 'text' ),
 			),
 		);
 
@@ -362,7 +362,7 @@ function eaw_chrome_brand( $class = '' ) {
 }
 
 /**
- * ปุ่มเส้น "แดชบอร์ด" บน header (ข้างปุ่ม LINE) · ไม่มีลิงก์หรือชื่อ = ไม่พิมพ์ · จอที่มีแถบล่างซ่อนไว้ (แถบล่างมีช่องแดชบอร์ดแล้ว)
+ * ปุ่ม "แดชบอร์ด" ท้าย header (น้ำเงินทึบ) · ไม่มีลิงก์หรือชื่อ = ไม่พิมพ์ · จอที่มีแถบล่างซ่อนไว้ (แถบล่างมีช่องแดชบอร์ดแล้ว)
  */
 function eaw_chrome_header_dash() {
 	$url   = trim( (string) eaw_mod( 'dashboard_url' ) );
@@ -371,32 +371,10 @@ function eaw_chrome_header_dash() {
 		return;
 	}
 	printf(
-		'<a class="btn btn-ghost chrome-btn chrome-btn--sm header-dash" href="%1$s"><span>%2$s</span><span class="btn-ic" aria-hidden="true">%3$s</span></a>',
+		'<a class="btn chrome-btn chrome-btn--sm header-dash" href="%1$s"><span>%2$s</span><span class="btn-ic" aria-hidden="true">%3$s</span></a>',
 		esc_url( eaw_link_url( $url ) ),
 		esc_html( $label ),
 		eaw_icon( 'gauge' ) // phpcs:ignore WordPress.Security.EscapeOutput
-	);
-}
-
-/**
- * ปุ่มทอง "ทัก LINE" บน header · ไม่มีปลายทาง = ไม่พิมพ์
- */
-function eaw_chrome_header_cta() {
-	$target = eaw_contact_target();
-	if ( '' === $target['url'] ) {
-		return;
-	}
-	$label = trim( (string) eaw_mod( $target['is_line'] ? 'mobile_nav_line_label' : 'mobile_nav_contact_label' ) );
-	if ( '' === $label ) {
-		return;
-	}
-	printf(
-		'<a class="btn %5$s chrome-btn chrome-btn--sm header-cta" href="%1$s"%2$s data-line-pos="header"><span>%3$s</span><span class="btn-ic" aria-hidden="true">%4$s</span></a>',
-		esc_url( $target['url'] ),
-		$target['is_line'] ? ' target="_blank" rel="noopener"' : '',
-		esc_html( $label ),
-		eaw_icon( $target['is_line'] ? 'line' : 'chat' ), // phpcs:ignore WordPress.Security.EscapeOutput
-		$target['is_line'] ? 'header-cta--line' : 'btn-fire'
 	);
 }
 

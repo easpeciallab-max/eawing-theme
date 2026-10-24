@@ -216,57 +216,24 @@
 	height: 16px;
 }
 
-.header-cta.btn {
+/* ปุ่ม "แดชบอร์ด" ท้าย header: น้ำเงินปีกทึบ ตัวขาว · วงกลมขาว ไอคอนน้ำเงิน (ปุ่มติดต่อบน header เอาออก 24 ต.ค. 2026 · LINE ยังมีปุ่มลอยและแถบล่าง) */
+.header-dash.btn,
+.header-dash.btn:visited {
 	flex: 0 0 auto;
-	margin-left: 0;
+	border-color: transparent;
+	background: var(--blue);
+	color: #FFFFFF;
 }
 
-/* ปุ่มเส้น "แดชบอร์ด" ข้างปุ่ม LINE · พื้นใส ขอบกรมท่า (style.css ส่วน 46) */
-.header-dash.btn {
-	flex: 0 0 auto;
-	margin-right: 10px;
+.header-dash.btn:hover,
+.header-dash.btn:focus-visible {
+	background: #094C8F;
+	color: #FFFFFF;
 }
 
 .header-dash .btn-ic {
-	background: var(--navy);
-	color: #FFFFFF;
-}
-
-/* จอกว้าง 1081–1279px เมนูหลักเต็มแถบ: ปุ่มแดชบอร์ดเหลือเฉพาะไอคอน (ชื่อยังอ่านได้ด้วยโปรแกรมอ่านหน้าจอ) */
-@media (min-width: 1081px) and (max-width: 1279px) {
-	.header-dash.btn {
-		gap: 0;
-		padding: 4px;
-	}
-
-	.header-dash > span:first-child {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		overflow: hidden;
-		clip: rect(0 0 0 0);
-		white-space: nowrap;
-	}
-}
-
-/* ปุ่ม LINE บน header: สีเขียวของ LINE · วงกลมขาว โลโก้เขียว */
-.header-cta--line.btn,
-.header-cta--line.btn:visited {
-	border-color: transparent;
-	background: var(--line-green);
-	box-shadow: 0 8px 20px rgba(6, 199, 85, 0.28);
-	color: #FFFFFF;
-}
-
-.header-cta--line.btn:hover,
-.header-cta--line.btn:focus-visible {
-	background: var(--line-green-dark);
-	color: #FFFFFF;
-}
-
-.header-cta--line .btn-ic {
 	background: #FFFFFF;
-	color: var(--line-green);
+	color: var(--blue);
 }
 
 /* ---------- เมนูหลัก (จอกว้าง ≥ 1081px) ---------- */
@@ -281,9 +248,6 @@
 		background: transparent;
 	}
 
-	.site-header .header-cta {
-		margin-left: 0;
-	}
 
 	.site-header .nav-list {
 		display: flex;
@@ -682,7 +646,6 @@
 		padding: 6px 6px 6px 12px;
 	}
 
-	.has-dock .header-cta,
 	.has-dock .header-dash {
 		display: none;
 	}
@@ -701,14 +664,12 @@
 		font-size: 0.68rem;
 	}
 
-	/* ไม่มีแถบล่าง: ปุ่มทองเหลือเฉพาะไอคอน (ชื่อปุ่มยังอ่านได้ด้วยโปรแกรมอ่านหน้าจอ) */
-	body:not(.has-dock) .header-cta.btn,
+	/* ไม่มีแถบล่าง: ปุ่มแดชบอร์ดเหลือเฉพาะไอคอน (ชื่อปุ่มยังอ่านได้ด้วยโปรแกรมอ่านหน้าจอ) */
 	body:not(.has-dock) .header-dash.btn {
 		gap: 0;
 		padding: 4px;
 	}
 
-	body:not(.has-dock) .header-cta > span:first-child,
 	body:not(.has-dock) .header-dash > span:first-child {
 		position: absolute;
 		width: 1px;

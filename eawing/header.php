@@ -69,9 +69,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( function_exists( 'eaw_chrome_header_dash' ) ) {
 			eaw_chrome_header_dash();
 		}
-		if ( function_exists( 'eaw_chrome_header_cta' ) ) {
-			eaw_chrome_header_cta();
-		}
 		?>
 
 		<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="เปิด/ปิดเมนู">
