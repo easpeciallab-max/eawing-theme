@@ -45,7 +45,7 @@ function eaw_products() {
 		array(
 			'key'     => 'twin',
 			'name'    => 'WING TWIN',
-			'version' => function_exists( 'eaw_twin_version' ) ? eaw_twin_version() : '6.1',
+			'version' => function_exists( 'eaw_twin_version' ) ? eaw_twin_version() : '6.3',
 			'prefix'  => 'WING_TWIN_V',
 			'slug'    => 'wing-twin',
 			'go'      => 'go_twin',
