@@ -111,7 +111,7 @@ add_filter( 'body_class', 'eaw_go_body_class', 99 );
 			<linearGradient id="lh-wl" x1="0" x2="1">
 				<stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
 				<stop offset=".5" stop-color="#FFFFFF" stop-opacity=".9"/>
-				<stop offset="1" stop-color="#EFC25A" stop-opacity=".35"/>
+				<stop offset="1" stop-color="#FDD023" stop-opacity=".35"/>
 			</linearGradient>
 		</defs>
 		<path d="M-40 640C260 520 520 610 760 520S1180 300 1480 340" fill="none" stroke="url(#lh-wl)" stroke-width="2"/>

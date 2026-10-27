@@ -4,7 +4,7 @@ Theme URI: https://eawing.co/
 Author: EA WING Team
 Author URI: https://eawing.co/
 Description: ธีมเว็บไซต์ EA WING ผู้ช่วยเทรดอัตโนมัติสำหรับ MetaTrader 5 · ดีไซน์ Glass Sky (ฟ้า กระจกฝ้า น้ำเงินกับทอง) · มีหน้าคู่มือ ทดสอบ แพ็กเกจ เอกสาร บทความ เครื่องคำนวณ Lot/Drawdown และหน้า EA WING Setup สำหรับตั้งค่าเว็บ · แก้ทุกข้อความได้ใน Customizer
-Version: 1.0.71
+Version: 1.0.72
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -24,11 +24,11 @@ Tags: one-column, custom-logo, custom-menu, landing-page
 	--coal-2: #FFFFFF;
 	--coal-3: #E6F1FD;
 
-	--ember: #EFC25A;          /* ทอง · ปุ่มหลัก (LINE) */
-	--ember-deep: #D9A12E;
+	--ember: #FDD023;          /* ทอง · ปุ่มหลัก (LINE) */
+	--ember-deep: #E6B800;
 	--flare: #0B5CAD;          /* น้ำเงินปีก · ลิงก์และตัวเน้นบนพื้นขาว */
 	--gold: #5A6785;
-	--mint: #F6D57A;           /* ทองสว่าง · ใช้บนพื้นกรมท่า */
+	--mint: #FFE27A;           /* ทองสว่าง · ใช้บนพื้นกรมท่า */
 	--on-ember: #0A2E66;       /* ตัวอักษรบนปุ่มทอง */
 
 	--black: #0A2E66;          /* กรมท่า · พื้นเข้มที่เหลืออยู่ (แผง EA, tooltip) */
@@ -44,18 +44,18 @@ Tags: one-column, custom-logo, custom-menu, landing-page
 
 	--ok: #15803D;
 	--bad: #D64545;
-	--warn: #8F620C;
+	--warn: #806300;
 	--line-green: #06C755;
 	--line-green-dark: #05A648;
 
 	--border: rgba(10, 46, 102, 0.10);
-	--border-fire: rgba(217, 161, 46, 0.45);
+	--border-fire: rgba(230, 184, 0, 0.45);
 	--border-dark: rgba(255, 255, 255, 0.14);
 	--shadow-soft: 0 10px 30px rgba(10, 46, 102, 0.07);
 	--shadow-lift: 0 24px 60px rgba(10, 46, 102, 0.12);
 
-	--grad-fire: linear-gradient(180deg, #F6D57A 0%, #EFC25A 40%, #D9A12E 75%, #BB831F 100%);
-	--grad-text: linear-gradient(95deg, #0B5CAD 0%, #1A6DC2 45%, #C9932A 100%);
+	--grad-fire: linear-gradient(180deg, #FFE27A 0%, #FDD023 40%, #E6B800 75%, #C29A00 100%);
+	--grad-text: linear-gradient(95deg, #0B5CAD 0%, #1A6DC2 45%, #CFA200 100%);
 
 	--font-display: "Kanit", "Noto Sans Thai", sans-serif;
 	--font-body: "Noto Sans Thai", sans-serif;
@@ -69,7 +69,7 @@ Tags: one-column, custom-logo, custom-menu, landing-page
 	--sky-1: #EEF4FC;
 	--sky-2: #E2EDFB;
 	--glow-blue: #CFE3FB;
-	--glow-gold: #F7E6BC;
+	--glow-gold: #FAEBB0;
 	--glass: rgba(255, 255, 255, 0.58);
 	--glass-strong: rgba(255, 255, 255, 0.82);
 	--glass-line: rgba(255, 255, 255, 0.85);
@@ -78,11 +78,11 @@ Tags: one-column, custom-logo, custom-menu, landing-page
 	--blue-2: #1A6DC2;
 	--navy: #0A2E66;
 	--navy-9: #011D3B;
-	--gold-1: #F6D57A;
-	--gold-2: #EFC25A;
-	--gold-3: #D9A12E;
-	--gold-4: #BB831F;
-	--gold-text: #8F620C;
+	--gold-1: #FFE27A;
+	--gold-2: #FDD023;
+	--gold-3: #E6B800;
+	--gold-4: #C29A00;
+	--gold-text: #806300;
 	--grad-gold: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 40%, var(--gold-3) 75%, var(--gold-4) 100%);
 	--grad-navy: linear-gradient(180deg, #123B7E 0%, var(--navy) 55%, var(--navy-9) 100%);
 	--r-frame: 36px;
@@ -1365,8 +1365,8 @@ h3 {
 	margin-top: 34px;
 	padding: 20px 24px;
 	border-radius: var(--radius);
-	border: 1px solid rgba(255, 197, 61, 0.3);
-	background: rgba(255, 197, 61, 0.06);
+	border: 1px solid rgba(253, 208, 35, 0.3);
+	background: rgba(253, 208, 35, 0.06);
 }
 
 .disclaimer .icon {
@@ -1664,7 +1664,7 @@ h3 {
 
 .risk-box {
 	border: 1px solid rgba(178, 108, 9, 0.30);
-	background: #FCF6EA;
+	background: #FCF8E3;
 	border-radius: var(--radius-lg);
 	padding: 32px 36px;
 }
@@ -2603,7 +2603,7 @@ h3 {
 	padding: 16px 20px;
 	border: 1px solid var(--border);
 	border-radius: 14px;
-	background: rgba(255, 197, 61, 0.045);
+	background: rgba(253, 208, 35, 0.045);
 }
 
 .article-disclaimer .icon {
@@ -3549,8 +3549,8 @@ h1, h2, h3, h4,
 	align-items: flex-start;
 	padding: 22px 26px;
 	border-radius: var(--radius);
-	border: 1px solid rgba(255, 197, 61, 0.3);
-	background: rgba(255, 197, 61, 0.06);
+	border: 1px solid rgba(253, 208, 35, 0.3);
+	background: rgba(253, 208, 35, 0.06);
 	margin-bottom: 34px;
 }
 
@@ -4427,7 +4427,7 @@ h1, h2, h3, h4,
 }
 
 .hub-card-5 {
-	border-color: rgba(255, 197, 61, 0.22);
+	border-color: rgba(253, 208, 35, 0.22);
 }
 
 @media (max-width: 960px) {
@@ -6046,7 +6046,7 @@ h3 {
 .risk-box {
 	border-radius: 20px;
 	border: 1px solid rgba(178, 108, 9, 0.28);
-	background: #FFFBF3;
+	background: #FFFCEE;
 }
 
 .risk-kicker {
@@ -6608,7 +6608,7 @@ h3 {
 }
 
 .callout--warn {
-	background: #FFFBF3;
+	background: #FFFCEE;
 	border-color: rgba(178, 108, 9, 0.3);
 }
 
@@ -8173,13 +8173,13 @@ body {
 		radial-gradient(42% 30% at 12% 8%, var(--glow-blue), transparent 70%),
 		radial-gradient(36% 26% at 88% 4%, var(--glow-gold), transparent 70%),
 		radial-gradient(50% 40% at 100% 60%, rgba(207, 227, 251, 0.8), transparent 70%),
-		radial-gradient(45% 35% at 0% 85%, rgba(247, 230, 188, 0.55), transparent 70%),
+		radial-gradient(45% 35% at 0% 85%, rgba(250, 235, 176, 0.55), transparent 70%),
 		linear-gradient(180deg, var(--sky-1), var(--sky-0) 40%, var(--sky-1));
 	background-attachment: fixed;
 }
 
 ::selection {
-	background: rgba(239, 194, 90, 0.35);
+	background: rgba(253, 208, 35, 0.35);
 	color: var(--ink);
 }
 
@@ -8262,17 +8262,17 @@ h2 {
 .btn-fire,
 .btn-fire:hover {
 	background: var(--grad-gold);
-	border-color: rgba(187, 131, 31, 0.55);
+	border-color: rgba(194, 154, 0, 0.55);
 	color: var(--on-ember);
 }
 
 .btn-fire {
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 10px 22px rgba(187, 131, 31, 0.26);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 10px 22px rgba(194, 154, 0, 0.26);
 }
 
 .btn-fire:hover {
 	filter: brightness(1.05) saturate(1.05);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 14px 28px rgba(187, 131, 31, 0.32);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 14px 28px rgba(194, 154, 0, 0.32);
 }
 
 /* ปุ่มรอง = กรมท่า */
@@ -8333,9 +8333,9 @@ h2 {
 
 .ic-badge--green,
 .tile--gold {
-	background: linear-gradient(145deg, #FFF6DE, #F6DE9E);
+	background: linear-gradient(145deg, #FFF7D6, #FFEA99);
 	color: var(--gold-text);
-	box-shadow: 0 6px 14px rgba(187, 131, 31, 0.12);
+	box-shadow: 0 6px 14px rgba(194, 154, 0, 0.12);
 }
 
 .ic-badge--soft,
@@ -8389,7 +8389,7 @@ a.glass-card:hover {
 	pointer-events: none;
 	background:
 		radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.95) 0 8%, transparent 26%),
-		radial-gradient(circle at 70% 75%, rgba(239, 194, 90, 0.55), transparent 55%),
+		radial-gradient(circle at 70% 75%, rgba(253, 208, 35, 0.55), transparent 55%),
 		radial-gradient(circle at 50% 50%, rgba(26, 109, 194, 0.35), rgba(207, 227, 251, 0.25) 62%, rgba(255, 255, 255, 0.5) 100%);
 	box-shadow: inset -10px -14px 30px rgba(11, 92, 173, 0.18), inset 8px 10px 20px rgba(255, 255, 255, 0.7), 0 20px 40px rgba(10, 46, 102, 0.12);
 }
@@ -8453,7 +8453,7 @@ body *::after {
 .checklist li::before,
 .cmp-mark--yes,
 .plan-check {
-	box-shadow: inset 0 0 0 1px rgba(217, 161, 46, 0.4) !important;
+	box-shadow: inset 0 0 0 1px rgba(230, 184, 0, 0.4) !important;
 }
 
 .crosslist li::before {
@@ -8583,7 +8583,7 @@ body #wpadminbar * {
 .tile.tile--gold,
 .ic-badge--green {
 	border-color: transparent !important;
-	background: linear-gradient(145deg, #F6D57A, #EFC25A 55%, #D9A12E) !important;
+	background: linear-gradient(145deg, #FFE27A, #FDD023 55%, #E6B800) !important;
 	color: var(--navy) !important;
 }
 
@@ -8794,13 +8794,13 @@ svg[data-icon="warn"] {
 
 /* ==========================================================
    49) ทองแบบแฟลท (เจ้าของขอ 8 ต.ค. 2026: ปุ่มทองไล่สีดูโบราณ)
-   27 ต.ค. 2026 เจ้าของขอเปลี่ยนเป็นเหลือง (ทองเดิมดูไม่เด่น): เหลืองสีเดียว #FFCF33 ตัวกรมท่า · ชี้แล้ว #F5BD0F
-   ใช้กับปุ่มหลัก ป้าย และกระเบื้องไอคอนทองทั้งเว็บ · ตัวอักษรทอง (#8F620C) และทองในโลโก้/ภาพไม่เปลี่ยน
+   27 ต.ค. 2026 เจ้าของขอเปลี่ยนเป็นเหลือง (ทองเดิมดูไม่เด่น): เหลืองสีเดียว #FDD023 ตัวกรมท่า · ชี้แล้ว #F2C200
+   ใช้กับปุ่มหลัก ป้าย และกระเบื้องไอคอนทองทั้งเว็บ · ตัวอักษรทอง (#806300) และทองในโลโก้/ภาพไม่เปลี่ยน
    (ตัวแปร --grad-* ยังชื่อเดิม แต่เป็นสีเดียว เพื่อให้ทุกจุดที่อ้างถึงเปลี่ยนตาม)
    ========================================================== */
 :root {
-	--gold-flat: #FFCF33;
-	--gold-flat-hover: #F5BD0F;
+	--gold-flat: #FDD023;
+	--gold-flat-hover: #F2C200;
 	--grad-fire: linear-gradient(var(--gold-flat), var(--gold-flat));
 	--grad-gold: linear-gradient(var(--gold-flat), var(--gold-flat));
 }

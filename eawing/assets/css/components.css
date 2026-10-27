@@ -44,7 +44,7 @@
 .ch-kicker {
 	margin-left: 10px;
 	padding-left: 10px;
-	border-left: 1px solid rgba(217, 161, 46, 0.6);
+	border-left: 1px solid rgba(230, 184, 0, 0.6);
 }
 
 .ch-head h2 {
@@ -271,9 +271,9 @@
 	gap: 10px;
 	min-height: 220px;
 	padding: 24px;
-	border: 2px dashed rgba(187, 131, 31, 0.55);
+	border: 2px dashed rgba(194, 154, 0, 0.55);
 	border-radius: 18px;
-	background: rgba(255, 248, 230, 0.72);
+	background: rgba(255, 249, 224, 0.72);
 	color: var(--gold-text);
 	font-size: 0.86rem;
 	line-height: 1.6;
@@ -287,7 +287,7 @@
 	height: 52px;
 	border: 1px solid rgba(255, 255, 255, 0.9);
 	border-radius: var(--r-tile);
-	background: linear-gradient(145deg, #FFF6DE, #F6DE9E);
+	background: linear-gradient(145deg, #FFF7D6, #FFEA99);
 }
 
 .media-slot-empty .icon {
@@ -309,9 +309,9 @@
 .admin-hint {
 	display: inline-block;
 	padding: 8px 14px;
-	border: 1px dashed rgba(187, 131, 31, 0.6);
+	border: 1px dashed rgba(194, 154, 0, 0.6);
 	border-radius: 12px;
-	background: rgba(255, 248, 230, 0.85);
+	background: rgba(255, 249, 224, 0.85);
 	color: var(--gold-text);
 	font-size: 0.82rem;
 	line-height: 1.55;

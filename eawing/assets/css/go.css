@@ -19,9 +19,9 @@
 	--go-fill: rgba(255, 255, 255, 0.07);
 	--go-fill-hover: rgba(255, 255, 255, 0.14);
 	--go-navy: #0A2E66;
-	--go-gold-1: #F6D57A;
-	--go-gold: #FFCF33;
-	--go-gold-3: #D9A12E;
+	--go-gold-1: #FFE27A;
+	--go-gold: #FDD023;
+	--go-gold-3: #E6B800;
 	--go-line: #06C755;
 	--go-line-hover: #05A848;
 	--go-line-text: #047A35;
@@ -29,11 +29,11 @@
 	background-color: #030E24;
 	background-image:
 		radial-gradient(42% 30% at 12% 6%, rgba(46, 132, 230, 0.55), transparent 70%),
-		radial-gradient(34% 26% at 92% 22%, rgba(239, 194, 90, 0.38), transparent 70%),
+		radial-gradient(34% 26% at 92% 22%, rgba(253, 208, 35, 0.38), transparent 70%),
 		radial-gradient(40% 30% at 85% 72%, rgba(11, 92, 173, 0.6), transparent 70%),
 		radial-gradient(38% 28% at 6% 88%, rgba(56, 160, 230, 0.4), transparent 70%),
 		radial-gradient(26% 20% at 50% 18%, rgba(46, 132, 230, 0.5), transparent 70%),
-		radial-gradient(24% 18% at 36% 55%, rgba(239, 194, 90, 0.26), transparent 70%),
+		radial-gradient(24% 18% at 36% 55%, rgba(253, 208, 35, 0.26), transparent 70%),
 		radial-gradient(26% 20% at 62% 88%, rgba(60, 150, 235, 0.42), transparent 70%),
 		linear-gradient(180deg, #06183A 0%, #041230 50%, #020A1D 100%);
 	background-attachment: fixed;
@@ -61,7 +61,7 @@ body.link-hub-page::before,
 }
 
 .lh-wing-lines path:nth-of-type(2) {
-	stroke: rgba(239, 194, 90, 0.55);
+	stroke: rgba(253, 208, 35, 0.55);
 }
 
 .lh-wing-lines path:nth-of-type(3) {
@@ -329,8 +329,8 @@ a.lh-btn-download:visited {
 a.lh-btn-signup:hover,
 a.lh-btn-accent:hover,
 a.lh-btn-download:hover {
-	border-color: #F5BD0F;
-	background: #F5BD0F;
+	border-color: #F2C200;
+	background: #F2C200;
 	color: var(--go-navy);
 }
 
@@ -501,7 +501,7 @@ a.lh-mini-btn:hover {
 	left: 18px;
 	width: 2px;
 	border-radius: 2px;
-	background: rgba(239, 194, 90, 0.35);
+	background: rgba(253, 208, 35, 0.35);
 }
 
 .lh-step:last-child::before {
