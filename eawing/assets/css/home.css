@@ -2405,7 +2405,7 @@ a.hm-card:hover .hm-arrow {
 	align-items: center;
 	padding: 3px 10px;
 	border-radius: 999px;
-	background: #EFC25A;
+	background: var(--gold-flat, #FFCF33);
 	font-size: 0.85rem;
 	font-weight: 700;
 	line-height: 1.2;

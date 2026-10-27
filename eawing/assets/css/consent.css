@@ -275,7 +275,7 @@
 
 .consent-switch input:checked + .consent-track {
 	border-color: var(--gold-4, #BB831F);
-	background: var(--grad-gold, #EFC25A);
+	background: var(--grad-gold, #FFCF33);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 

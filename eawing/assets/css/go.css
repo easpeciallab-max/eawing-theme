@@ -20,7 +20,7 @@
 	--go-fill-hover: rgba(255, 255, 255, 0.14);
 	--go-navy: #0A2E66;
 	--go-gold-1: #F6D57A;
-	--go-gold: #EFC25A;
+	--go-gold: #FFCF33;
 	--go-gold-3: #D9A12E;
 	--go-line: #06C755;
 	--go-line-hover: #05A848;
@@ -329,8 +329,8 @@ a.lh-btn-download:visited {
 a.lh-btn-signup:hover,
 a.lh-btn-accent:hover,
 a.lh-btn-download:hover {
-	border-color: #E3B03C;
-	background: #E3B03C;
+	border-color: #F5BD0F;
+	background: #F5BD0F;
 	color: var(--go-navy);
 }
 
