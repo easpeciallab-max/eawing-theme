@@ -53,6 +53,10 @@ foreach ( array_merge( glob( $root . 'pages/*.html' ), glob( $root . 'articles/*
 					$dates[ $meta['date'] ] = $rel;
 				}
 			}
+			/* รายละเอียดเฉพาะรุ่นของ EA WING ต้องอยู่ที่หน้า /ea-wing/ หรือ [eawing_fact] เท่านั้น (เจ้าของสั่ง 7 พ.ย. 2026: อัปเดต EA แล้วไม่ต้องแก้บทความ) */
+			if ( preg_match( '/ทุนคิดไม้|เงินกันชน|ขั้นละ 1 ไม้|ไม้โต|โหมด Lite|Advance(?!d)|Magic 876001/u', $raw, $pm ) ) {
+				$issue[] = 'EA WING version detail "' . $pm[0] . '" in article (link to /ea-wing/ or use [eawing_fact name="risk|sizing"])';
+			}
 			if ( false !== strpos( $raw, '{{home}}/go/' ) ) {
 				$issue[] = 'article links /go/ (use the money page + [eawing_line])';
 			}

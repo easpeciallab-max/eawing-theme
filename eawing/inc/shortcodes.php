@@ -106,6 +106,20 @@ function eaw_sc_ea( $atts ) {
 add_shortcode( 'eawing_ea', 'eaw_sc_ea' );
 
 /**
+ * [eawing_fact name="risk|sizing"] ข้อความกลางของ EA WING จาก Customizer (fact_risk · fact_sizing ใน products.php)
+ * บทความใช้แทนการพิมพ์รายละเอียดเฉพาะรุ่นเอง เปลี่ยนรุ่น EA จึงแก้ที่เดียว
+ */
+function eaw_sc_fact( $atts ) {
+	$atts = shortcode_atts( array( 'name' => 'risk' ), $atts, 'eawing_fact' );
+	$key  = 'fact_' . sanitize_key( $atts['name'] );
+	if ( ! in_array( $key, array( 'fact_risk', 'fact_sizing' ), true ) ) {
+		return '';
+	}
+	return esc_html( trim( (string) eaw_mod( $key ) ) );
+}
+add_shortcode( 'eawing_fact', 'eaw_sc_fact' );
+
+/**
  * แผนภาพในเนื้อหา (สร้างด้วย dev/make-art.php) · ชื่อ => ไฟล์กว้าง, ไฟล์มือถือ, alt ตั้งต้น
  * เปลี่ยนภาพเมื่อไหร่ให้เปลี่ยนเลข v ในชื่อไฟล์ (Cloudflare แคชตาม URL)
  */
