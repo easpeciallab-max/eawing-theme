@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.75' );
+define( 'EAW_VERSION', '1.0.76' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -269,7 +269,7 @@ function eaw_defaults() {
 
 		/* รุ่นของไฟล์ EA ที่แจกอยู่ · ใช้ผ่าน [eawing_ea] ในเนื้อหา และ {ea} {ea_file} {ea_version} {bt_range} ในข้อความคู่มือ
 		 * เปลี่ยนรุ่น = แก้ 3 ค่านี้ + ไฟล์ zip ของหน้า /go (go_fast_*) + ภาพหน้าจอใน assets/img/install */
-		'ea_version'         => '5.0',
+		'ea_version'         => '5.1',
 		'ea_bt_from'         => '2026.01.01',
 		'ea_bt_to'           => '2026.10.01',
 		'facebook_url'    => '',
@@ -348,18 +348,18 @@ function eaw_defaults() {
 			'bt_stat2_label'      => 'สินทรัพย์และโบรกเกอร์',
 			'bt_stat2_value'      => 'XAUUSD.c · Zaurix',
 			'bt_stat3_label'      => 'Timeframe และโหมด',
-			'bt_stat3_value'      => 'M1 · รุ่น 5.0 โหมด Lite',
+			'bt_stat3_value'      => 'M1 · รุ่น 5.1 โหมด Lite',
 			'bt_stat4_label'      => 'ทุนตั้งต้นในการทดสอบ',
 			'bt_stat4_value'      => '10,000 USD',
 			'bt_stat5_label'      => 'Net Profit ในรายงาน',
-			'bt_stat5_value'      => '58,915.21 USD',
+			'bt_stat5_value'      => '51,333.78 USD',
 			'bt_stat6_label'      => 'Profit Factor',
-			'bt_stat6_value'      => '2.62',
-			'bt_stat7_label'      => 'ติดลบลอยสูงสุด (Equity Drawdown 8,248.36 USD)',
-			'bt_stat7_value'      => '82.5% ของทุนตั้งต้น',
-			'bt_stat8_label'      => 'จำนวนออเดอร์รวม',
-			'bt_stat8_value'      => '24,493',
-			'backtest_img'        => 'assets/img/results/eawing-backtest-lite-v5-2026-v1.webp',
+			'bt_stat6_value'      => '2.30',
+			'bt_stat7_label'      => 'ติดลบลอยสูงสุด (Equity Drawdown 9,507.42 USD)',
+			'bt_stat7_value'      => '95.1% ของทุนตั้งต้น',
+			'bt_stat8_label'      => 'จำนวนไม้รวม (ขั้นละ 1 ไม้)',
+			'bt_stat8_value'      => '2,028',
+			'backtest_img'        => 'assets/img/results/eawing-backtest-lite-v51-2026-v1.webp',
 
 
 			/* หน้า How to Install · รูปประกอบขั้นตอน */
