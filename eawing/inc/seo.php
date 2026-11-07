@@ -1154,6 +1154,7 @@ function eaw_seo_redirect_map() {
 			'/ea-products/'    => '/pricing/',
 			'/category/other/' => '/articles/',
 			'/contact/'        => '/go/',
+			'/wing-nitro/'     => '/ea-wing/',
 		)
 	);
 	return is_array( $map ) ? $map : array();
@@ -1267,10 +1268,9 @@ function eaw_seo_sitemap_theme_images( $images, $post_id ) {
 	$keys = array();
 	$slug = (string) $post->post_name;
 	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
-		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'home_nitro_img', 'home_eawing_img', 'home_twin_img', 'hero_image' );
-	} elseif ( in_array( $slug, array( 'wing-nitro', 'ea-wing', 'wing-twin' ), true ) ) {
+		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'home_eawing_img', 'home_twin_img', 'hero_image' );
+	} elseif ( in_array( $slug, array( 'ea-wing', 'wing-twin' ), true ) ) {
 		$prefix = array(
-			'wing-nitro' => 'nitro',
 			'ea-wing'    => 'eawing',
 			'wing-twin'  => 'twin',
 		);

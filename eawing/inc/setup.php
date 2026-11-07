@@ -35,7 +35,6 @@ function eaw_site_pages() {
 		'vps-ios'          => array( 'title' => 'คู่มือ VPS บน iPhone', 'template' => 'template-guide.php', 'content' => 'pages/vps-ios', 'group' => 'guide', 'menu' => 'VPS บน iPhone / iPad' ),
 		'tools'            => array( 'title' => 'เครื่องมือคำนวณ', 'template' => 'template-guide.php', 'content' => 'pages/tools', 'group' => 'guide', 'menu' => 'เครื่องคำนวณ Lot / Drawdown' ),
 		'pricing'          => array( 'title' => 'แพ็กเกจและราคา', 'template' => 'template-pricing.php', 'content' => 'pages/pricing', 'group' => 'pricing' ),
-		'wing-nitro'       => array( 'title' => 'WING NITRO', 'template' => 'template-nitro.php', 'content' => 'pages/wing-nitro', 'group' => 'product' ),
 		'ea-wing'          => array( 'title' => 'EA WING', 'template' => 'template-eawing.php', 'content' => 'pages/ea-wing', 'group' => 'product' ),
 		'wing-twin'        => array( 'title' => 'WING TWIN', 'template' => 'template-twin.php', 'content' => 'pages/wing-twin', 'group' => 'product' ),
 		'risk-disclosure'  => array( 'title' => 'ประกาศความเสี่ยง', 'template' => 'template-risk.php', 'content' => 'pages/risk-disclosure', 'group' => 'doc' ),

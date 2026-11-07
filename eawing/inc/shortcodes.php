@@ -77,7 +77,7 @@ function eaw_sc_ea( $atts ) {
 		$atts,
 		'eawing_ea'
 	);
-	/* สินค้าอื่น (inc/modules/products.php) · [eawing_ea product="nitro|twin" field="name|version|bt_range"] */
+	/* สินค้าอื่น (inc/modules/products.php) · [eawing_ea product="twin" field="name|version|bt_range"] */
 	if ( '' !== $atts['product'] && function_exists( 'eaw_product' ) ) {
 		$item = eaw_product( sanitize_key( $atts['product'] ) );
 		if ( ! $item ) {

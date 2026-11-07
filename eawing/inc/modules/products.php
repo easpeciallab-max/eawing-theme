@@ -2,11 +2,12 @@
 /**
  * EA WING · รายการสินค้าทั้งหมด เรียงตามเลขรุ่น (เจ้าของขอ 21 ต.ค. 2026 "จัดลำดับตามเลข")
  *
- * - eaw_products(): WING NITRO (nitro_version) · EA WING (ea_version) · WING TWIN (twin_version) เรียงจากเลขรุ่นน้อยไปมาก
+ * - eaw_products(): EA WING (ea_version) · WING TWIN (twin_version) เรียงจากเลขรุ่นน้อยไปมาก
+ *   (WING NITRO 4.2 ถอดออกจากเว็บ 7 พ.ย. 2026 เจ้าของสั่ง · /wing-nitro/ 301 ไป /ea-wing/)
  *   เปลี่ยนเลขรุ่นใน Customizer เมื่อไหร่ ลำดับในหน้าแรก /go และเมนูที่สร้างจาก Setup เปลี่ยนตาม
- * - eaw_products_page( $prefix ): โครงหน้าสินค้า (template-nitro.php · template-eawing.php · template-twin.php)
+ * - eaw_products_page( $prefix ): โครงหน้าสินค้า (template-eawing.php · template-twin.php)
  * - eaw_homeplus_products(): ส่วน "EA ทองคำของ EA WING" ในหน้าแรก การ์ดละ 1 สินค้า (home_{key}_*)
- * - eaw_go_product_downloads(): การ์ดดาวน์โหลดทุกสินค้าในขั้น 4 ของหน้า /go (go_fast_* · go_nitro_* · go_twin_*)
+ * - eaw_go_product_downloads(): การ์ดดาวน์โหลดทุกสินค้าในขั้น 4 ของหน้า /go (go_fast_* · go_twin_*)
  *
  * @package eawing
  */
@@ -22,16 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function eaw_products() {
 	$items = array(
-		array(
-			'key'     => 'nitro',
-			'name'    => 'WING NITRO',
-			'version' => function_exists( 'eaw_nitro_version' ) ? eaw_nitro_version() : '4.2',
-			'prefix'  => 'WING_NITRO_V',
-			'slug'    => 'wing-nitro',
-			'go'      => 'go_nitro',
-			'pos'     => 'go-download-nitro',
-			'bt'      => array( 'nitro_bt_from', 'nitro_bt_to' ),
-		),
 		array(
 			'key'     => 'eawing',
 			'name'    => 'EA WING',
@@ -69,7 +60,7 @@ function eaw_products() {
 }
 
 /**
- * สินค้าตาม key ('nitro' | 'eawing' | 'twin') · ไม่พบ = null
+ * สินค้าตาม key ('eawing' | 'twin') · ไม่พบ = null
  */
 function eaw_product( $key ) {
 	foreach ( eaw_products() as $item ) {
@@ -81,7 +72,7 @@ function eaw_product( $key ) {
 }
 
 /**
- * ช่วง Backtest มาตรฐานของสินค้า ("2026.01.01 ถึง 2026.08.31") · ไม่มี = ''
+ * ช่วง Backtest มาตรฐานของสินค้า ("2026.01.01 ถึง 2026.10.01") · ไม่มี = ''
  */
 function eaw_product_bt_range( $item ) {
 	if ( empty( $item['bt'] ) ) {
@@ -93,7 +84,7 @@ function eaw_product_bt_range( $item ) {
 }
 
 /* ==============================================================
- * หน้าสินค้า (template-nitro.php · template-eawing.php · template-twin.php)
+ * หน้าสินค้า (template-eawing.php · template-twin.php)
  * โครง (Glass Sky): หัวเพจ (ชื่อ คำอธิบาย ปุ่ม LINE ปุ่มดาวน์โหลด ภาพการ์ดสินค้า)
  *       → แผงการ์ดข้อมูล ({prefix}_stat1..8 · หมายเหตุ · คำเตือน) → เนื้อหายาวจาก editor → แถบติดต่อ
  * ============================================================== */
@@ -180,9 +171,9 @@ function eaw_products_defaults( $d ) {
 		$d,
 		array(
 			'show_home_products'  => true,
-			'home_products_title' => 'EA ทองคำของ EA WING ทั้ง 3 ตัว',
-			'home_products_sub'   => 'เรียงตามเลขรุ่น ทั้งสามตัวเทรดทองคำ XAUUSD บน MT5 แต่ทำงานคนละวิธี ใช้บัญชีและเงินทุนต่างกัน แพ็กเกจเดียวใช้ได้ทั้ง 3 ตัว เลือกตัวที่เข้ากับบัญชีของคุณ หรือถามทีมงานทาง LINE ก่อนก็ได้',
-			'home_products_note'  => 'ทั้งสามตัวไม่มีการตัดขาดทุนอัตโนมัติ บัญชีเสียหายหนักได้ถึงเสียเงินทั้งหมด · ผลทดสอบย้อนหลังไม่ใช่สัญญาว่าจะได้กำไร · ห้ามรันสองตัวบนทองตัวเดียวกันในบัญชีเดียวกัน',
+			'home_products_title' => 'EA ทองคำของ EA WING ทั้ง 2 ตัว',
+			'home_products_sub'   => 'เรียงตามเลขรุ่น ทั้งสองตัวเทรดทองคำ XAUUSD บน MT5 แต่ทำงานคนละวิธี ใช้บัญชีและเงินทุนต่างกัน แพ็กเกจเดียวใช้ได้ทั้งสองตัว เลือกตัวที่เข้ากับบัญชีของคุณ หรือถามทีมงานทาง LINE ก่อนก็ได้',
+			'home_products_note'  => 'ทั้งสองตัวไม่มีการตัดขาดทุนอัตโนมัติ บัญชีเสียหายหนักได้ถึงเสียเงินทั้งหมด · ผลทดสอบย้อนหลังไม่ใช่สัญญาว่าจะได้กำไร · ห้ามรันสองตัวบนทองตัวเดียวกันในบัญชีเดียวกัน',
 
 			/* ---------- หน้า /ea-wing/ (ข้อเท็จจริงจากเอกสาร EA WING 5.0 ของเจ้าของ · หลักข้อ 2 ใน CLAUDE.md) ---------- */
 			'eawing_sub'          => 'EA เทรดทองคำ XAUUSD อัตโนมัติบน MT5 มีสามโหมด Lite Advance Full ในไฟล์เดียว เปิดออเดอร์เป็นชุด ราคาสวนทางเติมไม้แก้เป็นขั้นบันไดสูงสุด 9 ขั้น แล้วปิดทั้งชุดเมื่อถึงเป้ากำไร โหมดสำเร็จรูปไม่มีการตัดขาดทุนอัตโนมัติ อ่านความเสี่ยงให้ครบก่อนใช้เงินจริง',
@@ -205,10 +196,10 @@ function eaw_products_defaults( $d ) {
 			'eawing_stat7_value'  => 'ก่อน 90 · หลัง 720 นาที',
 			'eawing_stat8_label'  => 'ตัดขาดทุนอัตโนมัติ',
 			'eawing_stat8_value'  => 'ไม่มีในโหมดสำเร็จรูป',
-			'eawing_note'         => 'ทุนคิดไม้คือตัวเลขที่ EA ใช้คิดขนาดออเดอร์ เงินในบัญชีที่เกินทุนคิดไม้คือเงินกันชน · Lite 1 เท่า Advance 2 เท่า Full 3 เท่าของทุนคิดไม้ · แพ็กเกจเดียวใช้ได้ทั้ง 3 ตัว · ห้ามรันคู่กับไม้มือหรือ EA ตัวอื่นบนทองตัวเดียวกันในบัญชีเดียวกัน',
+			'eawing_note'         => 'ทุนคิดไม้คือตัวเลขที่ EA ใช้คิดขนาดออเดอร์ เงินในบัญชีที่เกินทุนคิดไม้คือเงินกันชน · Lite 1 เท่า Advance 2 เท่า Full 3 เท่าของทุนคิดไม้ · แพ็กเกจเดียวใช้ได้ทั้ง EA WING และ WING TWIN · ห้ามรันคู่กับไม้มือหรือ EA ตัวอื่นบนทองตัวเดียวกันในบัญชีเดียวกัน',
 			'eawing_disclaimer'   => 'ระบบทบไม้ โหมดสำเร็จรูปไม่มีการตัดขาดทุนอัตโนมัติ บัญชีเสียหายหนักได้ถึงเสียเงินทั้งหมด · ผลทดสอบย้อนหลังไม่ใช่ผลการเทรดจริงและไม่รับประกันผลในอนาคต',
 			'eawing_cta_title'    => 'สนใจ EA WING หรืออยากรู้ว่าโหมดไหนเข้ากับเงินในบัญชี',
-			'eawing_cta_text'     => 'แพ็กเกจเดียวใช้ได้ทั้ง 3 ตัว ทักทีมงานทาง LINE ถามเรื่องโหมดและเงินในบัญชี แล้วส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์เพื่อขอเปิดสิทธิ์ใช้งาน',
+			'eawing_cta_text'     => 'แพ็กเกจเดียวใช้ได้ทั้ง EA WING และ WING TWIN ทักทีมงานทาง LINE ถามเรื่องโหมดและเงินในบัญชี แล้วส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์เพื่อขอเปิดสิทธิ์ใช้งาน',
 
 			/* การ์ด EA WING ในส่วนสินค้าหน้าแรก */
 			'home_eawing_name'    => 'EA WING',
@@ -253,7 +244,7 @@ function eaw_products_customizer_sections( $sections, $d ) {
 	);
 	$sections['eaw_products']  = array(
 		'title'       => '37) หน้าแรก · ส่วนสินค้า (เรียงตามเลขรุ่น)',
-		'description' => 'การ์ดสินค้าเรียงตามเลขรุ่นเอง (WING NITRO · EA WING · WING TWIN) · ข้อความการ์ด WING NITRO อยู่หมวด 35 · WING TWIN อยู่หมวด 36 · การ์ด EA WING อยู่ที่นี่',
+		'description' => 'การ์ดสินค้าเรียงตามเลขรุ่นเอง (EA WING · WING TWIN) · ข้อความการ์ด WING TWIN อยู่หมวด 36 · การ์ด EA WING อยู่ที่นี่',
 		'fields'      => array(
 			'show_home_products'  => array( 'แสดงส่วนสินค้าในหน้าแรก', 'checkbox' ),
 			'home_products_title' => array( 'หัวข้อส่วน (H2)', 'text' ),
