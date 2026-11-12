@@ -29,7 +29,7 @@ function eaw_btc_defaults( $d ) {
 
 			/* ---------- หน้า /wing-btc/ ---------- */
 			'btc_sub'          => 'EA เทรด Bitcoin (BTCUSD) อัตโนมัติบน MT5 ระบบกริดชุด SKY ฝังในตัว ระยะกริดขยายเองตามแรงตลาด ตะกร้าที่ค้างนานมีไม้ช่วยปิดที่เสมอตัว ปรับขนาด LOTx1 ถึง LOTx64 บนหน้าจอ ไม่มีการตัดขาดทุน อ่านความเสี่ยงให้ครบก่อนใช้เงินจริง',
-			'btc_hero_img'     => '',
+			'btc_hero_img'     => 'assets/img/products/wing-btc-card-v1.webp',
 			'btc_dl_url'       => 'assets/downloads/WING_BTC_V2.1.zip',
 			'btc_dl_label'     => 'ดาวน์โหลด WING BTC V2.1',
 			'btc_stat1_label'  => 'ระบบ',
@@ -54,7 +54,7 @@ function eaw_btc_defaults( $d ) {
 			'btc_cta_text'     => 'แพ็กเกจเดียวใช้ได้ทุกตัว บัญชีที่ได้สิทธิ์แล้วใช้ WING BTC ได้เลย ทักทีมงานทาง LINE ถามเรื่องขนาด LOT และขอเปิดสิทธิ์ใช้งาน ส่งเลขบัญชี MT5 กับชื่อเซิร์ฟเวอร์มาได้เลย ทดลองกับบัญชีเดโมก่อนก็ได้',
 
 			/* ---------- การ์ดดาวน์โหลดในหน้า /go ---------- */
-			'go_btc_img'       => '',
+			'go_btc_img'       => 'assets/img/products/wing-btc-go-card-v1.webp',
 			'go_btc_url'       => 'assets/downloads/WING_BTC_V2.1.zip',
 			'go_btc_alt'       => 'ดาวน์โหลด EA WING BTC Expert Advisor สำหรับ MT5',
 			'go_btc_label'     => 'ดาวน์โหลด WING BTC V2.1',
@@ -67,7 +67,7 @@ function eaw_btc_defaults( $d ) {
 			'home_btc_heading' => 'กริด Bitcoin ชุด SKY',
 			'home_btc_text'    => 'ระบบกริดบนกราฟ BTCUSD M1 ระยะกริดขยายเองตามแรงตลาด ราคาวิ่งสวนจะทบ lot แล้วปิดทั้งรอบเมื่อกำไรลอยถึงเป้า ตะกร้าที่ค้างเกิน 3 ชั่วโมงใช้ไม้ช่วยปิดที่เสมอตัว ปรับขนาด LOT บนหน้าจอ และหน้าจอบอกทุนที่ต้องใช้',
 			'home_btc_points'  => "ขนาด LOTx1 ถึง LOTx64 · ทุน 3,125 ต่อ LOTx1 (เซนต์ = USC)\nใช้ได้ทั้งบัญชีเซนต์และบัญชี USD แบบ Hedging\nไม่มีการตัดขาดทุน BTC ผันผวนสูง ราคาวิ่งทางเดียวเสียหายหนักได้",
-			'home_btc_img'     => '',
+			'home_btc_img'     => 'assets/img/products/wing-btc-go-card-v1.webp',
 			'home_btc_img_alt' => 'การ์ดสินค้า EA WING BTC Expert Advisor สำหรับ MT5',
 			'home_btc_btn'     => 'ดูรายละเอียด WING BTC',
 			'home_btc_url'     => '/wing-btc/',
