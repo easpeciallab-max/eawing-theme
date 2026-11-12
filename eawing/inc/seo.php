@@ -1180,7 +1180,7 @@ function eaw_seo_legacy_redirects() {
 	}
 	$path = strtolower( trailingslashit( '/' . ltrim( rawurldecode( $path ), '/' ) ) );
 	/* ไฟล์ EA รุ่นเก่าที่ถอดออกจากธีมแล้ว (ลิงก์ตรงที่เคยแชร์ไว้) → หน้าลิงก์รวม ซึ่งมีไฟล์รุ่นปัจจุบัน */
-	if ( preg_match( '#/assets/downloads/(ea_wing|wing_twin|wing_nitro)_v[0-9.]+\.zip/$#', $path ) ) {
+	if ( preg_match( '#/assets/downloads/(ea_wing|wing_twin|wing_nitro|wing_btc)_v[0-9.]+\.zip/$#', $path ) ) {
 		$map[ $path ] = '/go/';
 	}
 	if ( empty( $map[ $path ] ) ) {
@@ -1268,10 +1268,11 @@ function eaw_seo_sitemap_theme_images( $images, $post_id ) {
 	$keys = array();
 	$slug = (string) $post->post_name;
 	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
-		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'home_eawing_img', 'home_twin_img', 'hero_image' );
-	} elseif ( in_array( $slug, array( 'ea-wing', 'wing-twin' ), true ) ) {
+		$keys = array( 'ih_step1_img', 'home_mode1_img', 'home_mode2_img', 'home_mode3_img', 'home_btc_img', 'home_eawing_img', 'home_twin_img', 'hero_image' );
+	} elseif ( in_array( $slug, array( 'wing-btc', 'ea-wing', 'wing-twin' ), true ) ) {
 		$prefix = array(
 			'ea-wing'    => 'eawing',
+			'wing-btc'   => 'btc',
 			'wing-twin'  => 'twin',
 		);
 		$keys   = array( $prefix[ $slug ] . '_hero_img' );
