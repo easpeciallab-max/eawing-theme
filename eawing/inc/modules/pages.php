@@ -237,7 +237,7 @@ function eaw_pages_customizer_sections( $sections, $d ) {
 
 	$sections['eaw_forward'] = array(
 		'title'       => '21) หน้า Forward Test',
-		'description' => 'หน้านี้เป็นคู่มือวิธีทำ Forward Test ด้วยบัญชีของผู้ใช้เอง ไม่มีช่องผลทดสอบ ลิงก์ผล หรือรูปผล (เจ้าของตัดออก 12 ต.ค. 2026 เพราะไม่มีผล Forward Test ของ EA WING เอง · ห้ามใส่ผลของแบรนด์อื่น)',
+		'description' => 'หน้านี้เป็นคู่มือวิธีทำ Forward Test ไม่มีช่องสถิติหรือรูปผล · ลิงก์บัญชีจริงของทีมงานบน Myfxbook (EAWG) อยู่ในเนื้อหาเพจ forward-test.html (12 พ.ย. 2026) · ห้ามใส่ผลของแบรนด์อื่น',
 		'fields'      => array_merge(
 			array(
 				'forward_kicker' => array( 'ป้ายเล็กเหนือชื่อหน้า (อังกฤษสั้น ๆ)', 'text' ),
@@ -1007,7 +1007,7 @@ function eaw_pages_tests_top( $type ) {
 				<?php endif; ?>
 
 				<?php
-				/* Forward Test เป็นคู่มือล้วน: ไม่มีช่องผล ลิงก์ผล หรือรูปผล (EA WING ไม่มีผล Forward Test ของตัวเอง · 12 ต.ค. 2026) */
+				/* Forward Test ไม่มีช่องผลหรือรูปผล · ลิงก์บัญชีจริงบน Myfxbook อยู่ในเนื้อหาเพจ (ตัวเลขอัปเดตที่ Myfxbook ไม่คัดมาไว้ · 12 พ.ย. 2026) */
 				if ( $is_bt ) {
 					eaw_pages_stats( 'bt', 8, $type );
 					eaw_media_slot(
