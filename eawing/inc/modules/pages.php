@@ -664,11 +664,14 @@ function eaw_pages_hero_media( $key, $illus = '' ) {
 	$src = '' !== $key ? eaw_theme_asset_url( eaw_mod( $key . '_hero_img' ) ) : '';
 	if ( '' !== $src ) {
 		$info = eaw_media_info( $src, 960, 720 );
+		/* หน้าสินค้า: ภาพการ์ดสินค้าบอกชื่อสินค้า จึงมี alt · หน้าอื่นเป็นภาพประกอบ (alt ว่าง) */
+		$alt  = function_exists( 'eaw_product' ) && eaw_product( $key ) ? sprintf( 'การ์ดสินค้า %s Expert Advisor สำหรับ MT5', wp_strip_all_tags( get_the_title() ) ) : '';
 		return sprintf(
-			'<div class="pg-hero-media pg-hero-media--img"><div class="pg-squircle"><img src="%1$s" alt="" width="%2$s" height="%3$s" decoding="async"></div></div>',
+			'<div class="pg-hero-media pg-hero-media--img"><div class="pg-squircle"><img src="%1$s" alt="%4$s" width="%2$s" height="%3$s" decoding="async"></div></div>',
 			esc_url( $src ),
 			esc_attr( (string) $info['width'] ),
-			esc_attr( (string) $info['height'] )
+			esc_attr( (string) $info['height'] ),
+			esc_attr( $alt )
 		);
 	}
 	if ( '' === $illus || ! eaw_mod( 'pages_hero_illus' ) ) {
