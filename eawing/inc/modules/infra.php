@@ -706,6 +706,7 @@ function eaw_nocaps_pattern() {
 		'\b[A-Z]{6}\.[a-z]{1,3}\b',                                                // XAUUSD.c
 		'(?<=\s)\.[a-z]{1,3}(?=[\s,)])',                                           // ตัวท้ายสัญลักษณ์ที่เขียนลำพัง เช่น .c .s
 		'\b(?:iPhone|iPad|iPadOS|iOS|macOS)\b',                                    // ชื่อแบรนด์ที่ใช้ตัวเล็กนำ
+		'\bLOTx\d+\b|(?<![\w.])x\d+(?:\.\d+)?\b',                                  // ขนาด LOTx1 · คูณ LOT x1.00 · x2 x4 (ตามแผงของ EA)
 	);
 	return (string) apply_filters( 'eaw_nocaps_pattern', '/' . implode( '|', $parts ) . '/u' );
 }

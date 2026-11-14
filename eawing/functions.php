@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EAW_VERSION', '1.0.80' );
+define( 'EAW_VERSION', '1.0.81' );
 
 /* --------------------------------------------------------------
  * Theme setup
@@ -269,7 +269,7 @@ function eaw_defaults() {
 
 		/* รุ่นของไฟล์ EA ที่แจกอยู่ · ใช้ผ่าน [eawing_ea] ในเนื้อหา และ {ea} {ea_file} {ea_version} {bt_range} ในข้อความคู่มือ
 		 * เปลี่ยนรุ่น = แก้ 3 ค่านี้ + ไฟล์ zip ของหน้า /go (go_fast_*) + ภาพหน้าจอใน assets/img/install */
-		'ea_version'         => '5.1',
+		'ea_version'         => '26.11',
 		'ea_bt_from'         => '2026.01.01',
 		'ea_bt_to'           => '2026.10.01',
 		'facebook_url'    => '',
@@ -348,7 +348,7 @@ function eaw_defaults() {
 			'bt_stat2_label'      => 'สินทรัพย์และโบรกเกอร์',
 			'bt_stat2_value'      => 'XAUUSD.c · Zaurix',
 			'bt_stat3_label'      => 'Timeframe และโหมด',
-			'bt_stat3_value'      => 'M1 · รุ่น 5.1 โหมด Lite',
+			'bt_stat3_value'      => 'M1 · รุ่น 26.11 โหมด Lite',
 			'bt_stat4_label'      => 'ทุนตั้งต้นในการทดสอบ',
 			'bt_stat4_value'      => '10,000 USD',
 			'bt_stat5_label'      => 'Net Profit ในรายงาน',

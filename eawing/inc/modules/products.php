@@ -46,7 +46,7 @@ function eaw_products() {
 		array(
 			'key'     => 'twin',
 			'name'    => 'WING TWIN',
-			'version' => function_exists( 'eaw_twin_version' ) ? eaw_twin_version() : '6.3',
+			'version' => function_exists( 'eaw_twin_version' ) ? eaw_twin_version() : '26.11',
 			'prefix'  => 'WING_TWIN_V',
 			'slug'    => 'wing-twin',
 			'go'      => 'go_twin',
@@ -190,11 +190,11 @@ function eaw_products_defaults( $d ) {
 			'home_products_sub'   => 'เรียงตามเลขรุ่น ทั้งสามตัวทำงานบน MT5 เทรด Bitcoin 1 ตัวและทองคำ XAUUSD 2 ตัว ทำงานคนละวิธี ใช้บัญชีและเงินทุนต่างกัน แพ็กเกจเดียวใช้ได้ทุกตัว เลือกตัวที่เข้ากับบัญชีของคุณ หรือถามทีมงานทาง LINE ก่อนก็ได้',
 			'home_products_note'  => 'ทุกตัวไม่มีการตัดขาดทุนอัตโนมัติ บัญชีเสียหายหนักได้ถึงเสียเงินทั้งหมด · ผลทดสอบย้อนหลังไม่ใช่สัญญาว่าจะได้กำไร · ห้ามรัน EA ทองสองตัวบนทองตัวเดียวกันในบัญชีเดียวกัน',
 
-			/* ---------- หน้า /ea-wing/ (ข้อเท็จจริงจากเอกสาร EA WING 5.1 ของเจ้าของ · หลักข้อ 2 ใน CLAUDE.md) ---------- */
+			/* ---------- หน้า /ea-wing/ (ข้อเท็จจริงจากเอกสาร EA WING 26.11 ของเจ้าของ · หลักข้อ 2 ใน CLAUDE.md) ---------- */
 			'eawing_sub'          => 'EA เทรดทองคำ XAUUSD อัตโนมัติบน MT5 โหมดเดียวคือ Lite ฝังในไฟล์ เปิดออเดอร์เป็นตะกร้า ราคาสวนทางเติมไม้แก้เป็นขั้นบันไดสูงสุด 9 ขั้น ขั้นละ 1 ไม้ แล้วปิดทั้งตะกร้าเมื่อถึงเป้ากำไร ไม่มีการตัดขาดทุนอัตโนมัติ อ่านความเสี่ยงให้ครบก่อนใช้เงินจริง',
 			'eawing_hero_img'     => 'assets/img/products/ea-wing-card-v2.webp',
-			'eawing_dl_url'       => 'assets/downloads/EA_WING_V5.1.zip',
-			'eawing_dl_label'     => 'ดาวน์โหลด EA WING V5.1',
+			'eawing_dl_url'       => 'assets/downloads/EA_WING_V26.11.zip',
+			'eawing_dl_label'     => 'ดาวน์โหลด EA WING V26.11',
 			'eawing_stat1_label'  => 'โหมด',
 			'eawing_stat1_value'  => 'Lite โหมดเดียว',
 			'eawing_stat2_label'  => 'กราฟ',
@@ -232,7 +232,7 @@ function eaw_products_defaults( $d ) {
 add_filter( 'eaw_customizer_sections', 'eaw_products_customizer_sections', 12, 2 );
 
 function eaw_products_customizer_sections( $sections, $d ) {
-	$rule                      = 'ใช้ข้อเท็จจริงจากเอกสาร EA WING 5.1 ของเจ้าของ · ต้องบอกว่าไม่มีการตัดขาดทุนอัตโนมัติ';
+	$rule                      = 'ใช้ข้อเท็จจริงจากเอกสาร EA WING 26.11 ของเจ้าของ · ต้องบอกว่าไม่มีการตัดขาดทุนอัตโนมัติ';
 	$stats                     = array();
 	for ( $i = 1; $i <= 8; $i++ ) {
 		$stats[ 'eawing_stat' . $i . '_label' ] = array( 'การ์ดข้อมูล ' . $i . ' · หัวข้อ (ว่าง = ซ่อน)', 'text' );

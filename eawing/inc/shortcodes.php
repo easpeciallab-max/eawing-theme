@@ -5,7 +5,7 @@
  * [eawing_line pos="xxx"]ข้อความปุ่ม[/eawing_line]  ปุ่ม LINE (ลิงก์จาก Customizer)
  * [eawing_brand]                                   ชื่อแบรนด์
  * [eawing_broker] / [eawing_broker field="server"] ชื่อโบรกเกอร์ / ชื่อเซิร์ฟเวอร์ MT5 (ตั้งค่าใน Customizer)
- * [eawing_ea] / [eawing_ea field="name|version|bt_range"] ชื่อไฟล์ EA รุ่นปัจจุบัน (EA_WING_V5.1.ex5) / ชื่อไม่มีนามสกุล / เลขรุ่น / ช่วงวันที่ Backtest มาตรฐาน
+ * [eawing_ea] / [eawing_ea field="name|version|bt_range"] ชื่อไฟล์ EA รุ่นปัจจุบัน (EA_WING_V26.11.ex5) / ชื่อไม่มีนามสกุล / เลขรุ่น / ช่วงวันที่ Backtest มาตรฐาน
  * [eawing_calc type="lot|drawdown"]                เครื่องคำนวณ (JS ใน main.js)
  * [eawing_figure name="license-flow" alt="" caption=""] แผนภาพในธีม (assets/img/illus · รายชื่อใน eaw_figure_registry())
  *
@@ -57,7 +57,7 @@ add_shortcode( 'eawing_broker', 'eaw_sc_broker' );
  */
 function eaw_ea_version() {
 	$v = preg_replace( '/[^0-9.]/', '', (string) eaw_mod( 'ea_version' ) );
-	return '' !== $v ? $v : '5.1';
+	return '' !== $v ? $v : '26.11';
 }
 
 function eaw_ea_name() {
@@ -142,11 +142,11 @@ function eaw_figure_registry() {
 			'broker-checklist' => array( 'eawing-broker-checklist-v2.webp', 'eawing-broker-checklist-mobile-v2.webp', 'เช็กลิสต์เลือกโบรกเกอร์สำหรับ EA 6 ข้อ: ใบอนุญาต รองรับ MT5 และ EA ต้นทุนการเทรด สเปกสัญลักษณ์ ฝากถอนเงิน และลองด้วยเงินน้อยก่อน' ),
 			/* ภาพหน้าจอ MT5 (assets/img/install/) · ช่อง 4-5 = ขนาดจริง · ช่อง 6 = แสดงขนาดจริงกลางกรอบ (ภาพเล็ก) */
 			'mt5-open-data-folder' => array( '../install/eawing-mt5-open-data-folder-v1.webp', '', 'เมนู File ของ MT5 ที่ชี้ไปที่ Open Data Folder', 620, 300, true ),
-			'mt5-navigator'        => array( '../install/eawing-mt5-navigator-v2.webp', '', 'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มีไฟล์ EA WING', 210, 270, true ),
-			/* ครอปจากแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า (การ์ดล็อกอิน = รุ่น 5.0 หน้าตาเหมือนเดิม · ภาพรวมและปุ่มโหมด = รุ่น 5.1 · ภาพฝังในไฟล์ PDF ไม่ได้แก้ไข) */
+			'mt5-navigator'        => array( '../install/eawing-mt5-navigator-v4.webp', '', 'หน้าต่าง Navigator ของ MT5 หมวด Expert Advisors ที่มีไฟล์ EA WING', 210, 270, true ),
+			/* ครอปจากแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า (การ์ดล็อกอิน = รุ่น 5.0 หน้าตาเหมือนเดิม · ภาพรวมและปุ่มโหมด = รุ่น 26.11 · ภาพฝังในไฟล์ PDF ไม่ได้แก้ไข) */
 			'login-card-states'    => array( '../install/eawing-login-card-states-v2.webp', '', 'การ์ดล็อกอินบนแดชบอร์ด EA WING 4 แบบ: ล็อกอินสำเร็จ (เขียว) กำลังตรวจสิทธิ์และใช้แบบผ่อนผัน (เหลือง) และล็อกอินไม่ผ่าน (แดง)', 822, 368 ),
-			'dashboard-overview'   => array( '../install/eawing-dashboard-overview-v3.webp', '', 'ภาพรวมแดชบอร์ด EA WING พร้อมหมายเลขกำกับ 15 จุด ฝั่งซ้ายเป็นสถานะ การ์ดล็อกอิน ยอดเงิน ข่าวแดง ปุ่มโหมด Lite ปุ่มเดียว และปุ่มหยุดเปิดไม้ใหม่ ฝั่งขวาเป็นเป้ากำไรวันนี้ ทุนคิดไม้ ไม้ต่อตะกร้า ข่าวแดงและเวลาเทรด และข้อมูลตะกร้า', 1400, 980 ),
-			'modes-version'        => array( '../install/eawing-mode-version-v3.webp', '', 'ปุ่มโหมดบนแดชบอร์ด EA WING มีปุ่มเดียวคือ Lite ใต้ปุ่มเขียนว่า Lite บินต่ำ เงิน 1 เท่าของทุนคิดไม้ โหมดเดียว และแถบท้ายแผงที่บอกเวอร์ชันของ EA กับ Magic 876001', 820, 223 ),
+			'dashboard-overview'   => array( '../install/eawing-dashboard-overview-v4.webp', '', 'ภาพรวมแดชบอร์ด EA WING พร้อมหมายเลขกำกับ 15 จุด ฝั่งซ้ายเป็นสถานะ การ์ดล็อกอิน ยอดเงิน ข่าวแดง ปุ่มโหมด Lite ปุ่มเดียว และปุ่มหยุดเปิดไม้ใหม่ ฝั่งขวาเป็นเป้ากำไรวันนี้ ทุนคิดไม้ ไม้ต่อตะกร้า ข่าวแดงและเวลาเทรด และข้อมูลตะกร้า', 1400, 980 ),
+			'modes-version'        => array( '../install/eawing-mode-version-v4.webp', '', 'ปุ่มโหมดบนแดชบอร์ด EA WING มีปุ่มเดียวคือ Lite ใต้ปุ่มเขียนว่า Lite บินต่ำ เงิน 1 เท่าของทุนคิดไม้ โหมดเดียว และแถบท้ายแผงที่บอกเวอร์ชันของ EA กับ Magic 876001', 820, 223 ),
 		)
 	);
 }

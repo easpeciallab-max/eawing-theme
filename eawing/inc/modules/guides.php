@@ -15,7 +15,7 @@
  * ส่วนคำอธิบายยาว ตารางแก้ปัญหา และ FAQ อยู่ในเนื้อหาเพจ (inc/content/pages/*.html) ไม่ซ้ำกัน
  *
  * ตัวแทนในข้อความ Customizer: {brand} = ชื่อแบรนด์ · {broker} = ชื่อโบรกเกอร์ · {server} = ชื่อเซิร์ฟเวอร์ MT5
- * {ea} = ชื่อ EA รุ่นปัจจุบัน (EA_WING_V5.1) · {ea_file} = ชื่อไฟล์ .ex5 · {ea_version} = เลขรุ่น · {bt_range} = ช่วง Backtest มาตรฐาน (หัวข้อและคำอธิบายของขั้นตอนเท่านั้น · alt ของภาพไม่แทน)
+ * {ea} = ชื่อ EA รุ่นปัจจุบัน (EA_WING_V26.11) · {ea_file} = ชื่อไฟล์ .ex5 · {ea_version} = เลขรุ่น · {bt_range} = ช่วง Backtest มาตรฐาน (หัวข้อและคำอธิบายของขั้นตอนเท่านั้น · alt ของภาพไม่แทน)
  *
  * กติกาเนื้อหา: ไม่ระบุกลยุทธ์ ไม่มีตัวเลขผลเทรด ไม่รับประกันกำไร
  *
@@ -512,7 +512,7 @@ function eaw_guide_data() {
  * ภาพเดิมของทุกขั้นถูกเอาออกแล้ว (เป็นภาพของแบรนด์อื่น) · ช่องรูปบอกแอดมินว่าต้องถ่ายภาพอะไร
  */
 function eaw_guide_install_data() {
-	/* ตรงกับชุดส่งลูกค้า EA WING V5.1 (วิธีติดตั้ง + คู่มือ PDF ในไฟล์ zip) · ชื่อไฟล์ใช้ {ea} {ea_file} จึงไม่ต้องแก้เมื่อเปลี่ยนรุ่น */
+	/* ตรงกับชุดส่งลูกค้า EA WING V26.11 (วิธีติดตั้ง + คู่มือ PDF ในไฟล์ zip) · ชื่อไฟล์ใช้ {ea} {ea_file} จึงไม่ต้องแก้เมื่อเปลี่ยนรุ่น */
 	return array(
 		'kicker'      => 'Install Guide',
 		'sub'         => 'วางไฟล์ EA WING ลงใน MT5 เปิด Algo Trading กับ DLL ลากลงกราฟ XAUUSD M1 แล้วรอการ์ดล็อกอินเป็นสีเขียว',
@@ -631,12 +631,12 @@ function eaw_guide_flat_defaults() {
 		$flat[ 'inst_step' . $i . '_desc' ]  = $step[1];
 		$flat += eaw_guide_media_defaults( 'inst_step' . $i, $step[2], $step[3] );
 	}
-	/* ภาพหน้าจอขั้น 1 ถึง 5 มากับธีม (ลำดับขั้นตามคู่มือเว็บในเครือของเจ้าของ · ภาพแก้ชื่อไฟล์/ชื่อ EA เป็น EA_WING_V5.0 เมื่อ 12 ต.ค. 2026 และเป็น V5.1 เมื่อ 7 พ.ย. 2026 · ขั้น 5 เป็นแท็บ Common ตามจริง ช่อง DLL อยู่แท็บ Dependencies ตามคู่มือ MT5) · ขั้น 6 ครอปจากภาพแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า V5.0 (ส่วนนี้ของ V5.1 หน้าตาเหมือนเดิม) (เฉพาะหัวแผง สถานะ AutoTrading และการ์ดล็อกอิน) · เปลี่ยนรุ่นของ EA ต้องทำภาพชุดนี้ใหม่และเปลี่ยนเลข v ในชื่อไฟล์ · อัปโหลดภาพใหม่ใน Customizer ได้ */
+	/* ภาพหน้าจอขั้น 1 ถึง 5 มากับธีม (ลำดับขั้นตามคู่มือเว็บในเครือของเจ้าของ · ภาพแก้ชื่อไฟล์/ชื่อ EA เป็น EA_WING_V5.0 เมื่อ 12 ต.ค. 2026 เป็น V5.1 เมื่อ 7 พ.ย. 2026 และเป็น V26.11 เมื่อ 14 พ.ย. 2026 · ขั้น 5 เป็นแท็บ Common ตามจริง ช่อง DLL อยู่แท็บ Dependencies ตามคู่มือ MT5) · ขั้น 6 ครอปจากภาพแดชบอร์ดในคู่มือ PDF ของชุดส่งลูกค้า V5.0 (ส่วนนี้ของ V5.1 และ V26.11 หน้าตาเหมือนเดิม) (เฉพาะหัวแผง สถานะ AutoTrading และการ์ดล็อกอิน) · เปลี่ยนรุ่นของ EA ต้องทำภาพชุดนี้ใหม่และเปลี่ยนเลข v ในชื่อไฟล์ · อัปโหลดภาพใหม่ใน Customizer ได้ */
 	$flat['inst_step1_img'] = 'assets/img/install/eawing-mt5-open-data-folder-v1.webp';
-	$flat['inst_step2_img'] = 'assets/img/install/eawing-mt5-experts-folder-v3.webp';
-	$flat['inst_step3_img'] = 'assets/img/install/eawing-mt5-navigator-v3.webp';
-	$flat['inst_step4_img'] = 'assets/img/install/eawing-mt5-xauusd-m1-chart-v3.webp';
-	$flat['inst_step5_img'] = 'assets/img/install/eawing-mt5-common-tab-v4.webp';
+	$flat['inst_step2_img'] = 'assets/img/install/eawing-mt5-experts-folder-v4.webp';
+	$flat['inst_step3_img'] = 'assets/img/install/eawing-mt5-navigator-v4.webp';
+	$flat['inst_step4_img'] = 'assets/img/install/eawing-mt5-xauusd-m1-chart-v4.webp';
+	$flat['inst_step5_img'] = 'assets/img/install/eawing-mt5-common-tab-v5.webp';
 	$flat['inst_step6_img']     = 'assets/img/install/eawing-dashboard-login-ok-v2.webp';
 	$flat['inst_step6_img_alt'] = 'แดชบอร์ด EA WING บนกราฟ XAUUSD.c ที่ขึ้น AutoTrading เปิดอยู่ และการ์ดล็อกอินสำเร็จสีเขียว';
 	$flat['install_note']     = $in['note'];
